@@ -1,20 +1,9 @@
 const mongoose = require('mongoose');
 const useDebug = require('debug');
 const chalk = require('chalk');
-const { isMainThread } = require('worker_threads');
 const config = require('./config');
 
-const dbg = useDebug('db');
-
-/**
- * Logs messages only in the main thread
- * @param {String} msg The message to log
- */
-const debug = (msg) => {
-  if (isMainThread) {
-    dbg(msg);
-  }
-};
+const debug = useDebug('db');
 
 /**
  * Establishes a connection to MongoDB if one does not already exist.
