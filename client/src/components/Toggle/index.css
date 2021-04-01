@@ -1,0 +1,12 @@
+.Toggle {
+  margin: 5px 0 5px 0;
+}
+
+.Toggle input {
+  margin-left: 0;
+  margin-right: 10px;
+}
+
+.Toggle label {
+  font-size: 15px;
+}
