@@ -4,7 +4,7 @@ import Filters from '../Filters';
 
 const Dashboard = () => {
   return (
-    <div class='Dashboard'>
+    <div className='Dashboard'>
       <Filters />
     </div>
   )

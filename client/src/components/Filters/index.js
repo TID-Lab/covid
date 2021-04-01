@@ -7,7 +7,7 @@ import PlatformFilter from '../PlatformFilter';
 
 const Filters = () => {
   return (
-    <div class='Filters'>
+    <div className='Filters'>
       <DateFilter />
       <TopicFilter />
       <SourceFilter />

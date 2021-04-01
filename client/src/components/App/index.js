@@ -12,7 +12,7 @@ import Dashboard from '../Dashboard';
 
 const App = () => {
   return (
-    <div class='App'>
+    <div className='App'>
       <Router>
 
         <Header />
