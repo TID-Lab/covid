@@ -2,21 +2,28 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
 } from 'react-router-dom';
 
-import '../Dashboard';
+import './index.css';
+
+import Header from '../Header';
 import Dashboard from '../Dashboard';
 
 const App = () => {
   return (
-    <Router>
-      <Switch>
-        <Route path="/">
-          <Dashboard />
-        </Route>
-      </Switch>
-    </Router>
+    <div class='App'>
+      <Router>
+
+        <Header />
+
+        <Switch>
+          <Route path="/">
+            <Dashboard />
+          </Route>
+        </Switch>
+      </Router>
+    </div>
   );
 }
 

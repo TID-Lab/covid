@@ -1,6 +1,12 @@
+import './index.css';
+
+import Filters from '../Filters';
+
 const Dashboard = () => {
   return (
-    <h1>Hello, World!</h1>
+    <div class='Dashboard'>
+      <Filters />
+    </div>
   )
 }
 
