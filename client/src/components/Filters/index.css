@@ -4,3 +4,13 @@
   padding: 20px;
   height: 100%;
 }
+
+.Filter {
+  background-color: white;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+h3 {
+  margin: 0px 0px 10px 0px;
+}
