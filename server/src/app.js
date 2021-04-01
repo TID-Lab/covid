@@ -1,8 +1,7 @@
 const useDebug = require('debug');
 const chalk = require('chalk');
 const db = require('./util/db');
-
-// TODO import Express server
+const api = require('./api');
 
 const debug = useDebug('core');
 
@@ -16,7 +15,8 @@ const debug = useDebug('core');
   // Initialize the database connection
   await db();
 
-  // TODO Initialize Express server
+  // Initialize the API
+  await api();
 
   try {
     debug(chalk.greenBright('System initialized.'));

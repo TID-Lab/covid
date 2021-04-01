@@ -1,11 +1,12 @@
 {
   "scripts": {
     "start": "node src/app.js",
-    "dev": "cross-env DEBUG=core,db node src/app.js",
+    "dev": "cross-env DEBUG=core,db,api node src/app.js",
     "serve": "pm2 startOrRestart ecosystem.config.js",
     "stop": "pm2 stop ecosystem.config.js"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
     "chalk": "^4.1.0",
     "cross-env": "^7.0.3",
     "debug": "^4.3.1",
