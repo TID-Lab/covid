@@ -1,6 +1,6 @@
 .Filters {
   background-color: orange;
-  flex: 0 1 275px;
+  flex: 0 0 275px;
   padding: 20px;
   overflow-y: auto;
 }

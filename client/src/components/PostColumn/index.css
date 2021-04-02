@@ -1,0 +1,15 @@
+.PostColumn {
+  min-width: 350px;
+  height: 100%;
+  box-sizing: border-box;
+  padding-top: 20px;
+}
+
+.PostColumn.Second {
+  margin-left: 20px;
+}
+
+.PostColumn.Third {
+  margin-left: 20px;
+  margin-right: 20px;
+}

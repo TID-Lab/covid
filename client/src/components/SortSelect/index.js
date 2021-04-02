@@ -19,7 +19,7 @@ const SortSelect = () => {
     <div className='SortSelect'>
       <select value={sortBy} onChange={onChange}>
       {Object.keys(SORT_BY).map(val => (
-        <option value={val}>{SORT_BY[val]}</option>
+        <option key={val} value={val}>{SORT_BY[val]}</option>
       ))}
       </select>
     </div>
