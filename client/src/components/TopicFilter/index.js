@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-import '../Topic';
 import Topic from '../Topic';
 
 const TOPICS = {
@@ -12,20 +11,21 @@ const TOPICS = {
   'georgia': 'Georgia'
 }
 
-const TopicFilter = () => {
-  const [ selected, setSelected ] = useState(Object.keys(TOPICS)[0]);
+const TopicFilter = (props) => {
+  const { topic } = props;
+  const dispatch = useDispatch();
 
-  function onClick(id) {
+  function onSelected(id) {
     return () => {
-      setSelected(id);
+      dispatch({ type: 'topic/set', payload: id });
     }
   }
 
   return (
     <div className='Filter'>
       <h3>COVID Topics</h3>
-      {Object.keys(TOPICS).map( id => (
-        <Topic key={id} id={id} name={TOPICS[id]} onClick={onClick(id)} />
+      {Object.keys(TOPICS).map(id => (
+        <Topic key={id} id={id} name={TOPICS[id]} selected={id === topic} onSelected={onSelected(id)}/>
       ))}
     </div>
   );

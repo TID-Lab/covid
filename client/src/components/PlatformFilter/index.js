@@ -1,14 +1,29 @@
+import { useDispatch } from 'react-redux';
+
 import './index.css';
 
 import Toggle from '../Toggle';
 
-const PlatformFilter = () => {
+const PlatformFilter = (props) => {
+  const { platforms } = props;
+  const dispatch = useDispatch();
+  
+  function onToggled(value) {
+    return (toggled) => {
+      if (!toggled) {
+        dispatch({ type: 'platforms/added', payload: value });
+      } else {
+        dispatch({ type: 'platforms/removed', payload: value });
+      }
+    }
+  }
+
   return (
     <div className='Filter'>
       <h3>Platforms</h3>
-      <Toggle name='Facebook' value='facebook' />
-      <Toggle name='Instagram' value='instagram' />
-      <Toggle name='Twitter' value='twitter' />
+      <Toggle name='Facebook' value='facebook' toggled={platforms.includes('facebook')} onToggled={onToggled('facebook')} />
+      <Toggle name='Instagram' value='instagram' toggled={platforms.includes('instagram')} onToggled={onToggled('instagram')} />
+      <Toggle name='Twitter' value='twitter' toggled={platforms.includes('twitter')} onToggled={onToggled('twitter')} />
     </div>
   );
 };

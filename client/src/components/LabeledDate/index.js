@@ -1,28 +1,21 @@
-import { useState, useEffect } from 'react';
-
 import './index.css';
 
 const LabeledDate = (props) => {
   const {
-    date:defaultDate,
+    date,
     onDateChanged,
     label,
   } = props;
-  const [ date, setDate ] = useState(defaultDate);
 
   function onChange(e) {
-    setDate(e.target.value);
+    if (onDateChanged) onDateChanged(e.target.value)
   }
-
-  useEffect(() => {
-    if (onDateChanged) onDateChanged(date);
-  });
 
   return (
     <div className='LabeledDate'>
       <label>
-      {label}
-      <input type='date' value={defaultDate} onChange={onChange}/>
+        {label}
+        <input type='date' value={date} onChange={onChange}/>
       </label>
     </div>
   );

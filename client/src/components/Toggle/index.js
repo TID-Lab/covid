@@ -1,28 +1,21 @@
-import { useState, useEffect } from 'react';
-
 import './index.css';
 
 const Toggle = (props) => {
   const {
-    checked:defaultChecked,
-    onToggleChecked,
+    toggled,
+    onToggled,
     name,
     value,
   } = props;
-  const [ checked, setChecked ] = useState(!!defaultChecked || false);
 
-  function toggleChecked(e) {
-    setChecked(e.target.checked);
+  function toggle() {
+    if (onToggled) onToggled(toggled);
   }
-
-  useEffect(() => {
-    if (onToggleChecked) onToggleChecked(checked);
-  });
 
   return (
     <div className='Toggle'>
       <label>
-      <input type='checkbox' value={value} checked={checked} onChange={toggleChecked}/>
+      <input type='checkbox' value={value} checked={toggled} onChange={toggle}/>
       {name}
       </label>
     </div>
