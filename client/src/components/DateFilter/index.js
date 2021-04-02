@@ -20,7 +20,7 @@ const DateFilter = (props) => {
 
   return (
     <div className='Filter'>
-      <h3>Date Filter</h3>
+      <h3>Date Range</h3>
       <LabeledDate label='From' date={from} onDateChanged={onFromChanged} />
       <LabeledDate label='To' date={to} onDateChanged={onToChanged} />
     </div>

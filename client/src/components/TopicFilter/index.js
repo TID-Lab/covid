@@ -23,7 +23,7 @@ const TopicFilter = (props) => {
 
   return (
     <div className='Filter'>
-      <h3>COVID Topics</h3>
+      <h3>COVID-19 Topics</h3>
       {Object.keys(TOPICS).map(id => (
         <Topic key={id} id={id} name={TOPICS[id]} selected={id === topic} onSelected={onSelected(id)}/>
       ))}

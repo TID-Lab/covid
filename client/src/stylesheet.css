@@ -54,6 +54,7 @@ input, textarea, select {
   font-family: inherit;
   color: inherit;
   padding-left: 10px;
+  border: 1px solid gray;
 }
 
 input, textarea {
@@ -69,7 +70,7 @@ input, textarea {
   color: var(--body-secondary);
 }
 
-input:focus, textarea:focus {
+input:focus, textarea:focus, select:focus {
   outline: none;
 }
 

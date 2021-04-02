@@ -1,17 +1,29 @@
-import {
-  useLocation
-} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import './index.css';
+
+import Logo from '../Logo';
+import SortSelect from '../SortSelect';
+import TextSearch from '../TextSearch';
 
 const Header = () => {
   const { pathname } = useLocation(); // TODO show search only if in dashboard mode
 
-  return (
-    <div className='Header'>
-      
-    </div>
-  );
+  if (pathname === '/') {
+    return (
+      <div className='Header'>
+        <Logo />
+        <SortSelect />
+        <TextSearch />
+      </div>
+    )
+  } else {
+    return (
+      <div className='Header'>
+        <Logo />
+      </div>
+    )
+  }
 }
 
 export default Header;
