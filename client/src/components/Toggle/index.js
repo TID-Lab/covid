@@ -5,7 +5,7 @@ import './index.css';
 const Toggle = (props) => {
   const {
     checked:defaultChecked,
-    onChecked,
+    onToggleChecked,
     name,
     value,
   } = props;
@@ -16,7 +16,7 @@ const Toggle = (props) => {
   }
 
   useEffect(() => {
-    if (onChecked) onChecked(checked);
+    if (onToggleChecked) onToggleChecked(checked);
   });
 
   return (
