@@ -9,6 +9,7 @@ const PostColumn = (props) => {
   if (third) classes += ' Third';
   return (
     <div className={classes}>
+      <Post />
     </div>
   );
 };
