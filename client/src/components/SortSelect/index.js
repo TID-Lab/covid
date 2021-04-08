@@ -4,7 +4,7 @@ import './index.css';
 
 const SORT_BY = {
   'engagement': 'Most engagement (scaled)',
-  'foo-bar': 'Foo bar',
+  'recent': 'Most recent',
 }
 
 const SortSelect = () => {
