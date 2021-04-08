@@ -3,6 +3,7 @@
   flex: 0 0 275px;
   padding: 20px;
   overflow-y: auto;
+  user-select: none;
 }
 
 .Filter {
@@ -11,6 +12,6 @@
   margin-bottom: 20px;
 }
 
-h3 {
+.Filter h3 {
   margin: 0px 0px 10px 0px;
 }

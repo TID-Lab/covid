@@ -2,13 +2,13 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
 } from 'react-router-dom';
 
 import './index.css';
 
 import Header from '../Header';
 import Dashboard from '../Dashboard';
+import Settings from '../Settings';
 
 const App = () => {
   return (
@@ -18,8 +18,11 @@ const App = () => {
         <Header />
 
         <Switch>
-          <Route path="/">
+          <Route exact path="/">
             <Dashboard />
+          </Route>
+          <Route path="/settings">
+            <Settings />
           </Route>
         </Switch>
       </Router>
