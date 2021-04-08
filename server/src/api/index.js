@@ -5,6 +5,7 @@ const { json } = require('body-parser');
 const config = require('../util/config');
 
 const postRoutes = require('./post');
+const topicRoutes = require('./topic');
 
 const debug = useDebug('api');
 const app = express();
@@ -13,7 +14,10 @@ const app = express();
 app.use(json({ extended: true }));
 
 // Register routes
-app.use('/post', postRoutes);
+const apiRoutes = express.Router();
+apiRoutes.use('/post', postRoutes);
+apiRoutes.use('/topic', topicRoutes);
+app.use('/api', apiRoutes);
 
 const server = http.createServer(app);
 
