@@ -19,13 +19,14 @@ routes.post('/', async (req, res) => {
     res.status(400).send();
     return;
   }
+  const { name, keywords: rawKeywords } = req.body;
+  if (!Array.isArray(rawKeywords)) {
+    res.status(400).send();
+    return;
+  }
+  const keywords = rawKeywords.map((keyword) => keyword.toLowerCase());
   try {
-    const topic = new Topic(req.body);
-    const unique = await Topic.isNameUnique(topic);
-    if (!unique) {
-      res.status(409).send();
-      return;
-    }
+    const topic = new Topic({ name, keywords });
     await topic.save();
     res.status(200).json(topic.toJSON());
   } catch (err) {
@@ -43,24 +44,22 @@ routes.put('/', async (req, res) => {
     res.status(400).send();
     return;
   }
-  const { id, name, keywords } = req.body;
-
+  const { _id, name, keywords: rawKeywords } = req.body;
+  if (!Array.isArray(rawKeywords)) {
+    res.status(400).send();
+    return;
+  }
+  const keywords = rawKeywords.map((keyword) => keyword.toLowerCase());
   try {
-    const topic = await Topic.findById(id);
+    const topic = await Topic.findById(_id);
     if (!topic) {
       res.status(404).send();
       return;
     }
-    if (name !== topic.name) {
-      const unique = await Topic.isNameUnique({ name });
-      if (!unique) {
-        res.status(409).send();
-        return;
-      }
-      topic.name = name;
-    }
+    topic.name = name;
     topic.keywords = keywords;
     await topic.save();
+    res.status(200).json(topic.toJSON());
   } catch (err) {
     if (err.name === 'ValidationError') {
       res.status(400).send();
@@ -76,10 +75,10 @@ routes.delete('/', async (req, res) => {
     res.status(400).send();
     return;
   }
-  const { id } = req.body;
+  const { _id } = req.body;
 
   try {
-    const result = await Topic.findByIdAndDelete(id);
+    const result = await Topic.deleteOne({ _id });
     if (result.deletedCount === 0) {
       res.status(404).send();
       return;

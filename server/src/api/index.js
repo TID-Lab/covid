@@ -10,6 +10,16 @@ const topicRoutes = require('./topic');
 const debug = useDebug('api');
 const app = express();
 
+// Default error handler
+function handleError(err, req, res, next) {
+  if (err) {
+    debug(`${err}`);
+    res.status(500).send();
+  } else {
+    next(err);
+  }
+}
+
 // Register body-parser middleware
 app.use(json({ extended: true }));
 
@@ -18,6 +28,9 @@ const apiRoutes = express.Router();
 apiRoutes.use('/post', postRoutes);
 apiRoutes.use('/topic', topicRoutes);
 app.use('/api', apiRoutes);
+
+// Swallow errors
+app.use(handleError);
 
 const server = http.createServer(app);
 
