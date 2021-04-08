@@ -1,4 +1,4 @@
 .Logo {
-  width: 275px;
+  flex: 0 0 275px;
   background-color: gray;
 }
