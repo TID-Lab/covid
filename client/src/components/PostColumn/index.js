@@ -8,9 +8,7 @@ const PostColumn = (props) => {
   if (second) classes += ' Second';
   if (third) classes += ' Third';
   return (
-    <div className={classes}>
-      <Post />
-    </div>
+    <div className={classes}></div>
   );
 };
 
