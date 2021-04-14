@@ -6,8 +6,8 @@ const Posts = (props) => {
   return (
     <div className='Posts'>
         <PostColumn />
-        <PostColumn second/>
-        <PostColumn third/>
+        {/* <PostColumn second/>
+        <PostColumn third/> */}
     </div>
   );
 };
