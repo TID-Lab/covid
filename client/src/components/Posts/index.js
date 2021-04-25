@@ -1,13 +1,17 @@
+import { useSelector, useDispatch } from 'react-redux';
+
 import './index.css';
 
-import PostColumn from '../PostColumn';
+import Post from '../Post';
 
 const Posts = (props) => {
+  const posts = useSelector(state => state.posts);
+
   return (
     <div className='Posts'>
-        <PostColumn />
-        <PostColumn second/>
-        <PostColumn third/>
+        {posts.map(post => (
+          <Post data={post} />
+        ))}
     </div>
   );
 };

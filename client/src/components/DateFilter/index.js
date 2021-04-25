@@ -16,8 +16,6 @@ const DateFilter = (props) => {
     dispatch({ type: 'dates/toSet', payload: date })
   }
 
-  console.log({ from, to })
-
   return (
     <div className='Filter'>
       <h3>Date Range</h3>
