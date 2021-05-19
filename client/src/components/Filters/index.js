@@ -14,9 +14,9 @@ const Filters = () => {
   const filters = useSelector(state => state.filters);
   const { dates, topic, sources, platforms } = filters;
 
-  useEffect(() => {
-    getPosts(filters).then(posts => dispatch('posts/set', { payload: posts }))
-  }, [ filters, dispatch ])
+  // useEffect(() => {
+  //   getPosts(filters).then(posts => dispatch('posts/set', { payload: posts }))
+  // }, [ filters, dispatch ])
 
   return (
     <div className='Filters'>
