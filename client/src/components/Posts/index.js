@@ -5,8 +5,8 @@ import './index.css';
 import Post from '../Post';
 
 const Posts = (props) => {
-  const posts = useSelector(state => state.posts);
-  // const posts = require('../demo_aggie_data_covid_tw_ig.json');
+  // const posts = useSelector(state => state.posts);
+  const posts = require('../demo_aggie_data_covid_tw_ig.json');
   console.log(posts);
 
   return (

@@ -4,45 +4,54 @@ import { useState, useEffect } from 'react';
 
 const Post = (props) => {
   const { data } = props;
-  // const { url } = data.url;
-  // const { platform } = data._media;
-
   // console.log(data.url);
+
+  // Setting the API call params by platform
+  console.log(data._media[0]);
+  var fetchUrl = '';
+
+  if (data._media[0] === 'twitter') {
+    // console.log(data.url);
+    fetchUrl = 'https://publish.twitter.com/oembed?url=' + data.url;
+  } else if (data._media[0] === 'crowdtangle') {
+    // console.log(data.metadata.platform);
+    if (data.metadata.platform === 'Instagram') {
+      fetchUrl = 'https://graph.facebook.com/v10.0/instagram_oembed?url=' + data.url + '&access_token=PLACEHOLDER';
+    }
+    if (data.metadata.platform === 'Facebook') {
+      fetchUrl = 'https://graph.facebook.com/v10.0/oembed_post?url=' + data.url + '&access_token=PLACEHOLDER';
+    }
+  };
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [item, setItem] = useState([]);
-
+  
   useEffect(() => {
-    // console.log(data._media[0]);
-    if (data._media[0] === 'twitter') {
-      console.log(data.url);
-      
-      // fetch('https://publish.twitter.com/oembed', {
-      //   method: 'GET',
-      //   headers: {'url': data.url},
-      //   mode: 'no-cors'
-      // })
-      const fetch_url = 'https://publish.twitter.com/oembed?url=' + data.url;
-      console.log(fetch_url);
-      fetch(fetch_url)
-        .then(res => res.json())
-        .then(
-          (result) => {
-            setIsLoaded(true);
-            setItem(result);
-          },
-          // Note: it's important to handle errors here
-          // instead of a catch() block so that we don't swallow
-          // exceptions from actual bugs in components.
-          (error) => {
-            setIsLoaded(true);
-            setError(error);
-          }
-        )
-    };
+
+    console.log(fetchUrl);
+
+    // fetch('https://publish.twitter.com/oembed', {
+    //   method: 'GET',
+    //   headers: {'url': data.url}
+    // })    
+    fetch(fetchUrl, {method: 'GET'})
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setItem(result);
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
     
-  }, [data._media, data.url])
+  }, []) //fetchUrl, headers
 
   if (error) {
     return (
@@ -61,31 +70,15 @@ const Post = (props) => {
       </div>
     );
   } else {
+    // console.log(item);
     return (
-      <div class='Post'>
-        {item.html}
-        <br></br>
-        {data.url}
+      <div class='Post' dangerouslySetInnerHTML={{__html: item.html}}>
+        {/* {item.html} */}
+        {/* <br></br>
+        {data.url} */}
       </div>
     );
   }
-
-  // if (data._media[0] === 'twitter') {
-  //   const fetch_url = 'https://publish.twitter.com/oembed?url=' + data.url;
-  //   return (
-  //     <div class='Post'>
-  //       {fetch_url}
-  //       <br></br>
-  //       {data.url}
-  //     </div>
-  //   );
-  // } else {
-  //   return (
-  //     <div class='Post'>
-  //       {data.url}
-  //     </div>
-  //   );
-  // }
 
   // return (
   //   <div class='Post'>
