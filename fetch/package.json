@@ -9,7 +9,7 @@
     "chalk": "^4.1.0",
     "cross-env": "^7.0.3",
     "debug": "^4.3.1",
-    "dotenv": "^8.2.0",
+    "dotenv": "^8.6.0",
     "downstream": "0.0.26",
     "mongoose": "^5.12.2"
   },

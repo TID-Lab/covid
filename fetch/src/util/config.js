@@ -1,13 +1,11 @@
-const { config } = require('dotenv');
+const path = require('path');
 
 /**
  * A secure config system that exposes secrets, keys, and more
  * via a simple JSON object that can be imported from other modules.
  */
 
-if (process.env.NODE_ENV !== 'production') {
-  config();
-}
+require('dotenv').config({ path: path.join(__dirname, '..', '..', '..', '.env') });
 
 module.exports = {
   api: {
