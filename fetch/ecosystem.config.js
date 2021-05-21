@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'covid',
+      name: 'fetch',
       script: 'src/app.js',
       env: {
         NODE_ENV: 'production',
