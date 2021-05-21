@@ -155,40 +155,41 @@ async function addRules(toAdd) {
 
 
 async function update() {
-    const listsByName = {};
+    try {
+        const listsByName = {};
 
-    // fetch the latest Twitter Lists
-    const lists = await getListsFor('amyzlc');
+        // fetch the latest Twitter Lists
+        const lists = await getListsFor('amyzlc');
 
-    //fetch the accounts from each Twitter List
-    for (let i = 0; i < lists.length; i += 1) {
-        const { id_str, name } = lists[i];
-        const list = await getListById(id_str);
-        listsByName[name] = list.sort();
+        //fetch the accounts from each Twitter List
+        for (let i = 0; i < lists.length; i += 1) {
+            const { id_str, name } = lists[i];
+            const list = await getListById(id_str);
+            listsByName[name] = list.sort();
+        }
+
+        // generate a set of rules from each Twitter List
+        const toAdd = generateRules(listsByName);
+
+        // fetch the old rules
+        const toDelete = await getStreamRuleIds();
+
+        // delete the old rules
+        await deleteRules(toDelete);
+
+        // ... We have a second or two of inevitable stream downtime here :/
+
+        // add the new rules
+        await addRules(toAdd);
+
+        // done! :-)
+        console.log('Rules updated.');
+    } catch (err) {
+        console.log(err);
     }
-
-    // generate a set of rules from each Twitter List
-    const toAdd = generateRules(listsByName);
-
-    // fetch the old rules
-    const toDelete = await getStreamRuleIds();
-
-    // delete the old rules
-    await deleteRules(toDelete);
-
-    // ... We have a second or two of inevitable stream downtime here :/
-
-    // add the new rules
-    await addRules(toAdd);
-
-    // done! :-)
 }
 
-setInterval(async () => {
-    try {
-        await update();
-        console.log('Rules updated.');
-    } catch (e) {
-        console.log(e);
-    }
-}, INTERVAL);
+(async () => {
+    await update();
+    setInterval(update, INTERVAL);
+})();
