@@ -187,6 +187,7 @@ async function update() {
 setInterval(async () => {
     try {
         await update();
+        console.log('Rules updated.');
     } catch (e) {
         console.log(e);
     }
