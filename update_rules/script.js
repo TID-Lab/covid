@@ -7,7 +7,7 @@ const TwitterV1 = require('twit');
 const TwitterV2 = require('twitter-v2');
 const keywords = require('../keywords');
 
-require('dotenv').config(path.resolve(process.cwd(), '..', '.env'));
+require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 
 // how often the rules are updated
 const INTERVAL = 300000;
