@@ -1,0 +1,24 @@
+{
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "cross-env DEBUG=core,db,fetch node src/app.js",
+    "serve": "pm2 startOrRestart ecosystem.config.js",
+    "stop": "pm2 stop ecosystem.config.js"
+  },
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "cross-env": "^7.0.3",
+    "debug": "^4.3.1",
+    "dotenv": "^8.2.0",
+    "downstream": "0.0.26",
+    "mongoose": "^5.12.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.23.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.23.1",
+    "eslint-plugin-react-hooks": "^4.2.0"
+  }
+}
