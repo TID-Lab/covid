@@ -1,3 +1,4 @@
+const path = require('path');
 const useDebug = require('debug');
 const express = require('express');
 const http = require('http');
@@ -28,6 +29,15 @@ const apiRoutes = express.Router();
 apiRoutes.use('/post', postRoutes);
 apiRoutes.use('/topic', topicRoutes);
 app.use('/api', apiRoutes);
+
+// Mount the frontend app
+if (process.env.NODE_ENV === 'production') {
+  const build = [__dirname, '..', '..', '..', 'client', 'build'];
+  app.use(express.static(path.join(...build)));
+  app.get('/', function (_, res) {
+    res.sendFile(path.join(...build, 'index.html'));
+  });
+}
 
 // Swallow errors
 app.use(handleError);
