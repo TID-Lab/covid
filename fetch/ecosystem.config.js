@@ -5,6 +5,7 @@ module.exports = {
       script: 'src/app.js',
       env: {
         NODE_ENV: 'production',
+        DEBUG: 'core,db,fetch',
       },
     },
   ],
