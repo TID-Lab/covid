@@ -3,8 +3,8 @@
 const routes = require('express').Router();
 const mongoose = require('mongoose');
 
-const MongoClient = mongoose.connection.client;
-const aggieDB = MongoClient.db('aggie');
+// const MongoClient = mongoose.connection.client;
+// const aggieDB = MongoClient.db('aggie');
 
 function bodyToFilter(body) {
   const {
@@ -46,16 +46,16 @@ function bodyToFilter(body) {
   return filter;
 }
 
-routes.get('/', async (req, res) => {
-  const { body } = req;
-  if (!body) {
-    res.status(400).send();
-    return;
-  }
-  const filter = bodyToFilter(body);
-  const reportsCollection = aggieDB.collection('reports');
-  const reports = await reportsCollection.find(filter).toArray();
-  res.status(200).send(reports);
-});
+// routes.get('/', async (req, res) => {
+//   const { body } = req;
+//   if (!body) {
+//     res.status(400).send();
+//     return;
+//   }
+//   const filter = bodyToFilter(body);
+//   const reportsCollection = aggieDB.collection('reports');
+//   const reports = await reportsCollection.find(filter).toArray();
+//   res.status(200).send(reports);
+// });
 
 module.exports = routes;

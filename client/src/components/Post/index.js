@@ -12,14 +12,14 @@ const Post = (props) => {
 
   if (data._media[0] === 'twitter') {
     // console.log(data.url);
-    fetchUrl = 'https://publish.twitter.com/oembed?url=' + data.url;
+    fetchUrl = 'twitter/oembed?url=' + data.url; //'https://publish.twitter.com/oembed?url=' + data.url;
   } else if (data._media[0] === 'crowdtangle') {
     // console.log(data.metadata.platform);
-    if (data.metadata.platform === 'Instagram') {
-      fetchUrl = 'https://graph.facebook.com/v10.0/instagram_oembed?url=' + data.url + '&access_token=PLACEHOLDER';
-    }
     if (data.metadata.platform === 'Facebook') {
-      fetchUrl = 'https://graph.facebook.com/v10.0/oembed_post?url=' + data.url + '&access_token=PLACEHOLDER';
+      fetchUrl = fetchUrl = '/oembed/facebook' + data.url; //'https://graph.facebook.com/v10.0/oembed_post?url=' + data.url + '&access_token=PLACEHOLDER';
+    }
+    if (data.metadata.platform === 'Instagram') {
+      fetchUrl = fetchUrl = '/oembed/instagram' + data.url; //'https://graph.facebook.com/v10.0/instagram_oembed?url=' + data.url + '&access_token=PLACEHOLDER';
     }
   };
 
@@ -72,11 +72,11 @@ const Post = (props) => {
   } else {
     // console.log(item);
     return (
-      <div class='Post' dangerouslySetInnerHTML={{__html: item.html}}>
-        {/* {item.html} */}
-        {/* <br></br>
-        {data.url} */}
-      </div>
+      <>
+        <div class='Post' dangerouslySetInnerHTML={{__html: item.html}}>
+        </div>
+        {data.url}
+      </>
     );
   }
 
