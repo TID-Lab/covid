@@ -77,5 +77,5 @@ module.exports = async () => {
 
   await engine.start();
 
-  debug('Downstream started...');
+  debug('Downstream started.');
 };
