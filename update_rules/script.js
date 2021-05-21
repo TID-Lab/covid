@@ -25,8 +25,8 @@ const twitterV1 = new TwitterV1({
 });
 
 const twitterV2 = new TwitterV2({
-    consumer_key: process.env.CONSUMER_KEY,
-    consumer_secret: process.env.CONSUMER_SECRET,
+    consumer_key: process.env.TWITTER_CONSUMER_KEY,
+    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
 });
 
 function getListsFor(screenName) {
