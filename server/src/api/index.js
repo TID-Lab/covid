@@ -7,6 +7,7 @@ const config = require('../util/config');
 
 const postRoutes = require('./post');
 const topicRoutes = require('./topic');
+const proxyRoutes = require('./proxy');
 
 const debug = useDebug('api');
 const app = express();
@@ -28,13 +29,14 @@ app.use(json({ extended: true }));
 const apiRoutes = express.Router();
 apiRoutes.use('/post', postRoutes);
 apiRoutes.use('/topic', topicRoutes);
+apiRoutes.use('/proxy', proxyRoutes);
 app.use('/api', apiRoutes);
 
 // Mount the frontend app
 if (process.env.NODE_ENV === 'production') {
   const build = [__dirname, '..', '..', '..', 'client', 'build'];
   app.use(express.static(path.join(...build)));
-  app.get('/', function (_, res) {
+  app.get('/', (_, res) => {
     res.sendFile(path.join(...build, 'index.html'));
   });
 }
