@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "twit": "^2.2.11",
+    "twitter-v2": "^1.1.0"
+  }
+}
