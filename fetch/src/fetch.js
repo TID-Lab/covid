@@ -66,11 +66,11 @@ module.exports = async () => {
   debug('Starting downstream...');
 
   engine.register(twitterStreamChannel);
-  engine.register(twitterPageChannel);
+  // engine.register(twitterPageChannel);
   engine.register(facebookListChannel);
-  engine.register(facebookPlatformChannel);
+  // engine.register(facebookPlatformChannel);
   engine.register(instaListChannel);
-  engine.register(instaPlatformChannel);
+  // engine.register(instaPlatformChannel);
 
   engine.use(saveToDatabase);
   engine.on('error', debug);
