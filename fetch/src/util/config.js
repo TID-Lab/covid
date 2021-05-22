@@ -21,8 +21,8 @@ module.exports = {
         consumerKey: process.env.TWITTER_CONSUMER_KEY,
         consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
       },
-      facebook: process.env.FACEBOOK_TOKEN,
-      instagram: process.env.INSTAGRAM_TOKEN,
+      facebook: process.env.CROWDTANGLE_FACEBOOK_TOKEN,
+      instagram: process.env.CROWDTANGLE_INSTAGRAM_TOKEN,
     },
   },
 };
