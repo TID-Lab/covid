@@ -13,7 +13,7 @@ routes.get('/twitter', async (req, res) => {
   res.status(200).send(response.data);
 });
 
-routes.post('/facebook', async (req, res) => {
+routes.get('/facebook', async (req, res) => {
   const { url } = req.query;
   const response = await axios({
     method: 'GET',
@@ -27,7 +27,7 @@ routes.post('/facebook', async (req, res) => {
   res.status(200).send(response.data);
 });
 
-routes.put('/instagram', async (req, res) => {
+routes.get('/instagram', async (req, res) => {
   const { url } = req.query;
   const response = await axios({
     method: 'GET',
