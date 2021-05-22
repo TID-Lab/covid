@@ -1,5 +1,6 @@
 const routes = require('express').Router();
 const axios = require('axios').default;
+const { api: { proxy: { facebookToken, instagramToken } } } = require('../../util/config');
 
 routes.get('/twitter', async (req, res) => {
   const { url } = req.query;
@@ -20,7 +21,7 @@ routes.post('/facebook', async (req, res) => {
     url: '/v10.0/oembed_page',
     params: {
       url,
-      access_token: 'TODO',
+      access_token: facebookToken,
     },
   });
   res.status(200).send(response.data);
@@ -34,7 +35,7 @@ routes.put('/instagram', async (req, res) => {
     url: '/v10.0/instagram_oembed',
     params: {
       url,
-      access_token: 'TODO',
+      access_token: instagramToken,
     },
   });
   res.status(200).send(response.data);
