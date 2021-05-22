@@ -9,6 +9,8 @@ const keywords = require('../keywords');
 
 require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 
+const TWITTER_SCREEN_NAME = 'amyzlc';
+
 // how often the rules are updated
 const INTERVAL = 300000;
 
@@ -163,7 +165,7 @@ async function update() {
         const listsByName = {};
 
         // fetch the latest Twitter Lists
-        const lists = await getListsFor('amyzlc');
+        const lists = await getListsFor(TWITTER_SCREEN_NAME);
 
         //fetch the accounts from each Twitter List
         for (let i = 0; i < lists.length; i += 1) {
