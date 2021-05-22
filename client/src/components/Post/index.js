@@ -6,23 +6,24 @@ const Post = (props) => {
   const { data } = props;
   // console.log(data.url);
 
-  // Setting the API call params by platform
+  // Setting the API call by platform
   console.log(data._media[0]);
   var fetchUrl = '';
 
   if (data._media[0] === 'twitter') {
     // console.log(data.url);
-    fetchUrl = 'twitter/oembed?url=' + data.url; //'https://publish.twitter.com/oembed?url=' + data.url;
+    fetchUrl = 'api/proxy/twitter?url=' + data.url;
   } else if (data._media[0] === 'crowdtangle') {
     // console.log(data.metadata.platform);
     if (data.metadata.platform === 'Facebook') {
-      fetchUrl = fetchUrl = '/oembed/facebook' + data.url; //'https://graph.facebook.com/v10.0/oembed_post?url=' + data.url + '&access_token=PLACEHOLDER';
+      fetchUrl = fetchUrl = 'api/proxy/facebook?url=' + data.url;
     }
     if (data.metadata.platform === 'Instagram') {
-      fetchUrl = fetchUrl = '/oembed/instagram' + data.url; //'https://graph.facebook.com/v10.0/instagram_oembed?url=' + data.url + '&access_token=PLACEHOLDER';
+      fetchUrl = fetchUrl = 'api/proxy/instagram?url=' + data.url;
     }
   };
 
+  // Call the API to get the embedded code
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [item, setItem] = useState([]);
@@ -31,10 +32,6 @@ const Post = (props) => {
 
     console.log(fetchUrl);
 
-    // fetch('https://publish.twitter.com/oembed', {
-    //   method: 'GET',
-    //   headers: {'url': data.url}
-    // })    
     fetch(fetchUrl, {method: 'GET'})
       .then(res => res.json())
       .then(
@@ -53,12 +50,13 @@ const Post = (props) => {
     
   }, []) //fetchUrl, headers
 
+  // Insert div with the embedded post HTML
   if (error) {
     return (
       <div class='Post'>
         Error: {error.message}
         <br></br>
-        {data.url}
+        <a href={data.url}>{data.url}</a>
       </div>
     );
   } else if (!isLoaded) {
@@ -66,7 +64,7 @@ const Post = (props) => {
       <div class='Post'>
         Loading...
         <br></br>
-        {data.url}
+        <a href={data.url}>{data.url}</a>
       </div>
     );
   } else {
@@ -75,7 +73,7 @@ const Post = (props) => {
       <>
         <div class='Post' dangerouslySetInnerHTML={{__html: item.html}}>
         </div>
-        {data.url}
+        <a href={data.url}>{data.url}</a>
       </>
     );
   }

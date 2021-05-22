@@ -2438,5 +2438,154 @@
 	    "url":"https://www.instagram.com/tv/CNpb89EjrXb/",
 	    "storedAt":"2021-04-14T13:57:16.147Z",
 	    "__v":0
-	}
+	},
+	{
+    "tags": [
+      "Electoral/Political Registered News Agencies Page"
+    ],
+    "smtcTags": [],
+    "read": true,
+    "flagged": false,
+    "_sources": [
+      "5f2a4b28b72da5ee8b36ba54"
+    ],
+    "_media": "crowdtangle",
+    "_sourceNicknames": [
+      "ct"
+    ],
+    "_id": "5f603c9034a5ab9c2bd3563a",
+    "authoredAt": "2020-09-15T04:00:12.000Z",
+    "fetchedAt": "2020-09-15T04:01:20.786Z",
+    "content": "ဖူးစာရှင်အိမ်ထောင်ဖက်ကို တကူးတကတော့ ရှာမနေတော့ပါဘူး စည်သူမောင် #sithumaung #popularjournal",
+    "author": "Popular Journal",
+    "metadata": {
+      "sponsor": null,
+      "caption": null,
+      "description": null,
+      "title": null,
+      "crowdtangleId": 106460061151,
+      "externalUrl": "https://www.facebook.com/popularjournal/videos/1132768247120960/",
+      "platform": "Facebook",
+      "type": "live_video",
+      "accountVerified": false,
+      "accountHandle": "popularjournal",
+      "subscriberCount": 2458212,
+      "accountUrl": "https://www.facebook.com/166780716735678",
+      "mediaUrl": [
+        {
+          "type": "video",
+          "url": "https://video-sea1-1.xx.fbcdn.net/hvideo-frc-vll/_nc_ohc-MlQLXF_8_YMAX_kPsTa/_nc_cat-110/v/rtUaZNJTkUgOH0gX_CCtc/live-dash/dash-abr-ibr-audio/3390585791021805.mpd?_nc_rl=AfBBHwLhN78pZG69&ms=m_CT&oh=75762c3ef9b090e663a4f6776f0eb53e&oe=5F621F15"
+        },
+        {
+          "type": "photo",
+          "url": "https://scontent-sea1-1.xx.fbcdn.net/v/t15.5256-10/p720x720/118675122_1053745988400544_2522002005247527790_n.jpg?_nc_cat=100&_nc_sid=ad6a45&_nc_ohc=Ffcje5Jmpx8AX8iQsHo&_nc_ht=scontent-sea1-1.xx&oh=8b120984e9f918ee08d37796c089b352&oe=5F85D943"
+        }
+      ],
+      "actualStatistics": {
+        "likeCount": 23,
+        "shareCount": 0,
+        "commentCount": 2,
+        "loveCount": 0,
+        "wowCount": 0,
+        "hahaCount": 0,
+        "sadCount": 0,
+        "angryCount": 0,
+        "thankfulCount": 0,
+        "careCount": 0
+      },
+      "expectedStatistics": {
+        "likeCount": 14,
+        "shareCount": 3,
+        "commentCount": 2,
+        "loveCount": 5,
+        "wowCount": 1,
+        "hahaCount": 2,
+        "sadCount": 1,
+        "angryCount": 0,
+        "thankfulCount": 0,
+        "careCount": 2
+      },
+      "rawAPIResponse": {
+        "id": 106460061151,
+        "platformId": "166780716735678_1132768247120960",
+        "platform": "Facebook",
+        "date": "2020-09-15 04:00:12",
+        "updated": "2020-09-15 04:01:17",
+        "type": "live_video",
+        "message": "ဖူးစာရှင်အိမ်ထောင်ဖက်ကို တကူးတကတော့ ရှာမနေတော့ပါဘူး စည်သူမောင် #sithumaung #popularjournal",
+        "expandedLinks": [
+          {
+            "original": "https://www.facebook.com/popularjournal/videos/1132768247120960/",
+            "expanded": "https://www.facebook.com/popularjournal/videos/1132768247120960/"
+          }
+        ],
+        "link": "https://www.facebook.com/popularjournal/videos/1132768247120960/",
+        "postUrl": "https://www.facebook.com/popularjournal/posts/1132768247120960",
+        "subscriberCount": 2458212,
+        "score": -1.12,
+        "media": [
+          {
+            "type": "video",
+            "url": "https://video-sea1-1.xx.fbcdn.net/hvideo-frc-vll/_nc_ohc-MlQLXF_8_YMAX_kPsTa/_nc_cat-110/v/rtUaZNJTkUgOH0gX_CCtc/live-dash/dash-abr-ibr-audio/3390585791021805.mpd?_nc_rl=AfBBHwLhN78pZG69&ms=m_CT&oh=75762c3ef9b090e663a4f6776f0eb53e&oe=5F621F15",
+            "height": 0,
+            "width": 0
+          },
+          {
+            "type": "photo",
+            "url": "https://scontent-sea1-1.xx.fbcdn.net/v/t15.5256-10/p720x720/118675122_1053745988400544_2522002005247527790_n.jpg?_nc_cat=100&_nc_sid=ad6a45&_nc_ohc=Ffcje5Jmpx8AX8iQsHo&_nc_ht=scontent-sea1-1.xx&oh=8b120984e9f918ee08d37796c089b352&oe=5F85D943",
+            "height": 720,
+            "width": 720,
+            "full": "https://scontent-sea1-1.xx.fbcdn.net/v/t15.5256-10/118675122_1053745988400544_2522002005247527790_n.jpg?_nc_cat=100&_nc_sid=ad6a45&_nc_ohc=Ffcje5Jmpx8AX8iQsHo&_nc_ht=scontent-sea1-1.xx&oh=73141cbbd06f617731acad63dbdd0cb7&oe=5F86B03B"
+          }
+        ],
+        "statistics": {
+          "actual": {
+            "likeCount": 23,
+            "shareCount": 0,
+            "commentCount": 2,
+            "loveCount": 0,
+            "wowCount": 0,
+            "hahaCount": 0,
+            "sadCount": 0,
+            "angryCount": 0,
+            "thankfulCount": 0,
+            "careCount": 0
+          },
+          "expected": {
+            "likeCount": 14,
+            "shareCount": 3,
+            "commentCount": 2,
+            "loveCount": 5,
+            "wowCount": 1,
+            "hahaCount": 2,
+            "sadCount": 1,
+            "angryCount": 0,
+            "thankfulCount": 0,
+            "careCount": 2
+          }
+        },
+        "account": {
+          "id": 412789,
+          "name": "Popular Journal",
+          "handle": "popularjournal",
+          "profileImage": "https://scontent-sea1-1.xx.fbcdn.net/v/t1.0-1/p200x200/56173222_2204987406248322_8485958424515837952_n.jpg?_nc_cat=1&_nc_sid=dbb9e7&_nc_ohc=bPZEUzrzoOQAX91_gQk&_nc_ht=scontent-sea1-1.xx&tp=6&oh=3bc90e52a2faeee2aff47a0b34f3eb43&oe=5F858863",
+          "subscriberCount": 2458212,
+          "url": "https://www.facebook.com/166780716735678",
+          "platform": "Facebook",
+          "platformId": "166780716735678",
+          "accountType": "facebook_page",
+          "pageAdminTopCountry": "MM",
+          "verified": false
+        },
+        "videoLengthMS": 28800000,
+        "liveVideoStatus": "live"
+      },
+      "ct_tag": "Electoral/Political Registered News Agencies Page"
+    },
+    "url": "https://www.facebook.com/popularjournal/posts/1132768247120960",
+    "storedAt": "2020-09-15T04:01:20.789Z",
+    "__v": 0,
+    "checkedOutAt": null,
+    "checkedOutBy": null
+  }
 ]
