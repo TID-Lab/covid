@@ -5,8 +5,6 @@ const http = require('http');
 const { json } = require('body-parser');
 const config = require('../util/config');
 
-const setupProxy = require('./setupProxy');
-
 const postRoutes = require('./post');
 const topicRoutes = require('./topic');
 const proxyRoutes = require('./proxy');
@@ -33,7 +31,6 @@ apiRoutes.use('/post', postRoutes);
 apiRoutes.use('/topic', topicRoutes);
 apiRoutes.use('/proxy', proxyRoutes);
 app.use('/api', apiRoutes);
-setupProxy(app);
 
 // Mount the frontend app
 if (process.env.NODE_ENV === 'production') {
