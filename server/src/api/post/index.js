@@ -10,7 +10,7 @@ function bodyToFilter(body) {
     topics,
     sourceFilters,
     platforms,
-  } = body;
+  } = body || {};
 
   const filter = {};
 
