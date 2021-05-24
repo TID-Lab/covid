@@ -21,13 +21,13 @@ const Post = (props) => {
     } else {
       switch (platform) {
         case 'twitter':
-          if (window.twttr) window.twttr.widgets.load()
+          if (window.twttr && window.twttr.widgets) window.twttr.widgets.load()
           break;
         case 'instagram':
-          if (window.instgrm) window.instgrm.Embeds.process()
+          if (window.instgrm && window.instgrm.Embeds) window.instgrm.Embeds.process()
           break;
         case 'facebook':
-          if (window.FB) window.FB.XFBML.parse();
+          if (window.FB && window.FB.XFBML) window.FB.XFBML.parse();
           break;
         default:
       }
