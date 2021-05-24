@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './index.css';
 
-import Topic from '../Topic';
+import Radio from '../Radio';
 
 const TOPICS = {
   'all': 'All',
@@ -28,7 +28,7 @@ const TopicFilter = (props) => {
     <div className='Filter Topics'>
       <h3>COVID-19 Topics</h3>
       {Object.keys(TOPICS).map(id => (
-        <Topic key={id} id={id} name={TOPICS[id]} selected={id === topic} onSelected={onSelected(id)}/>
+        <Radio key={id} id={id} name='topics' value={TOPICS[id]} selected={id === topic} onSelected={onSelected(id)}/>
       ))}
       <Link to='/settings/topics'>
         <span>Edit Topics</span>

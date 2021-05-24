@@ -1,12 +1,12 @@
-.Source {
+.Radio {
   margin: 5px 0 5px 0;
 }
 
-.Source input {
+.Radio input {
   margin-left: 0;
   margin-right: 10px;
 }
 
-.Source label {
+.Radio label {
   font-size: 15px;
 }

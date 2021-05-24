@@ -1,28 +1,33 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 import './index.css';
 
 import DateFilter from '../DateFilter';
 import TopicFilter from '../TopicFilter';
-import SourceFilter from '../SourceFilter';
+import AccountFilters from '../AccountFilters';
 import PlatformFilter from '../PlatformFilter';
 import { getPosts } from '../../api/post';
-import { useEffect } from 'react';
+import notify from '../../util/notify';
 
 const Filters = () => {
   const dispatch = useDispatch();
   const filters = useSelector(state => state.filters);
-  const { dates, topic, sources, platforms } = filters;
+  const { dates, topic, accounts, platforms } = filters;
 
   // useEffect(() => {
-  //   getPosts(filters).then(posts => dispatch('posts/set', { payload: posts }))
+  //   getPosts(filters)
+  //     .then(posts => {
+  //       dispatch({ type: 'posts/set', payload: posts });
+  //     })
+  //     .catch(e => notify('An error occurred.'))
   // }, [ filters, dispatch ])
 
   return (
     <div className='Filters'>
         <DateFilter dates={dates } />
         <TopicFilter topic={topic} />
-        <SourceFilter sources={sources} />
+        <AccountFilters accounts={accounts} />
         <PlatformFilter platforms={platforms} />
     </div>
   );

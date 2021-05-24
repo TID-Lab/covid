@@ -1,5 +1,3 @@
-import notify from '../util/notify';
-
 function filtersToBody(filters) {
   const { dates, topic, sources, platforms } = filters;
   const topics = (topic === 'all') ? [] : [ topic ];
@@ -20,11 +18,6 @@ export async function getPosts(filters) {
     },
     body: JSON.stringify(body)
   }
-    try {
-        const res = await fetch('/api/post', options);
-        return await res.json();
-    } catch (e) {
-        console.log(e);
-        notify('An error occurred.');
-    }
+  const res = await fetch('/api/post', options);
+  return await res.json();
 }

@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 
 import datesReducer from './dates';
 import topicReducer from './topic';
-import sourcesReducer from './sources';
+import accountsReducer from './accounts';
 import platformsReducer from './platforms';
 import searchReducer from './search';
 import sortByReducer from './sortBy';
@@ -10,7 +10,7 @@ import sortByReducer from './sortBy';
 const filtersReducer = combineReducers({
     dates: datesReducer,
     topic: topicReducer,
-    sources: sourcesReducer,
+    accounts: accountsReducer,
     platforms: platformsReducer,
     search: searchReducer,
     sortBy: sortByReducer,

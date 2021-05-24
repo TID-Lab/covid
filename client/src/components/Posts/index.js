@@ -1,13 +1,11 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import './index.css';
 
 import Post from '../Post';
 
 const Posts = (props) => {
-  // const posts = useSelector(state => state.posts);
-  const posts = require('../demo_aggie_data_covid.json');
-  console.log(posts);
+  const posts = useSelector(state => state.posts);
 
   return (
     <div className='Posts'>
