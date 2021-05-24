@@ -83,7 +83,6 @@ routes.get('/', async (req, res) => {
     return;
   }
   const filter = bodyToFilter(body);
-  console.log(filter);
   const postsCollection = database.collection('socialmediaposts');
   const posts = await postsCollection.find(filter).toArray();
   res.status(200).send(posts);
