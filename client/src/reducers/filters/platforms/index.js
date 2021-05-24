@@ -4,7 +4,7 @@ const initState = [
     'twitter'
 ];
 
-export default function platformsReducer(state = initState, action) {
+export default function platformsReducer(state = [...initState], action) {
     switch (action.type) {
         case 'platforms/added':
             return [
