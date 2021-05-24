@@ -24,7 +24,7 @@ function bodyToFilter(body) {
   if (to) {
     filter.authoredAt = {
       ...filter.authoredAt,
-      $lte: to,
+      $lte: new Date(to),
     };
   }
 
@@ -73,7 +73,7 @@ function bodyToFilter(body) {
   return filter;
 }
 
-routes.get('/', async (req, res) => {
+routes.post('/', async (req, res) => {
   const MongoClient = mongoose.connection.client;
   const database = MongoClient.db(dbName);
 

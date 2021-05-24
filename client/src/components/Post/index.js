@@ -6,12 +6,11 @@ const Post = (props) => {
   const { data } = props;
   const { url, platform } = data;
 
-  const [embeddedHTML, setEmbeddedHTML] = useState(null)
+  const [embeddedHTML, setEmbeddedHTML] = useState(null);
 
   useEffect(() => {
     async function fetchHTML() {
       const res = await fetch(`/api/proxy/${platform}?url=${url}`);
-      console.log(res);
       const { html } = await res.json();
       setEmbeddedHTML(html);
     }

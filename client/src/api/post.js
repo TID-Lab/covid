@@ -16,13 +16,13 @@ function filtersToBody(filters) {
       body.georgia = (location === 'georgia');
     }
   }
-  console.log(body)
   return body;
 }
 
 export async function getPosts(filters) {
   const body = filtersToBody(filters);
   const options = {
+    method: 'POST',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
