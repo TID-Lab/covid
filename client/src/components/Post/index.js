@@ -34,7 +34,7 @@ const Post = (props) => {
     }
   }, [embeddedHTML, url, platform]);
 
-  return <div class='Post' dangerouslySetInnerHTML={{__html: embeddedHTML}}></div>
+  return <div className='Post' dangerouslySetInnerHTML={{__html: embeddedHTML}}></div>
 };
 
 export default Post;
