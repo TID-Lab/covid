@@ -53,6 +53,7 @@ routes.get('/instagram', async (req, res) => {
         url,
         access_token: instagramToken,
         omitscript: 'true',
+        maxwidth: 320,
       },
     });
     res.status(200).send(response.data);
