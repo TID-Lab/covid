@@ -11,9 +11,9 @@ const Posts = (props) => {
 
   return (
     <div className='Posts'>
-        {posts.map(post => (
+        {/* {posts.map(post => (
           <Post data={post} />
-        ))}
+        ))} */}
     </div>
   );
 };
