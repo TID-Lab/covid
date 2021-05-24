@@ -1,0 +1,12 @@
+.Source {
+  margin: 5px 0 5px 0;
+}
+
+.Source input {
+  margin-left: 0;
+  margin-right: 10px;
+}
+
+.Source label {
+  font-size: 15px;
+}
