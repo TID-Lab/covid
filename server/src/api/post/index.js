@@ -55,10 +55,15 @@ function bodyToFilter(body) {
     }
   }
 
-  filter.tags = {
-    $all: includesTags,
-    $nin: excludesTags,
-  };
+  if (includesTags.length > 0) {
+    filter.tags = { $all: includesTags };
+  }
+  if (excludesTags.length > 0) {
+    filter.tags = {
+      ...filter.tags,
+      $nin: excludesTags,
+    };
+  }
 
   // platform
   if (Array.isArray(platforms) && platforms.length > 0) {
@@ -70,7 +75,7 @@ function bodyToFilter(body) {
 
 routes.get('/', async (req, res) => {
   const MongoClient = mongoose.connection.client;
-  const aggieDB = MongoClient.db(dbName);
+  const database = MongoClient.db(dbName);
 
   const { body } = req;
   if (!body) {
@@ -79,7 +84,7 @@ routes.get('/', async (req, res) => {
   }
   const filter = bodyToFilter(body);
   console.log(filter);
-  const postsCollection = aggieDB.collection('socialmediaposts');
+  const postsCollection = database.collection('socialmediaposts');
   const posts = await postsCollection.find(filter).toArray();
   res.status(200).send(posts);
 });
