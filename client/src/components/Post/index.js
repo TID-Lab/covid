@@ -73,7 +73,7 @@ const Post = (props) => {
       <>
         <div class='Post' dangerouslySetInnerHTML={{__html: item.html}}>
         </div>
-        <a href={data.url}>{data.url}</a>
+        {/* <a href={data.url}>{data.url}</a> */}
       </>
     );
   }

@@ -2449,7 +2449,9 @@
     "_sources": [
       "5f2a4b28b72da5ee8b36ba54"
     ],
-    "_media": "crowdtangle",
+    "_media":[
+			"crowdtangle"
+		],
     "_sourceNicknames": [
       "ct"
     ],
