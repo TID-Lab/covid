@@ -4,86 +4,37 @@ import { useState, useEffect } from 'react';
 
 const Post = (props) => {
   const { data } = props;
-  // console.log(data.url);
+  const { url, platform } = data;
 
-  // Setting the API call by platform
-  console.log(data._media[0]);
-  var fetchUrl = '';
+  const [embeddedHTML, setEmbeddedHTML] = useState(null)
 
-  if (data._media[0] === 'twitter') {
-    // console.log(data.url);
-    fetchUrl = 'api/proxy/twitter?url=' + data.url;
-  } else if (data._media[0] === 'crowdtangle') {
-    // console.log(data.metadata.platform);
-    if (data.metadata.platform === 'Facebook') {
-      fetchUrl = fetchUrl = 'api/proxy/facebook?url=' + data.url;
-    }
-    if (data.metadata.platform === 'Instagram') {
-      fetchUrl = fetchUrl = 'api/proxy/instagram?url=' + data.url;
-    }
-  };
-
-  // Call the API to get the embedded code
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [item, setItem] = useState([]);
-  
   useEffect(() => {
+    async function fetchHTML() {
+      const res = await fetch(`/api/proxy/${platform}?url=${url}`);
+      console.log(res);
+      const { html } = await res.json();
+      setEmbeddedHTML(html);
+    }
 
-    console.log(fetchUrl);
+    if (!embeddedHTML) {
+      fetchHTML();
+    } else {
+      switch (platform) {
+        case 'twitter':
+          if (window.twttr) window.twttr.widgets.load()
+          break;
+        case 'instagram':
+          if (window.instgrm) window.instgrm.Embeds.process()
+          break;
+        case 'facebook':
+          if (window.FB) window.FB.XFBML.parse();
+          break;
+        default:
+      }
+    }
+  }, [embeddedHTML, url, platform]);
 
-    fetch(fetchUrl, {method: 'GET'})
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setItem(result);
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
-    
-  }, []) //fetchUrl, headers
-
-  // Insert div with the embedded post HTML
-  if (error) {
-    return (
-      <div class='Post'>
-        Error: {error.message}
-        <br></br>
-        <a href={data.url}>{data.url}</a>
-      </div>
-    );
-  } else if (!isLoaded) {
-    return(
-      <div class='Post'>
-        Loading...
-        <br></br>
-        <a href={data.url}>{data.url}</a>
-      </div>
-    );
-  } else {
-    // console.log(item);
-    return (
-      <>
-        <div class='Post' dangerouslySetInnerHTML={{__html: item.html}}>
-        </div>
-        {/* <a href={data.url}>{data.url}</a> */}
-      </>
-    );
-  }
-
-  // return (
-  //   <div class='Post'>
-  //     {data.url}
-  //   </div>
-  // )
-
+  return <div class='Post' dangerouslySetInnerHTML={{__html: embeddedHTML}}></div>
 };
 
 export default Post;
