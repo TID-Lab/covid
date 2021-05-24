@@ -15,13 +15,14 @@ const Filters = () => {
   const filters = useSelector(state => state.filters);
   const { dates, topic, accounts, platforms } = filters;
 
-  // useEffect(() => {
-  //   getPosts(filters)
-  //     .then(posts => {
-  //       dispatch({ type: 'posts/set', payload: posts });
-  //     })
-  //     .catch(e => notify('An error occurred.'))
-  // }, [ filters, dispatch ])
+  useEffect(() => {
+    getPosts(filters)
+      .then(posts => {
+        console.log(posts); // tmp
+        dispatch({ type: 'posts/set', payload: posts });
+      })
+      .catch(e => notify('An error occurred.'))
+  }, [ filters, dispatch ])
 
   return (
     <div className='Filters'>

@@ -7,8 +7,10 @@ const { db: { name: dbName } } = require('../../util/config');
 function bodyToFilter(body) {
   const {
     dates,
-    topics,
-    sourceFilters,
+    topic,
+    category,
+    institutions,
+    georgia,
     platforms,
   } = body || {};
 
@@ -26,17 +28,39 @@ function bodyToFilter(body) {
     };
   }
 
-  // topics
-  if (Array.isArray(topics) && topics.length > 0) {
-    filter.topics = { $all: topics };
+  // topic
+  if (topic) {
+    filter.topics = topic;
   }
 
-  // source filters
-  if (Array.isArray(sourceFilters) && sourceFilters.length > 0) {
-    filter.tags = { $all: sourceFilters };
+  // tags
+  const includesTags = [];
+  const excludesTags = [];
+
+  if (category) includesTags.push(category);
+
+  if (typeof institutions === 'boolean') {
+    if (institutions) {
+      includesTags.push('institutional');
+    } else {
+      excludesTags.push('institutional');
+    }
   }
 
-  // media
+  if (typeof georgia === 'boolean') {
+    if (georgia) {
+      includesTags.push('georgia');
+    } else {
+      excludesTags.push('georgia');
+    }
+  }
+
+  filter.tags = {
+    $all: includesTags,
+    $nin: excludesTags,
+  };
+
+  // platform
   if (Array.isArray(platforms) && platforms.length > 0) {
     filter.platform = { $in: platforms };
   }

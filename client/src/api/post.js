@@ -1,12 +1,23 @@
 function filtersToBody(filters) {
-  const { dates, topic, sources, platforms } = filters;
-  const topics = (topic === 'all') ? [] : [ topic ];
-  return {
-    dates,
-    topics,
-    sourceFilters: sources,
-    platforms: platforms
+  const { dates, topic, accounts, platforms } = filters;
+  const { curatedOnly, categories, institutions, location } = accounts;
+  const body = { dates, platforms };
+  if (topic !== 'all') {
+    body.topic = topic;
   }
+  if (curatedOnly) {
+    if (categories !== 'all') {
+      body.category = categories;
+    }
+    if (institutions !== 'all') {
+      body.institutions = (institutions === 'institutional');
+    }
+    if (location !== 'all') {
+      body.georgia = (location === 'georgia');
+    }
+  }
+  console.log(body)
+  return body;
 }
 
 export async function getPosts(filters) {
