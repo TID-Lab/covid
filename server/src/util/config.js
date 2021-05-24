@@ -9,7 +9,7 @@ require('dotenv').config({ path: path.join(__dirname, '..', '..', '..', '.env') 
 
 module.exports = {
   api: {
-    port: process.env.PORT || 4000,
+    port: process.env.PORT || 5000,
     proxy: {
       facebookToken: process.env.FACEBOOK_ACCESS_TOKEN,
       instagramToken: process.env.INSTAGRAM_ACCESS_TOKEN,
