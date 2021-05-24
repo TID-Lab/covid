@@ -1,18 +1,16 @@
 {
   "scripts": {
     "start": "node src/app.js",
-    "dev": "cross-env DEBUG=core,db,api node src/app.js",
+    "dev": "cross-env DEBUG=core,db,fetch node src/app.js",
     "serve": "pm2 startOrRestart ecosystem.config.js",
     "stop": "pm2 stop ecosystem.config.js"
   },
   "dependencies": {
-    "axios": "^0.21.1",
-    "body-parser": "^1.19.0",
     "chalk": "^4.1.0",
     "cross-env": "^7.0.3",
     "debug": "^4.3.1",
     "dotenv": "^8.6.0",
-    "express": "^4.17.1",
+    "downstream": "0.0.29",
     "mongoose": "^5.12.2"
   },
   "devDependencies": {

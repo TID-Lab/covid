@@ -2,9 +2,7 @@
 
 const routes = require('express').Router();
 const mongoose = require('mongoose');
-
-const MongoClient = mongoose.connection.client;
-const aggieDB = MongoClient.db('aggie');
+const { db: { name: dbName } } = require('../../util/config');
 
 function bodyToFilter(body) {
   const {
@@ -12,7 +10,7 @@ function bodyToFilter(body) {
     topics,
     sourceFilters,
     platforms,
-  } = body;
+  } = body || {};
 
   const filter = {};
 
@@ -35,27 +33,30 @@ function bodyToFilter(body) {
 
   // source filters
   if (Array.isArray(sourceFilters) && sourceFilters.length > 0) {
-    filter['metadata.lists'] = { $all: sourceFilters };
+    filter.tags = { $all: sourceFilters };
   }
 
   // media
   if (Array.isArray(platforms) && platforms.length > 0) {
-    filter._media = { $in: platforms };
+    filter.platform = { $in: platforms };
   }
 
   return filter;
 }
 
 routes.get('/', async (req, res) => {
+  const MongoClient = mongoose.connection.client;
+  const aggieDB = MongoClient.db(dbName);
+
   const { body } = req;
   if (!body) {
     res.status(400).send();
     return;
   }
   const filter = bodyToFilter(body);
-  const reportsCollection = aggieDB.collection('reports');
-  const reports = await reportsCollection.find(filter).toArray();
-  res.status(200).send(reports);
+  const postsCollection = aggieDB.collection('socialmediaposts');
+  const posts = await postsCollection.find(filter).toArray();
+  res.status(200).send(posts);
 });
 
 module.exports = routes;

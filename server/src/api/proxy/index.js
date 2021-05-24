@@ -1,0 +1,46 @@
+const routes = require('express').Router();
+const axios = require('axios').default;
+const { api: { proxy: { facebookToken, instagramToken } } } = require('../../util/config');
+
+routes.get('/twitter', async (req, res) => {
+  const { url } = req.query;
+  const response = await axios({
+    method: 'GET',
+    baseURL: 'https://publish.twitter.com',
+    url: '/oembed',
+    params: { url, omit_script: '1', },
+  });
+  res.status(200).send(response.data);
+});
+
+routes.get('/facebook', async (req, res) => {
+  const { url } = req.query;
+  const response = await axios({
+    method: 'GET',
+    baseURL: 'https://graph.facebook.com',
+    url: '/v10.0/oembed_post',
+    params: {
+      url,
+      access_token: facebookToken,
+      omitscript: 'true',
+    },
+  });
+  res.status(200).send(response.data);
+});
+
+routes.get('/instagram', async (req, res) => {
+  const { url } = req.query;
+  const response = await axios({
+    method: 'GET',
+    baseURL: 'https://graph.facebook.com',
+    url: '/v10.0/instagram_oembed',
+    params: {
+      url,
+      access_token: instagramToken,
+      omitscript: 'true',
+    },
+  });
+  res.status(200).send(response.data);
+});
+
+module.exports = routes;
