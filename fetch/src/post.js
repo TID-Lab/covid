@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 const postSchema = new Schema({
-  authoredAt: { type: String, required: true },
+  authoredAt: { type: Date, required: true },
   fetchedAt: { type: Date, required: true },
   author: { type: String, required: true },
   url: { type: String, required: true },
