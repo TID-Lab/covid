@@ -97,11 +97,17 @@ routes.post('/:page', async (req, res) => {
 
   const filter = bodyToFilter(body);
   const postsCollection = database.collection('socialmediaposts');
+  const postCount = await postsCollection.estimatedDocumentCount();
+  const skipCount = pageNum * pageSize;
   const posts = await postsCollection
     .find(filter)
     .skip(pageNum * pageSize)
     .limit(pageSize).toArray();
-  res.status(200).send(posts);
+  const lastPage = (postCount - (skipCount + posts.length)) <= 0;
+  res.status(200).send({
+    posts,
+    lastPage,
+  });
 });
 
 module.exports = routes;

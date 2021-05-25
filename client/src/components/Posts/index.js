@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { getNextPage, page } from '../../api/post';
+import { getNextPage, page, lastPage } from '../../api/post';
 
 import './index.css';
 
@@ -37,7 +37,7 @@ const Posts = () => {
         {posts.map(post => (
           <Post data={post} key={post.url} />
         ))}
-        <NextPageButton />
+        {(!lastPage) ? <NextPageButton /> : ''}
     </div>
   );
 };

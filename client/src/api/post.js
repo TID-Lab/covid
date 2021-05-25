@@ -41,6 +41,7 @@ function filtersToBody(filters) {
 }
 
 export let page = 0;
+export let lastPage = false;
 
 async function fetchPosts() {
   const options = {
@@ -48,7 +49,9 @@ async function fetchPosts() {
     body: JSON.stringify(body)
   }
   const res = await fetch(`/api/post/${page}`, options);
-  return await res.json();
+  const { posts, lastPage: isLastPage } = await res.json();
+  lastPage = isLastPage;
+  return posts;
 }
 
 export async function getPosts(filters) {
