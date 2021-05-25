@@ -3,4 +3,5 @@ module.exports = [
   'coronavirus',
   'vaccine',
   'vax',
+  'pandemic',
 ];
