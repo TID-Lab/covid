@@ -14,6 +14,9 @@ module.exports = {
       facebookToken: process.env.FACEBOOK_ACCESS_TOKEN,
       instagramToken: process.env.INSTAGRAM_ACCESS_TOKEN,
     },
+    posts: {
+      pageSize: 20,
+    },
   },
   db: {
     name: process.env.DB_NAME || 'covid',

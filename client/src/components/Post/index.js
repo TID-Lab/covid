@@ -5,8 +5,11 @@ import { useState, useEffect, useCallback } from 'react';
 const embedHTMLCache = [];
 
 function waitForEmbed(parent, callback) {
-  const isEmbedded = parent.querySelector('iframe');
-  if (isEmbedded) return setTimeout(callback, 1000);
+  const iframe = parent.querySelector('iframe');
+  if (iframe) {
+    iframe.onload = callback;
+    return;
+  }
   setTimeout(() => {
     waitForEmbed(parent, callback);
   }, 10);

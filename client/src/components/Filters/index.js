@@ -18,10 +18,9 @@ const Filters = () => {
   useEffect(() => {
     getPosts(filters)
       .then(posts => {
-        console.log(posts); // tmp
         dispatch({ type: 'posts/set', payload: posts });
       })
-      .catch(e => notify('An error occurred.'))
+      .catch(_ => notify('An error occurred.'));
   }, [ filters, dispatch ])
 
   return (

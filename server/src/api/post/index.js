@@ -2,7 +2,10 @@
 
 const routes = require('express').Router();
 const mongoose = require('mongoose');
-const { db: { name: dbName } } = require('../../util/config');
+const {
+  db: { name: dbName },
+  api: { posts: { pageSize } },
+} = require('../../util/config');
 
 function bodyToFilter(body) {
   const {
@@ -73,19 +76,31 @@ function bodyToFilter(body) {
   return filter;
 }
 
-routes.post('/', async (req, res) => {
+routes.post('/:page', async (req, res) => {
   const MongoClient = mongoose.connection.client;
   const database = MongoClient.db(dbName);
 
-  const { body } = req;
-  if (!body) {
+  const { body, params } = req;
+  if (typeof body !== 'object') {
     res.status(400).send();
     return;
   }
+
+  const { page } = params;
+  let pageNum = 0;
+  try {
+    pageNum = parseInt(page, 10);
+  } catch (_) {
+    res.status(400).send();
+    return;
+  }
+
   const filter = bodyToFilter(body);
-  console.log(filter);
   const postsCollection = database.collection('socialmediaposts');
-  const posts = await postsCollection.find(filter).toArray();
+  const posts = await postsCollection
+    .find(filter)
+    .skip(pageNum * pageSize)
+    .limit(pageSize).toArray();
   res.status(200).send(posts);
 });
 

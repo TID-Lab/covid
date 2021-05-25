@@ -1,7 +1,16 @@
+let body = {};
+const defaultOptions = {
+  method: 'POST',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  }
+}
+
 function filtersToBody(filters) {
-  const { dates, topic, accounts, platforms } = filters;
+  const { dates, topic, accounts, platforms, page } = filters;
   const { curatedOnly, categories, institutions, location } = accounts;
-  const body = { platforms };
+  const body = { platforms, page };
 
   const { from:fromString, to:toString } = dates;
 
@@ -31,16 +40,29 @@ function filtersToBody(filters) {
   return body;
 }
 
-export async function getPosts(filters) {
-  const body = filtersToBody(filters);
+export let page = 0;
+
+async function fetchPosts() {
   const options = {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
+    ...defaultOptions,
     body: JSON.stringify(body)
   }
-  const res = await fetch('/api/post', options);
+  const res = await fetch(`/api/post/${page}`, options);
   return await res.json();
+}
+
+export async function getPosts(filters) {
+  page = 0;
+  body = filtersToBody(filters);
+  return await fetchPosts();
+}
+
+export async function getNextPage() {
+  page += 1;
+  return await fetchPosts();
+}
+
+export async function getPrevPage() {
+  if (page > 0) page -= 1;
+  return await fetchPosts();
 }

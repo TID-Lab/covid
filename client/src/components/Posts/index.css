@@ -4,3 +4,28 @@
   flex-flow: row;
   overflow: auto;
 }
+
+.PageButton {
+  margin: 20px;
+  flex-shrink: 1;
+  min-width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.PageButton button {
+  outline: none;
+  background-color: none;
+  border: 3px solid black;
+  padding: 20px;
+  transition: all 0.25s ease;
+}
+
+.PageButton:hover {
+  cursor: pointer;
+}
+
+.PageButton:hover button {
+  transform: scale(1.25);
+}

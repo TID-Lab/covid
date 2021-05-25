@@ -1,6 +1,5 @@
 .Post {
   margin: 20px;
-  margin-bottom: 40px;
   flex-shrink: 1;
   min-width: 400px;
 }
