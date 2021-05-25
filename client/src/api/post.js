@@ -10,7 +10,7 @@ function filtersToBody(filters) {
 
   const to = new Date(toString);
   to.setMinutes(to.getMinutes() + to.getTimezoneOffset());
-  to.setDate(from.getDate() + 1);
+  to.setDate(to.getDate() + 1);
 
   body.dates = { from, to };
 
