@@ -31,6 +31,7 @@ routes.get('/facebook', async (req, res) => {
         url,
         access_token: facebookToken,
         omitscript: 'true',
+        maxwidth: 320,
       },
     });
     res.status(200).send(response.data);
