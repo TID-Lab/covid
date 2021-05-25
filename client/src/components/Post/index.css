@@ -1,9 +1,30 @@
 .Post {
-  padding: 20px;
-  margin-bottom: 20px;
-  width: 400px;
+  margin: 20px;
+  margin-bottom: 40px;
+  flex-shrink: 1;
+  min-width: 400px;
 }
 
 .Post > * {
+  width: 100%;
+  height: 100%;
+}
+
+.Post > .cover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+.Post > .cover > img {
+  height: 80px;
+}
+
+.Post > .content > * {
   margin: 0px !important;
+}
+
+.Post .hidden {
+  display: none;
 }
