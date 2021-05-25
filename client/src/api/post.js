@@ -2,6 +2,16 @@ function filtersToBody(filters) {
   const { dates, topic, accounts, platforms } = filters;
   const { curatedOnly, categories, institutions, location } = accounts;
   const body = { dates, platforms };
+
+  const { from:fromString, to:toString } = dates;
+
+  const from = new Date(fromString);
+  from.setMinutes(from.getMinutes() + from.getTimezoneOffset());
+
+  const to = new Date(toString);
+  to.setMinutes(from.getMinutes() + from.getTimezoneOffset());
+  to.setDate(from.getDate() + 1);
+
   if (topic !== 'all') {
     body.topic = topic;
   }
