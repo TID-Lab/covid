@@ -18,6 +18,7 @@ function bodyToFilter(body) {
 
   // dates
   const { from, to } = dates || {};
+  console.log(from, to);
   if (from) {
     filter.authoredAt = { $gte: new Date(from) };
   }
