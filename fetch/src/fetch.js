@@ -3,7 +3,10 @@ const useDebug = require('debug');
 const { fetch: { credentials } } = require('./util/config');
 const { get, set } = require('./util/settings');
 const keywords = require('../../keywords');
-const SocialMediaPost = require('./post');
+
+// middleware
+const addCategories = require('./middleware/categories');
+const saveToDatabase = require('./middleware/database');
 
 const debug = useDebug('fetch');
 
@@ -15,12 +18,6 @@ const {
 } = builtin;
 
 const engine = new Engine();
-
-const saveToDatabase = async (data, next) => {
-  const post = new SocialMediaPost(data);
-  await post.save();
-  await next();
-};
 
 module.exports = async () => {
   debug('Starting downstream...');
@@ -95,7 +92,11 @@ module.exports = async () => {
   engine.register(instaListChannel);
   // engine.register(instaPlatformChannel);
 
+  // TODO engine.use(addTopics)
+  engine.use(addCategories);
+  // TODO engine.use(addMetrics)
   engine.use(saveToDatabase);
+
   engine.on('error', debug);
 
   await engine.start();

@@ -36,8 +36,7 @@ async function getRADxListsWith(token) {
   if (Array.isArray(lists)) {
     return lists
       .filter(({ type, title }) => type === 'LIST' && title.toLowerCase().startsWith('radx'))
-      .map(({ id, title: name }) => ({ id, name }))
-      .filter(({ name }) => name.toLowerCase().startsWith('radx'));
+      .map(({ id, title: name }) => ({ id, name: name.slice(5).toLowerCase() }));
   }
   return [];
 }
