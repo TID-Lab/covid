@@ -1,4 +1,4 @@
-const { crowdtangleLists } = require('../workers');
+const { getCrowdTangleLists } = require('../workers');
 
 module.exports = async function addCategory(post, next) {
   const categories = [];
@@ -14,6 +14,7 @@ module.exports = async function addCategory(post, next) {
     }
     case 'facebook':
     case 'instagram': {
+      const crowdtangleLists = getCrowdTangleLists();
       console.log(crowdtangleLists);
       if (
         typeof crowdtangleLists !== 'object'
