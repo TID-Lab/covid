@@ -192,6 +192,8 @@ async function update() {
     // fetch the old rules
     const toDelete = await getStreamRuleIds();
 
+    console.log(toDelete);
+
     // delete the old rules
     await deleteRules(toDelete);
 
