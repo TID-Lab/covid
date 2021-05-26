@@ -9,7 +9,11 @@ routes.get('/twitter', async (req, res) => {
       method: 'GET',
       baseURL: 'https://publish.twitter.com',
       url: '/oembed',
-      params: { url, omit_script: '1' },
+      params: {
+        url,
+        omit_script: '1',
+        maxwidth: 400,
+      },
     });
     res.status(200).send(response.data);
   } catch (err) {
@@ -31,7 +35,7 @@ routes.get('/facebook', async (req, res) => {
         url,
         access_token: facebookToken,
         omitscript: 'true',
-        maxwidth: 320,
+        maxwidth: 400,
       },
     });
     res.status(200).send(response.data);
@@ -54,7 +58,7 @@ routes.get('/instagram', async (req, res) => {
         url,
         access_token: instagramToken,
         omitscript: 'true',
-        maxwidth: 320,
+        maxwidth: 400,
       },
     });
     res.status(200).send(response.data);
