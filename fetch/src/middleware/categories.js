@@ -10,8 +10,8 @@ module.exports = async function addCategory(post, next) {
         const { tag } = matchingRules[i];
         categories.push(tag);
       }
-    }
       break;
+    }
     case 'facebook':
     case 'instagram': {
       console.log(crowdtangleLists);
