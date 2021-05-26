@@ -14,6 +14,12 @@ module.exports = async function addCategory(post, next) {
       break;
     case 'facebook':
     case 'instagram': {
+      if (
+        typeof crowdtangleLists !== 'object'
+        || Object.keys(crowdtangleLists).length !== 2) {
+        return;
+      }
+
       const { account: { id } } = raw;
       const platformLists = crowdtangleLists[platform];
       const listKeys = Object.keys(platformLists);
@@ -28,5 +34,6 @@ module.exports = async function addCategory(post, next) {
     }
     default:
   }
+  post.categories = categories;
   await next();
 };
