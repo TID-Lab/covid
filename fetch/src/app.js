@@ -2,6 +2,7 @@ const useDebug = require('debug');
 const chalk = require('chalk');
 const db = require('./util/db');
 const fetch = require('./fetch');
+const { initialize: initWorkers } = require('./workers');
 
 const debug = useDebug('core');
 
@@ -17,6 +18,9 @@ const debug = useDebug('core');
 
   // Start the downstream engine
   await fetch();
+
+  // Start the background workers
+  await initWorkers();
 
   try {
     debug(chalk.greenBright('System initialized.'));
