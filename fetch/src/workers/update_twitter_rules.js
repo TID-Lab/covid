@@ -192,15 +192,13 @@ async function update() {
     // fetch the old rules
     const toDelete = await getStreamRuleIds();
 
-    console.log(toDelete);
-
     // delete the old rules
-    await deleteRules(toDelete);
+    if (toDelete.length > 0) await deleteRules(toDelete);
 
     // ... We have a second or two of inevitable stream downtime here :/
 
     // add the new rules
-    await addRules(toAdd);
+    if (toAdd.length > 0) await addRules(toAdd);
 
     // done! :-)
     console.log('Twitter rules updated.');
