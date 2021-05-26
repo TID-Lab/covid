@@ -18,6 +18,7 @@ async function scheduleWorker(path, callback) {
 async function initialize() {
   scheduleWorker('./src/workers/update_twitter_rules.js', () => {});
   scheduleWorker('./src/workers/sync_crowdtangle_lists.js', (lists) => {
+    console.log(lists);
     crowdtangleLists = lists;
   });
 }
