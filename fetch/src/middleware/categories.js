@@ -23,7 +23,7 @@ module.exports = async function addCategory(post, next) {
       const { account: { id } } = raw;
       const platformLists = crowdtangleLists[platform];
       const listKeys = Object.keys(platformLists);
-      for (let i = 0; i < i.length; i += 1) {
+      for (let i = 0; i < listKeys.length; i += 1) {
         const listKey = listKeys[i];
         const list = platformLists[listKey];
         if (list.includes(id)) {
