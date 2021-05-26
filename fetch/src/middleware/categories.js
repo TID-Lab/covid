@@ -14,6 +14,7 @@ module.exports = async function addCategory(post, next) {
       break;
     case 'facebook':
     case 'instagram': {
+      console.log(crowdtangleLists);
       if (
         typeof crowdtangleLists !== 'object'
         || Object.keys(crowdtangleLists).length !== 2) {
