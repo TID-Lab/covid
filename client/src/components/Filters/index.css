@@ -1,16 +1,16 @@
 .Filters {
   /* background-color: orange; */
   background-color: white;
-  flex: 0 0 275px;
-  padding: 20px;
+  flex: 0 0 250px;
+  padding: 10px;
   overflow-y: auto;
   user-select: none;
 }
 
 .Filter {
   background-color: white;
-  padding: 20px;
-  margin-bottom: 20px;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
 .Filter h3 {
