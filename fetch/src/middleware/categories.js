@@ -17,7 +17,7 @@ module.exports = async function addCategory(post, next) {
       if (
         typeof crowdtangleLists !== 'object'
         || Object.keys(crowdtangleLists).length !== 2) {
-        return;
+        break;
       }
 
       const { account: { id } } = raw;
