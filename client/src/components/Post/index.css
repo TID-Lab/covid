@@ -18,6 +18,9 @@
 
 .Post > .cover > img {
   height: 80px;
+  animation-duration: 2s;
+  animation-name: pulse;
+  animation-iteration-count: infinite;
 }
 
 .Post > .content > * {
@@ -26,4 +29,18 @@
 
 .Post .hidden {
   display: none;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  to {
+    transform: scale(1);
+  }
 }
