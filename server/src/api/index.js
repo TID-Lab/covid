@@ -3,6 +3,7 @@ const useDebug = require('debug');
 const express = require('express');
 const http = require('http');
 const { json } = require('body-parser');
+const cors = require('cors');
 const config = require('../util/config');
 
 const postRoutes = require('./post');
@@ -21,6 +22,8 @@ function handleError(err, req, res, next) {
     next(err);
   }
 }
+
+app.use(cors());
 
 // Register body-parser middleware
 app.use(json({ extended: true }));

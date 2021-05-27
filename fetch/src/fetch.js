@@ -5,6 +5,7 @@ const { get, set } = require('./util/settings');
 const { COVID_KEYWORDS } = require('../../constants');
 
 // middleware
+const addTopics = require('./middleware/topics');
 const addTags = require('./middleware/tags');
 const saveToDatabase = require('./middleware/database');
 
@@ -92,7 +93,7 @@ module.exports = async () => {
   engine.register(instaListChannel);
   // engine.register(instaPlatformChannel);
 
-  // TODO engine.use(addTopics)
+  engine.use(addTopics);
   engine.use(addTags);
   // TODO engine.use(addMetrics)
   engine.use(saveToDatabase);
