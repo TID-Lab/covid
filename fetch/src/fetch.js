@@ -7,6 +7,7 @@ const { COVID_KEYWORDS } = require('../../constants');
 // middleware
 const addTopics = require('./middleware/topics');
 const addTags = require('./middleware/tags');
+const addEngagement = require('./middleware/engagement');
 const saveToDatabase = require('./middleware/database');
 
 const debug = useDebug('fetch');
@@ -95,7 +96,7 @@ module.exports = async () => {
 
   engine.use(addTopics);
   engine.use(addTags);
-  // TODO engine.use(addMetrics)
+  engine.use(addEngagement);
   engine.use(saveToDatabase);
 
   engine.on('error', debug);
