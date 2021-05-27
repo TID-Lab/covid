@@ -8,9 +8,9 @@ const defaultOptions = {
 }
 
 function filtersToBody(filters) {
-  const { dates, topic, accounts, platforms, page } = filters;
+  const { dates, topic, accounts, platforms, page, sortBy } = filters;
   const { curatedOnly, categories, institutions, location } = accounts;
-  const body = { platforms, page };
+  const body = { platforms, page, sortBy };
 
   const { from:fromString, to:toString } = dates;
 

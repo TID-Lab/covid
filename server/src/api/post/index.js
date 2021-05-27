@@ -95,14 +95,28 @@ routes.post('/:page', async (req, res) => {
     return;
   }
 
+  const { sortBy } = body;
+  let sortParam;
+  switch (sortBy) {
+    case 'recent':
+      sortParam = { authoredAt: -1 };
+      break;
+    case 'engagement':
+      // TODO
+      break;
+    default:
+  }
+
   const filter = bodyToFilter(body);
   const postsCollection = database.collection('socialmediaposts');
   const postCount = await postsCollection.estimatedDocumentCount();
   const skipCount = pageNum * pageSize;
   const posts = await postsCollection
     .find(filter)
+    .sort(sortParam)
     .skip(pageNum * pageSize)
-    .limit(pageSize).toArray();
+    .limit(pageSize)
+    .toArray();
   const lastPage = (postCount - (skipCount + posts.length)) <= 0;
   res.status(200).send({
     posts,
