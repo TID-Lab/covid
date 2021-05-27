@@ -102,7 +102,7 @@ routes.post('/:page', async (req, res) => {
       sortParam = { authoredAt: -1 };
       break;
     case 'engagement':
-      // TODO
+      sortParam = { engagement: -1 };
       break;
     default:
   }
