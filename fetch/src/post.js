@@ -12,7 +12,7 @@ const postSchema = new Schema({
   from: { type: String, required: true },
   topics: { type: [String], default: [] },
   tags: { type: [String], default: [] },
-  engagement: { type: Number, required: true },
+  engagement: { type: Number, default: 0 },
 });
 
 const SocialMediaPost = model('SocialMediaPost', postSchema);
