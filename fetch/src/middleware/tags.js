@@ -1,21 +1,20 @@
 const { getCrowdTangleLists } = require('../workers');
 
-module.exports = async function addCategory(post, next) {
-  const categories = [];
+module.exports = async function addTags(post, next) {
+  const tags = [];
   const { platform, raw } = post;
   switch (platform) {
     case 'twitter': {
       const { matchingRules } = raw;
       for (let i = 0; i < matchingRules.length; i += 1) {
         const { tag } = matchingRules[i];
-        categories.push(tag);
+        tags.push(tag);
       }
       break;
     }
     case 'facebook':
     case 'instagram': {
       const crowdtangleLists = getCrowdTangleLists();
-      console.log(crowdtangleLists);
       if (
         typeof crowdtangleLists !== 'object'
         || Object.keys(crowdtangleLists).length !== 2) {
@@ -29,13 +28,13 @@ module.exports = async function addCategory(post, next) {
         const listKey = listKeys[i];
         const list = platformLists[listKey];
         if (list.includes(id)) {
-          categories.push(listKey);
+          tags.push(listKey);
         }
       }
       break;
     }
     default:
   }
-  post.categories = categories;
+  post.tags = tags;
   await next();
 };

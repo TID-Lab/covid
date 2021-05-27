@@ -5,7 +5,7 @@ const { get, set } = require('./util/settings');
 const keywords = require('../../keywords');
 
 // middleware
-const addCategories = require('./middleware/categories');
+const addTags = require('./middleware/tags');
 const saveToDatabase = require('./middleware/database');
 
 const debug = useDebug('fetch');
@@ -93,7 +93,7 @@ module.exports = async () => {
   // engine.register(instaPlatformChannel);
 
   // TODO engine.use(addTopics)
-  engine.use(addCategories);
+  engine.use(addTags);
   // TODO engine.use(addMetrics)
   engine.use(saveToDatabase);
 
