@@ -1,4 +1,4 @@
-const initState = 'engagement';
+const initState = 'recent';
 
 export default function sortByReducer(state = initState, action) {
     switch (action.type) {
