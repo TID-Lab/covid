@@ -5,7 +5,7 @@
 const TwitterV1 = require('twit');
 const TwitterV2 = require('twitter-v2');
 const { parentPort } = require('worker_threads');
-const keywords = require('../../../keywords');
+const { COVID_KEYWORDS } = require('../../../constants');
 const { fetch: { credentials: { twitter } } } = require('../util/config');
 
 const TWITTER_SCREEN_NAME = 'amyzlc';
@@ -99,7 +99,7 @@ function generateRuleExpressions(accounts, charsLeft, rulesLeft) {
 
   // maximum rules computed by number of "positive clauses"
   const maxRules2 = Math
-    .ceil((accounts.length * 1.0) / (MAX_POSITIVE_CLAUSE_COUNT - keywords.length));
+    .ceil((accounts.length * 1.0) / (MAX_POSITIVE_CLAUSE_COUNT - COVID_KEYWORDS.length));
 
   // pick the # of rules to be created
   const rulesCreated = Math.min(rulesLeft, Math.max(maxRules1, maxRules2));
@@ -111,7 +111,7 @@ function generateRuleExpressions(accounts, charsLeft, rulesLeft) {
     while (
       accountsCopy.length > 0
             && expression.length + (accountsCopy[0].length + 7) <= charsLeft
-            && j + keywords.length < MAX_POSITIVE_CLAUSE_COUNT
+            && j + COVID_KEYWORDS.length < MAX_POSITIVE_CLAUSE_COUNT
     ) {
       const account = accountsCopy.shift();
       expression += `from:${account} OR `;
@@ -127,8 +127,8 @@ function generateRuleExpressions(accounts, charsLeft, rulesLeft) {
 function generateRules(listsByName) {
   const rules = [];
   let prefix = '';
-  for (let i = 0; i < keywords.length; i += 1) {
-    prefix += `${keywords[i]} OR `;
+  for (let i = 0; i < COVID_KEYWORDS.length; i += 1) {
+    prefix += `${COVID_KEYWORDS[i]} OR `;
   }
   prefix = `(${prefix.slice(0, -4)}) `;
   const charsLeft = MAX_RULE_LENGTH - prefix.length;

@@ -1,18 +1,10 @@
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { COVID_TOPICS } from '../../../../constants';
 
 import './index.css';
 
 import Radio from '../Radio';
-
-const TOPICS = {
-  'all': 'All',
-  'covid-diabetes': 'COVID x Diabetes',
-  'testing': 'Testing',
-  'vaccines': 'Vaccines',
-  'long-hauler': 'Long-hauler',
-  'georgia': 'Georgia'
-}
 
 const TopicFilter = (props) => {
   const { topic } = props;
@@ -27,8 +19,8 @@ const TopicFilter = (props) => {
   return (
     <div className='Filter Topics'>
       <h3>COVID-19 Topics</h3>
-      {Object.keys(TOPICS).map(id => (
-        <Radio key={id} id={id} name='topics' value={TOPICS[id]} selected={id === topic} onSelected={onSelected(id)}/>
+      {Object.keys(COVID_TOPICS).map(id => (
+        <Radio key={id} id={id} name='topics' value={COVID_TOPICS[id]} selected={id === topic} onSelected={onSelected(id)}/>
       ))}
       <Link to='/settings/topics'>
         <span>Edit Topics</span>

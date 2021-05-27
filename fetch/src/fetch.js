@@ -2,7 +2,7 @@ const { Engine, builtin } = require('downstream');
 const useDebug = require('debug');
 const { fetch: { credentials } } = require('./util/config');
 const { get, set } = require('./util/settings');
-const keywords = require('../../keywords');
+const { COVID_KEYWORDS } = require('../../constants');
 
 // middleware
 const addTags = require('./middleware/tags');
@@ -31,7 +31,7 @@ module.exports = async () => {
   const twitterPageChannel = new TwitterPageChannel({
     credentials: credentials.twitter,
     queryParams: {
-      query: keywords.join(' OR '),
+      query: COVID_KEYWORDS.join(' OR '),
     },
     lastTimestamp: settings.twitter_page_lastTimestamp,
     onFetch: async (lastTimestamp) => {
@@ -42,7 +42,7 @@ module.exports = async () => {
   const facebookListChannel = new CrowdTangleFacebookChannel({
     dashboardToken: credentials.facebook,
     queryParams: {
-      searchTerm: keywords.join(', '),
+      searchTerm: COVID_KEYWORDS.join(', '),
     },
     lastTimestamp: settings.facebook_list_lastTimestamp,
     onFetch: async (lastTimestamp) => {
@@ -54,7 +54,7 @@ module.exports = async () => {
     dashboardToken: credentials.facebook,
     isCrossPlatform: true,
     queryParams: {
-      searchTerm: keywords.join(', '),
+      searchTerm: COVID_KEYWORDS.join(', '),
     },
     lastTimestamp: settings.facebook_platform_lastTimestamp,
     onFetch: async (lastTimestamp) => {
@@ -65,7 +65,7 @@ module.exports = async () => {
   const instaListChannel = new CrowdTangleInstagramChannel({
     dashboardToken: credentials.instagram,
     queryParams: {
-      searchTerm: keywords.join(', '),
+      searchTerm: COVID_KEYWORDS.join(', '),
     },
     lastTimestamp: settings.insta_list_lastTimestamp,
     onFetch: async (lastTimestamp) => {
@@ -77,7 +77,7 @@ module.exports = async () => {
     dashboardToken: credentials.instagram,
     isCrossPlatform: true,
     queryParams: {
-      searchTerm: keywords.join(', '),
+      searchTerm: COVID_KEYWORDS.join(', '),
     },
     lastTimestamp: settings.insta_platform_lastTimestamp,
     onFetch: async (lastTimestamp) => {
