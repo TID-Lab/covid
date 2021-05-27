@@ -1,4 +1,4 @@
-const initState = false;
+const initState = true;
 
 export default function curatedOnlyReducer(state = initState, action) {
     switch (action.type) {
