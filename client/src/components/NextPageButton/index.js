@@ -13,10 +13,7 @@ const NextPageButton = () => {
         dispatch({ type: 'posts/set', payload: posts });
         document.getElementById('Posts').scrollTo(0, 0);
       })
-      .catch(e => {
-        console.log(e);
-        notify('An error occurred.');
-      });
+      .catch(_ => { notify('An error occurred.'); });
   }
 
   return (
