@@ -6,6 +6,7 @@
     "stop": "pm2 stop ecosystem.config.js"
   },
   "dependencies": {
+    "aho-corasick-node": "^1.0.2",
     "axios": "^0.21.1",
     "chalk": "^4.1.0",
     "cross-env": "^7.0.3",

@@ -7,12 +7,11 @@ const COVID_KEYWORDS = [
 ];
 
 const COVID_TOPICS = {
-  'all': 'All',
-  'covid-diabetes': 'COVID x Diabetes',
-  'testing': 'Testing',
-  'vaccines': 'Vaccines',
-  'long-hauler': 'Long-hauler',
-  'georgia': 'Georgia'
+  'covid-diabetes': [],
+  'testing': [],
+  'vaccines': [],
+  'long-hauler': [],
+  'georgia': [],
 }
 
 module.exports = {

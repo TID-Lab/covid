@@ -1,10 +1,18 @@
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { COVID_TOPICS } from '../../../../constants';
 
 import './index.css';
 
 import Radio from '../Radio';
+
+const COVID_TOPICS = { // temporary
+  'all': 'All',
+  'covid-diabetes': 'COVID x Diabetes',
+  'testing': 'Testing',
+  'vaccines': 'Vaccines',
+  'long-hauler': 'Long-hauler',
+  'georgia': 'Georgia'
+}
 
 const TopicFilter = (props) => {
   const { topic } = props;
