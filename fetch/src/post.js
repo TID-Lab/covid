@@ -10,7 +10,9 @@ const postSchema = new Schema({
   content: { type: String },
   raw: { type: Schema.Types.Mixed, required: true },
   from: { type: String, required: true },
-  categories: { type: [String], default: [] },
+  topics: { type: [String], default: [] },
+  tags: { type: [String], default: [] },
+  engagement: { type: Number, required: true },
 });
 
 const SocialMediaPost = model('SocialMediaPost', postSchema);
