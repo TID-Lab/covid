@@ -49,7 +49,14 @@ const COVID_TOPICS = {
   ],
   'georgia': [
     'georgia',
-    'atl'
+    'atl',
+    'fulton',
+    'dekalb',
+    'cobb',
+    'clayton',
+    'gwinnett',
+    'albany',
+    'dougherty',
   ],
 }
 
