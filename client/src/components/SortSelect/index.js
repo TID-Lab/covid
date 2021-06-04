@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import './index.css';
 
 const SORT_BY = {
-  'engagement': 'Most engagement (scaled)',
+  'engagementNormed': 'Most engagement (scaled)',
+  'engagementRaw': 'Most engagement (not scaled)',
   'recent': 'Most recent',
 }
 
