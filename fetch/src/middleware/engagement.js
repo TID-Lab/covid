@@ -14,14 +14,14 @@ module.exports = async function addEngagement(post, next) {
     }
     case 'facebook': {
       const { statistics: { actual: { likeCount, loveCount, wowCount, hahaCount, sadCount, angryCount, thankfulCount, careCount, commentCount, shareCount } } } = raw;
-      const { subscriberCount } } = raw;
+      const { subscriberCount } = raw;
       engagementRaw = likeCount + loveCount + wowCount + hahaCount + sadCount + angryCount + thankfulCount + careCount + commentCount + shareCount;
       engagementNormed = engagementRaw / subscriberCount;
       break;
     }
     case 'instagram': {
       const { statistics: { actual: { favoriteCount, commentCount } } } = raw;
-      const { subscriberCount } } = raw;
+      const { subscriberCount } = raw;
       engagementRaw = favoriteCount + commentCount;
       engagementNormed = engagementRaw / subscriberCount;
       break;
