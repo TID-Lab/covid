@@ -69,7 +69,7 @@ function bodyToFilter(body) {
   }
 
   // platform
-  if (Array.isArray(platforms) && platforms.length > 0) {
+  if (Array.isArray(platforms)) {
     filter.platform = { $in: platforms };
   }
 
@@ -104,9 +104,9 @@ routes.post('/:page', async (req, res) => {
     case 'engagementRaw':
       sortParam = { engagementRaw: -1 };
       break;
-      case 'engagementNormed':
-        sortParam = { engagementNormed: -1 };
-        break;
+    case 'engagementNormed':
+      sortParam = { engagementNormed: -1 };
+      break;
     default:
   }
 
@@ -120,7 +120,7 @@ routes.post('/:page', async (req, res) => {
     .skip(pageNum * pageSize)
     .limit(pageSize)
     .toArray();
-  const lastPage = (postCount - (skipCount + posts.length)) <= 0;
+  const lastPage = posts.length === 0 || (postCount - (skipCount + posts.length)) <= 0;
   res.status(200).send({
     posts,
     lastPage,
