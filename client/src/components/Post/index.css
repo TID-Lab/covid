@@ -16,6 +16,11 @@
   background-color: white;
 }
 
+.Post > .container {
+  background-color: white;
+  height: fit-content;
+}
+
 .Post > .cover > img {
   height: 80px;
   animation-duration: 2s;

@@ -71,7 +71,9 @@ const Post = (props) => {
           <img src={coverImagePath} alt={platform} />
         </div>
       ): ''}
-      <div className={embedClass} id={elementID} dangerouslySetInnerHTML={{__html: embedHTML}}></div>
+      <div className='container'>
+        <div className={embedClass} id={elementID} dangerouslySetInnerHTML={{__html: embedHTML}}></div>
+      </div>
     </div>
   );
 };
