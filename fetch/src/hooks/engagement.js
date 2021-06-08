@@ -7,9 +7,22 @@ module.exports = async function addEngagement(post, next) {
   switch (platform) {
     case 'twitter': {
       const {
-        quote_count, reply_count, retweet_count, favorite_count,
+        post: {
+          public_metrics: {
+            quote_count,
+            reply_count,
+            retweet_count,
+            favorite_count,
+          },
+        },
       } = raw;
-      const { user: { followers_count } } = raw;
+      const {
+        user: {
+          public_metrics: {
+            followers_count,
+          },
+        },
+      } = raw;
       engagementRaw = quote_count + reply_count + retweet_count + favorite_count;
       engagementNormed = engagementRaw / followers_count;
       break;

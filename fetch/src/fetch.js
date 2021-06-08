@@ -1,14 +1,14 @@
-const { Engine, builtin } = require('downstream');
+const { Downstream, builtin } = require('downstream');
 const useDebug = require('debug');
 const { fetch: { credentials } } = require('./util/config');
 const { get, set } = require('./util/settings');
 const { COVID_KEYWORDS } = require('../../constants');
 
-// middleware
-const addTopics = require('./middleware/topics');
-const addTags = require('./middleware/tags');
-const addEngagement = require('./middleware/engagement');
-const saveToDatabase = require('./middleware/database');
+// hooks
+const addTopics = require('./hooks/topics');
+const addTags = require('./hooks/tags');
+const addEngagement = require('./hooks/engagement');
+const saveToDatabase = require('./hooks/database');
 
 const debug = useDebug('fetch');
 
@@ -19,7 +19,7 @@ const {
   CrowdTangleInstagramChannel,
 } = builtin;
 
-const engine = new Engine();
+const downstream = new Downstream();
 
 module.exports = async () => {
   debug('Starting downstream...');
@@ -87,21 +87,21 @@ module.exports = async () => {
     },
   });
 
-  engine.register(twitterStreamChannel);
-  // engine.register(twitterPageChannel);
-  engine.register(facebookListChannel);
-  // engine.register(facebookPlatformChannel);
-  engine.register(instaListChannel);
-  // engine.register(instaPlatformChannel);
+  downstream.register(twitterStreamChannel);
+  // downstream.register(twitterPageChannel);
+  downstream.register(facebookListChannel);
+  // downstream.register(facebookPlatformChannel);
+  downstream.register(instaListChannel);
+  // downstream.register(instaPlatformChannel);
 
-  engine.use(addTopics);
-  engine.use(addTags);
-  engine.use(addEngagement);
-  engine.use(saveToDatabase);
+  downstream.use(addTopics);
+  downstream.use(addTags);
+  downstream.use(addEngagement);
+  downstream.use(saveToDatabase);
 
-  engine.on('error', debug);
+  downstream.on('error', debug);
 
-  await engine.start();
+  await downstream.start();
 
   debug('Downstream started.');
 };
