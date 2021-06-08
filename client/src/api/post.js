@@ -41,7 +41,7 @@ function filtersToBody(filters) {
 }
 
 export let page = 0;
-export let lastPage = false;
+export let lastPage = true;
 
 async function fetchPosts() {
   const options = {
