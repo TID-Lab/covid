@@ -19,6 +19,7 @@
 .Post > .container {
   background-color: white;
   height: fit-content;
+  border-radius: 20px;
 }
 
 .Post > .cover > img {
