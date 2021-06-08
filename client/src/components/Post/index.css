@@ -28,7 +28,7 @@
   animation-iteration-count: infinite;
 }
 
-.Post > .content > * {
+.Post > .container> .content > * {
   margin: 0px !important;
 }
 
