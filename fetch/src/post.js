@@ -9,7 +9,6 @@ const postSchema = new Schema({
   platformID: { type: String, required: true },
   content: { type: String },
   raw: { type: Schema.Types.Mixed, required: true },
-  from: { type: String, required: true },
   topics: { type: [String], default: [] },
   tags: { type: [String], default: [] },
   engagementRaw: { type: Number, default: 0 },
