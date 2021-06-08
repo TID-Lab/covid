@@ -12,10 +12,13 @@ const Posts = () => {
 
   return (
     <div className='Posts' id='Posts'>
+
         {(page > 0) ? <PrevPageButton /> : ''}
+
         {posts.map(post => (
           <Post data={post} key={post.url} />
         ))}
+
         {(!lastPage) ? <NextPageButton /> : ''}
     </div>
   );
