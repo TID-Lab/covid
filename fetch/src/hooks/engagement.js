@@ -9,10 +9,10 @@ module.exports = async function addEngagement(post, next) {
       const {
         post: {
           public_metrics: {
-            quote_count,
-            reply_count,
             retweet_count,
-            favorite_count,
+            reply_count,
+            like_count,
+            quote_count,
           },
         },
       } = raw;
@@ -23,7 +23,7 @@ module.exports = async function addEngagement(post, next) {
           },
         },
       } = raw;
-      engagementRaw = quote_count + reply_count + retweet_count + favorite_count;
+      engagementRaw = quote_count + reply_count + retweet_count + like_count;
       engagementNormed = engagementRaw / followers_count;
       break;
     }
