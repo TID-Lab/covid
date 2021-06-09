@@ -17,9 +17,9 @@
 }
 
 .Post > .container {
-  background-color: white;
+  /* background-color: white; */
+  /* border-radius: 20px; */
   height: fit-content;
-  border-radius: 20px;
 }
 
 .Post > .cover > img {
