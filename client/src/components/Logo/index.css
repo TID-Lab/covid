@@ -1,4 +1,19 @@
 .Logo {
   flex: 0 0 250px;
-  background-color: #d1d7e0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Logo img {
+  height: 40px;
+  margin-left: 10px;
+}
+
+.Logo b {
+  font-weight: 900;
+}
+
+.Logo h3 {
+  margin-left: 10px;
 }

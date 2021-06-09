@@ -5,4 +5,5 @@
   display: flex;
   flex-flow: row;
   align-items: stretch;
+  border-bottom: 1px solid lightgray;
 }
