@@ -89,6 +89,20 @@ const Post = (props) => {
     'georgia': 'Georgia'
   }
 
+  // Function for copying link to post to user's clipboard
+  function copyLink(e) {
+    e.preventDefault();
+    console.log('Clicking copy link button');
+    navigator.clipboard.writeText(data.url);
+  }
+
+  // Function for copying text of post to user's clipboard
+  function copyText(e) {
+    e.preventDefault();
+    console.log('Clicking copy text button');
+    navigator.clipboard.writeText(data.content);
+  }
+
   return (
     <div className='Post'>
       {(!isRendered) ? (
@@ -100,6 +114,12 @@ const Post = (props) => {
         <div className={embedClass} id={elementID} dangerouslySetInnerHTML={{__html: embedHTML}}></div>
         <p><b>Topics:</b> {data.topics.map(topic => COVID_TOPICS[topic]).filter(Boolean).join(', ')}</p>
         <p><b>Tags:</b> {data.tags.map(tag => TAGS[tag]).filter(Boolean).join(', ')}</p>
+        <form onSubmit={copyLink}>
+          <button type='submit'>Copy link</button>
+        </form>
+        <form onSubmit={copyText}>
+          <button type='submit'>Copy text</button>
+        </form>
       </div>
     </div>
   );
