@@ -17,6 +17,7 @@ function waitForEmbed(parent, callback) {
 
 const Post = (props) => {
   const { data } = props;
+  console.log(data);
   const { url, platform, platformID } = data;
   const coverImagePath = `/images/${platform}.png`;
   const elementID = `post-${platform}-${platformID}`;
@@ -64,6 +65,30 @@ const Post = (props) => {
   const embedHTML = (embedHTMLCache[platformID]) ? embedHTMLCache[platformID] : '';
   const embedClass = 'content' + (!isRendered ? ' hidden' : '');
 
+  // Getting topic and account tag labels for the post
+  
+  // Topics (from TopicFilter\index.js)
+  const COVID_TOPICS = { // temporary
+    'all': 'All',
+    'covid-diabetes': 'COVID x Diabetes',
+    'testing': 'Testing',
+    'vaccines': 'Vaccines',
+    'long-hauler': 'Long-hauler',
+    'georgia': 'Georgia'
+  }
+
+  // Account tags (CATEGORIES from AccountCategories\index.js, plus institutional and GA)
+  const TAGS = {
+    'all': 'All',
+    'government': 'Government',
+    'media': 'Media',
+    'faith': 'Faith',
+    'health': 'Health',
+    'diabetes': 'Diabetes',
+    'institutional': 'Institutional',
+    'georgia': 'Georgia'
+  }
+
   return (
     <div className='Post'>
       {(!isRendered) ? (
@@ -73,6 +98,8 @@ const Post = (props) => {
       ): ''}
       <div className='container'>
         <div className={embedClass} id={elementID} dangerouslySetInnerHTML={{__html: embedHTML}}></div>
+        <p><b>Topics:</b> {data.topics.map(topic => COVID_TOPICS[topic]).filter(Boolean).join(', ')}</p>
+        <p><b>Tags:</b> {data.tags.map(tag => TAGS[tag]).filter(Boolean).join(', ')}</p>
       </div>
     </div>
   );
