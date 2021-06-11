@@ -17,7 +17,7 @@
 }
 
 .Post > .container {
-  background-color: white;
+  /* background-color: white; */
   /* border-radius: 20px; */
   height: fit-content;
 }
@@ -49,4 +49,13 @@
   to {
     transform: scale(1);
   }
+}
+
+.column {
+  float: left;
+  padding: 10px;
+}
+
+.left {
+  width: 70%;
 }

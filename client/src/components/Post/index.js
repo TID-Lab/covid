@@ -112,14 +112,20 @@ const Post = (props) => {
       ): ''}
       <div className='container'>
         <div className={embedClass} id={elementID} dangerouslySetInnerHTML={{__html: embedHTML}}></div>
-        <p><b>Topics:</b> {data.topics.map(topic => COVID_TOPICS[topic]).filter(Boolean).join(', ')}</p>
-        <p><b>Tags:</b> {data.tags.map(tag => TAGS[tag]).filter(Boolean).join(', ')}</p>
-        <form onSubmit={copyLink}>
-          <button type='submit'>Copy link</button>
-        </form>
-        <form onSubmit={copyText}>
-          <button type='submit'>Copy text</button>
-        </form>
+      </div>
+      <div class='row'>
+        <div class='column left'>
+          <p><b>Topics:</b> {data.topics.map(topic => COVID_TOPICS[topic]).filter(Boolean).join(', ')}</p>
+          <p><b>Tags:</b> {data.tags.map(tag => TAGS[tag]).filter(Boolean).join(', ')}</p>
+        </div>
+        <div class='column right'>
+          <form onSubmit={copyLink}>
+            <button type='submit'>Copy link</button>
+          </form>
+          <form onSubmit={copyText}>
+            <button type='submit'>Copy text</button>
+          </form>
+        </div>
       </div>
     </div>
   );
