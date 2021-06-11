@@ -6,7 +6,7 @@ import './index.css';
 
 const CATEGORIES = {
   'all': 'All',
-  'gov': 'Government',
+  'government': 'Government',
   'media': 'Media',
   'faith': 'Faith',
   'health': 'Health',
