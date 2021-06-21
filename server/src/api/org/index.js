@@ -3,6 +3,7 @@ const useDebug = require('debug');
 const routes = require('express').Router();
 const Organization = require('../../models/organization');
 const { hashPassword } = require('../../util/org');
+const { is } = require('../../util/org');
 
 const debug = useDebug('api');
 
@@ -10,7 +11,7 @@ function strip(org) {
   org.hash = undefined;
 }
 
-routes.get('/', async (req, res) => {
+routes.get('/', is('org', 'admin'), async (req, res) => {
   let orgs;
   try {
     orgs = await Organization.find({});
@@ -23,7 +24,44 @@ routes.get('/', async (req, res) => {
   res.status(200).send();
 });
 
-routes.put('/', async (req, res) => {
+routes.post('/', is('admin'), async (req, res) => {
+  if (typeof req.body !== 'object') {
+    res.status(400).send();
+    return;
+  }
+  const { name, pwd } = req.body;
+
+  let hash;
+  try {
+    hash = await hashPassword(pwd);
+  } catch (err) {
+    debug(`${err}`);
+    res.status(500).send();
+    return;
+  }
+
+  try {
+    const org = await Organization.find({ name });
+    if (org) {
+      res.status(409).send();
+      return;
+    }
+  } catch (err) {
+    debug(`${err}`);
+    res.status(500).send();
+    return;
+  }
+  try {
+    const org = await Organization.create({ name, hash });
+    strip(org);
+    res.status(200).send(org);
+  } catch (err) {
+    debug(`${err}`);
+    res.status(500).send();
+  }
+});
+
+routes.put('/', is('admin'), async (req, res) => {
   if (typeof req.body !== 'object') {
     res.status(400).send();
     return;
@@ -63,44 +101,7 @@ routes.put('/', async (req, res) => {
   }
 });
 
-routes.post('/', async (req, res) => {
-  if (typeof req.body !== 'object') {
-    res.status(400).send();
-    return;
-  }
-  const { name, pwd } = req.body;
-
-  let hash;
-  try {
-    hash = await hashPassword(pwd);
-  } catch (err) {
-    debug(`${err}`);
-    res.status(500).send();
-    return;
-  }
-
-  try {
-    const org = await Organization.find({ name });
-    if (org) {
-      res.status(409).send();
-      return;
-    }
-  } catch (err) {
-    debug(`${err}`);
-    res.status(500).send();
-    return;
-  }
-  try {
-    const org = await Organization.create({ name, hash });
-    strip(org);
-    res.status(200).send(org);
-  } catch (err) {
-    debug(`${err}`);
-    res.status(500).send();
-  }
-});
-
-routes.delete('/:id', async (req, res) => {
+routes.delete('/:id', is('admin'), async (req, res) => {
   const { id } = req.params;
   if (typeof id !== 'string') {
     res.status(400).send();

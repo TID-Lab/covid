@@ -59,7 +59,7 @@ module.exports = () => new Promise((resolve, reject) => {
   apiRoutes.use('/post', is('org', 'admin'), postRoutes);
   apiRoutes.use('/topic', is('org', 'admin'), topicRoutes);
   apiRoutes.use('/proxy', is('org', 'admin'), proxyRoutes);
-  apiRoutes.use('/org', is('admin'), orgRoutes);
+  apiRoutes.use('/org', orgRoutes);
   apiRoutes.use('/login', loginRoutes);
   app.use('/api', apiRoutes);
 
