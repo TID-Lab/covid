@@ -9,6 +9,7 @@ import './index.css';
 import Header from '../Header';
 import Dashboard from '../Dashboard';
 import Settings from '../Settings';
+import Login from '../Login';
 
 const App = () => {
   return (
@@ -20,6 +21,9 @@ const App = () => {
         <Switch>
           <Route exact path="/">
             <Dashboard />
+          </Route>
+          <Route path="/login">
+            <Login />
           </Route>
           <Route path="/settings">
             <Settings />

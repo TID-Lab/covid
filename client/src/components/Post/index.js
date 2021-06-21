@@ -1,6 +1,7 @@
 import './index.css';
 
 import { useState, useEffect, useCallback } from 'react';
+import { authFetch } from '../../util/auth';
 
 const embedHTMLCache = [];
 
@@ -35,7 +36,7 @@ const Post = (props) => {
 
   useEffect(() => {
     async function fetchHTML() {
-      const res = await fetch(`/api/proxy/${platform}?url=${url}`);
+      const res = await authFetch(`/api/proxy/${platform}?url=${url}`);
       const { html } = await res.json();
       embedHTMLCache[platformID] = html;
     }

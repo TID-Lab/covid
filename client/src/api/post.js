@@ -1,3 +1,5 @@
+import { authFetch } from '../util/auth';
+
 let body = {};
 const defaultOptions = {
   method: 'POST',
@@ -48,7 +50,8 @@ async function fetchPosts() {
     ...defaultOptions,
     body: JSON.stringify(body)
   }
-  const res = await fetch(`/api/post/${page}`, options);
+  const res = await authFetch(`/api/post/${page}`, options);
+
   const { posts, lastPage: isLastPage } = await res.json();
   lastPage = isLastPage;
   return posts;

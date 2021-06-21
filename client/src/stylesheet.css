@@ -36,7 +36,7 @@ body {
   overflow: hidden;
 }
 
-body, input, textarea {
+body, input, textarea, select {
   letter-spacing: 0.03em;
 }
 
@@ -52,14 +52,25 @@ h2 {
   font-size: var(--header-medium-size);
 }
 
-input, textarea, select {
+input, textarea, select, button {
   background: none;
   font-size: calc(var(--body-font-size) - 2px);
   font-family: inherit;
   color: inherit;
-  padding-left: 10px;
   border: 1px solid gray;
   border-radius: 3px;
+}
+
+input, textarea, select {
+  padding-left: 10px;
+}
+
+button {
+  font-size: calc(var(--body-font-size) - 2px);
+  font-family: inherit;
+  background: none;
+  color: inherit;
+  cursor: pointer;
 }
 
 input, textarea {
@@ -79,7 +90,7 @@ input:focus, textarea:focus, select:focus {
   outline: none;
 }
 
-button {
+button.PageButton {
   background: none;
   border: none;
   cursor: pointer;

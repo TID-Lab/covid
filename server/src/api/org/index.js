@@ -11,7 +11,7 @@ function strip(org) {
   org.hash = undefined;
 }
 
-routes.get('/', is('org', 'admin'), async (req, res) => {
+routes.get('/', async (req, res) => {
   let orgs;
   try {
     orgs = await Organization.find({});
@@ -21,7 +21,7 @@ routes.get('/', is('org', 'admin'), async (req, res) => {
     return;
   }
   orgs.forEach((org) => strip(org));
-  res.status(200).send();
+  res.status(200).send(orgs);
 });
 
 routes.post('/', is('admin'), async (req, res) => {

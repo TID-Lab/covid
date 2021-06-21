@@ -9,7 +9,7 @@ const debug = useDebug('api');
  * A login endpoint that issues a new cookie
  * when supplied with a valid user name & password.
  */
-routes.post('/', async (req, res) => {
+routes.post('/login', async (req, res) => {
   if (typeof req.body !== 'object') {
     res.status(400).send();
     return;
@@ -21,7 +21,7 @@ routes.post('/', async (req, res) => {
   try {
     org = await Organization.findOne({ name });
     if (!org) {
-      res.status(403).send();
+      res.redirect('/login');
       return;
     }
   } catch (err) {
@@ -38,7 +38,7 @@ routes.post('/', async (req, res) => {
     return;
   }
   if (!same) {
-    res.status(403).send();
+    res.redirect('/login');
     return;
   }
 
@@ -46,6 +46,25 @@ routes.post('/', async (req, res) => {
   const { _id } = org;
   req.session.org = _id;
 
+  res.redirect('/');
+});
+
+/**
+ * Logs a user out from their organization.
+ */
+routes.post('/logout', async (req, res) => {
+  req.session.org = undefined;
+  res.redirect('/');
+});
+
+/**
+ * Checks whether the user is logged into their organization.
+ */
+routes.get('/check', async (req, res) => {
+  if (!req.session.org) {
+    res.status(401).send();
+    return;
+  }
   res.status(200).send();
 });
 

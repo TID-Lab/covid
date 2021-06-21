@@ -3,7 +3,7 @@ const useDebug = require('debug');
 const express = require('express');
 const http = require('http');
 const mongoose = require('mongoose');
-const { json } = require('body-parser');
+const { json, urlencoded } = require('body-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const config = require('../util/config');
@@ -13,7 +13,7 @@ const postRoutes = require('./post');
 const topicRoutes = require('./topic');
 const proxyRoutes = require('./proxy');
 const orgRoutes = require('./org');
-const loginRoutes = require('./login');
+const authRoutes = require('./auth');
 
 const debug = useDebug('api');
 const app = express();
@@ -53,6 +53,7 @@ module.exports = () => new Promise((resolve, reject) => {
   // Register middleware
   app.use(session(sessionOptions));
   app.use(json({ extended: true }));
+  app.use(urlencoded({ extended: true }));
 
   // Register routes
   const apiRoutes = express.Router();
@@ -60,7 +61,7 @@ module.exports = () => new Promise((resolve, reject) => {
   apiRoutes.use('/topic', is('org', 'admin'), topicRoutes);
   apiRoutes.use('/proxy', is('org', 'admin'), proxyRoutes);
   apiRoutes.use('/org', orgRoutes);
-  apiRoutes.use('/login', loginRoutes);
+  apiRoutes.use('/auth', authRoutes);
   app.use('/api', apiRoutes);
 
   // Mount the frontend app
