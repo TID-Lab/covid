@@ -68,7 +68,7 @@ module.exports = () => new Promise((resolve, reject) => {
   if (process.env.NODE_ENV === 'production') {
     const build = [__dirname, '..', '..', '..', 'client', 'build'];
     app.use(express.static(path.join(...build)));
-    app.get('/', (_, res) => {
+    app.get('*', (_, res) => {
       res.sendFile(path.join(...build, 'index.html'));
     });
   }
