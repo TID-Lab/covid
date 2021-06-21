@@ -22,4 +22,12 @@ module.exports = {
     name: process.env.DB_NAME || 'covid',
     url: process.env.DB_URL || 'mongodb://localhost:27017/covid',
   },
+  auth: {
+    sessionSecret: process.env.SESSION_SECRET,
+    storeSecret: process.env.STORE_SECRET,
+    defaultAdmin: {
+      name: process.env.DEFAULT_ADMIN_NAME || 'Georgia Tech',
+      password: process.env.DEFAULT_ADMIN_PASSWORD || 'letmein1',
+    },
+  },
 };

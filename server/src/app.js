@@ -2,6 +2,7 @@ const useDebug = require('debug');
 const chalk = require('chalk');
 const db = require('./util/db');
 const api = require('./api');
+const { createAdminOrganization } = require('./util/org');
 
 const debug = useDebug('core');
 
@@ -17,6 +18,9 @@ const debug = useDebug('core');
 
   // Initialize the API
   await api();
+
+  // Create the default admin org if one does not exist
+  await createAdminOrganization();
 
   try {
     debug(chalk.greenBright('System initialized.'));
