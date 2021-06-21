@@ -13,16 +13,16 @@ const debug = useDebug('core');
 (async () => {
   debug('Initializing system...');
 
-  // Initialize the database connection
-  await db();
-
-  // Initialize the API
-  await api();
-
-  // Create the default admin org if one does not exist
-  await createAdminOrganization();
-
   try {
+  // Initialize the database connection
+    await db();
+
+    // Initialize the API
+    await api();
+
+    // Create the default admin org if one does not exist
+    await createAdminOrganization();
+
     debug(chalk.greenBright('System initialized.'));
   } catch (e) {
     debug(chalk.redBright('Initialization failed.'));
