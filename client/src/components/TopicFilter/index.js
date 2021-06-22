@@ -18,21 +18,19 @@ const TopicFilter = (props) => {
   const { topic } = props;
   const dispatch = useDispatch();
 
-  function onSelected(id) {
-    return () => {
-      dispatch({ type: 'topic/set', payload: id });
-    }
+  function onRadioClick(id) {
+    dispatch({ type: 'topic/set', payload: id });
   }
 
   return (
     <div className='Filter Topics'>
       <h3>COVID-19 Topics</h3>
       {Object.keys(COVID_TOPICS).map(id => (
-        <Radio key={id} id={id} name='topics' value={COVID_TOPICS[id]} selected={id === topic} onSelected={onSelected(id)}/>
+        <Radio key={id} id={id} name={COVID_TOPICS[id]} selected={topic} onClick={onRadioClick}/>
       ))}
-      <Link to='/settings/topics'>
+      {/* <Link to='/settings/topics'>
         <span>Edit Topics</span>
-      </Link>
+      </Link> */}
     </div>
   );
 };

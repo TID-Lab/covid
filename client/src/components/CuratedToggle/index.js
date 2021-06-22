@@ -8,18 +8,16 @@ const CuratedToggle = (props) => {
   const { curatedOnly } = props;
   const dispatch = useDispatch();
 
-  function onAllPlatformsSelected(e) {
-    dispatch({ type: 'accounts/curatedOnly/set', payload: false })
+  function onRadioClick(id) {
+    dispatch({ type: 'accounts/curatedOnly/set', payload: id !== 'all' })
   }
 
-  function onCuratedOnlySelected(e) {
-    dispatch({ type: 'accounts/curatedOnly/set', payload: true })
-  }
+  const selected = curatedOnly ? 'curatedOnly' : 'all';
 
   return (
     <div className='AccountFilter'>
-      <Radio key={'all'} id={'all'} name='accountsCurated' value={'All-platform search'} selected={!curatedOnly} onSelected={onAllPlatformsSelected}/>
-      <Radio key={'curatedOnly'} id={'curatedOnly'} name='accountsCurated' value={'Curated accounts'} selected={curatedOnly} onSelected={onCuratedOnlySelected}/>
+      <Radio id={'all'} name={'All-platform search'} selected={selected} onClick={onRadioClick}/>
+      <Radio id={'curatedOnly'} name={'Curated accounts'} selected={selected} onClick={onRadioClick}/>
     </div>
   );
 }

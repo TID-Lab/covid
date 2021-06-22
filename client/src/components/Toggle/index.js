@@ -5,18 +5,27 @@ const Toggle = (props) => {
     toggled,
     onToggled,
     name,
-    value,
   } = props;
 
-  function toggle() {
-    if (onToggled) onToggled(toggled);
+  function onClick() {
+    onToggled(toggled);
   }
 
+  const fillColor = toggled ? 'var(--body-primary-orange)': 'rgba(0,0,0,0)';
+  const strokeColor = toggled ? 'var(--body-primary-orange)': '#868686';
+
   return (
-    <div className='Toggle'>
+    <div className='Toggle' onClick={onClick}>
       <label>
-      <input type='checkbox' value={value} checked={toggled} onChange={toggle}/>
-      {name}
+        <svg className="ToggleImage" viewBox="0 0 100 100" fill={fillColor} stroke={strokeColor}>
+          <rect x="10" y="10" width="80" height="80" strokeWidth="15" rx="10" ry="10" />
+          {
+            toggled ?
+            <path d="M 25 50 L 45 75 L 80 25" strokeWidth="12" stroke="white" stroke-linejoin="round" />
+            : ''
+          }
+        </svg>
+        {name}
       </label>
     </div>
   );

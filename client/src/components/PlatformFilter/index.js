@@ -21,9 +21,9 @@ const PlatformFilter = (props) => {
   return (
     <div className='Filter'>
       <h3>Platforms</h3>
-      <Toggle name='Facebook' value='facebook' toggled={platforms.includes('facebook')} onToggled={onToggled('facebook')} />
-      <Toggle name='Instagram' value='instagram' toggled={platforms.includes('instagram')} onToggled={onToggled('instagram')} />
-      <Toggle name='Twitter' value='twitter' toggled={platforms.includes('twitter')} onToggled={onToggled('twitter')} />
+      <Toggle name='Facebook' toggled={platforms.includes('facebook')} onToggled={onToggled('facebook')} />
+      <Toggle name='Instagram' toggled={platforms.includes('instagram')} onToggled={onToggled('instagram')} />
+      <Toggle name='Twitter' toggled={platforms.includes('twitter')} onToggled={onToggled('twitter')} />
     </div>
   );
 };

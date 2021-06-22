@@ -8,24 +8,16 @@ const AccountLocation = (props) => {
   const { location } = props;
   const dispatch = useDispatch();
 
-  function onAllSelected() {
-    dispatch({ type: 'accounts/location/set', payload: 'all' })
-  }
-
-  function onGeorgiaSelected() {
-    dispatch({ type: 'accounts/location/set', payload: 'georgia' })
-  }
-
-  function onNonGeorgiaSelected() {
-    dispatch({ type: 'accounts/location/set', payload: 'nonGeorgia' })
+  function onRadioClick(id) {
+    dispatch({ type: 'accounts/location/set', payload: id })
   }
 
   return (
     <div className='AccountFilter'>
       <h4>Account location</h4>
-      <Radio key={'all'} id={'all'} name='accountLocation' value={'All'} selected={location === 'all'} onSelected={onAllSelected}/>
-      <Radio key={'georgia'} id={'georgia'} name='accountLocation' value={'Georgia'} selected={location === 'georgia'} onSelected={onGeorgiaSelected}/>
-      <Radio key={'nonGeorgia'} id={'nonGeorgia'} name='accountLocation' value={'Non-Georgia'} selected={location === 'nonGeorgia'} onSelected={onNonGeorgiaSelected}/>
+      <Radio id={'all'} name={'All'} selected={location} onClick={onRadioClick}/>
+      <Radio id={'georgia'} name={'Georgia'} selected={location} onClick={onRadioClick}/>
+      <Radio id={'nonGeorgia'} name={'Non-Georgia'} selected={location} onClick={onRadioClick}/>
     </div>
   );
 }

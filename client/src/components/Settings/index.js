@@ -16,7 +16,7 @@ const Settings = () => {
     let { path } = useRouteMatch();
 
     return (
-    <div className='Settings'>
+    <div className='Root Settings'>
         <Switch>
             <Route exact path={path}>
                 TODO

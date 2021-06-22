@@ -17,17 +17,16 @@ const AccountCategories = (props) => {
   const { categories: category } = props;
   const dispatch = useDispatch();
 
-  function onSelected(id) {
-    return () => {
-      dispatch({ type: 'accounts/categories/set', payload: id });
-    }
+  function onRadioClick(id) {
+    dispatch({ type: 'accounts/categories/set', payload: id })
   }
+
 
   return (
     <div className='AccountFilter'>
       <h4>Account categories</h4>
       {Object.keys(CATEGORIES).map(id => (
-        <Radio key={id} id={id} name='accountCategories' value={CATEGORIES[id]} selected={id === category} onSelected={onSelected(id)}/>
+        <Radio key={id} id={id} name={CATEGORIES[id]} selected={category} onClick={onRadioClick}/>
       ))}
     </div>
   );
