@@ -2,6 +2,10 @@
   width: 400px;
 }
 
+.LoginModal > img {
+  width: 50px;
+}
+
 .LoginModal > form {
   display: flex;
   align-items: center;

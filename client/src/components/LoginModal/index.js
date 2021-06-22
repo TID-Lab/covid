@@ -15,6 +15,7 @@ const LoginModal = () => {
 
   return (
   <div className='Modal LoginModal'>
+    <img src='/images/projectpeach.png' alt='Project Peach'></img>
     <h1>Organization Login</h1>
     <form method='post' action='/api/auth/login'>
       <select name='name'>
