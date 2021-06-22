@@ -6,6 +6,7 @@
 }
 
 .PageButton {
+  letter-spacing: 0;
   margin: 20px;
   flex-shrink: 1;
   min-width: 400px;
@@ -20,6 +21,9 @@
   border: 3px solid black;
   padding: 20px;
   transition: all 0.25s ease;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: calc(var(--body-font-size) + 2px);
 }
 
 .PageButton:hover {

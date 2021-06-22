@@ -90,16 +90,6 @@ input:focus, textarea:focus, select:focus {
   outline: none;
 }
 
-button.PageButton {
-  background: none;
-  border: none;
-  cursor: pointer;
-  letter-spacing: 0;
-  font-family: inherit;
-  font-weight: bold;
-  font-size: calc(var(--body-font-size) + 2px);
-}
-
 a, a:visited {
   color: black;
   text-decoration: none;
