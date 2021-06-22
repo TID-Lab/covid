@@ -51,6 +51,11 @@ function is(...roles) {
       return;
     }
     const org = await Organization.findById(id);
+    if (!org) {
+      res.status(401).send();
+      return;
+    }
+
     const isARole = roles.reduce(
       (prev, curr) => prev || curr === org.role,
       false,

@@ -61,7 +61,13 @@ routes.post('/logout', async (req, res) => {
  * Checks whether the user is logged into their organization.
  */
 routes.get('/check', async (req, res) => {
-  if (!req.session.org) {
+  const id = req.session.org;
+  if (!id) {
+    res.status(401).send();
+    return;
+  }
+  const org = await Organization.findById(id);
+  if (!org) {
     res.status(401).send();
     return;
   }

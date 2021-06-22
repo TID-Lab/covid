@@ -41,7 +41,7 @@ routes.post('/', is('admin'), async (req, res) => {
   }
 
   try {
-    const org = await Organization.find({ name });
+    const org = await Organization.findOne({ name });
     if (org) {
       res.status(409).send();
       return;
