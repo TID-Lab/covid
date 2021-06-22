@@ -1,16 +1,23 @@
 import { useState } from 'react';
 import { createOrganization } from '../../api/org';
 import notify from '../../util/notify';
+
+import { useHidePopup } from '../../hooks/popup';
+
 import './index.css';
 
 const ROLES = [ 'org', 'admin' ];
 
-const NewOrganizationForm = (props) => {
-  const { onSubmit } = props;
+const NewOrganization = (props) => {
+  const { onCreate } = props;
 
   const [ role, setRole ] = useState(ROLES[0]);
   const [ name, setName ] = useState('');
   const [ password, setPassword ] = useState('');
+
+    
+  const hidePopup = useHidePopup();
+
 
   function onRoleChange(event) {
     setRole(event.target.value);
@@ -24,9 +31,7 @@ const NewOrganizationForm = (props) => {
     setPassword(event.target.value);
   }
 
-  async function onFormSubmit(event) {
-    event.preventDefault();
-
+  async function onSubmit() {
     try {
       const org = await createOrganization({
         role,
@@ -34,9 +39,11 @@ const NewOrganizationForm = (props) => {
         pwd: password,
       });
 
-      onSubmit(org);
+      onCreate(org);
 
-      setRole('default');
+      hidePopup();
+
+      setRole(ROLES[0]);
       setName('');
       setPassword('');
 
@@ -45,18 +52,26 @@ const NewOrganizationForm = (props) => {
     }
   }
 
+  function onClose() {
+    hidePopup();
+  }
+
   return (
-    <form className='NewOrganizationForm' onSubmit={onFormSubmit}>
-      <select name='role' onChange={onRoleChange} value={role}>
+    <div className='Modal NewOrganization'>
+      <h1>New Organization</h1>
+      <select onChange={onRoleChange} value={role}>
         {ROLES.map(role => (
           <option key={role} value={role}>{role.charAt(0).toUpperCase() + role.slice(1)}</option>
         ))}
       </select>
-      <input name='name' type='text' placeholder='Name' onChange={onNameChange} value={name}></input>
-      <input name='pwd' type='password' placeholder='Password' onChange={onPasswordChange} value={password}></input>
-      <button type='submit'>Submit</button>
-    </form>
-  );
+      <input className='Name' type='text' value={name} onChange={onNameChange} placeholder='Name'></input>
+      <input type='password' value={password} onChange={onPasswordChange} placeholder='New Password'></input>
+      <div>
+        <button onClick={onSubmit}>Submit</button>
+        <button onClick={onClose}>Close</button>
+      </div>
+    </div>
+  )
 };
 
-export default NewOrganizationForm;
+export default NewOrganization;

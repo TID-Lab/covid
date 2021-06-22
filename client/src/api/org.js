@@ -37,8 +37,20 @@ async function createOrganization(org) {
   return body;
 }
 
+async function editOrganization(org) {
+  const options = {
+    ...defaultOptions,
+    method: 'PUT',
+    body: JSON.stringify(org),
+  }
+  const res = await authFetch(`/api/org`, options);
+  const body = await res.json();
+  return body;
+}
+
 export {
   fetchOrganizations,
   deleteOrganization,
   createOrganization,
+  editOrganization,
 };

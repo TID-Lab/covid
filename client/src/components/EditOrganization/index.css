@@ -1,0 +1,31 @@
+.EditOrganization {
+  width: 350px;
+  padding-top: 10px;
+}
+
+.EditOrganization input, .EditOrganization p {
+  width: 100%;
+}
+
+.EditOrganization p {
+  margin-top: 5px;
+  font-size: 12px;
+  margin-bottom: 30px;
+}
+
+.EditOrganization .Name {
+  margin-bottom: 20px;
+}
+
+.EditOrganization button {
+  align-self: flex-end;
+  margin-left: 10px;
+}
+
+.EditOrganization div {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}

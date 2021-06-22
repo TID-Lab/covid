@@ -10,3 +10,7 @@
   border-radius: 3px;
   user-select: none;
 }
+
+.Organization .Edit {
+  margin-right: 10px;
+}

@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
 import { fetchOrganizations } from '../../api/org';
-import NewOrganizationForm from '../NewOrganizationForm';
+import { useShowPopup } from '../../hooks/popup';
+import NewOrganization from '../NewOrganization';
 import Organization from '../Organization';
 
 import './index.css';
 
 const OrganizationModal = () => {
-  const [ newOrgMode, setNewOrgMode ] = useState(false);
   const [ orgs, setOrgs ] = useState([]);
+
+  const showPopup = useShowPopup();
 
   useEffect(() => {
     (async () => {
@@ -15,10 +17,6 @@ const OrganizationModal = () => {
       setOrgs(organizations);
     })();
   }, []);
-
-  function openNewOrgForm() {
-    setNewOrgMode(true);
-  }
 
   function onDelete(id) {
     const i = orgs.findIndex((org) => org._id === id);
@@ -30,40 +28,39 @@ const OrganizationModal = () => {
     );
   }
 
-  function onSubmit(org) {
+  function onCreate(org) {
     setOrgs(
       [
         ...orgs,
         org,
       ]
     )
-    setNewOrgMode(false);
   }
 
-  const newOrgForm = (
-    <NewOrganizationForm
-      onSubmit={onSubmit}
-    />
-  );
-
-  const orgComponents = orgs.map(({ _id, name, role }) => (
-    <Organization
-      key={_id}
-      _id={_id}
-      name={name}
-      role={role}
-      onDelete={onDelete}
-    />
-  ));
+  function showCreateModal() {
+    showPopup(
+      <NewOrganization
+        onCreate={onCreate}
+      />
+    );
+  }
 
   return (
     <div className='Modal OrganizationModal'>
         <h1>Organization Settings</h1>
         <div className='Row Header'>
           <p><b>{orgs.length} Organizations</b></p>
-          <button onClick={openNewOrgForm}>New Organization</button>
+          <button onClick={showCreateModal}>New Organization</button>
         </div>
-        {newOrgMode ? newOrgForm : orgComponents }
+        {orgs.map(({ _id, name, role }) => (
+          <Organization
+            key={_id}
+            _id={_id}
+            name={name}
+            role={role}
+            onDelete={onDelete}
+          />
+        ))}
     </div>
   );
 };
