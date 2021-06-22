@@ -80,17 +80,19 @@ routes.put('/', is('admin'), async (req, res) => {
     return;
   }
 
-  let hash;
-  try {
-    hash = await hashPassword(pwd);
-  } catch (err) {
-    debug(`${err}`);
-    res.status(500).send();
-    return;
-  }
-
   org.name = name;
-  org.hash = hash;
+
+  if (pwd) {
+    let hash;
+    try {
+      hash = await hashPassword(pwd);
+    } catch (err) {
+      debug(`${err}`);
+      res.status(500).send();
+      return;
+    }
+    org.hash = hash;
+  }
 
   try {
     await org.save();
