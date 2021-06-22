@@ -1,14 +1,5 @@
 .LoginModal {
-  box-sizing: border-box;
   width: 400px;
-  padding: 30px;
-  background-color: white;
-  border: 1px solid lightgray;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-direction: column;
 }
 
 .LoginModal > form {
@@ -26,14 +17,9 @@
 
 .LoginModal input, .LoginModal select, .LoginModal button {
   width: 250px;
-  height: 30px;
   margin-bottom: 15px;
 }
 
-.LoginModal select {
+.LoginModal select, .LoginModal input {
   padding-left: 15px;
-}
-
-.LoginModal input {
-  height: 30px;
 }

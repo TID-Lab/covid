@@ -14,7 +14,7 @@ const LoginModal = () => {
   }, []);
 
   return (
-  <div className='LoginModal'>
+  <div className='Modal LoginModal'>
     <h1>Organization Login</h1>
     <form method='post' action='/api/auth/login'>
       <select name='name'>

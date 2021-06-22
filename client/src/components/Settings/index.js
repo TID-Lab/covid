@@ -6,7 +6,7 @@ import {
 
 import './index.css';
 
-import '../TopicSettings';
+import OrganizationSettings from '../OrganizationSettings';
 import TopicSettings from "../TopicSettings";
 
 const Settings = () => {
@@ -14,13 +14,16 @@ const Settings = () => {
 
     return (
     <div className='Settings'>
-    <Switch>
-        <Route exact path={path}>
-            TODO
-        </Route>
-        <Route path={`${path}/topics`}>
-            <TopicSettings />
-        </Route>
+        <Switch>
+            <Route exact path={path}>
+                TODO
+            </Route>
+            <Route path={`${path}/orgs`}>
+                <OrganizationSettings />
+            </Route>
+            <Route path={`${path}/topics`}>
+                <TopicSettings />
+            </Route>
         </Switch>
     </div>
     );

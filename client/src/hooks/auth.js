@@ -7,8 +7,7 @@ function useAuth(shouldBeLoggedIn = true, href='/') {
       const isAuthenticated = await checkAuth();
       if (shouldBeLoggedIn) {
         if (!isAuthenticated) window.location.href = '/login';
-      }
-      if (!shouldBeLoggedIn) {
+      } else {
         if (isAuthenticated) window.location.href = href;
       }
     })();

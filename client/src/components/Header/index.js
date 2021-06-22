@@ -11,7 +11,7 @@ const Header = () => {
 
   if (pathname === '/') {
     return (
-      <div className='Header'>
+      <div className='PageHeader'>
         <Logo />
         <SortSelect />
         <TextSearch />
@@ -19,7 +19,7 @@ const Header = () => {
     )
   } else {
     return (
-      <div className='Header'>
+      <div className='PageHeader'>
         <Logo />
       </div>
     )

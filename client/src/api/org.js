@@ -12,9 +12,33 @@ async function fetchOrganizations() {
     ...defaultOptions,
     method: 'GET',
   }
-  const res = await authFetch('/api/org', options);
+  const res = await fetch('/api/org', options);
   const orgs = await res.json();
   return orgs;
 }
 
-export { fetchOrganizations };
+async function deleteOrganization(id) {
+  const options = {
+    ...defaultOptions,
+    method: 'DELETE',
+  }
+  const res = await authFetch(`/api/org/${id}`, options);
+  return res.status === 200;
+}
+
+async function createOrganization(org) {
+  const options = {
+    ...defaultOptions,
+    method: 'POST',
+    body: JSON.stringify(org),
+  }
+  const res = await authFetch(`/api/org`, options);
+  const body = await res.json();
+  return body;
+}
+
+export {
+  fetchOrganizations,
+  deleteOrganization,
+  createOrganization,
+};
