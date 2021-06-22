@@ -1,15 +1,18 @@
 import { useEffect } from 'react';
 import { checkAuth } from '../api/auth';
 
-function useAuth() {
+function useAuth(shouldBeLoggedIn = true, href='/') {
   useEffect(() => {
     (async () => {
-      const isAuthenticated = await checkAuth(); 
-      if (!isAuthenticated) {
-        window.location.href = '/login';
+      const isAuthenticated = await checkAuth();
+      if (shouldBeLoggedIn) {
+        if (!isAuthenticated) window.location.href = '/login';
+      }
+      if (!shouldBeLoggedIn) {
+        if (isAuthenticated) window.location.href = href;
       }
     })();
-  }, []);
+  }, [shouldBeLoggedIn, href]);
 }
 
 export default useAuth;
