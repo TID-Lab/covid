@@ -8,8 +8,11 @@ import './index.css';
 
 import OrganizationSettings from '../OrganizationSettings';
 import TopicSettings from "../TopicSettings";
+import useAuth from '../../hooks/auth';
 
 const Settings = () => {
+    useAuth();
+
     let { path } = useRouteMatch();
 
     return (
