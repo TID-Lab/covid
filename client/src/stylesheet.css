@@ -18,6 +18,10 @@
   --link-color: #0000EE;
   --body-primary-orange: #ef713b;
   /* orange color to match the dark orange circles on projectpeach.org */
+  --body-secondary-orange: #f9ddc8;
+  /* light orange/peach color to match projectpeach.org alternate background */
+  --body-highlight-green: #166402;
+  /* green color to match the green button on projectpeach.org */
 }
 
 * {
