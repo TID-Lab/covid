@@ -47,7 +47,7 @@ module.exports = () => new Promise((resolve, reject) => {
 
   if (process.env.NODE_ENV === 'production') {
     app.set('trust proxy', 1); // trust first proxy
-    sessionOptions.cookie.secure = true; // serve secure cookies
+    // TODO sessionOptions.cookie.secure = true; // serve secure cookies
   }
 
   // Register middleware
