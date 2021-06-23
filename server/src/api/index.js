@@ -67,17 +67,8 @@ module.exports = () => new Promise((resolve, reject) => {
   // Mount the frontend app
   if (process.env.NODE_ENV === 'production') {
     const build = [__dirname, '..', '..', '..', 'client', 'build'];
-
-    // static files
     app.use(express.static(path.join(...build)));
-
-    // login page - no authentication required
-    app.get('/login', (_, res) => {
-      res.sendFile(path.join(...build, 'index.html'));
-    });
-
-    // require authentication for everything else
-    app.get('*', is('org', 'admin'), (_, res) => {
+    app.get('*', (_, res) => {
       res.sendFile(path.join(...build, 'index.html'));
     });
   }
