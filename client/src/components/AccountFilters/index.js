@@ -11,7 +11,7 @@ const AccountFilter = (props) => {
   return (
     <div className='Filter'>
       <h3>Account Filters</h3>
-      <CuratedToggle curatedOnly={curatedOnly} />
+      {/* <CuratedToggle curatedOnly={curatedOnly} /> */}
       <AccountTypes institutions={institutions} />
       <AccountLocation location={location} />
       <AccountCategories categories={categories} />
