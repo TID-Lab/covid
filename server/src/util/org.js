@@ -39,20 +39,29 @@ function comparePassword(pwd, hash) {
 }
 
 /**
- * Generates a middleware function that returns
- * 401 Unauthorized if a user's organization is
- * not one of the given roles.
+ * Generates a middleware function that:
+ *
+ * - returns 401 Unauthorized on API requests
+ * - redirects to the login page on non-API requests
  */
 function is(...roles) {
   return async function isRole(req, res, next) {
+    function respondUnauthorized() {
+      if (req.path.startsWith('/api')) {
+        res.status(401).send();
+      } else {
+        res.redirect('/login');
+      }
+    }
+
     const { org: id } = req.session;
     if (!id) {
-      res.status(401).send();
+      respondUnauthorized();
       return;
     }
     const org = await Organization.findById(id);
     if (!org) {
-      res.status(401).send();
+      respondUnauthorized();
       return;
     }
 
@@ -61,7 +70,7 @@ function is(...roles) {
       false,
     );
     if (!isARole) {
-      res.status(401).send();
+      respondUnauthorized();
       return;
     }
     next();

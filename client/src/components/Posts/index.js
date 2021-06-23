@@ -13,7 +13,6 @@ const Posts = () => {
   return (
     <div className='Posts' id='Posts'>
 
-        <PrevPageButton />
         {(page > 0) ? <PrevPageButton /> : ''}
 
         {posts.map(post => (

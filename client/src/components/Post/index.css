@@ -6,10 +6,10 @@
 
 .Post > * {
   width: 100%;
-  height: 100%;
 }
 
 .Post > .cover {
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,11 +55,15 @@
   }
 }
 
-.column {
+.Post > .annotations {
+  height: fit-content;
+}
+
+.Post .column {
   float: left;
   padding: 10px;
 }
 
-.left {
+.Post .left {
   width: 70%;
 }
