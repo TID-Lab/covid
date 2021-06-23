@@ -65,12 +65,18 @@ module.exports = () => new Promise((resolve, reject) => {
   app.use('/api', apiRoutes);
 
   // Mount the frontend app
+
+  const build = [__dirname, '..', '..', '..', 'client', 'build'];
+
+  function sendIndex(_, res) {
+    res.sendFile(path.join(...build, 'index.html'));
+  }
+
   if (process.env.NODE_ENV === 'production') {
-    const build = [__dirname, '..', '..', '..', 'client', 'build'];
-    app.use(express.static(path.join(...build)));
-    app.get('*', (_, res) => {
-      res.sendFile(path.join(...build, 'index.html'));
-    });
+    app.get('/', is('org', 'admin'), sendIndex); // authenticate the homepage
+    app.use(express.static(path.join(...build))); // static files
+    app.get('/login', sendIndex); // do not authenticate the login page
+    app.get('*', is('org', 'admin'), sendIndex); // authenticate everything else
   }
 
   // Swallow errors
