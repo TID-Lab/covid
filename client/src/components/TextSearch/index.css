@@ -1,5 +1,6 @@
 .TextSearch {
-  display: flex;
+  /* display: flex; */
+  display: none;
   align-items: center;
   margin-left: 10px;
 }
