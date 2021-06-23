@@ -14,7 +14,7 @@ const Header = () => {
       <div className='PageHeader'>
         <Logo />
         <SortSelect />
-        <TextSearch />
+        {/* <TextSearch /> */}
       </div>
     )
   } else {
