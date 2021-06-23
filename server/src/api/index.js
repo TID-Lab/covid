@@ -69,7 +69,7 @@ module.exports = () => new Promise((resolve, reject) => {
     const build = [__dirname, '..', '..', '..', 'client', 'build'];
 
     // static files
-    app.use(express.static(path.join(...build)));
+    app.use('*.*', express.static(path.join(...build)));
 
     // login page - no authentication required
     app.get('/login', (_, res) => {
