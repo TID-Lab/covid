@@ -117,7 +117,7 @@ const Post = (props) => {
       <div className={containerClassName}>
         <div className={embedClass} id={elementID} dangerouslySetInnerHTML={{__html: embedHTML}}></div>
       </div>
-      <div className='row'>
+      <div className='annotations'>
         <div className='column left'>
           <p><b>Topics:</b> {data.topics.map(topic => COVID_TOPICS[topic]).filter(Boolean).join(', ')}</p>
           <p><b>Tags:</b> {data.tags.map(tag => TAGS[tag]).filter(Boolean).join(', ')}</p>
