@@ -1,17 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-@import url('http://fonts.googleapis.com/css?family=Lato:400,700,900');
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap'); */
+/* @import url('http://fonts.googleapis.com/css?family=Lato:400,700,900'); */
+@import url('http://fonts.googleapis.com/css?family=Poppins:400,700,900');
 
 :root {
   --body-font-size: 18px;
   --body-background: #d1d7e0;
   --body-primary: #000;
   --body-secondary: #444;
-  --body-font: 'Lato', sans-serif;
+  --body-font: 'Poppins', sans-serif;
   /* 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI',
   Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
   --header-large-size: 50px;
   --header-medium-size: 40px;
-  --header-font: 'Lato', sans-serif;
+  --header-font: 'Poppins', sans-serif;
   /* 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI',
   Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
   --link-color: #0000EE;
