@@ -22,6 +22,10 @@
   height: fit-content;
 }
 
+.Post > .container.facebook {
+  background-color: white;
+}
+
 .Post > .cover > img {
   height: 80px;
   animation-duration: 2s;

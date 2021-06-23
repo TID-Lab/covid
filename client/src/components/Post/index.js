@@ -104,6 +104,9 @@ const Post = (props) => {
     navigator.clipboard.writeText(data.content);
   }
 
+  // some FB posts render with a transparent background
+  const containerClassName = (platform === 'facebook') ? 'container facebook' : 'container';
+
   return (
     <div className='Post'>
       {(!isRendered) ? (
@@ -111,7 +114,7 @@ const Post = (props) => {
           <img src={coverImagePath} alt={platform} />
         </div>
       ): ''}
-      <div className='container'>
+      <div className={containerClassName}>
         <div className={embedClass} id={elementID} dangerouslySetInnerHTML={{__html: embedHTML}}></div>
       </div>
       <div className='row'>
