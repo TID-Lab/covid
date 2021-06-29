@@ -30,6 +30,7 @@ const COVID_TOPICS = {
     'vacc',
     'vax',
     'shot',
+    'jab',
     'astrazeneca',
     'j&j',
     'johnson & johnson',
