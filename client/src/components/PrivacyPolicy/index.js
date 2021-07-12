@@ -1,28 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/logo-icon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Privacy Policy | Project PEACH Social Media Dashboard"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="workspace/css/styles.css" /> -->
-    <title>Privacy Policy | Project PEACH Social Media Dashboard</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <div>
+const PrivacyPolicy = () => {
+  return (
+    <div style={{overflow: 'auto'}}>
       <h1>Privacy Policy</h1>
 
-      <br>
+      <br/>
 
       <h3>Last updated: May 12, 2021</h3>
 
-      <br>
+      <br/>
 
       <p>The Project PEACH Social Media Dashboard (the “Dashboard”)
       is a social analytic platform developed by the <a href="http://tid.gatech.edu/">Technologies
@@ -52,24 +37,16 @@
 
       <p>Depending on the Dashboard Users’ actions, we may collect information
       automatically when they use the Dashboard. The information collected may
-      include:</p>
+      include:</p>      
 
-      
-
-      <p style='margin-left:38.5pt;text-indent:-.25in'><span
-      style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      </span></span><i>Network information:</i> This may include the Dashboard Users’
+      <p><i>Network information:</i> This may include the Dashboard Users’
       device Internet Protocol (“IP”) address, the time and date of the use of the
       Dashboard, and other statistics.</p>
 
-      <p style='margin-left:38.5pt;text-indent:-.25in'><span
-      style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      </span></span><i>Device information:</i> This may include the Dashboard Users’
+      <p><i>Device information:</i> This may include the Dashboard Users’
       operating system and browser type.</p>
 
-      <p style='margin-left:38.5pt;text-indent:-.25in'><span
-      style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      </span></span><i>Cookie data:</i> Cookies are files with a small amount of data
+      <p><i>Cookie data:</i> Cookies are files with a small amount of data
       that are commonly used as anonymous unique identifiers. These are sent to an
       internet user’s browser from the websites that they visit and are stored on their
       device's internal memory. This Dashboard does not use cookies explicitly.
@@ -78,19 +55,17 @@
       to either accept or refuse these cookies and know when a cookie is being sent
       to their device.</p>
 
-      <br>
+      <br/>
 
       <h3><b>How We Collect Information</b></h3>
 
       <p>We may employ third-party companies to collect this
       information, for to the following purposes:</p>
 
-      <br>
-
-      <ul style='margin-top:0in' type=disc>
-        <li style='margin-left:38.5pt'>To facilitate our Dashboard;</li>
-        <li style='margin-left:38.5pt'>To perform Dashboard-related services; or</li>
-        <li style='margin-left:38.5pt'>To assist us in analyzing how our Dashboard is used.</li>
+      <ul>
+        <li>To facilitate our Dashboard;</li>
+        <li>To perform Dashboard-related services; or</li>
+        <li>To assist us in analyzing how our Dashboard is used.</li>
       </ul>
 
       <p>The third-party companies whose services we use may have
@@ -98,7 +73,7 @@
       to them on our behalf. However, they are obligated not to disclose or use the
       collected information for any other purpose.</p>
 
-      <br>
+      <br/>
 
       <h3><b>How We Use And Share Information</b></h3>
 
@@ -122,7 +97,7 @@
       “favorite” count, “comment” or “reply” count, “share” or “retweet” count, and
       timing of likes and comments) (collectively, the “Metrics”).</p>
 
-      <br>
+      <br/>
 
       <h3><b>How We Collect Information</b></h3>
 
@@ -131,35 +106,27 @@
       we use APIs provided by the following Social Media Platforms:</p>
       
 
-      <p style='margin-left:38.5pt;text-indent:-.25in'><span
-      style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      </span></span><i>CrowdTangle:</i> Our access to CrowdTangle’s APIs is approved
+      <p><i>CrowdTangle:</i> Our access to CrowdTangle’s APIs is approved
       for research purposes. More information about how CrowdTangle collects, uses,
       and shares information and how to control it can be found in the <a
       href="https://www.crowdtangle.com/data-policy">CrowdTangle Data Policy</a>.</p>
 
-      <p style='margin-left:38.5pt;text-indent:-.25in'><span
-      style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      </span></span><i>Facebook:</i> Our access to Facebook’s APIs is approved via
+      <p><i>Facebook:</i> Our access to Facebook’s APIs is approved via
       the Facebook for Developers portal. More information about how Facebook
       collects, uses, and shares information and how to control it can be found in
       the <a href="https://www.facebook.com/policy.php">Facebook Data Policy</a>.</p>
 
-      <p style='margin-left:38.5pt;text-indent:-.25in'><span
-      style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      </span></span><i>Instagram:</i> Our access to Instagram’s APIs is approved via
+      <p><i>Instagram:</i> Our access to Instagram’s APIs is approved via
       the Facebook for Developers portal. More information about how Instagram
       collects, uses, and shares information and how to control it can be found in
       the <a href="https://help.instagram.com/519522125107875">Instagram Data Policy</a>.</p>
 
-      <p style='margin-left:38.5pt;text-indent:-.25in'><span
-      style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      </span></span><i>Twitter</i>: Our access to Twitter’s APIs is approved for
+      <p><i>Twitter</i>: Our access to Twitter’s APIs is approved for
       research purposes. More information about how Twitter collects, uses, and
       shares information and how to control it can be found in the <a
       href="https://twitter.com/en/privacy">Twitter Privacy Policy</a>.</p>
 
-      <br>
+      <br/>
 
       <h3><b>How We Use And Share Information</b></h3>
 
@@ -205,7 +172,9 @@
       <p>If you have any questions or suggestions about our Privacy
       Policy, please contact us at <a href="mailto:mikeb@gatech.edu">mikeb@gatech.edu</a>.</p>
 
-      <br><br>
+      <br/><br/>
     </div>
-  </body>
-</html>
+  )
+}
+
+export default PrivacyPolicy;

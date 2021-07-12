@@ -1,28 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/logo-icon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Terms of Service | Project PEACH Social Media Dashboard"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="workspace/css/styles.css" /> -->
-    <title>Terms of Service | Project PEACH Social Media Dashboard</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <div>
+const Terms = () => {
+  return (
+    <div style={{overflow: 'auto'}}>
       <h1>Terms of Service</h1>
 
-      <br>
+      <br/>
 
       <h3>Last updated: May 12, 2021</h3>
 
-      <br>
+      <br/>
 
       <p>These Terms of Service (“Terms”) govern your use of The
       Project PEACH Social Media Dashboard (the “Dashboard”), operated by the <a
@@ -99,7 +84,9 @@
 
       <p>If you have any questions or suggestions about our Terms of Service, please contact us at <a href="mailto:mikeb@gatech.edu">mikeb@gatech.edu</a>.</p>
 
-      <br><br>
+      <br/><br/>
     </div>
-  </body>
-</html>
+  )
+}
+
+export default Terms;
