@@ -124,3 +124,8 @@ a, a:visited {
 .Modal button, .Modal select, .Modal input {
   padding: 5px;
 }
+
+.Policy a {
+  color: blue;
+  text-decoration: underline;
+}

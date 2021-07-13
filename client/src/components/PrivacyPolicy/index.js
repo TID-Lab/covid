@@ -1,6 +1,6 @@
 const PrivacyPolicy = () => {
   return (
-    <div style={{overflow: 'auto'}}>
+    <div className='Policy' style={{overflow: 'auto'}}>
       <h1>Privacy Policy</h1>
 
       <br/>

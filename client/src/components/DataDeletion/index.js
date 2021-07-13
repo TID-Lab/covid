@@ -1,6 +1,6 @@
 const DataDeletion = () => {
   return (
-      <div>
+      <div className='Policy'>
         <h1>Data Deletion Instructions</h1>
 
         <br/>

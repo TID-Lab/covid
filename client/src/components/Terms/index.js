@@ -1,6 +1,6 @@
 const Terms = () => {
   return (
-    <div style={{overflow: 'auto'}}>
+    <div className='Policy' style={{overflow: 'auto'}}>
       <h1>Terms of Service</h1>
 
       <br/>
