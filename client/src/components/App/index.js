@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import './index.css';
 
 import Header from '../Header';
+import Footer from '../Footer';
 import Dashboard from '../Dashboard';
 import Settings from '../Settings';
 import Login from '../Login';
@@ -37,6 +38,9 @@ const App = () => {
             <Route path="/settings">
               <Settings />
             </Route>
+            <Route path="/about">
+              <PrivacyPolicy />
+            </Route>
             <Route path="/privacy-policy">
               <PrivacyPolicy />
             </Route>
@@ -47,6 +51,9 @@ const App = () => {
               <DataDeletion />
             </Route>
           </Switch>
+
+          <Footer />
+
         </Router>
       </div>
       <div id='Popup'>

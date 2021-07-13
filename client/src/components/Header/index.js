@@ -16,18 +16,12 @@ const Header = () => {
         <Logo />
         <SortSelect />
         {/* <TextSearch /> */}
-        <Link to='/privacy-policy'>Privacy Policy</Link>
-        <Link to='/terms'>Terms of Service</Link>
-        <Link to='/data-deletion'>Data Deletion</Link>
       </div>
     )
   } else {
     return (
       <div className='PageHeader'>
         <Logo />
-        <Link to='/privacy-policy'>Privacy Policy</Link>
-        <Link to='/terms'>Terms of Service</Link>
-        <Link to='/data-deletion'>Data Deletion</Link>
       </div>
     )
   }
