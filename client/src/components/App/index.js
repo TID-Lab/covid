@@ -8,9 +8,15 @@ import { useSelector } from 'react-redux';
 import './index.css';
 
 import Header from '../Header';
+import Footer from '../Footer';
 import Dashboard from '../Dashboard';
 import Settings from '../Settings';
 import Login from '../Login';
+import PrivacyPolicy from '../PrivacyPolicy';
+import Terms from '../Terms';
+import DataDeletion from '../DataDeletion';
+
+// TODO: Style hyperlinks in the Terms, etc. pages
 
 const App = () => {
   const popupModal = useSelector(state => state.popup);
@@ -32,7 +38,22 @@ const App = () => {
             <Route path="/settings">
               <Settings />
             </Route>
+            <Route path="/about">
+              <PrivacyPolicy />
+            </Route>
+            <Route path="/privacy-policy">
+              <PrivacyPolicy />
+            </Route>
+            <Route path="/terms">
+              <Terms />
+            </Route>
+            <Route path="/data-deletion">
+              <DataDeletion />
+            </Route>
           </Switch>
+
+          <Footer />
+
         </Router>
       </div>
       <div id='Popup'>

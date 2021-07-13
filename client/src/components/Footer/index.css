@@ -1,0 +1,9 @@
+.PageFooter {
+  /* float: right; */
+  position: fixed;
+  bottom: 0px;
+  right: 0.5em;
+  text-align: right;
+  width: 30%;
+  font-size: 75%;
+}
