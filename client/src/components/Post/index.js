@@ -66,6 +66,9 @@ const Post = (props) => {
   const embedHTML = (embedHTMLCache[platformID]) ? embedHTMLCache[platformID] : '';
   const embedClass = 'content' + (!isRendered ? ' hidden' : '');
 
+  // Determine if post is a retweet
+  const retweet = (platform==='twitter' && data.content.startsWith('RT @'))
+
   // Getting topic and account tag labels for the post
   
   // Topics (from TopicFilter\index.js)
@@ -112,6 +115,11 @@ const Post = (props) => {
       {(!isRendered) ? (
         <div className='cover'>
           <img src={coverImagePath} alt={platform} />
+        </div>
+      ): ''}
+      {(retweet) ? (
+        <div className='retweet'>
+          Retweeted by <a href={'twitter.com/' + data.author}>@{data.author}</a>:
         </div>
       ): ''}
       <div className={containerClassName}>
