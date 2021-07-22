@@ -67,3 +67,7 @@
 .Post .left {
   width: 70%;
 }
+
+.Post .retweet a {
+  text-decoration: underline;
+}
