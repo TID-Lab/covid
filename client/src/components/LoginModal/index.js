@@ -20,7 +20,7 @@ const LoginModal = () => {
     <form method='post' action='/api/auth/login'>
       <select name='name'>
         <option value='default'>Select your organization</option>
-        {orgs.map(org => (
+        {orgs.sort((a, b) => a.name.localeCompare(b.name)).map(org => (
           <option value={org.name}>{org.name}</option>
         ))}
       </select>
