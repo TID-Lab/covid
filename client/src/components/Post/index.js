@@ -119,7 +119,7 @@ const Post = (props) => {
       ): ''}
       {(retweet) ? (
         <div className='retweet'>
-          Retweeted by <a href={'twitter.com/' + data.author}>@{data.author}</a>:
+          Retweeted by <a href={'https://twitter.com/' + data.author}>@{data.author}</a>:
         </div>
       ): ''}
       <div className={containerClassName}>
