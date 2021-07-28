@@ -3,7 +3,12 @@ const COVID_KEYWORDS = [
   'coronavirus',
   'vaccine',
   'vax',
+  'vaccinated',
+  'vxxed',
+  'unvxxed',
   'pandemic',
+  'masks',
+  'quarantine',
 ];
 
 const COVID_TOPICS = {
@@ -29,6 +34,7 @@ const COVID_TOPICS = {
   'vaccines': [
     'vacc',
     'vax',
+    'vxx',
     'shot',
     'jab',
     'astrazeneca',
