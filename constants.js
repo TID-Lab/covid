@@ -58,7 +58,7 @@ const COVID_TOPICS = {
     'variant',
     'delta',
     'lambda',
-  ]
+  ],
   'georgia': [
     'georgia',
     'atl',
