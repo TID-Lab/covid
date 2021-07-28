@@ -48,6 +48,11 @@ const COVID_TOPICS = {
     'long covid',
     'longcovid',
   ],
+  'variants': [
+    'variant',
+    'delta',
+    'lambda',
+  ]
   'georgia': [
     'georgia',
     'atl',

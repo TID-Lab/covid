@@ -78,6 +78,7 @@ const Post = (props) => {
     'testing': 'Testing',
     'vaccines': 'Vaccines',
     'long-hauler': 'Long-hauler',
+    'variants': 'Variants',
     'georgia': 'Georgia'
   }
 

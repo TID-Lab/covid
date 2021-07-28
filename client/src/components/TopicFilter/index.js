@@ -11,6 +11,7 @@ const COVID_TOPICS = { // temporary
   'testing': 'Testing',
   'vaccines': 'Vaccines',
   'long-hauler': 'Long-hauler',
+  'variants': 'Variants',
   'georgia': 'Georgia'
 }
 
