@@ -91,7 +91,8 @@ const Post = (props) => {
     'health': 'Health',
     'diabetes': 'Diabetes',
     'institutional': 'Institutional',
-    'georgia': 'Georgia'
+    'georgia': 'Georgia',
+    'misinfo': 'Known Misinfo Spreaders',
   }
 
   // Function for copying link to post to user's clipboard

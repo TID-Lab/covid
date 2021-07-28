@@ -10,7 +10,8 @@ const CATEGORIES = {
   'media': 'Media',
   'faith': 'Faith',
   'health': 'Health',
-  'diabetes': 'Diabetes'
+  'diabetes': 'Diabetes',
+  'misinfo': 'Known Misinfo Spreaders',
 }
 
 const AccountCategories = (props) => {
