@@ -46,7 +46,7 @@ function getListsFor(screenName) {
 
       resolve(
         data.lists
-          .filter((list) => list.slug.startsWith('radx'))
+          .filter((list) => list.name.toLowerCase().startsWith('radx'))
           .map((list) => {
             const { id_str, name } = list;
             return { id_str, name: name.slice(5).toLowerCase() };
