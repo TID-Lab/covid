@@ -69,9 +69,11 @@ Running the dashboard in development requires starting up three separate Node.js
 
 Open up three terminal windows or tabs, and then execute the commands below in the order they are listed, one to each terminal. In each case, make sure to `cd` into the corresponding folder first.
 
-1. Run the `fetch` app with `npm run dev`.
-2. Run the `server` app with `npm run dev`.
-3. Run the `client` app with `npm start`.
+1. Run the `fetch` app with `npm run dev`
+2. Run the `server` app with `npm run dev`\*
+3. Run the `client` app with `npm start`
+
+\* A default admin user with the name `Georgia Tech` and password `letmein` will be created when you run the `server` app for the first time.
 
 ## Maintenance
 
