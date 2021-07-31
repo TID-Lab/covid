@@ -1,3 +1,5 @@
+// Functons for the /api/org API endpoints
+
 import { authFetch } from "../util/auth";
 
 const defaultOptions = {
@@ -7,6 +9,9 @@ const defaultOptions = {
   }
 }
 
+/**
+ * Fetches all partner organizations via GET /api/org
+ */
 async function fetchOrganizations() {
   const options = {
     ...defaultOptions,
@@ -17,6 +22,9 @@ async function fetchOrganizations() {
   return orgs;
 }
 
+/**
+ * Deletes a partner organization via DELETE /api/org
+ */
 async function deleteOrganization(id) {
   const options = {
     ...defaultOptions,
@@ -26,6 +34,9 @@ async function deleteOrganization(id) {
   return res.status === 200;
 }
 
+/**
+ * Creates a new partner organization via POST /api/org
+ */
 async function createOrganization(org) {
   const options = {
     ...defaultOptions,
@@ -37,6 +48,9 @@ async function createOrganization(org) {
   return body;
 }
 
+/**
+ * Edits a partner organization via GET /api/org
+ */
 async function editOrganization(org) {
   const options = {
     ...defaultOptions,

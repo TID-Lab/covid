@@ -1,3 +1,5 @@
+// The reducer for the platforms checklist
+
 const initState = [
     'facebook',
     'instagram',

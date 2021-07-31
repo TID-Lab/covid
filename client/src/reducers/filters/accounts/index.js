@@ -1,3 +1,5 @@
+// The reducer for the all account-related filters
+
 import { combineReducers } from 'redux'
 
 import curatedOnlyReducer from './curatedOnly';

@@ -1,3 +1,5 @@
+// Combines together every reducer into a root reducer
+
 import { combineReducers } from 'redux'
 
 import filtersReducer from './filters';

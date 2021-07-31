@@ -1,3 +1,5 @@
+// The reducer for all dashboard filters
+
 import { combineReducers } from 'redux'
 
 import datesReducer from './dates';

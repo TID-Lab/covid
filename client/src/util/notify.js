@@ -4,5 +4,5 @@
  * @param {String} message The message
  */
 export default function notify(message) {
-    alert(message);
+    alert(message); // can substitute with a manual alert system if desired
 }

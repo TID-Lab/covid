@@ -1,3 +1,5 @@
+// The reducer for the institutional/non-institutional toggle
+
 const initState = 'all';
 
 export default function institutions(state = initState, action) {

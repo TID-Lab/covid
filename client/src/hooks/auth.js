@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { checkAuth } from '../api/auth';
 
+// A React hook that redirects to the login page if the user is not authenticated
 function useAuth(shouldBeLoggedIn = true, href='/') {
   useEffect(() => {
     (async () => {

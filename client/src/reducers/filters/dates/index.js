@@ -1,3 +1,5 @@
+// The reducer for the start & end date filters
+
 function format(date) {
     const year = date.getFullYear();
     const month = ('0' + (date.getMonth() + 1)).slice(-2);

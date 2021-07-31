@@ -1,3 +1,5 @@
+// React hooks for showing & hiding the popup component
+
 import { useDispatch } from "react-redux";
 
 function useShowPopup() {
