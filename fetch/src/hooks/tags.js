@@ -1,5 +1,9 @@
 const { getCrowdTangleLists } = require('../workers');
 
+/**
+ * A Downstream hook that annotates a social media post
+ * with tags that correspond to sets of authors, like "Georgia" authors.
+ */
 module.exports = async function addTags(post, next) {
   const tags = [];
   const { platform, raw } = post;

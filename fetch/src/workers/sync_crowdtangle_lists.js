@@ -1,6 +1,6 @@
 /* eslint-disable no-await-in-loop */
 /**
- * Downloads a local copy of the CrowdTangle Lists.
+ * A handy script that downloads a local copy of the CrowdTangle Lists.
  */
 
 const axios = require('axios').default;

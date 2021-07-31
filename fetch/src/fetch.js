@@ -21,15 +21,18 @@ const {
 
 const downstream = new Downstream();
 
+// Initializes the Downstream app
 module.exports = async () => {
-  debug('Starting downstream...');
+  debug('Starting Downstream...');
 
   const settings = await get();
 
+  // Streams posts from Twitter accounts in the Twitter Lists
   const twitterStreamChannel = new TwitterStreamChannel({
     credentials: credentials.twitter,
   });
 
+  // Fetches posts from all Twitter accounts posting about COVID-19
   const twitterPageChannel = new TwitterPageChannel({
     credentials: credentials.twitter,
     queryParams: {
@@ -41,6 +44,7 @@ module.exports = async () => {
     },
   });
 
+  // Fetches posts from Facebook accounts in the CrowdTangle Lists
   const facebookListChannel = new CrowdTangleFacebookChannel({
     dashboardToken: credentials.facebook,
     queryParams: {
@@ -52,6 +56,7 @@ module.exports = async () => {
     },
   });
 
+  // Fetches posts from all Facebook accounts posting about COVID-19
   const facebookPlatformChannel = new CrowdTangleFacebookChannel({
     dashboardToken: credentials.facebook,
     isCrossPlatform: true,
@@ -64,6 +69,7 @@ module.exports = async () => {
     },
   });
 
+  // Fetches posts from Instagram accounts in the CrowdTangle Lists
   const instaListChannel = new CrowdTangleInstagramChannel({
     dashboardToken: credentials.instagram,
     queryParams: {
@@ -75,6 +81,7 @@ module.exports = async () => {
     },
   });
 
+  // Fetches posts from all Instagram accounts posting about COVID-19
   const instaPlatformChannel = new CrowdTangleInstagramChannel({
     dashboardToken: credentials.instagram,
     isCrossPlatform: true,
@@ -87,6 +94,8 @@ module.exports = async () => {
     },
   });
 
+  // Registers all of the above Channels with Downstream
+
   downstream.register(twitterStreamChannel);
   // downstream.register(twitterPageChannel);
   downstream.register(facebookListChannel);
@@ -94,11 +103,13 @@ module.exports = async () => {
   downstream.register(instaListChannel);
   // downstream.register(instaPlatformChannel);
 
+  // Uses all of our hooks
   downstream.use(addTopics);
   downstream.use(addTags);
   downstream.use(addEngagement);
   downstream.use(saveToDatabase);
 
+  // Listens for any and all errors
   downstream.on('error', debug);
 
   await downstream.start();

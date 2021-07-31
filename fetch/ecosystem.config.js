@@ -1,3 +1,6 @@
+/**
+ * The PM2 settings for the `fetch` application.
+ */
 module.exports = {
   apps: [
     {

@@ -19,6 +19,7 @@ async function scheduleWorker(path, callback) {
   setTimeout(callWorker.bind(null, path, callback), INTERVAL);
 }
 
+// Schedules each worker listed to run on a regular interval
 async function initialize() {
   scheduleWorker('./src/workers/update_twitter_rules.js', () => {});
   scheduleWorker('./src/workers/sync_crowdtangle_lists.js', (lists) => {

@@ -1,3 +1,7 @@
+/**
+ * A Downstream hook that annotates a given social media post
+ * with engagement scores calculated using available metadata.
+ */
 module.exports = async function addEngagement(post, next) {
   let engagementRaw = 0;
   let engagementNormed = 0;

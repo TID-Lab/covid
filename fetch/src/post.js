@@ -1,5 +1,8 @@
 const { Schema, model } = require('mongoose');
 
+/**
+ * The Mongoose Schema for a social media post.
+ */
 const postSchema = new Schema({
   authoredAt: { type: Date, required: true },
   fetchedAt: { type: Date, required: true },

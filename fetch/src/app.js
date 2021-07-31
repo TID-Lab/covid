@@ -16,7 +16,7 @@ const debug = useDebug('core');
   // Initialize the database connection
   await db();
 
-  // Start the downstream engine
+  // Start the Downstream app
   await fetch();
 
   // Start the background workers

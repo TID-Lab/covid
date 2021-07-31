@@ -1,5 +1,8 @@
 /**
- * Updates the Twitter stream rules from Twitter Lists.
+ * A handy script that updates the Twitter stream rules from Twitter Lists.
+ *
+ * Once this script is complete, the Twitter stream will return posts
+ * from the authors in those Twitter Lists :-)
  */
 
 const TwitterV1 = require('twit');
