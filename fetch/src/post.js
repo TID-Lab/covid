@@ -18,6 +18,9 @@ const postSchema = new Schema({
   engagementNormed: { type: Number, default: 0 },
 });
 
+// Create a text index for searchable fields
+postSchema.index({ content: 'text', author: 'text' });
+
 const SocialMediaPost = model('SocialMediaPost', postSchema);
 
 module.exports = SocialMediaPost;

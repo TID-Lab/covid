@@ -12,9 +12,9 @@ const defaultOptions = {
 }
 // Converts from the filters state object to an HTTP request body
 function filtersToBody(filters) {
-  const { dates, topic, accounts, platforms, page, sortBy } = filters;
+  const { dates, topic, accounts, platforms, page, sortBy, search } = filters;
   const { curatedOnly, categories, institutions, location } = accounts;
-  const body = { platforms, page, sortBy };
+  const body = { platforms, page, sortBy, search };
 
   const { from:fromString, to:toString } = dates;
 

@@ -18,9 +18,13 @@ function bodyToFilter(body) {
     institutions,
     georgia,
     platforms,
+    search,
   } = body || {};
 
   const filter = {};
+
+  // search
+  if (search) filter.$text = { $search: search };
 
   // dates
   const { from, to } = dates || {};
@@ -115,6 +119,7 @@ routes.post('/:page', async (req, res) => {
   }
 
   const filter = bodyToFilter(body);
+  console.log(filter);
   const postsCollection = database.collection('socialmediaposts');
   const postCount = await postsCollection.estimatedDocumentCount();
   const skipCount = pageNum * pageSize;
