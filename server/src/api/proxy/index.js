@@ -1,7 +1,10 @@
+// API routes for oEmbed API proxies
+
 const routes = require('express').Router();
 const axios = require('axios').default;
 const { api: { proxy: { facebookToken, instagramToken } } } = require('../../util/config');
 
+// A proxy for the Twitter oEmbed API
 routes.get('/twitter', async (req, res) => {
   const { url } = req.query;
   try {
@@ -24,6 +27,7 @@ routes.get('/twitter', async (req, res) => {
   }
 });
 
+// A proxy for the Facebook oEmbed API
 routes.get('/facebook', async (req, res) => {
   const { url } = req.query;
   try {
@@ -47,6 +51,7 @@ routes.get('/facebook', async (req, res) => {
   }
 });
 
+// A proxy for the Instagram oEmbed API
 routes.get('/instagram', async (req, res) => {
   const { url } = req.query;
   try {

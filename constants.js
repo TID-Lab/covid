@@ -1,3 +1,9 @@
+/**
+ * Constant values used across severa parts of the dashboard.
+ */
+
+// A list of keywords passed to social media API's in order
+// to query for just COVID-19 related posts.
 const COVID_KEYWORDS = [
   'covid',
   'coronavirus',
@@ -11,6 +17,8 @@ const COVID_KEYWORDS = [
   'quarantine',
 ];
 
+// A dictionary of COVID-19 topics and substrings used
+// to classify incoming posts by those topics using post content.
 const COVID_TOPICS = {
   'covid-diabetes': [
     'diabet',

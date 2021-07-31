@@ -1,5 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 
+// API routes for social media posts
+
 const routes = require('express').Router();
 const mongoose = require('mongoose');
 const {
@@ -7,6 +9,7 @@ const {
   api: { posts: { pageSize } },
 } = require('../../util/config');
 
+// Converts an HTTP request body to a Mongoose filter
 function bodyToFilter(body) {
   const {
     dates,
@@ -76,6 +79,7 @@ function bodyToFilter(body) {
   return filter;
 }
 
+// Returns a page of social media posts using the given search query
 routes.post('/:page', async (req, res) => {
   const MongoClient = mongoose.connection.client;
   const database = MongoClient.db(dbName);

@@ -1,3 +1,5 @@
+// API routes for user authentication
+
 const useDebug = require('debug');
 const routes = require('express').Router();
 const Organization = require('../../models/organization');

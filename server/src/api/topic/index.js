@@ -1,9 +1,14 @@
+// API routes for COVID-19 topics
+
 const useDebug = require('debug');
 const routes = require('express').Router();
 const Topic = require('../../models/topic');
 
 const debug = useDebug('api');
 
+/**
+ * Returns all COVID-19 topics
+ */
 routes.get('/', async (req, res) => {
   try {
     const topics = await Topic.find();
@@ -14,6 +19,9 @@ routes.get('/', async (req, res) => {
   }
 });
 
+/**
+ * Creates a new COVID-19 topic
+ */
 routes.post('/', async (req, res) => {
   if (typeof req.body !== 'object') {
     res.status(400).send();
@@ -39,6 +47,9 @@ routes.post('/', async (req, res) => {
   }
 });
 
+/**
+ * Updates a COVID-19 topic
+ */
 routes.put('/', async (req, res) => {
   if (typeof req.body !== 'object') {
     res.status(400).send();
@@ -70,6 +81,9 @@ routes.put('/', async (req, res) => {
   }
 });
 
+/**
+ * Deletes a COVID-19 topic
+ */
 routes.delete('/', async (req, res) => {
   if (typeof req.body !== 'object') {
     res.status(400).send();

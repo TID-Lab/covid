@@ -1,4 +1,7 @@
 /* eslint-disable no-param-reassign */
+
+// API routes for partner organizations
+
 const useDebug = require('debug');
 const routes = require('express').Router();
 const Organization = require('../../models/organization');
@@ -11,6 +14,7 @@ function strip(org) {
   org.hash = undefined;
 }
 
+// Returns all of the partner organizations
 routes.get('/', async (req, res) => {
   let orgs;
   try {
@@ -24,6 +28,7 @@ routes.get('/', async (req, res) => {
   res.status(200).send(orgs);
 });
 
+// Creates a partner organization.
 routes.post('/', is('admin'), async (req, res) => {
   if (typeof req.body !== 'object') {
     res.status(400).send();
@@ -61,6 +66,7 @@ routes.post('/', is('admin'), async (req, res) => {
   }
 });
 
+// Updates a partner organization.
 routes.put('/', is('admin'), async (req, res) => {
   if (typeof req.body !== 'object') {
     res.status(400).send();
@@ -103,6 +109,7 @@ routes.put('/', is('admin'), async (req, res) => {
   }
 });
 
+// Deletes a partner organization.
 routes.delete('/:id', is('admin'), async (req, res) => {
   const { id } = req.params;
   if (typeof id !== 'string') {

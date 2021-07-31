@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 
+/**
+ * The Mongoose Schema for a partner organization using the dashboard.
+ */
 const organizationSchema = new mongoose.Schema({
   name: {
     type: String,
