@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import './index.css';
 
 const Footer = () => {
-  // const { pathname } = useLocation(); // TODO show search only if in dashboard mode
-
   return (
     <div className='PageFooter'>
       <Link to='/privacy-policy'>Privacy Policy</Link>

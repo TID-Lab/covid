@@ -34,6 +34,7 @@ const App = () => {
             </Route>
             <Route path="/login">
               <Login />
+              <Footer />
             </Route>
             <Route path="/settings">
               <Settings />
@@ -51,8 +52,6 @@ const App = () => {
               <DataDeletion />
             </Route>
           </Switch>
-
-          <Footer />
 
         </Router>
       </div>
