@@ -73,7 +73,7 @@ Open up three terminal windows or tabs, and then execute the commands below in t
 2. Run the `server` app with `npm run dev`\*
 3. Run the `client` app with `npm start`
 
-\* A default admin user with the name `Georgia Tech` and password `letmein` will be created when you run the `server` app for the first time.
+\* A default admin user with the name `Georgia Tech` and password `letmein1` will be created when you run the `server` app for the first time.
 
 ## Maintenance
 
