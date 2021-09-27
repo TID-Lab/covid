@@ -10,7 +10,7 @@ import LandingHeader from '../LandingHeader';
 
 const Header = () => {
   const { pathname } = useLocation(); // TODO show search only if in dashboard mode
-  if (pathname === '/dashboard') {
+  if (pathname === '/social-media-dashboard') {
     return (
       <div className='PageHeader'>
         <Logo />
@@ -18,7 +18,7 @@ const Header = () => {
         <TextSearch />
       </div>
     )
-  } else if (pathname.includes('/dashboard') || pathname.includes('/login')) {
+  } else if (pathname.includes('/social-media-dashboard') || pathname.includes('/login')) {
     return (
       <div className='PageHeader'>
         <Logo />

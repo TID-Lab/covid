@@ -27,14 +27,7 @@ section {
   display: flex;
   flex-direction: row;
 }
-#SeeDashboards {
-  margin-top: 5px;
-  letter-spacing: -0.408px;
-  position: relative;
-  font-family: 'SF-Pro-Display';
-  /* SystemBlue / Light */
-  color: #007AFF;
-}
+
 .CirclePictures {
   
   margin-left:12rem;
@@ -44,6 +37,8 @@ section {
 .TextBlurb {
   margin-left: 148px;
   margin-top: 150px;
+  display: flex;
+  flex-flow: column;
 }
 
 .Title {
@@ -72,6 +67,15 @@ section {
   letter-spacing: 0.38px;
 
   color: rgba(255, 255, 255, 0.81);
+}
+
+#SeeDashboards {
+  margin-top: 5px;
+  letter-spacing: -0.408px;
+  position: relative;
+  font-family: 'SF-Pro-Display';
+  /* SystemBlue / Light */
+  color: #007AFF;
 }
 
 
@@ -143,7 +147,6 @@ color: #3A3A3C;
 .DashboardBlurb a {
   padding: 10px;
   width: 205px;
-
   /* SystemBlue / Dark */
   background: #0A84FF;
   border-radius: 5px;

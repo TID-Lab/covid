@@ -6,11 +6,11 @@ import './index.css';
 const Footer = () => {
   return (
     <div className='PageFooter'>
-      <Link to='/privacy-policy'>Privacy Policy</Link>
+      <Link to='/social-media-dashboard/privacy-policy'>Privacy Policy</Link>
       &nbsp; &middot; &nbsp;
-      <Link to='/terms'>Terms of Service</Link>
+      <Link to='/social-media-dashboard/terms'>Terms of Service</Link>
       &nbsp; &middot; &nbsp;
-      <Link to='/data-deletion'>Data Deletion</Link>
+      <Link to='/social-media-dashboard/data-deletion'>Data Deletion</Link>
     </div>
   )
 }

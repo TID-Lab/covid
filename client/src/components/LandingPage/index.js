@@ -4,7 +4,7 @@ import useAuth from '../../hooks/auth';
 import LandingFooter from '../LandingFooter';
 // TODO: Separate out into several components
 const LandingPage = (props) => {
-  useAuth(false, '/')
+  useAuth(false)
   return (<div className='LandingPage'> 
       <section className='IntroPage'>
         <div className='TextBlurb'>
@@ -35,13 +35,13 @@ const LandingPage = (props) => {
               <img src='/images/socialmediamonitor.png' alt='Social Media Monitor'></img>
               <h1>Georgia Social Media Monitoring</h1>
               <h2> This dashboard aggregates COVID-19 related social media posts to effectively target misformation online. </h2>
-              <a href="/dashboard">See Dashboard</a>
+              <a href="/social-media-dashboard">See Dashboard</a>
             </div>
             
           <div className='DashboardBlurb'>
               <img style={{width:'440px', height:'309px'}} src='/images/georgiacapacitymodel.png' alt='Georgia Capacity Model'></img>
               <h1>Georgia Capacity Modeling</h1>
-              <h2> This dashboard aggregates testing capacity across various locations in Georgia to optimize deployment of effectively. </h2>
+              <h2> This dashboard aggregates testing capacity across various locations in Georgia to optimize deployment of testing effectively. </h2>
               <a href="https://ipat-health.shinyapps.io/peach-capacity-dashboard/">See Dashboard</a>
             </div>
         </div>

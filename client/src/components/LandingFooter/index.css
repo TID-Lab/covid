@@ -22,8 +22,9 @@
 
 .CreditImages {
   margin-left: 2rem;
+  padding-bottom: 1rem;
+  
 }
-
 .CreditImages img {
   height: 4rem;
   margin-right: 3rem;

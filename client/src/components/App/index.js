@@ -34,7 +34,7 @@ const App = () => {
             <Route exact path="/">
               <LandingPage />
             </Route>
-            <Route exact path="/dashboard">
+            <Route exact path="/social-media-dashboard">
               <Dashboard />
             </Route>
             <Route path="/about">
@@ -50,16 +50,16 @@ const App = () => {
             <Route path="/settings">
               <Settings />
             </Route>
-            <Route path="/dashboard/about">
+            <Route path="/social-media-dashboard/about">
               <PrivacyPolicy />
             </Route>
-            <Route path="/dashboard/privacy-policy">
+            <Route path="/social-media-dashboard/privacy-policy">
               <PrivacyPolicy />
             </Route>
-            <Route path="/terms">
+            <Route path="/social-media-dashboard/terms">
               <Terms />
             </Route>
-            <Route path="/data-deletion">
+            <Route path="/dassocial-media-dashboardhboard/data-deletion">
               <DataDeletion />
             </Route>
           </Switch>
