@@ -15,6 +15,9 @@ import Login from '../Login';
 import PrivacyPolicy from '../PrivacyPolicy';
 import Terms from '../Terms';
 import DataDeletion from '../DataDeletion';
+import LandingPage from '../LandingPage';
+import AboutPage from '../AboutPage';
+import TeamPage from '../TeamPage';
 
 // TODO: Style hyperlinks in the Terms, etc. pages
 
@@ -30,7 +33,17 @@ const App = () => {
 
           <Switch>
             <Route exact path="/">
+              <LandingPage />
+            </Route>
+            <Route exact path="/dashboard">
               <Dashboard />
+            </Route>
+            <Route path="/about">
+              <AboutPage />
+
+            </Route>
+            <Route path="/team">
+              <TeamPage />
             </Route>
             <Route path="/login">
               <Login />
@@ -39,10 +52,10 @@ const App = () => {
             <Route path="/settings">
               <Settings />
             </Route>
-            <Route path="/about">
+            <Route path="/dashboard/about">
               <PrivacyPolicy />
             </Route>
-            <Route path="/privacy-policy">
+            <Route path="/dashboard/privacy-policy">
               <PrivacyPolicy />
             </Route>
             <Route path="/terms">

@@ -1,0 +1,40 @@
+.AboutTitle {
+  font-family: "SF-Pro-Display";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 33px;
+  letter-spacing: 0.36px;
+
+  /* SystemGray / 05 / Dark */
+  color: #2C2C2E;
+}
+
+.DataSource {
+  font-family: "SF-Pro-Display";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 22px;
+  
+  /* identical to box height, or 129% */
+  letter-spacing: -0.408px;
+  
+  /* SystemGray / 03 / Dark */
+  color: #48484A;
+}
+.AboutPage a {
+  /* Default / Regular / Body */
+  
+  font-family: "SF-Pro-Display";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 22px;
+
+  /* identical to box height, or 129% */
+  letter-spacing: -0.408px;
+
+  /* SystemBlue / Dark */
+  color: #0A84FF;
+}

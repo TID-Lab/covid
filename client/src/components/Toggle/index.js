@@ -21,7 +21,7 @@ const Toggle = (props) => {
           <rect x="10" y="10" width="80" height="80" strokeWidth="15" rx="10" ry="10" />
           {
             toggled ?
-            <path d="M 25 50 L 45 75 L 80 25" strokeWidth="12" stroke="white" stroke-linejoin="round" />
+            <path d="M 25 50 L 45 75 L 80 25" strokeWidth="12" stroke="white" strokeLinejoin="round" />
             : ''
           }
         </svg>

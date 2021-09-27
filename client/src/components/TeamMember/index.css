@@ -1,0 +1,57 @@
+.TeamMemberBlurb {
+  flex: 0 0 22vw;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  user-select: none;
+  /* font-size: 80%; */
+  color: #FFFFFF;
+  padding-bottom: 20px;
+  
+}
+.TeamMemberBlurb h1 {
+  font-family: "SF-Pro-Display";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+
+  /* identical to box height, or 120% */
+  letter-spacing: 0.38px;
+
+  /* SystemGray / 04 / Dark */
+  color: #3A3A3C;
+}
+
+.TeamMemberBlurb h2 {
+  /* Default / Regular / Body */
+  font-family: "SF-Pro-Display";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 22px;
+
+  /* or 129% */
+  letter-spacing: -0.408px;
+
+  /* SystemGray / 04 / Dark */
+  color: #3A3A3C;
+}
+.TeamMemberBlurb a {
+/* Default / Bold / Body */
+  font-family: "SF-Pro-Display";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 22px;
+
+  /* identical to box height, or 129% */
+  letter-spacing: -0.408px;
+
+  /* SystemBlue / Dark */
+  color: #0A84FF;
+}
+.TeamMemberBlurb img {
+  height: 25vh;
+  margin-left: 10px;
+}

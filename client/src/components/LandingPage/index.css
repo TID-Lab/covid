@@ -1,0 +1,194 @@
+section {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* text-align: center; */
+  width: 100%;
+  height: 100vh;
+ 
+  /* Scroll Snap */
+  scroll-snap-align: center;
+  
+}
+
+.LandingPage {
+  /* display: inline-block; vertical-align: middle; */
+  overflow-y: auto;
+  margin-top: 0px;
+  padding-top: 0px;
+   
+  scroll-behavior: smooth;
+  /* scroll-snap-type: y mandatory; */
+}
+.IntroPage {
+  height: 635px;
+  background: radial-gradient(50% 50% at 50% 50%, #2D2A58 0%, #1A1C2E 100%);
+  display: flex;
+  flex-direction: row;
+}
+#SeeDashboards {
+  margin-top: 5px;
+  letter-spacing: -0.408px;
+  position: relative;
+  font-family: 'SF-Pro-Display';
+  /* SystemBlue / Light */
+  color: #007AFF;
+}
+.CirclePictures {
+  
+  margin-left:12rem;
+  margin-top:2rem;
+}
+
+.TextBlurb {
+  margin-left: 148px;
+  margin-top: 150px;
+}
+
+.Title {
+  font-family: 'SF-Pro-Display';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 38px;
+  line-height: 30px;
+
+  /* identical to box height, or 79% */
+  letter-spacing: 0.35px;
+
+  color: #FFFFFF;
+}
+
+.Body {
+  width: 525px;
+
+  font-family: 'SF-Pro-Display';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 19px;
+  line-height: 30px;
+
+  /* or 158% */
+  letter-spacing: 0.38px;
+
+  color: rgba(255, 255, 255, 0.81);
+}
+
+
+.DashboardPage h1 {
+  /* Default / Bold / Title1 */
+  /* position: absolute; */ 
+  font-family: 'SF-Pro-Display';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 33px;
+  letter-spacing: 0.36px;
+
+  /* SystemGray / 05 / Dark */
+  color: #2C2C2E;
+}
+.DashboardPage {
+  padding-left:2rem;
+  font-family: 'SF-Pro-Display';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 33px;
+  letter-spacing: 0.36px;
+
+/* SystemGray / 05 / Dark */
+background: rgba(235, 235, 245, .8);
+}
+
+.Dashboards { 
+  display: flex;
+  flex-direction: row;
+}
+
+.DashboardBlurb {
+  display: flex;
+  flex-direction: column;
+  
+  font-family: 'SF-Pro-Display';
+  font-style: normal;
+  padding-right: 25px;
+}
+
+.DashboardBlurb h1 {
+  padding-left:0px;
+font-weight: 600;
+font-size: 20px;
+line-height: 24px;
+
+/* identical to box height */
+letter-spacing: 0.36px;
+
+/* SystemGray / 04 / Dark */
+color: #3A3A3C;
+}
+
+.DashboardBlurb h2 {
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 28px;
+  width: 440px;
+
+  /* or 165% */
+  letter-spacing: 0.38px;
+
+  /* SystemGray / 04 / Dark */
+  color: #3A3A3C;
+}
+
+.DashboardBlurb a {
+  padding: 10px;
+  width: 205px;
+
+  /* SystemBlue / Dark */
+  background: #0A84FF;
+  border-radius: 5px;
+  /* Default / Bold / Body */
+  font-family: 'SF-Pro-Display';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 22px;
+
+  /* identical to box height, or 129% */
+  text-align: center;
+  letter-spacing: -0.408px;
+
+  /* System Background / Light / Primary */
+  color: #FFFFFF;
+}
+
+.Credits {
+  background-color: #FFFFFF;
+}
+.Credits h1 {
+/* Default / Bold / Title2 */
+  font-family: 'SF-Pro-Display';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  margin: 0px;
+  padding-top: 1rem;
+
+  /* identical to box height, or 127% */
+  letter-spacing: 0.35px;
+
+  /* SystemGray / 05 / Dark */
+  color: #2C2C2E;
+}
+
+.CreditImages {
+  margin-left: 2rem;
+}
+
+.CreditImages img {
+  height: 4rem;
+  margin-right: 3rem;
+}
+
