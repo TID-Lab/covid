@@ -1,21 +1,20 @@
 
 .TeamPage {
-  
-  /* Scroll Snap */
   overflow-y: scroll;
-  height: 200vh;
+  background-color: white;
 }
 .TeamMembers {
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  padding-bottom: 3rem;
+  padding-bottom: 2rem;
 }
 .TeamTitle {
   font-family: 'SF-Pro-Display';
   font-style: normal;
   font-weight: bold;
+  margin-left: 1rem;
   font-size: 28px;
   line-height: 33px;
   letter-spacing: 0.36px;
@@ -24,36 +23,4 @@
   color: #2C2C2E;
 }
 
-
-.Credits {
-  background-color: #FFFFFF;
-  padding-bottom: 1rem;
-  
-}
-.Credits h1 {
-/* Default / Bold / Title2 */
-  font-family: 'SF-Pro-Display';
-  font-style: normal;
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 28px;
-  margin: 0px;
-  margin-left: 1rem;
-  padding-top: 1rem;
-
-  /* identical to box height, or 127% */
-  letter-spacing: 0.35px;
-
-  /* SystemGray / 05 / Dark */
-  color: #2C2C2E;
-}
-
-.CreditImages {
-  margin-left: 2rem;
-}
-
-.CreditImages img {
-  height: 4rem;
-  margin-right: 3rem;
-}
 

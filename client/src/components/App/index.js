@@ -30,7 +30,6 @@ const App = () => {
         <Router>
 
           <Header />
-
           <Switch>
             <Route exact path="/">
               <LandingPage />
@@ -40,7 +39,6 @@ const App = () => {
             </Route>
             <Route path="/about">
               <AboutPage />
-
             </Route>
             <Route path="/team">
               <TeamPage />

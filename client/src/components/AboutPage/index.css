@@ -1,3 +1,6 @@
+.AboutPage {
+  overflow-y: auto;
+}
 .AboutTitle {
   font-family: "SF-Pro-Display";
   font-style: normal;
@@ -5,12 +8,13 @@
   font-size: 28px;
   line-height: 33px;
   letter-spacing: 0.36px;
-
+  margin-left: 20px;
   /* SystemGray / 05 / Dark */
   color: #2C2C2E;
 }
 
 .DataSource {
+  margin-left: 20px;
   font-family: "SF-Pro-Display";
   font-style: normal;
   font-weight: 600;
@@ -24,8 +28,6 @@
   color: #48484A;
 }
 .AboutPage a {
-  /* Default / Regular / Body */
-  
   font-family: "SF-Pro-Display";
   font-style: normal;
   font-weight: normal;

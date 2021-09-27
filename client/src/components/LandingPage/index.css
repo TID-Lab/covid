@@ -5,8 +5,8 @@ section {
   /* justify-content: center; */
   /* text-align: center; */
   width: 100%;
-  height: 100vh;
- 
+  /* height: 100vh; */
+  padding-bottom: 5rem;
   /* Scroll Snap */
   scroll-snap-align: center;
   
@@ -109,7 +109,6 @@ background: rgba(235, 235, 245, .8);
 .DashboardBlurb {
   display: flex;
   flex-direction: column;
-  
   font-family: 'SF-Pro-Display';
   font-style: normal;
   padding-right: 25px;
@@ -161,34 +160,5 @@ color: #3A3A3C;
 
   /* System Background / Light / Primary */
   color: #FFFFFF;
-}
-
-.Credits {
-  background-color: #FFFFFF;
-}
-.Credits h1 {
-/* Default / Bold / Title2 */
-  font-family: 'SF-Pro-Display';
-  font-style: normal;
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 28px;
-  margin: 0px;
-  padding-top: 1rem;
-
-  /* identical to box height, or 127% */
-  letter-spacing: 0.35px;
-
-  /* SystemGray / 05 / Dark */
-  color: #2C2C2E;
-}
-
-.CreditImages {
-  margin-left: 2rem;
-}
-
-.CreditImages img {
-  height: 4rem;
-  margin-right: 3rem;
 }
 

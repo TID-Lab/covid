@@ -1,7 +1,10 @@
 import './index.css'
 import TextLogo from '../TextLogo';
+import useAuth from '../../hooks/auth';
+import LandingFooter from '../LandingFooter';
 // TODO: Separate out into several components
 const LandingPage = (props) => {
+  useAuth(false, '/')
   return (<div className='LandingPage'> 
       <section className='IntroPage'>
         <div className='TextBlurb'>
@@ -43,15 +46,7 @@ const LandingPage = (props) => {
             </div>
         </div>
       </section>
-      <div className='Credits'>
-        <h1> Designed by </h1>
-          <div className='CreditImages'>
-            <img src='/images/chhs_logo_trans.png' alt='Health and Humanitarian Systems'></img>
-            <img src='/images/projectpeachtext.png' alt='Project Peach Logo'></img>
-            <img src='/images/ipat-logo-blue.png' alt='Institute for People and Technology Logo'></img>
-            <img style={{width:"10rem"}} src='/images/tidlogo.png' alt='Technology  Logo'></img>
-          </div>
-        </div>
+      <LandingFooter></LandingFooter>
       </div>
       )
 }
