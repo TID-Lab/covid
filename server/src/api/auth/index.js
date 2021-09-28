@@ -48,7 +48,7 @@ routes.post('/login', async (req, res) => {
   const { _id } = org;
   req.session.org = _id;
 
-  res.redirect('/');
+  res.redirect('/social-media-dashboard');
 });
 
 /**
@@ -56,7 +56,7 @@ routes.post('/login', async (req, res) => {
  */
 routes.post('/logout', async (req, res) => {
   req.session.org = undefined;
-  res.redirect('/');
+  res.redirect('/social-media-dashboard');
 });
 
 /**
