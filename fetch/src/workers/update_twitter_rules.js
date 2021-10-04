@@ -193,10 +193,12 @@ async function update() {
 
     // generate a set of rules from each Twitter List
     const toAdd = generateRules(listsByName);
+    console.log('toAdd length:', toAdd.length);
     console.log('toAdd:', toAdd);
 
     // fetch the old rules
     const toDelete = await getStreamRuleIds();
+    console.log('toDelete length:', toDelete.length);
     console.log('toDelete:', toDelete);
 
     // delete the old rules
