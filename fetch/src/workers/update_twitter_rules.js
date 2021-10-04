@@ -174,6 +174,7 @@ async function update() {
 
     // fetch the latest Twitter Lists
     const lists = await getListsFor(TWITTER_SCREEN_NAME);
+    console.log('lists: ', lists);
 
     // fetch the accounts from each Twitter List
     const promises = [];
@@ -182,6 +183,7 @@ async function update() {
       promises.push(getListById(id_str));
     }
     const accountsList = await Promise.all(promises);
+    console.log('accountsList: ', accountsList);
 
     for (let i = 0; i < lists.length; i += 1) {
       const { name } = lists[i];
@@ -191,9 +193,11 @@ async function update() {
 
     // generate a set of rules from each Twitter List
     const toAdd = generateRules(listsByName);
+    console.log('toAdd:', toAdd);
 
     // fetch the old rules
     const toDelete = await getStreamRuleIds();
+    console.log('toDelete:', toDelete);
 
     // delete the old rules
     if (toDelete.length > 0) await deleteRules(toDelete);
