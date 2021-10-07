@@ -79,9 +79,10 @@ module.exports = () => new Promise((resolve, reject) => {
   }
 
   if (process.env.NODE_ENV === 'production') {
-    app.get('/', is('org', 'admin'), sendIndex); // authenticate the homepage
+    app.get('/social-media-dashboard', is('org', 'admin'), sendIndex); // authenticate the homepage
     app.use(express.static(path.join(...build))); // static files
     app.get('/login', sendIndex); // do not authenticate the login page
+    app.get('/', sendIndex); // do not authenticate the landing page
     app.get('*', is('org', 'admin'), sendIndex); // authenticate everything else
   }
 
