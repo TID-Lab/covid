@@ -6,7 +6,7 @@
   /* font-size: 80%; */
   color: #FFFFFF;
   padding-bottom: 20px;
-  
+  margin-left:2rem;
 }
 .TeamMemberBlurb h1 {
   font-family: "SF-Pro-Display";
@@ -55,5 +55,6 @@
   aspect-ratio: 1 / 1;
   display: block;
   margin-left: 10px;
+  margin-bottom: 10px;
   border-radius: 10rem;
 }

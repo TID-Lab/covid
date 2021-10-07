@@ -6,26 +6,39 @@
 /* Default / Bold / Title2 */
   font-family: 'SF-Pro-Display';
   font-style: normal;
-  font-weight: bold;
-  font-size: 22px;
+  font-weight: 600;
+  font-size: 18px;
   line-height: 28px;
-  margin: 0px;
-  margin-left: 20px;
-  padding-top: 1rem;
+  
+  /* identical to box height, or 156% */
+  text-align: center;
+  letter-spacing: 0.35px;
+  padding-top: 1.2rem;
+  margin-top: 0;
 
   /* identical to box height, or 127% */
   letter-spacing: 0.35px;
-
-  /* SystemGray / 05 / Dark */
-  color: #2C2C2E;
+  color: #8E8E93;
 }
 
 .CreditImages {
+  display: flex;
+  justify-content: space-evenly;
+  flex: 0 0 1;
+  flex-wrap: wrap;
   margin-left: 2rem;
-  padding-bottom: 1rem;
+  margin-right: 2rem;
+  
+  padding-bottom: 2rem;
   
 }
-.CreditImages img {
-  height: 4rem;
-  margin-right: 3rem;
+
+.CreditImages img, .CreditImages a {
+  max-width: 100%;
+  /* flex-basis: 20%; */
+  height: auto;
+  height: 3.5rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
 }
+

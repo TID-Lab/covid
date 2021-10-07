@@ -1,48 +1,50 @@
 import './index.css'
-import TextLogo from '../TextLogo';
 import useAuth from '../../hooks/auth';
 import LandingFooter from '../LandingFooter';
+import TextLogo from '../TextLogo';
 // TODO: Separate out into several components
 const LandingPage = (props) => {
   useAuth(false)
   return (<div className='LandingPage'> 
-      <section className='IntroPage'>
+          <section className='IntroPage'>
         <div className='TextBlurb'>
           <h1 className='Title'> Fighting Covid-19 in Georgia </h1>
           <h2 className='Body'> The purpose of this project is to increase COVID-19 testing and 
           learn about experiences and opinions regarding COVID-19 testing among minority populations in Georgia. </h2>
           <TextLogo></TextLogo>
-          <a id='SeeDashboards' href="#Dashboards">See Dashboards</a>
+          <a id='SeeDashboard' href="#Dashboards">See Dashboards
+          <img style={{paddingLeft:'3px'}} src='/images/chevron.png' alt='down chevron'></img></a>
+          {/* <span className='PeachImage'><img src='/images/projectpeachtext.png' alt='Project Peach'></img> </span> */}
         </div>
         <div className='CirclePictures'>
-          <img src='/images/promo1.png' alt='Women getting vaccine'></img>
-          <img style={{marginLeft:'15em', marinBottom: '0rem'}} src='/images/promo2.png' alt='Covid Home Test'></img>
-          <img style={{marginLeft:'5rem', position:'relative', left: '2rem', top:'-6rem'}}src='/images/promo3.png' alt='People looking at a phone'></img>
-          <img style={{marginLeft:'5rem', position:'relative', left: '-5rem', top:'-10rem'}}src='/images/promo4.png' alt='Elbow highfive'></img>
+          <img id='FirstPicture' src='/images/promo1.png' alt='Women getting vaccine'></img>
+          <img id='SecondPicture' style={{marginLeft:'15em', marinBottom: '0rem'}} src='/images/promo2.png' alt='Covid Home Test'></img>
+          <img id='ThirdPicture' src='/images/promo3.png' alt='People looking at a phone'></img>
+          <img id='FourthPicture' src='/images/promo4.png' alt='Elbow highfive'></img>
         </div>
       </section>
-      <section className='DashboardPage'>
+      <section className='DashboardPage' id='Dashboards'>
         <h1> COVID-19 Community Response Dashboards </h1>
-        <div className='Dashboards' id='Dashboards'>
+        <div className='Dashboards'>
           <div className='DashboardBlurb'>
               <img src='/images/countycompare.png' alt='Georgia County Comparison'></img>
               <h1>Georgia County Comparison</h1>
               <h2> This dashboard aggregates COVID-19 related outcomes and demographic data at the county level for comparison. </h2>
-              <a href="https://chhs-gt.shinyapps.io/covidcommunitydashboard">See Dashboard</a>
+              <a className="BlueButton" href="https://chhs-gt.shinyapps.io/covidcommunitydashboard" target='_blank' rel='noopener noreferrer'>See Dashboard</a>
             </div>
             
           <div className='DashboardBlurb'>
               <img src='/images/socialmediamonitor.png' alt='Social Media Monitor'></img>
               <h1>Georgia Social Media Monitoring</h1>
               <h2> This dashboard aggregates COVID-19 related social media posts to effectively target misformation online. </h2>
-              <a href="/social-media-dashboard">See Dashboard</a>
+              <a className="BlueButton" href="/social-media-dashboard">See Dashboard</a>
             </div>
             
           <div className='DashboardBlurb'>
-              <img style={{width:'440px', height:'309px'}} src='/images/georgiacapacitymodel.png' alt='Georgia Capacity Model'></img>
+              <img src='/images/georgiacapacitymodel.png' alt='Georgia Capacity Model'></img>
               <h1>Georgia Capacity Modeling</h1>
               <h2> This dashboard aggregates testing capacity across various locations in Georgia to optimize deployment of testing effectively. </h2>
-              <a href="https://ipat-health.shinyapps.io/peach-capacity-dashboard/">See Dashboard</a>
+              <a className="BlueButton" href="https://ipat-health.shinyapps.io/peach-capacity-dashboard/" target='_blank' rel='noopener noreferrer' >See Dashboard</a>
             </div>
         </div>
       </section>

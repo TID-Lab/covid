@@ -1,6 +1,16 @@
 .AboutPage {
+  
+  /* min-height: 100%; */
   overflow-y: auto;
+  background: rgba(235, 235, 245, 0.3);
+  
 }
+
+.AboutSection {
+  /* min-height: 70%;
+  max-height: 200%; */
+}
+
 .AboutTitle {
   font-family: "SF-Pro-Display";
   font-style: normal;
