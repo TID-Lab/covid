@@ -11,6 +11,20 @@
   max-height: 200%; */
 }
 
+
+.AboutPageTitle {
+  font-family: "SF-Pro-Display";
+  font-style: bold;
+  /* font-weight: 500; */
+  font-size: 30px;
+  line-height: 33px;
+  letter-spacing: 0.36px;
+  margin-left: 20px;
+  margin-bottom: 2rem;
+  /* SystemGray / 05 / Dark */
+  color: #2C2C2E;
+}
+
 .AboutTitle {
   font-family: "SF-Pro-Display";
   font-style: normal;
