@@ -12,6 +12,8 @@ const CATEGORIES = {
   'health': 'Health',
   'diabetes': 'Diabetes',
   'misinfo': 'Known Misinfo Spreaders',
+  'partners': 'Project Partners',
+  'trusted': 'Trusted Resources',
 }
 
 const AccountCategories = (props) => {

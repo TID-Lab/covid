@@ -95,6 +95,8 @@ const Post = (props) => {
     'institutional': 'Institutional',
     'georgia': 'Georgia',
     'misinfo': 'Known Misinfo Spreaders',
+    'partners': 'Project Partners',
+    'trusted': 'Trusted Resources',
   }
 
   // Function for copying link to post to user's clipboard
