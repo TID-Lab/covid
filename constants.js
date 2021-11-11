@@ -15,6 +15,7 @@ const COVID_KEYWORDS = [
   'pandemic',
   'masks',
   'quarantine',
+  'booster',
 ];
 
 // A dictionary of COVID-19 topics and substrings used
@@ -45,6 +46,7 @@ const COVID_TOPICS = {
     'vxx',
     'shot',
     'jab',
+    'vacuna',
     'astrazeneca',
     'j&j',
     'johnson & johnson',
@@ -55,12 +57,30 @@ const COVID_TOPICS = {
     'one and done',
     'oneanddone',
   ],
+  'booster': [
+    'booster',
+    'third dose',
+  ],
+  'treatments': [
+    'treatment',
+    'cure',
+    'antiviral',
+    'anti-viral',
+    'remdesivir',
+    'molnupiravir',
+    'paxlovid',
+    'pill',
+    'antibody drug',
+    'monoclonal antibod',
+  ],
   'long-hauler': [
-    'long hauler',
-    'long-hauler',
-    'longhauler',
+    'long haul',
+    'long-haul',
+    'longhaul',
     'long covid',
     'longcovid',
+    'post-acute',
+    'long-term',
   ],
   'variants': [
     'variant',
@@ -80,4 +100,4 @@ const COVID_TOPICS = {
   ],
 }
 
-module.exports = { COVID_KEYWORDS, COVID_TOPICS };
+module.exports = { COVID_KEYWORDS,  };

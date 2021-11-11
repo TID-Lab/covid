@@ -7,11 +7,13 @@ import Radio from '../Radio';
 
 const COVID_TOPICS = { // temporary
   'all': 'All',
-  'covid-diabetes': 'COVID x Diabetes',
-  'testing': 'Testing',
   'vaccines': 'Vaccines',
-  'long-hauler': 'Long-hauler',
+  'booster': 'Boosters',
+  'treatments':' Treatments',
   'variants': 'Variants',
+  'long-hauler': 'Long COVID',
+  'testing': 'Testing',
+  'covid-diabetes': 'COVID x Diabetes',
   'georgia': 'Georgia'
 }
 

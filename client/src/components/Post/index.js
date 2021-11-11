@@ -74,11 +74,13 @@ const Post = (props) => {
   // Topics (from TopicFilter\index.js)
   const COVID_TOPICS = { // temporary
     'all': 'All',
-    'covid-diabetes': 'COVID x Diabetes',
-    'testing': 'Testing',
     'vaccines': 'Vaccines',
-    'long-hauler': 'Long-hauler',
+    'booster': 'Boosters',
+    'treatments':' Treatments',
     'variants': 'Variants',
+    'long-hauler': 'Long COVID',
+    'testing': 'Testing',
+    'covid-diabetes': 'COVID x Diabetes',
     'georgia': 'Georgia'
   }
 
@@ -111,6 +113,12 @@ const Post = (props) => {
 
   // some FB posts render with a transparent background
   const containerClassName = (platform === 'facebook') ? 'container facebook' : 'container';
+
+  // if (isRendered) {
+  //   return ();
+  // } else {
+  //   return ();
+  // }
 
   return (
     <div className='Post'>
