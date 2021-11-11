@@ -140,7 +140,7 @@ const Post = (props) => {
       <div className='annotations'>
         <div className='column left'>
           <p><b>Topics:</b> {data.topics.map(topic => COVID_TOPICS[topic]).filter(Boolean).join(', ')}</p>
-          <p><b>Tags:</b> {data.tags.map(tag => TAGS[tag]).filter(Boolean).join(', ')}</p>
+          <p><b>Account:</b> {data.tags.map(tag => TAGS[tag]).filter(Boolean).join(', ')}</p>
         </div>
         <div className='column right'>
           <form onSubmit={copyLink}>
