@@ -100,4 +100,4 @@ const COVID_TOPICS = {
   ],
 }
 
-module.exports = { COVID_KEYWORDS,  };
+module.exports = { COVID_KEYWORDS, COVID_TOPICS };
