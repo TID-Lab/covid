@@ -34,7 +34,7 @@ const COVID_TOPICS = {
     'overweight',
   ],
   'testing': [
-    'test',
+    ' test',
     'prueba',
     'pcr',
     'swab',
