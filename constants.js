@@ -35,6 +35,7 @@ const COVID_TOPICS = {
   ],
   'testing': [
     'test',
+    'prueba',
     'pcr',
     'swab',
     'negative',
