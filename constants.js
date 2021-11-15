@@ -8,6 +8,7 @@ const COVID_KEYWORDS = [
   'covid',
   'coronavirus',
   'vaccine',
+  'vacunas',
   'vax',
   'vaccinated',
   'vxxed',
