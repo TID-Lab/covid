@@ -81,7 +81,7 @@ window.fbAsyncInit = function () {
   return (
     <div id="flyoutMenu" className={visibility}>
       <div className="inputMenu">
-        <input id="postInput" type="text" placeholder="Type " ></input>
+        <textarea id="postInput" type="text" placeholder="Post Message "></textarea>
         {/* <button className="postButton" onClick={() => {FB.ui({method: 'feed', link: 'peach.ipat.gatech.edu'}, function(response){})}}> Post on FB </button> */}
         
         <button className="postButton" id="loginAndPostButtonFB" onLoad={onLoadFBButton} onClick={() => {

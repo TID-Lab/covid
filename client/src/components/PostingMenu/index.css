@@ -3,7 +3,7 @@
   height: 100vh;
   background-color: #FFF;
   position: fixed;
-  top: 0;
+  top: 54px;
   left: 0;
   transition: transform .3s
               cubic-bezier(0, .52, 0, 1);
@@ -37,7 +37,10 @@
 }
 
 #postInput {
-  margin:30px;
+  margin:.8vw;
+  width: 25vw;
+  height: 30vh;
+  resize: none;
 }
 
 .postButton {
