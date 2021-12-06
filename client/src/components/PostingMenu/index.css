@@ -1,0 +1,47 @@
+#flyoutMenu {
+  width: 30vw;
+  height: 100vh;
+  background-color: #FFF;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: transform .3s
+              cubic-bezier(0, .52, 0, 1);
+  overflow: scroll;
+  z-index: 1000;
+}
+ 
+#flyoutMenu.hide {
+  transform: translate3d(100vw, 0, 0);
+}
+ 
+#flyoutMenu.show {
+  transform: translate3d(70vw, 0, 0);
+  overflow: hidden;
+}
+ 
+#flyoutMenu h2 a {
+  color: #333;
+  margin-left: 15px;
+  text-decoration: none;
+}
+ 
+#flyoutMenu h2 a:hover {
+  text-decoration: underline;
+}
+
+.inputMenu {
+  display: flex;
+  flex-flow: column;
+  margin: 30px;
+}
+
+#postInput {
+  margin:30px;
+}
+
+.postButton {
+  align-self: center;
+  margin: 10px;
+  width: 200px;
+}
