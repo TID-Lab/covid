@@ -57,7 +57,7 @@ const PostingMenu = () => {
 window.fbAsyncInit = function () {
             window.FB.init({
                 appId: "176818874280010",
-                cookie: true,
+                cookie: false,
                 xfbml: true,
                 version: 'v12.0'
             });
@@ -85,15 +85,14 @@ window.fbAsyncInit = function () {
         <textarea id="postInput" type="text" placeholder="Post Message "></textarea>
         {/* <button className="postButton" onClick={() => {FB.ui({method: 'feed', link: 'peach.ipat.gatech.edu'}, function(response){})}}> Post on FB </button> */}
         
-        <button className="postButton" id="loginAndPostButtonFB" onLoad={onLoadFBButton} onClick={() => {
+        <button className="postButton" id="loginAndPostButtonFB" onLoad={onLoadFBButton()} onClick={() => {
           window.FB.getLoginStatus(function(response) {
             if (response.status == 'connected') {
               FB.api('/me/feed', 'post', { message: document.getElementById("postInput").value }, function(response) {
                 if (!response) {
                   alert('Error occurred');
                 } else if (response.error) {
-                  alert(response.error);
-                  alert(response);
+                  alert(JSON.stringify(response.error));
                 } else {
                   alert('Post ID: ' + response.id);
                 }
