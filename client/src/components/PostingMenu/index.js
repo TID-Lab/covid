@@ -89,8 +89,11 @@ window.fbAsyncInit = function () {
           window.FB.getLoginStatus(function(response) {
             if (response.status == 'connected') {
               FB.api('/me/feed', 'post', { message: document.getElementById("postInput").value }, function(response) {
-                if (!response || response.error) {
+                if (!response) {
                   alert('Error occurred');
+                } else if (response.error) {
+                  alert(response.error);
+                  alert(response);
                 } else {
                   alert('Post ID: ' + response.id);
                 }
