@@ -22,7 +22,8 @@ async function loginToFacebook() {
       console.log('User cancelled login or did not fully authorize.');
       document.getElementById("loginAndPostButtonFB").innerHTML = "Login to Facebook";
     }
-  }, {scope: 'pages_manage_posts, pages_read_engagement'});
+  });
+  // }, {scope: 'pages_manage_posts, pages_read_engagement'});
   // const client = new TwitterApi({ appKey: CONSUMER_KEY, appSecret: CONSUMER_SECRET });
   // console.log("middle");
   // const authLink = await client.generateAuthLink(CALLBACK_URL);
