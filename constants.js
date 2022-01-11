@@ -67,8 +67,11 @@ const COVID_TOPICS = {
     'oneanddone',
   ],
   'booster': [
-    'booster',
+    'boost',
     'third dose',
+    'third shot',
+    '3rd dose',
+    '3rd shot',
   ],
   'treatments': [
     'treatment',
@@ -88,8 +91,10 @@ const COVID_TOPICS = {
     'longhaul',
     'long covid',
     'longcovid',
-    'post-acute',
     'long-term',
+    'post-acute',
+    'post acute',
+    'pasc',
   ],
   'variants': [
     'variant',
@@ -99,6 +104,7 @@ const COVID_TOPICS = {
   ],
   'georgia': [
     'georgia',
+    ' ga ',
     'atl',
     'fulton',
     'dekalb',
