@@ -21,7 +21,7 @@ const COVID_KEYWORDS = [
   'pcr',
   'antigen',
   'binax',
-  'binaxnow'
+  'binaxnow',
 ];
 
 // A dictionary of COVID-19 topics and substrings used
@@ -100,7 +100,7 @@ const COVID_TOPICS = {
     'variant',
     'delta',
     'lambda',
-    'omicron'
+    'omicron',
   ],
   'georgia': [
     'georgia',
