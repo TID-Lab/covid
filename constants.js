@@ -15,8 +15,13 @@ const COVID_KEYWORDS = [
   'unvxxed',
   'pandemic',
   'masks',
+  'n95',
   'quarantine',
   'booster',
+  'pcr',
+  'antigen',
+  'binax',
+  'binaxnow'
 ];
 
 // A dictionary of COVID-19 topics and substrings used
@@ -38,6 +43,8 @@ const COVID_TOPICS = {
     ' test',
     'prueba',
     'pcr',
+    'antigen',
+    'binax',
     'swab',
     'negative',
     'covid result',
