@@ -1,5 +1,5 @@
 /**
- * Constant values used across severa parts of the dashboard.
+ * Constant values used across several parts of the dashboard.
  */
 
 // A list of keywords passed to social media API's in order
@@ -95,6 +95,7 @@ const COVID_TOPICS = {
     'variant',
     'delta',
     'lambda',
+    'omicron'
   ],
   'georgia': [
     'georgia',
