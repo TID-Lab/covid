@@ -49,6 +49,7 @@ module.exports = async () => {
     dashboardToken: credentials.facebook,
     queryParams: {
       searchTerm: COVID_KEYWORDS.join(', '),
+      language: '',
     },
     lastTimestamp: settings.facebook_list_lastTimestamp,
     onFetch: async (lastTimestamp) => {
@@ -74,6 +75,7 @@ module.exports = async () => {
     dashboardToken: credentials.instagram,
     queryParams: {
       searchTerm: COVID_KEYWORDS.join(', '),
+      language: '',
     },
     lastTimestamp: settings.insta_list_lastTimestamp,
     onFetch: async (lastTimestamp) => {
