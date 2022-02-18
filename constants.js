@@ -84,6 +84,7 @@ const COVID_TOPICS = {
     'pill',
     'antibody drug',
     'monoclonal antibod',
+    'ivermectin',
   ],
   'long-hauler': [
     'long haul',
