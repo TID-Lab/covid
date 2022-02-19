@@ -41,10 +41,26 @@
   width: 25vw;
   height: 30vh;
   resize: none;
+  overflow: auto;
+  background-color: #f8f8f8;
 }
 
 .postButton {
   align-self: center;
   margin: 10px;
   width: 200px;
+}
+
+.preview {	
+  height: 300px;
+  overflow-y:auto;
+  float:left;
+  position:relative;
+}
+
+#the-count {
+  float: right;
+  padding: 0.1rem 0 0 0;
+  font-size: 0.875rem;
+  text-align: right;
 }
