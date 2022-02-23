@@ -1,10 +1,10 @@
-// The reducer for the popup component on the screen right now.
+// The reducer for the text to be posted in the popup on the screen right now.
 
 const initState = false;
 
-export default function postingMenuReducer(state = initState, action) {
+export default function postingTextReducer(state = initState, action) {
     switch (action.type) {
-        case 'postingMenu/set':
+        case 'postingText/set':
             return action.payload;
         default:
             return state;

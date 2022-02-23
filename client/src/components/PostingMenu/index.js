@@ -44,6 +44,7 @@ const PostingMenu = () => {
   }
   const [fbUserAccessToken, setFbUserAccessToken] = useState();
   const [fbPageAccessToken, setFbPageAccessToken] = useState();
+  const postText = useSelector(state => state.postingText);
   // const [postText, setPostText] = React.useState();
   // const [isPublishing, setIsPublishing] = React.useState(false);
 // window.fbAsyncInit = function () {
@@ -70,14 +71,14 @@ const PostingMenu = () => {
           //   }, {scope: });
           // }, []);
 
+  if (postText == false) {
+    return (
+        <div id="flyoutMenu" className={visibility}>
+          <div className="inputMenu">
+            <textarea id="postInput" type="text" placeholder="Post Message"></textarea>
+            {/* <button className="postButton" onClick={() => {FB.ui({method: 'feed', link: 'peach.ipat.gatech.edu'}, function(response){})}}> Post on FB </button> */}
 
-  return (
-    <div id="flyoutMenu" className={visibility}>
-      <div className="inputMenu">
-        <textarea id="postInput" type="text" placeholder="Post Message "></textarea>
-        {/* <button className="postButton" onClick={() => {FB.ui({method: 'feed', link: 'peach.ipat.gatech.edu'}, function(response){})}}> Post on FB </button> */}
-        
-        {/* <button className="postButton" id="loginAndPostButtonFB" onLoad={onLoadFBButton()} onClick={() => {
+            {/* <button className="postButton" id="loginAndPostButtonFB" onLoad={onLoadFBButton()} onClick={() => {
           window.FB.getLoginStatus(function(response) {
             if (response.status == 'connected') {
               FB.api('/me/feed', 'post', { message: document.getElementById("postInput").value }, function(response) {
@@ -94,24 +95,72 @@ const PostingMenu = () => {
             }
           })}}> Login to Facebook </button> */}
 
-        {/* <button className="postButton" onClick={() => {FB.api('/me/feed', 'post', { message: document.getElementById("postInput").value }, function(response) {
+            {/* <button className="postButton" onClick={() => {FB.api('/me/feed', 'post', { message: document.getElementById("postInput").value }, function(response) {
           if (!response || response.error) {
             alert('Error occurred');
           } else {
             alert('Post ID: ' + response.id);
           }
         });}}>Post to FB</button> */}
-        <button className="postButton" onClick={() => window.open('https://twitter.com/intent/tweet?' + encodeQueryData({"text": document.getElementById("postInput").value}),'_blank')}>Tweet</button>
-        <button className="postButton" onClick={twitterLogin}>Login</button>
+            <button className="postButton"
+                    onClick={() => window.open('https://twitter.com/intent/tweet?' + encodeQueryData({"text": document.getElementById("postInput").value}), '_blank')}>Tweet
+            </button>
+            <button className="postButton" onClick={twitterLogin}>Login</button>
 
-        {/* <a className="blueButton" href="http://localhost:5000/auth/twitter">Login to Twitter</a> */}
-        {/* <button className="postButton" onClick={() => window.open("http://localhost:5000/auth/twitter",'_blank')}>Login to Twitter</button> */}
-        
-        {/* <text> {authLink.url} </text> */}
-        {/* <button className="postButton" onClick={() => window.open('https://twitter.com/intent/tweet?' + encodeQueryData({"text": document.getElementById("postInput").value, "in_reply_to":s }),'_blank')}>Tweet</button> */}
-      </div>
-    </div>
-  );
+            {/* <a className="blueButton" href="http://localhost:5000/auth/twitter">Login to Twitter</a> */}
+            {/* <button className="postButton" onClick={() => window.open("http://localhost:5000/auth/twitter",'_blank')}>Login to Twitter</button> */}
+
+            {/* <text> {authLink.url} </text> */}
+            {/* <button className="postButton" onClick={() => window.open('https://twitter.com/intent/tweet?' + encodeQueryData({"text": document.getElementById("postInput").value, "in_reply_to":s }),'_blank')}>Tweet</button> */}
+          </div>
+        </div>
+    );
+  }
+  else {
+    return (
+        <div id="flyoutMenu" className={visibility}>
+          <div className="inputMenu">
+            <textarea id="postInput" type="text" placeholder="Post Message" value = {postText}></textarea>
+            {/* <button className="postButton" onClick={() => {FB.ui({method: 'feed', link: 'peach.ipat.gatech.edu'}, function(response){})}}> Post on FB </button> */}
+
+            {/* <button className="postButton" id="loginAndPostButtonFB" onLoad={onLoadFBButton()} onClick={() => {
+          window.FB.getLoginStatus(function(response) {
+            if (response.status == 'connected') {
+              FB.api('/me/feed', 'post', { message: document.getElementById("postInput").value }, function(response) {
+                if (!response) {
+                  alert('Error occurred');
+                } else if (response.error) {
+                  alert(JSON.stringify(response.error));
+                } else {
+                  alert('Post ID: ' + response.id);
+                }
+              });
+            } else {
+              loginToFacebook();
+            }
+          })}}> Login to Facebook </button> */}
+
+            {/* <button className="postButton" onClick={() => {FB.api('/me/feed', 'post', { message: document.getElementById("postInput").value }, function(response) {
+          if (!response || response.error) {
+            alert('Error occurred');
+          } else {
+            alert('Post ID: ' + response.id);
+          }
+        });}}>Post to FB</button> */}
+            <button className="postButton"
+                    onClick={() => window.open('https://twitter.com/intent/tweet?' + encodeQueryData({"text": document.getElementById("postInput").value}), '_blank')}>Tweet
+            </button>
+            <button className="postButton" onClick={twitterLogin}>Login</button>
+
+            {/* <a className="blueButton" href="http://localhost:5000/auth/twitter">Login to Twitter</a> */}
+            {/* <button className="postButton" onClick={() => window.open("http://localhost:5000/auth/twitter",'_blank')}>Login to Twitter</button> */}
+
+            {/* <text> {authLink.url} </text> */}
+            {/* <button className="postButton" onClick={() => window.open('https://twitter.com/intent/tweet?' + encodeQueryData({"text": document.getElementById("postInput").value, "in_reply_to":s }),'_blank')}>Tweet</button> */}
+          </div>
+        </div>
+    );
+  }
 }
 
 export default PostingMenu;
