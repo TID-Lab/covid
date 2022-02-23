@@ -18,7 +18,6 @@ function twitterLogin() {
   try {
     // Oauth Step 1
     const res = await fetch('/api/auth/twitter/oauth/request_token', {method: 'POST'});
-    console.log(res);
     const { oauth_token } = await res.json();
     
     // Oauth Step 2
@@ -28,13 +27,12 @@ function twitterLogin() {
   }})();
 }
 
-const twitterLogout = (setIsLoggedIn) => {
+const twitterLogout = () => {
   (async () => {
     try {
       await fetch(`/api/auth/twitter/logout`, 
         {method: 'POST'}
       );
-      setIsLoggedIn(false);
     } catch (error) {
       console.error(error); 
     }

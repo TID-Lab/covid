@@ -51,8 +51,19 @@ module.exports = (oauthCallback) => {
           }
         });
       });   
-    }
+    },
     
+    post: (url, oauth_access_token, oauth_access_token_secret, post_body) => {
+      return new Promise((resolve, reject) => {
+        _oauth.post(url, oauth_access_token, oauth_access_token_secret, post_body, (error, data, response) => {
+          if(error) {
+            reject(error);  
+          } else {
+            resolve({data, response});  
+          }
+        });
+      });   
+    }
   };
   
   return oauth;
