@@ -1,7 +1,7 @@
 #flyoutMenu {
   width: 30vw;
   height: 100vh;
-  background-color: #FFF;
+  background-color: #FFFFFF;
   position: fixed;
   top: 54px;
   left: 0;
@@ -9,6 +9,7 @@
               cubic-bezier(0, .52, 0, 1);
   overflow: scroll;
   z-index: 1000;
+  overflow-y: auto;
 }
  
 #flyoutMenu.hide {
@@ -63,4 +64,11 @@
   padding: 0.1rem 0 0 0;
   font-size: 0.875rem;
   text-align: right;
+}
+
+#image_uploads {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
 }

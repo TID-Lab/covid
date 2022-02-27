@@ -1,9 +1,8 @@
 /*global FB*/
 import './index.css';
 import { useSelector } from 'react-redux';
-import {useState, useCallback} from 'react';
+import {useState, useEffect} from 'react';
 import { twitterLogin } from '../../api/auth.js'
-import MediaButton from '../mediaButton/index';
 
 
 function encodeQueryData(data) {
@@ -70,9 +69,8 @@ const PostingMenu = () => {
   //     setFbUserAccessToken(response.authResponse.accessToken);
   //   }, {scope: });
   // }, []);
-
-  const [selectedFile, setSelectedFile] = useState();
-  const [isFilePicked, setIsFilePicked] = useState(false);
+  
+  const [pictureList, setPictureList] = useState([]);
 
   const returnFileSize = (number) => {
     if(number < 1024) {
@@ -84,50 +82,64 @@ const PostingMenu = () => {
     }
   };
 
-  const changeHandler = (event) => {
+  const countChars = (e) => {
+    const counterEle = document.getElementById('the-count');
+    const target = e.target;
+    // Get the `maxlength` attribute
+    const maxLength = target.getAttribute('maxlength');
+    // Count the current number of characters
+    const currentLength = target.value.length;
+    counterEle.innerHTML = `${currentLength}/${maxLength}`;
+  }
+
+  const handleSubmission = (event) => {
+    console.log("HELLO!");
+    console.log(event.target.files);
+    const files = [...event.target.files];
+    setPictureList([]);
+    setPictureList((pictureList) => [...pictureList, files]);
+  };
+
+  const deleteElement = (nameVal) => {
+    console.log("In delete Element:");
+    console.log(nameVal);
+    console.log(typeof(nameVal));
+    setPictureList((pictureList) => [pictureList[0].filter(item => item.name != nameVal)]);
+  }
+
+  useEffect(() => {
+    console.log("pictureList");
+    console.log(pictureList);
+    
     const preview = document.querySelector('.preview');
     while (preview.firstChild) {
       preview.removeChild(preview.firstChild);
     }
-    const currentFiles = event.target.files;
-    if (currentFiles.length === 0) {
-      const paragraph = document.createElement('p');
-      paragraph.textContent = 'No files currently selected for upload';
-      preview.appendChild(paragraph);
-    } else {
+    if (pictureList.length !== 0) {
       const array = document.createElement('ol');
       preview.appendChild(array);
 
-      for (let i = 0; i < currentFiles.length; i++) {
-        const listItem = document.createElement('li');
-        const paragraph = document.createElement('p');
-        paragraph.textContent = `File name ${currentFiles[i].name}, file size ${returnFileSize(currentFiles[i].size)}.`;
-        //const img = document.createElement('img');
-        //img.src = URL.createObjectURL(currentFiles[i]);
+      for (let i = 0; i < pictureList.length; i++) {
+        for (let j = 0; j < pictureList[0].length; j++) {
+          const listItem = document.createElement('li');
+          const paragraph = document.createElement('p');
+          const button = document.createElement('button');
+          button.id = pictureList[i][j].name;
+          button.innerHTML = "DELETE";
+          button.style.background = "#FF0000";
+          button.onclick = function () { deleteElement(pictureList[i][j].name); }
 
-        //listItem.appendChild(img);
-        listItem.appendChild(paragraph);
-        array.appendChild(listItem);
+          paragraph.textContent = `File name ${pictureList[i][j].name}, file size ${returnFileSize(pictureList[i][j].size)}.`;
+          //const img = document.createElement('img');
+          //img.src = URL.createObjectURL(currentFiles[i]);
+          //listItem.appendChild(img);
+          listItem.appendChild(paragraph);
+          listItem.appendChild(button);
+          array.appendChild(listItem);
+        }
       }
     }
-  };
-
-  const countChars = (e) => {
-    const counterEle = document.getElementById('the-count');
-
-    const target = e.target;
-
-    // Get the `maxlength` attribute
-    const maxLength = target.getAttribute('maxlength');
-
-    // Count the current number of characters
-    const currentLength = target.value.length;
-
-    counterEle.innerHTML = `${currentLength}/${maxLength}`;
-  }
-
-  const handleSubmission = () => {
-  };
+  });
 
   return (
     <div id="flyoutMenu" className={visibility}>
@@ -169,12 +181,10 @@ const PostingMenu = () => {
           <div>
               <div>
                 <label for="image_uploads">Insert Image or Video </label>
-                <input type="file" id="image_uploads" name="image_uploads" accept="image/*, video/*" onChange={changeHandler} multiple></input>
+                <input type="file" id="image_uploads" name="image_uploads" accept="image/*, video/*" onChange={handleSubmission} multiple></input>
                 <button> Submit</button>
               </div>
-              <div class="preview">
-                <p>No files currently selected for upload</p>
-              </div>
+              <div class="preview"> </div>
           </div>
         </form>
         {/* <input type="file"/>*/}
