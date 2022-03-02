@@ -36,9 +36,11 @@ const twitterV2 = new TwitterV2({
 
 function getListsFor(screenName) {
   return new Promise((resolve, reject) => {
+    // Bug here??
     twitterV1.get('lists/ownerships', { screen_name: screenName }, (err, data) => {
       if (err) {
         reject(err);
+        console.log('error in getListsFor')
         return;
       }
 
@@ -174,6 +176,7 @@ async function update() {
 
     // fetch the latest Twitter Lists
     const lists = await getListsFor(TWITTER_SCREEN_NAME);
+    // Bug here?? nothing is console-logging, so it breaks before this
     console.log('lists: ', lists);
 
     // fetch the accounts from each Twitter List
