@@ -93,24 +93,16 @@ const PostingMenu = () => {
   }
 
   const handleSubmission = (event) => {
-    console.log("HELLO!");
-    console.log(event.target.files);
     const files = [...event.target.files];
     setPictureList([]);
     setPictureList((pictureList) => [...pictureList, files]);
   };
 
   const deleteElement = (nameVal) => {
-    console.log("In delete Element:");
-    console.log(nameVal);
-    console.log(typeof(nameVal));
     setPictureList((pictureList) => [pictureList[0].filter(item => item.name != nameVal)]);
   }
 
   useEffect(() => {
-    console.log("pictureList");
-    console.log(pictureList);
-    
     const preview = document.querySelector('.preview');
     while (preview.firstChild) {
       preview.removeChild(preview.firstChild);
