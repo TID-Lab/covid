@@ -104,22 +104,18 @@ const Post = (props) => {
   // Function for copying link to post to user's clipboard
   function copyLink(e) {
     e.preventDefault();
-    console.log('Clicking copy link button');
     navigator.clipboard.writeText(data.url);
   }
 
   // Function for copying text of post to user's clipboard
   function copyText(e) {
     e.preventDefault();
-    console.log('Clicking copy text button');
     navigator.clipboard.writeText(data.content);
   }
 
   // Function for copying post and opening posting menu
   function createPost(e) {
     e.preventDefault();
-    console.log('Clicking create post button on a post');
-
     const postingMenu = store.postingMenu;
     const postText = data.content;
     store.dispatch({type: 'postingMenu/set', payload: !postingMenu})
@@ -157,14 +153,14 @@ const Post = (props) => {
           <p><b>Account:</b> {data.tags.map(tag => TAGS[tag]).filter(Boolean).join(', ')}</p>
         </div>
         <div className='column right'>
+          <form onSubmit={createPost}>
+            <button className='submitButton' type='submit'>Create post</button>
+          </form>
           <form onSubmit={copyLink}>
-            <button type='submit'>Copy link</button>
+            <button className='submitButton' type='submit'>Copy link</button>
           </form>
           <form onSubmit={copyText}>
-            <button type='submit'>Copy text</button>
-          </form>
-          <form onSubmit={createPost}>
-            <button type='submit'>Create Post</button>
+            <button className='submitButton' type='submit'>Copy text</button>
           </form>
         </div>
       </div>

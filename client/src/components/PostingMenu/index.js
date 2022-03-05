@@ -40,9 +40,15 @@ const PostingMenu = () => {
   const [characterCount, setCharacterCount] = useState(0);
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const postText = useSelector(state => state.postingText);
-  
-  function twitterPost(characterCount, setLoginStatus, setCharacterCount) {
-    (async() => { 
+  const dispatch = useDispatch();
+  function closeClick() {
+    dispatch({type: 'postingMenu/set', payload: false})
+  }
+
+  function twitterPost() {
+    (async() => {
+      
+      dispatch({type: 'postingText/set', payload: document.getElementById("postInput").value})
       setButtonDisabled(true)
       if (characterCount == 0) {
         alert("Cannot post with empty message");
@@ -53,7 +59,7 @@ const PostingMenu = () => {
         setButtonDisabled(false)
         return;
       }
-
+      
       try {
         const res = await fetch('/api/proxy/twitter/tweet', {
           method: 'POST',
@@ -68,7 +74,7 @@ const PostingMenu = () => {
         } else if (res.status == 400) {
           alert("Bad input. (Likely a duplicate tweet, please write something else!)")
         } else {
-          document.getElementById("postInput").value = ''
+          dispatch({type: 'postingText/set', payload: ''})
           setCharacterCount(0)
         }
       } catch (error) {
@@ -88,10 +94,16 @@ const PostingMenu = () => {
   
   useEffect(async () => {
     window.setTimeout(function () {
-      setButtonDisabled(false)
+      setButtonDisabled(false);
   },5000)
   },[])
 
+  useEffect(() => {
+    if (postText != false) {
+      setCharacterCount(postText.length);
+    }
+  }, [postText])
+// combine these use effects?
   useEffect(() => {
     if (window && document) {
       const script = document.createElement('script')
@@ -107,11 +119,6 @@ const PostingMenu = () => {
     }
   }, [])
 
-  const dispatch = useDispatch();
-  // const postingMenu = useSelector(state => state.postingMenu);
-  function closeClick() {
-    dispatch({type: 'postingMenu/set', payload: false})
-  }
 
   var visibility = "hide";
   const postingMenuStatus = useSelector(state => state.postingMenu);
@@ -121,27 +128,31 @@ const PostingMenu = () => {
 
   function wordCount(e){
     var currentText = e.target.value;
-    var characterCount = currentText.length;
-    setCharacterCount(characterCount);
+    // var characterCount = currentText.length;
+    // setCharacterCount(characterCount);
+    // This may be wasteful, temp solution
+    dispatch({type: 'postingText/set', payload: currentText})
   }
+
+
   // need to figure out disabling login button since spamming it sends multiple requests
   return (
     <div id="flyoutMenu" className={visibility}>
       <div className="inputMenu">
         <div style={{display: "flex", flexDirection: "row"}}>
-          <b style={{margin: "0", marginLeft: "1rem", paddingTop: "8px"}}> Search Trusted Resources </b>
+          <b style={{margin: "0", marginLeft: "1rem", marginRight: "1rem", paddingTop: "8px"}}> Search Trusted Resources </b>
           <button className="closeButton" onClick={closeClick}>Close</button>
         </div>
         <div class="gcse-search"></div>
         <hr style={{color: "grey", backgroundColor: "grey", height: 1, margin: 0}}/>
         
         <b style={{ marginBottom: "0", marginLeft: "1rem", marginTop:"1rem"}}> Compose Post </b>
-        <textarea id="postInput" type="text" placeholder="Post Message " value = {postText} onChange={wordCount}></textarea>
+        <textarea id="postInput" type="text" placeholder="Post Message " value = {postText ? postText : ""} onChange={wordCount}></textarea>
         <p>{ "Character Count: " + characterCount}</p>
         {/* <button className="postButton" onClick={() => window.open('https://twitter.com/intent/tweet?' + encodeQueryData({"text": document.getElementById("postInput").value}),'_blank')}>Tweet</button> */}
         {/* add undo button perhaps */}
         <div style={{display: "flex", flexDirection: "row"}}>
-          <button id="postButtonId" className="postButton" disabled={buttonDisabled} onClick={() => twitterLoginStatus ? twitterPost(characterCount, setTwitterLoginStatus, setCharacterCount): twitterLogin(setButtonDisabled)}>{twitterLoginStatus ? "Post to Twitter": "Login to Twitter" }</button>
+          <button id="postButtonId" className="postButton" disabled={buttonDisabled} onClick={() => twitterLoginStatus ? twitterPost(): twitterLogin(setButtonDisabled)}>{twitterLoginStatus ? "Post to Twitter": "Login to Twitter" }</button>
           <button className="postButton" onClick={() => {twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus)}}>Logout</button>
         </div>
       </div>
