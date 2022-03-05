@@ -2,7 +2,7 @@
   border-left:2px solid grey;
   width: 30vw;
   height: 100vh;
-  background-color: #FFF;
+  background-color: #FFFFFF;
   position: fixed;
   top: 0;
   left: 70vw;
@@ -10,6 +10,7 @@
               cubic-bezier(0, .52, 0, 1);
   overflow: scroll;
   z-index: 1000;
+  overflow-y: auto;
 }
  
 #flyoutMenu.hide {
@@ -52,6 +53,8 @@
   width: 27vw;
   height: 30vh;
   resize: none;
+  overflow: auto;
+  background-color: #f8f8f8;
 }
 
 .postButton {
@@ -72,4 +75,24 @@
 }
 .gcse-search {
   height: 30wh;
+}
+.preview {	
+  height: 300px;
+  overflow-y:auto;
+  float:left;
+  position:relative;
+}
+
+#the-count {
+  float: right;
+  padding: 0.1rem 0 0 0;
+  font-size: 0.875rem;
+  text-align: right;
+}
+
+#image_uploads {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
 }

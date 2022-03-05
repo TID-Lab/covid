@@ -39,7 +39,9 @@ const PostingMenu = () => {
   const [twitterLoginStatus, setTwitterLoginStatus] = useState(false);
   const [characterCount, setCharacterCount] = useState(0);
   const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [pictureList, setPictureList] = useState([]);
   const postText = useSelector(state => state.postingText);
+  
   const dispatch = useDispatch();
   function closeClick() {
     dispatch({type: 'postingMenu/set', payload: false})
@@ -134,8 +136,60 @@ const PostingMenu = () => {
     dispatch({type: 'postingText/set', payload: currentText})
   }
 
+  
 
-  // need to figure out disabling login button since spamming it sends multiple requests
+  const returnFileSize = (number) => {
+    if(number < 1024) {
+      return number + 'bytes';
+    } else if(number >= 1024 && number < 1048576) {
+      return (number/1024).toFixed(1) + 'KB';
+    } else if(number >= 1048576) {
+      return (number/1048576).toFixed(1) + 'MB';
+    }
+  };
+
+  const handleSubmission = (event) => {
+    const files = [...event.target.files];
+    setPictureList([]);
+    setPictureList((pictureList) => [...pictureList, files]);
+  };
+
+  const deleteElement = (nameVal) => {
+    setPictureList((pictureList) => [pictureList[0].filter(item => item.name != nameVal)]);
+  }
+
+  useEffect(() => {
+    const preview = document.querySelector('.preview');
+    while (preview.firstChild) {
+      preview.removeChild(preview.firstChild);
+    }
+    if (pictureList.length !== 0) {
+      const array = document.createElement('ol');
+      preview.appendChild(array);
+
+      for (let i = 0; i < pictureList.length; i++) {
+        for (let j = 0; j < pictureList[0].length; j++) {
+          const listItem = document.createElement('li');
+          const paragraph = document.createElement('p');
+          const button = document.createElement('button');
+          button.id = pictureList[i][j].name;
+          button.innerHTML = "DELETE";
+          button.style.background = "#FF0000";
+          button.onclick = function () { deleteElement(pictureList[i][j].name); }
+
+          paragraph.textContent = `File name ${pictureList[i][j].name}, file size ${returnFileSize(pictureList[i][j].size)}.`;
+          // const img = document.createElement('img');
+          // img.src = URL.createObjectURL(currentFiles[i]);
+          // listItem.appendChild(img);
+          listItem.appendChild(paragraph);
+          listItem.appendChild(button);
+          array.appendChild(listItem);
+        }
+      }
+    }
+  });
+
+  // need to figure out disabling login button since spamming it sends multiple requests (look into event.preventDefault())
   return (
     <div id="flyoutMenu" className={visibility}>
       <div className="inputMenu">
@@ -146,7 +200,7 @@ const PostingMenu = () => {
         <div class="gcse-search"></div>
         <hr style={{color: "grey", backgroundColor: "grey", height: 1, margin: 0}}/>
         
-        <b style={{ marginBottom: "0", marginLeft: "1rem", marginTop:"1rem"}}> Compose Post </b>
+        <b style={{ marginBottom: "0", marginLeft: "1rem", marginTop:"1rem"}}> Compose Message </b>
         <textarea id="postInput" type="text" placeholder="Post Message " value = {postText ? postText : ""} onChange={wordCount}></textarea>
         <p>{ "Character Count: " + characterCount}</p>
         {/* <button className="postButton" onClick={() => window.open('https://twitter.com/intent/tweet?' + encodeQueryData({"text": document.getElementById("postInput").value}),'_blank')}>Tweet</button> */}
@@ -155,8 +209,20 @@ const PostingMenu = () => {
           <button id="postButtonId" className="postButton" disabled={buttonDisabled} onClick={() => twitterLoginStatus ? twitterPost(): twitterLogin(setButtonDisabled)}>{twitterLoginStatus ? "Post to Twitter": "Login to Twitter" }</button>
           <button className="postButton" onClick={() => {twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus)}}>Logout</button>
         </div>
+
+        <form method="post" enctype="multipart/form-data">
+          <div>
+              <div>
+                <label for="image_uploads">Insert Image or Video </label>
+                <input type="file" id="image_uploads" name="image_uploads" accept="image/*, video/*" onChange={handleSubmission} multiple></input>
+                {/* <button> Submit</button> */}
+              </div>
+              <div class="preview"> </div>
+          </div>
+        </form>
+        
       </div>
-    </div>
+    </div>  
   );
 }
 
