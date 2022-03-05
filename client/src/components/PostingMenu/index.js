@@ -73,7 +73,7 @@ const PostingMenu = () => {
         // Unauthorized means we reset login status
         if (res.status == 401) {
           alert("Login Expired")
-          setLoginStatus(false)
+          setTwitterLoginStatus(false)
         } else if (res.status == 400) {
           alert("Bad input. (Likely a duplicate tweet, please write something else!)")
         } else {
