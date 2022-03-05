@@ -12,7 +12,7 @@
     "cross-env": "^7.0.3",
     "debug": "^4.3.1",
     "dotenv": "^8.6.0",
-    "downstream": "0.0.67",
+    "downstream": "0.0.76",
     "mongoose": "^5.12.2",
     "twit": "^2.2.11",
     "twitter-v2": "^1.1.0"

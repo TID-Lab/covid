@@ -1,5 +1,5 @@
 /**
- * Constant values used across severa parts of the dashboard.
+ * Constant values used across several parts of the dashboard.
  */
 
 // A list of keywords passed to social media API's in order
@@ -15,8 +15,13 @@ const COVID_KEYWORDS = [
   'unvxxed',
   'pandemic',
   'masks',
+  'n95',
   'quarantine',
   'booster',
+  'pcr',
+  'antigen',
+  'binax',
+  'binaxnow',
 ];
 
 // A dictionary of COVID-19 topics and substrings used
@@ -38,6 +43,8 @@ const COVID_TOPICS = {
     ' test',
     'prueba',
     'pcr',
+    'antigen',
+    'binax',
     'swab',
     'negative',
     'covid result',
@@ -60,8 +67,11 @@ const COVID_TOPICS = {
     'oneanddone',
   ],
   'booster': [
-    'booster',
+    'boost',
     'third dose',
+    'third shot',
+    '3rd dose',
+    '3rd shot',
   ],
   'treatments': [
     'treatment',
@@ -74,6 +84,7 @@ const COVID_TOPICS = {
     'pill',
     'antibody drug',
     'monoclonal antibod',
+    'ivermectin',
   ],
   'long-hauler': [
     'long haul',
@@ -81,16 +92,20 @@ const COVID_TOPICS = {
     'longhaul',
     'long covid',
     'longcovid',
-    'post-acute',
     'long-term',
+    'post-acute',
+    'post acute',
+    'pasc',
   ],
   'variants': [
     'variant',
     'delta',
     'lambda',
+    'omicron',
   ],
   'georgia': [
     'georgia',
+    ' ga ',
     'atl',
     'fulton',
     'dekalb',
