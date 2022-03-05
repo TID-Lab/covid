@@ -1,10 +1,10 @@
-/*global FB*/
 import './index.css';
 import { useDispatch, useSelector } from 'react-redux';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useRef } from 'react';
 import { twitterLogin, twitterLogout } from '../../api/auth.js'
 import queryString from 'query-string';
 import { useHistory } from 'react-router-dom'
+import PopupModal from '../PopupModal'
 
 function twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus) {
   twitterLogout()
@@ -33,13 +33,13 @@ function checkOAuth(history) {
   })();
 }
 
-
-
 const PostingMenu = () => {
   const [twitterLoginStatus, setTwitterLoginStatus] = useState(false);
   const [characterCount, setCharacterCount] = useState(0);
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [pictureList, setPictureList] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  let textAreaRef = useRef<HTMLAreaElement>(null);
   const postText = useSelector(state => state.postingText);
   
   const dispatch = useDispatch();
@@ -86,6 +86,26 @@ const PostingMenu = () => {
     })();
     
   }
+
+    
+  function instagramPostHandler(event) {
+
+    event.preventDefault();
+    textAreaRef.select();
+    document.execCommand('copy')
+    setShowModal(true);
+    // output = pictureList[0]
+    // const blob = new Blob([output]);                   // Step 3
+    // const fileDownloadUrl = URL.createObjectURL(blob); // Step 4
+    // this.setState ({fileDownloadUrl: fileDownloadUrl}, // Step 5
+    //   () => {
+    //     this.dofileDownload.click();                   // Step 6
+    //     URL.revokeObjectURL(fileDownloadUrl);          // Step 7
+    //     this.setState({fileDownloadUrl: ""})
+    // })
+  }
+
+
   // History is for clearing the query strings when getting the callback
   let history = useHistory();
   // This checks the status once after the component is rendered
@@ -120,6 +140,7 @@ const PostingMenu = () => {
       // })
     }
   }, [])
+
 
 
   var visibility = "hide";
@@ -158,36 +179,36 @@ const PostingMenu = () => {
     setPictureList((pictureList) => [pictureList[0].filter(item => item.name != nameVal)]);
   }
 
-  useEffect(() => {
-    const preview = document.querySelector('.preview');
-    while (preview.firstChild) {
-      preview.removeChild(preview.firstChild);
-    }
-    if (pictureList.length !== 0) {
-      const array = document.createElement('ol');
-      preview.appendChild(array);
+  // useEffect(() => {
+  //   const preview = document.querySelector('.preview');
+  //   while (preview.firstChild) {
+  //     preview.removeChild(preview.firstChild);
+  //   }
+  //   if (pictureList.length !== 0) {
+  //     const array = document.createElement('ol');
+  //     preview.appendChild(array);
 
-      for (let i = 0; i < pictureList.length; i++) {
-        for (let j = 0; j < pictureList[0].length; j++) {
-          const listItem = document.createElement('li');
-          const paragraph = document.createElement('p');
-          const button = document.createElement('button');
-          button.id = pictureList[i][j].name;
-          button.innerHTML = "DELETE";
-          button.style.background = "#FF0000";
-          button.onclick = function () { deleteElement(pictureList[i][j].name); }
+  //     for (let i = 0; i < pictureList.length; i++) {
+  //       for (let j = 0; j < pictureList[0].length; j++) {
+  //         const listItem = document.createElement('li');
+  //         const paragraph = document.createElement('p');
+  //         const button = document.createElement('button');
+  //         button.id = pictureList[i][j].name;
+  //         button.innerHTML = "DELETE";
+  //         button.style.background = "#FF0000";
+  //         button.onclick = function () { deleteElement(pictureList[i][j].name); }
 
-          paragraph.textContent = `File name ${pictureList[i][j].name}, file size ${returnFileSize(pictureList[i][j].size)}.`;
-          // const img = document.createElement('img');
-          // img.src = URL.createObjectURL(currentFiles[i]);
-          // listItem.appendChild(img);
-          listItem.appendChild(paragraph);
-          listItem.appendChild(button);
-          array.appendChild(listItem);
-        }
-      }
-    }
-  });
+  //         paragraph.textContent = `File name ${pictureList[i][j].name}, file size ${returnFileSize(pictureList[i][j].size)}.`;
+  //         // const img = document.createElement('img');
+  //         // img.src = URL.createObjectURL(currentFiles[i]);
+  //         // listItem.appendChild(img);
+  //         listItem.appendChild(paragraph);
+  //         listItem.appendChild(button);
+  //         array.appendChild(listItem);
+  //       }
+  //     }
+  //   }
+  // });
 
   // need to figure out disabling login button since spamming it sends multiple requests (look into event.preventDefault())
   return (
@@ -201,8 +222,8 @@ const PostingMenu = () => {
         <hr style={{color: "grey", backgroundColor: "grey", height: 1, margin: 0}}/>
         
         <b style={{ marginBottom: "0", marginLeft: "1rem", marginTop:"1rem"}}> Compose Message </b>
-        <textarea id="postInput" type="text" placeholder="Post Message " value = {postText ? postText : ""} onChange={wordCount}></textarea>
-        <p>{ "Character Count: " + characterCount}</p>
+        <textarea id="postInput" type="text" placeholder="Post Message "  ref={(textarea) => textAreaRef = textarea} value = {postText ? postText : ""} onChange={wordCount}></textarea>
+        <p style={{margin: "0.2rem", marginLeft: "1rem"}}>{ "Character Count: " + characterCount}</p>
         {/* <button className="postButton" onClick={() => window.open('https://twitter.com/intent/tweet?' + encodeQueryData({"text": document.getElementById("postInput").value}),'_blank')}>Tweet</button> */}
         {/* add undo button perhaps */}
         <div style={{display: "flex", flexDirection: "row"}}>
@@ -210,17 +231,30 @@ const PostingMenu = () => {
           <button className="postButton" onClick={() => {twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus)}}>Logout</button>
         </div>
 
-        <form method="post" enctype="multipart/form-data">
+        <button className="postButton" onClick={instagramPostHandler}>Post to Instagram</button>
+        {showModal && <PopupModal
+          content={<>
+            <b>Copied Post to Clipboard</b>
+            <p>Follow these 3 steps to create a post on Instagram: </p>
+            <ol>
+              <li>Click on + in the header menu</li>
+              <li>Select relevant images</li>
+              <li>Paste the caption in the text box</li>
+            </ol>
+            <button onClick={() => window.open('https://instagram.com','_blank')}> Continue to Instagram </button>
+          </>}
+          handleClose={() => {setShowModal(!showModal);}}
+        />}
+        {/* <form method="post" enctype="multipart/form-data">
           <div>
               <div>
                 <label for="image_uploads">Insert Image or Video </label>
                 <input type="file" id="image_uploads" name="image_uploads" accept="image/*, video/*" onChange={handleSubmission} multiple></input>
-                {/* <button> Submit</button> */}
+                <button> Submit</button>
               </div>
               <div class="preview"> </div>
           </div>
-        </form>
-        
+        </form> */}
       </div>
     </div>  
   );

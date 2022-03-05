@@ -154,7 +154,7 @@ const Post = (props) => {
         </div>
         <div className='column right'>
           <form onSubmit={createPost}>
-            <button className='submitButton' type='submit'>Create post</button>
+            <button className='submitButton' type='submit'>Use as basis of a post</button>
           </form>
           <form onSubmit={copyLink}>
             <button className='submitButton' type='submit'>Copy link</button>
