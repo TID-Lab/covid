@@ -22,7 +22,7 @@ const Header = () => {
         <Logo />
         <SortSelect />
         <TextSearch />
-        <button style={{marginLeft: "auto", marginRight: "2rem", marginTop: "0.5rem", marginBottom: "0.5rem"}} onClick={ onMenuClick }> + Create Post </button>
+        <button style={{marginLeft: "auto", marginRight: "1.5rem", marginTop: "0.5rem", marginBottom: "0.5rem", maxHeight: "3rem"}} onClick={ onMenuClick }> + Create Post </button>
       </div>
     )
   } else if (pathname.includes('/social-media-dashboard') || pathname.includes('/login')) {

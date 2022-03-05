@@ -13,18 +13,23 @@ async function checkAuth() {
 /**
  * Returns Oauth https://www.quod.ai/post/how-to-integrate-twitter-login-api-into-your-react-app
  */
-function twitterLogin() {
+function twitterLogin(setButtonDisabled) {
   (async () => {
   try {
+    setButtonDisabled(true)
     // Oauth Step 1
     const res = await fetch('/api/auth/twitter/oauth/request_token', {method: 'POST'});
     const { oauth_token } = await res.json();
     
+    setButtonDisabled(false)
     // Oauth Step 2
     window.location.href = `https://api.twitter.com/oauth/authenticate?oauth_token=${oauth_token}`;
+    
   } catch(error) {
     console.log(error);
-  }})();
+  }
+  setButtonDisabled(false)
+})();
 }
 
 const twitterLogout = () => {

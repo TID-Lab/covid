@@ -1,10 +1,11 @@
 #flyoutMenu {
+  border-left:2px solid grey;
   width: 30vw;
   height: 100vh;
   background-color: #FFF;
   position: fixed;
-  top: 54px;
-  left: 0;
+  top: 0;
+  left: 70vw;
   transition: transform .3s
               cubic-bezier(0, .52, 0, 1);
   overflow: scroll;
@@ -12,11 +13,11 @@
 }
  
 #flyoutMenu.hide {
-  transform: translate3d(100vw, 0, 0);
+  transform: translate3d(30vw, 0, 0);
 }
  
 #flyoutMenu.show {
-  transform: translate3d(70vw, 0, 0);
+  transform: translate3d(0, 0, 0);
   overflow: hidden;
 }
  
@@ -30,15 +31,25 @@
   text-decoration: underline;
 }
 
+.searchDiv {
+  flex: 0 0 50px;
+  /* background-color: red; */
+  background-color: white;
+  display: flex;
+  flex-flow: row;
+  align-items: stretch;
+  border-bottom: 1px solid lightgray;
+}
+
 .inputMenu {
   display: flex;
   flex-flow: column;
-  margin: 30px;
+  margin: 0.8vw;
 }
 
 #postInput {
   margin:.8vw;
-  width: 25vw;
+  width: 27vw;
   height: 30vh;
   resize: none;
 }
@@ -47,4 +58,18 @@
   align-self: center;
   margin: 10px;
   width: 200px;
+}
+
+.closeButton {
+  /* margin: 10px; */
+  margin-left: auto;
+  /* margin-right: 40px; */
+  height: 2.2rem;
+  width: 7rem;
+  /* border-radius: 100%; */
+  /* border-color: white; */
+  /* margin-right: 2rem; */
+}
+.gcse-search {
+  height: 30wh;
 }
