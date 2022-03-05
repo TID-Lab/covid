@@ -2,6 +2,8 @@ import './index.css';
 
 import { useState, useEffect, useCallback } from 'react';
 import { authFetch } from '../../util/auth';
+import { useDispatch, useSelector } from 'react-redux';
+import store from '../../store'
 
 const embedHTMLCache = [];
 
@@ -113,6 +115,18 @@ const Post = (props) => {
     navigator.clipboard.writeText(data.content);
   }
 
+  // Function for copying post and opening posting menu
+  function createPost(e) {
+    e.preventDefault();
+    console.log('Clicking create post button on a post');
+
+    const postingMenu = store.postingMenu;
+    const postText = data.content;
+    store.dispatch({type: 'postingMenu/set', payload: !postingMenu})
+    store.dispatch({type: 'postingText/set', payload: postText})
+  }
+
+
   // some FB posts render with a transparent background
   const containerClassName = (platform === 'facebook') ? 'container facebook' : 'container';
 
@@ -148,6 +162,9 @@ const Post = (props) => {
           </form>
           <form onSubmit={copyText}>
             <button type='submit'>Copy text</button>
+          </form>
+          <form onSubmit={createPost}>
+            <button type='submit'>Create Post</button>
           </form>
         </div>
       </div>

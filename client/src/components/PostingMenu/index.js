@@ -5,14 +5,6 @@ import {useState, useEffect} from 'react';
 import { twitterLogin, twitterLogout } from '../../api/auth.js'
 import queryString from 'query-string';
 import { useHistory } from 'react-router-dom'
-// import { useDispatch, useSelector } from 'react-redux';
-
-// function encodeQueryData(data) {
-//   const ret = [];
-//   for (let d in data)
-//     ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
-//   return ret.join('&');
-// }
 
 function twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus) {
   twitterLogout()
@@ -47,7 +39,7 @@ const PostingMenu = () => {
   const [twitterLoginStatus, setTwitterLoginStatus] = useState(false);
   const [characterCount, setCharacterCount] = useState(0);
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  
+  const postText = useSelector(state => state.postingText);
   
   function twitterPost(characterCount, setLoginStatus, setCharacterCount) {
     (async() => { 
@@ -144,7 +136,7 @@ const PostingMenu = () => {
         <hr style={{color: "grey", backgroundColor: "grey", height: 1, margin: 0}}/>
         
         <b style={{ marginBottom: "0", marginLeft: "1rem", marginTop:"1rem"}}> Compose Post </b>
-        <textarea id="postInput" type="text" placeholder="Post Message " onChange={wordCount}></textarea>
+        <textarea id="postInput" type="text" placeholder="Post Message " value = {postText} onChange={wordCount}></textarea>
         <p>{ "Character Count: " + characterCount}</p>
         {/* <button className="postButton" onClick={() => window.open('https://twitter.com/intent/tweet?' + encodeQueryData({"text": document.getElementById("postInput").value}),'_blank')}>Tweet</button> */}
         {/* add undo button perhaps */}
