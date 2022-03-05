@@ -39,6 +39,7 @@ const PostingMenu = () => {
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [pictureList, setPictureList] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   let textAreaRef = useRef<HTMLAreaElement>(null);
   const postText = useSelector(state => state.postingText);
   
@@ -76,8 +77,7 @@ const PostingMenu = () => {
         } else if (res.status == 400) {
           alert("Bad input. (Likely a duplicate tweet, please write something else!)")
         } else {
-          dispatch({type: 'postingText/set', payload: ''})
-          setCharacterCount(0)
+          setShowSuccess(true);
         }
       } catch (error) {
           console.error(error)
@@ -235,15 +235,22 @@ const PostingMenu = () => {
         {showModal && <PopupModal
           content={<>
             <b>Copied Post to Clipboard</b>
-            <p>Follow these 3 steps to create a post on Instagram: </p>
+            <p>Follow these 3 steps on Instagram: </p>
             <ol>
               <li>Click on + in the header menu</li>
               <li>Select relevant images</li>
-              <li>Paste the caption in the text box</li>
+              <li>Paste the caption</li>
             </ol>
             <button onClick={() => window.open('https://instagram.com','_blank')}> Continue to Instagram </button>
           </>}
           handleClose={() => {setShowModal(!showModal);}}
+        />}
+
+        {showSuccess && <PopupModal
+          content={<>
+            <b>Successfully posted to Twitter!</b>
+          </>}
+          handleClose={() => {setShowSuccess(!showSuccess);}}
         />}
         {/* <form method="post" enctype="multipart/form-data">
           <div>
