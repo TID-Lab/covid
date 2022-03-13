@@ -7,10 +7,11 @@ import { Provider } from 'react-redux'
 
 import App from './components/App';
 
-export default class ResourcePage extends Component {
-  render () {
-    return (
-      <h1>Does this page even render?</h1>
-    )
-  }
-};
+
+const ResourcePage = () => {
+  return (
+    <h1>Does this page even render?</h1>
+  )
+}
+
+export default ResourcePage;

@@ -22,7 +22,7 @@ const Header = () => {
     return (
       <div className='PageHeader'>
         <Logo />
-        <button style={{marginLeft: "0.5rem", marginRight: "1.5rem", marginTop: "0.5rem", marginBottom: "0.5rem", maxHeight: "3rem"}} onClick={()=> window.open("/resources", "Resources") }> Resources </button>
+        <button style={{marginLeft: "0.5rem", marginRight: "1.5rem", marginTop: "0.5rem", marginBottom: "0.5rem", maxHeight: "3rem"}} onClick={()=> window.open("/resources", "_self") }> Resources </button>
         <SortSelect />
         <TextSearch />
         <button style={{marginLeft: "auto", marginRight: "1.5rem", marginTop: "0.5rem", marginBottom: "0.5rem", maxHeight: "3rem"}} onClick={ onMenuClick }> + Create Post </button>
@@ -38,7 +38,7 @@ const Header = () => {
     return (
       <div className='PageHeader'>
         <Logo />
-        <button style={{marginLeft: "0.5rem", marginRight: "1.5rem", marginTop: "0.5rem", marginBottom: "0.5rem", maxHeight: "3rem"}} onClick={()=> window.open("/social-media-dashboard") }> Monitoring </button>
+        <button style={{marginLeft: "0.5rem", marginRight: "1.5rem", marginTop: "0.5rem", marginBottom: "0.5rem", maxHeight: "3rem"}} onClick={()=> window.open("/social-media-dashboard", "_self") }> Monitoring </button>
         <SortSelect />
         <TextSearch />
       </div>
