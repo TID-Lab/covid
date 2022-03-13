@@ -24,7 +24,7 @@ function checkOAuth(history) {
           headers: {
              'Content-Type': 'application/json'
              }})
-        return res.status == 200
+        return res.status === 200
       } catch (error) {
         console.error(error); 
       }
@@ -53,7 +53,7 @@ const PostingMenu = () => {
       
       dispatch({type: 'postingText/set', payload: document.getElementById("postInput").value})
       setButtonDisabled(true)
-      if (characterCount == 0) {
+      if (characterCount === 0) {
         alert("Cannot post with empty message");
         setButtonDisabled(false)
         return;
@@ -71,10 +71,10 @@ const PostingMenu = () => {
             'Content-Type': 'application/json'
             }})
         // Unauthorized means we reset login status
-        if (res.status == 401) {
+        if (res.status === 401) {
           alert("Login Expired")
           setTwitterLoginStatus(false)
-        } else if (res.status == 400) {
+        } else if (res.status === 400) {
           alert("Bad input. (Likely a duplicate tweet, please write something else!)")
         } else {
           setShowSuccess(true);
@@ -121,7 +121,7 @@ const PostingMenu = () => {
   },[])
 
   useEffect(() => {
-    if (postText != false) {
+    if (postText !== false) {
       setCharacterCount(postText.length);
     }
   }, [postText])
