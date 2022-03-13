@@ -1,6 +1,5 @@
 import './index.css';
 
-
 const Radio = (props) => {
   const { name, id, selected, onClick } = props;
 
