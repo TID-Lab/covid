@@ -11,8 +11,8 @@ const debug = useDebug('db');
 module.exports = async (dbName, dbUrl) => {
   if (mongoose.connections[0].readyState) return;
 
-  const url = dbUrl || config.db.url;
-  const name = dbName || config.db.name;
+  const url = process.env.mongourl;
+  const name =  process.env.mongoname;
 
   debug('Connecting to database...');
 
