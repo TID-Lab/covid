@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { authFetch } from '../../util/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import store from '../../store'
+import PopupModal from '../PopupModal'
 
 const embedHTMLCache = [];
 
@@ -28,6 +29,9 @@ const Post = (props) => {
 
   const [ isLoaded, setLoaded ] = useState(false);
   const [ isRendered, setRendered ] = useState(false);
+  const [showTagModal, setTagShowModal] = useState(false);
+  const [showCreateTagModal, setCreateTagShowModal] = useState(false);
+  const [showFutureUseTagModal, setFutureUseTagShowModal] = useState(false);
 
   const wait = useCallback(
     () => {
@@ -122,6 +126,36 @@ const Post = (props) => {
     store.dispatch({type: 'postingText/set', payload: postText})
   }
 
+  // Function for opening tag popup
+  function tagPopup(e) {
+    e.preventDefault();
+    setTagShowModal(true);
+  }
+
+  // Function for opening create new tag popup
+  function createTagPopup(e) {
+    e.preventDefault();
+    setCreateTagShowModal(true);
+    setTagShowModal(false);
+  }
+
+  // Function for returning to main tag popup from child popups
+  function backToTagPopup(e){
+    e.preventDefault();
+    setCreateTagShowModal(false);
+    setFutureUseTagShowModal(false);
+    setTagShowModal(true);
+  }
+
+  // Function for opening "Save for future use" popup
+  function saveForFutureUsePopup(e){
+    e.preventDefault();
+    setTagShowModal(false);
+    setFutureUseTagShowModal(true);
+  }
+
+
+
 
   // some FB posts render with a transparent background
   const containerClassName = (platform === 'facebook') ? 'container facebook' : 'container';
@@ -151,6 +185,50 @@ const Post = (props) => {
         <div className='column left'>
           <p><b>Topics:</b> {data.topics.map(topic => COVID_TOPICS[topic]).filter(Boolean).join(', ')}</p>
           <p><b>Account:</b> {data.tags.map(tag => TAGS[tag]).filter(Boolean).join(', ')}</p>
+          <p><b>Tags</b></p>
+
+          <button className="tagPopup" onClick={tagPopup}>+</button>
+          {showTagModal && <PopupModal
+              content={<>
+                <b>Tags</b>
+                <form id="form" role="search">
+                  <input type="search" id="query" name="q" placeholder="Search by tag names, descriptions, types">
+                  </input>
+                    <button>Search</button>
+                </form>
+
+                <p><button className="tagPopupButton" onClick={saveForFutureUsePopup}><b>Save for future use</b><p>This tag contains resources that I want to use in the future</p></button></p>
+
+                <p> <button className="tagPopup" onClick={createTagPopup}>+ Create New Tag</button></p>
+
+              </>}
+              handleClose={() => {setTagShowModal(!showTagModal);}}
+          />}
+
+          {showCreateTagModal && <PopupModal
+              content={<>
+                <p><button className="tagPopupBack" onClick={backToTagPopup}>&larr; Back to Tags</button></p>
+                <b>Create a New Tag</b>
+                <p>Tag Name</p>
+                <textarea id="tagName" name="tagName" rows="1"></textarea>
+                <p>Tag Description</p>
+                <textarea id="tagDesc" name="tagDesc"></textarea>
+                <p><button className="submitButton" onClick={console.log("TEMP CONFIRM")}>Confirm</button></p>
+              </>}
+              handleClose={() => {setCreateTagShowModal(!showCreateTagModal);}}
+          />}
+
+
+
+          {showFutureUseTagModal && <PopupModal
+              content={<>
+                <p><button className="tagPopupBack" onClick={backToTagPopup}>&larr; Back to Tags</button></p>
+                <b>Save for future use</b>
+              </>}
+              handleClose={() => {setFutureUseTagShowModal(!showFutureUseTagModal);}}
+          />}
+
+
         </div>
         <div className='column right'>
           <form onSubmit={createPost}>

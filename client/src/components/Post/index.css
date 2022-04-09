@@ -80,3 +80,27 @@
 .Post .submitButton {
   background-color: white;
 }
+
+.Post .tagPopup {
+  background-color: white;
+}
+
+.Post .tagPopupBack {
+  border: none;
+}
+
+.Post .tagPopupButton {
+  border: none;
+  text-align: left;
+  border-bottom: 1px solid black;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+
+textarea {
+  resize: none;
+}
+
+.Post input{
+  width: 100%;
+}
