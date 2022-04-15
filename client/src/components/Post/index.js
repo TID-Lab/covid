@@ -84,7 +84,7 @@ const Post = (props) => {
     'georgia': 'Georgia'
   }
 
-  // Account tags (CATEGORIES from AccountCategories\index.js, plus institutional and GA)
+  // Account tags (CATEGORIES from AccountCategories\index.js, plus institutional and GA and identities)
   const TAGS = {
     'all': 'All',
     'government': 'Government',
@@ -97,6 +97,8 @@ const Post = (props) => {
     'misinfo': 'Known Misinfo Spreaders',
     'partners': 'Project Partners',
     'trusted': 'Trusted Resources',
+    'blackafam': 'Black/African American',
+    'latinx': 'Hispanic/Latinx',
   }
 
   // Function for copying link to post to user's clipboard

@@ -15,6 +15,7 @@ function bodyToFilter(body) {
     dates,
     topic,
     category,
+    identity,
     institutions,
     georgia,
     platforms,
@@ -48,6 +49,8 @@ function bodyToFilter(body) {
   const excludesTags = [];
 
   if (category) includesTags.push(category);
+
+  if (identity) includesTags.push(identity);
 
   if (typeof institutions === 'boolean') {
     if (institutions) {
