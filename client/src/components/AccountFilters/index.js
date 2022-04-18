@@ -15,7 +15,7 @@ const AccountFilter = (props) => {
       {/* <CuratedToggle curatedOnly={curatedOnly} /> */}
       <AccountTypes institutions={institutions} />
       <AccountLocation location={location} />
-      <AccountIdentity identities={identities} />
+      {/* <AccountIdentity identities={identities} /> */}
       <AccountCategories categories={categories} />
     </div>
   );
