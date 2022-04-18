@@ -64,10 +64,19 @@
   padding: 10px;
 }
 
+.Post .column p {
+  margin: 0;
+}
+
+
 .Post .left {
   width: 70%;
 }
 
 .Post .retweet a {
   text-decoration: underline;
+}
+
+.Post .submitButton {
+  background-color: white;
 }

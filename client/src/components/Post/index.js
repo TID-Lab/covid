@@ -2,6 +2,8 @@ import './index.css';
 
 import { useState, useEffect, useCallback } from 'react';
 import { authFetch } from '../../util/auth';
+import { useDispatch, useSelector } from 'react-redux';
+import store from '../../store'
 
 const embedHTMLCache = [];
 
@@ -104,16 +106,24 @@ const Post = (props) => {
   // Function for copying link to post to user's clipboard
   function copyLink(e) {
     e.preventDefault();
-    console.log('Clicking copy link button');
     navigator.clipboard.writeText(data.url);
   }
 
   // Function for copying text of post to user's clipboard
   function copyText(e) {
     e.preventDefault();
-    console.log('Clicking copy text button');
     navigator.clipboard.writeText(data.content);
   }
+
+  // Function for copying post and opening posting menu
+  function createPost(e) {
+    e.preventDefault();
+    const postingMenu = store.postingMenu;
+    const postText = data.content;
+    store.dispatch({type: 'postingMenu/set', payload: !postingMenu})
+    store.dispatch({type: 'postingText/set', payload: postText})
+  }
+
 
   // some FB posts render with a transparent background
   const containerClassName = (platform === 'facebook') ? 'container facebook' : 'container';
@@ -145,11 +155,14 @@ const Post = (props) => {
           <p><b>Account:</b> {data.tags.map(tag => TAGS[tag]).filter(Boolean).join(', ')}</p>
         </div>
         <div className='column right'>
+          <form onSubmit={createPost}>
+            <button className='submitButton' type='submit'>Use as basis of a post</button>
+          </form>
           <form onSubmit={copyLink}>
-            <button type='submit'>Copy link</button>
+            <button className='submitButton' type='submit'>Copy link</button>
           </form>
           <form onSubmit={copyText}>
-            <button type='submit'>Copy text</button>
+            <button className='submitButton' type='submit'>Copy text</button>
           </form>
         </div>
       </div>
