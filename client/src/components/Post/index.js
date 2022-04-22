@@ -1,10 +1,15 @@
 import './index.css';
 
-import { useState, useEffect, useCallback } from 'react';
+import {useState, useEffect, useCallback, useRef} from 'react';
 import { authFetch } from '../../util/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import store from '../../store'
 import PopupModal from '../PopupModal'
+import { fetchTags } from '../../api/tag';
+import { deleteTag } from '../../api/tag';
+import { createTag } from '../../api/tag';
+import { editTag } from '../../api/tag';
+import {createOrganization} from "../../api/org";
 
 const embedHTMLCache = [];
 
@@ -29,9 +34,15 @@ const Post = (props) => {
 
   const [ isLoaded, setLoaded ] = useState(false);
   const [ isRendered, setRendered ] = useState(false);
-  const [showTagModal, setTagShowModal] = useState(false);
-  const [showCreateTagModal, setCreateTagShowModal] = useState(false);
-  const [showFutureUseTagModal, setFutureUseTagShowModal] = useState(false);
+  const [ showTagModal, setTagShowModal ] = useState(false);
+  const [ showCreateTagModal, setCreateTagShowModal ] = useState(false);
+  let nameTextAreaRef = useRef<HTMLAreaElement>(null);
+  let descTextAreaRef = useRef<HTMLAreaElement>(null);
+  const [showFutureUseTagModal, setFutureUseTagShowModal] = useState(false); //temp need to change
+
+  const [ tags, setTags ] = useState([]);
+  const [ tagName, setTagName ] = useState('Name for new tag');
+  const [ tagDescription, setTagDescription ] = useState('Description for new tag');
 
   const wait = useCallback(
     () => {
@@ -130,6 +141,12 @@ const Post = (props) => {
   function tagPopup(e) {
     e.preventDefault();
     setTagShowModal(true);
+
+    //fetch tags through GET api endpoint
+    const tags_list = fetchTags();
+    setTags(tags_list);
+    console.log(tags)
+
   }
 
   // Function for opening create new tag popup
@@ -154,7 +171,27 @@ const Post = (props) => {
     setFutureUseTagShowModal(true);
   }
 
+  // Function for "confirm" button to create new tag with name and description
+  function createNewTagButton(e){
+    e.preventDefault();
+    setTagName(nameTextAreaRef.value);
+    setTagDescription(descTextAreaRef.value);
+    //mongo POST
 
+    const new_tag = createTag({
+      name: tagName,
+      color: 'red',
+      description: tagDescription,
+      organization: 'TEST',
+      posts: ['62630ce3f8d21d00a87ce787']
+    });
+
+    setTagName('');
+    setTagDescription('');
+
+    console.log(new_tag)
+
+  }
 
 
   // some FB posts render with a transparent background
@@ -210,10 +247,10 @@ const Post = (props) => {
                 <p><button className="tagPopupBack" onClick={backToTagPopup}>&larr; Back to Tags</button></p>
                 <b>Create a New Tag</b>
                 <p>Tag Name</p>
-                <textarea id="tagName" name="tagName" rows="1"></textarea>
+                <textarea id="tagName" name="tagName" rows="1" ref={(textarea) => nameTextAreaRef = textarea}></textarea>
                 <p>Tag Description</p>
-                <textarea id="tagDesc" name="tagDesc"></textarea>
-                <p><button className="submitButton" onClick={console.log("TEMP CONFIRM")}>Confirm</button></p>
+                <textarea id="tagDesc" name="tagDesc" ref={(textarea) => descTextAreaRef = textarea}></textarea>
+                <p><button className="submitButton" onClick={createNewTagButton}>Confirm</button></p>
               </>}
               handleClose={() => {setCreateTagShowModal(!showCreateTagModal);}}
           />}

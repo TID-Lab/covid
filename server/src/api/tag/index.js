@@ -5,7 +5,7 @@
 const useDebug = require('debug');
 const routes = require('express').Router();
 const Organization = require('../../models/organization');
-const CustomTag = require('../../models/customtag.js')
+const CustomTag = require('../../models/customtag.js');
 
 const debug = useDebug('api');
 
@@ -24,7 +24,7 @@ routes.get('/', async (req, res) => {
 
   let tags;
   try {
-    tags = await CustomTag.find({organization: org});
+    tags = await CustomTag.find({ organization: org });
   } catch (err) {
     debug(`${err}`);
     res.status(500).send();
@@ -53,13 +53,13 @@ routes.post('/', async (req, res) => {
   CustomTag.create(req.body, function(err, tag) {
     err = Error.decode(err);
     if (err) {
-        console.log(err);
-        res.send(err.status, err.message);
+      console.log(err);
+      res.send(err.status, err.message);
     } else {
-        res.send(200, tag);
+      res.send(200, tag);
     }
+  });
 });
-})
 
 
 // Update a tag [TODO]
@@ -72,13 +72,13 @@ routes.post('/:id', async (req, res) => {
 
     // Update the values
     tag.save(function(err) {
-        if (err) {
-            res.send(err.status, err.message);
-        } else {
-            res.send(200);
-        }
+      if (err) {
+        res.send(err.status, err.message);
+      } else {
+        res.send(200);
+      }
     });
-});
+  });
 })
 
 
