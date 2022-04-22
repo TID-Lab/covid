@@ -179,9 +179,9 @@ const Post = (props) => {
     //mongo POST
 
     const new_tag = createTag({
-      name: tagName,
+      name: nameTextAreaRef.value,
       color: 'red',
-      description: tagDescription,
+      description: descTextAreaRef.value,
       organization: 'TEST',
       posts: ['62630ce3f8d21d00a87ce787']
     });

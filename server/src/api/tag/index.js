@@ -50,15 +50,14 @@ routes.post('/', async (req, res) => {
   }
 
   req.body.organization = org;
-  CustomTag.create(req.body, function(err, tag) {
-    err = Error.decode(err);
-    if (err) {
-      console.log(err);
-      res.send(err.status, err.message);
-    } else {
-      res.send(200, tag);
-    }
-  });
+  try {
+    console.log(req.body)
+    const tag = await CustomTag.create(req.body);
+    res.status(200).send(tag);
+  } catch(err) {
+    debug(`${err}`);
+    res.status(500).send(err);
+  }
 });
 
 
