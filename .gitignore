@@ -1,2 +1,4 @@
 .env
 .env.production
+
+mongostart.ps1
