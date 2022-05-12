@@ -1,10 +1,10 @@
 // import CuratedToggle from '../CuratedToggle';
-import AccountTypes from '../AccountTypes';
-import AccountLocation from '../AccountLocation';
-import AccountIdentity from '../AccountIdentity';
-import AccountCategories from '../AccountCategories';
+import AccountTypes from './AccountType';
+import AccountLocation from './AccountLocation';
+import AccountIdentity from './AccountIdentity';
+import AccountCategories from './AccountCategory';
 
-import './index.css';
+import './index.module.css';
 
 const AccountFilter = (props) => {
   const { accounts } = props;

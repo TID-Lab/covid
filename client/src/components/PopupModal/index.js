@@ -1,6 +1,6 @@
 // Followed https://www.cluemediator.com/create-simple-popup-in-reactjs
 import React from "react";
-import './index.css'
+import './index.module.css'
  
 const Popup = props => {
   return (

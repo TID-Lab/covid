@@ -1,7 +1,7 @@
 // import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-import './index.css';
+import './index.module.css';
 
 const Footer = () => {
   return (

@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 
 import Radio from '../Radio';
 
-import './index.css';
+import './index.module.css';
 
 const IDENTITIES = {
   'all': 'All',

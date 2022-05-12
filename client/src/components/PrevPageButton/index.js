@@ -1,4 +1,4 @@
-import './index.css';
+import './index.module.css';
 
 import { useDispatch } from 'react-redux';
 import { getPrevPage, page } from '../../api/post';

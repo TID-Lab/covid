@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { page, lastPage } from '../../api/post';
 
-import './index.css';
+import './index.module.css';
 
 import Post from '../Post';
 import PrevPageButton from '../PrevPageButton';

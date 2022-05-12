@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
-import './index.css';
+import './index.module.css';
 
 import DateFilter from '../DateFilter';
 import TopicFilter from '../TopicFilter';

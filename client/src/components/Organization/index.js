@@ -1,4 +1,4 @@
-import './index.css';
+import './index.module.css';
 
 import notify from '../../util/notify';
 import { deleteOrganization } from '../../api/org';

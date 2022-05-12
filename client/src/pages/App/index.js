@@ -7,14 +7,15 @@ import { useSelector } from 'react-redux';
 
 import './index.css';
 
-import Footer from '../Footer';
-import Dashboard from '../Dashboard';
-import Settings from '../Settings';
-import Login from '../Login';
-import PrivacyPolicy from '../PrivacyPolicy';
-import Terms from '../Terms';
-import DataDeletion from '../DataDeletion';
-import Header from '../Header';
+import Footer from 'components/Footer';
+import Login from 'components/Login';
+import Header from 'components/Header';
+
+import Dashboard from './Dashboard';
+import Settings from './Settings';
+import PrivacyPolicy from './PrivacyPolicy';
+import Terms from './Terms';
+import DataDeletion from './DataDeletion';
 
 // TODO: Style hyperlinks in the Terms, etc. pages
 

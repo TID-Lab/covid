@@ -1,4 +1,4 @@
-import './index.css';
+import './index.module.css';
 
 import useAuth from '../../hooks/auth';
 import LoginModal from '../LoginModal';

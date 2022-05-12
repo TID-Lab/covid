@@ -1,4 +1,4 @@
-import './index.css';
+import './index.module.css';
 
 import { useState, useEffect, useCallback } from 'react';
 import { authFetch } from '../../util/auth';

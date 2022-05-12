@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 
-import './index.css';
+import './index.module.css';
 
 import Toggle from '../Toggle';
 

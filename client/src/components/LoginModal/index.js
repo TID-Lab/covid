@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { fetchOrganizations } from '../../api/org';
 
-import './index.css';
+import './index.module.css';
 
 const LoginModal = () => {
   const [ orgs, setOrgs ] = useState([]);

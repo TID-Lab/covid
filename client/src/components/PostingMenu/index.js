@@ -1,4 +1,4 @@
-import './index.css';
+import './index.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import {useState, useEffect, useRef } from 'react';
 import { twitterLogin, twitterLogout } from '../../api/auth.js'
