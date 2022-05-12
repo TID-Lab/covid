@@ -42,13 +42,13 @@ Both applications...
 
 3. Install [nvm](https://github.com/nvm-sh/nvm). We'll use this to install Node.js properly in the next step.
 
-4. Install [ngrok](https://ngrok.com/). First you will have to create an account and then do the basic setup on their page. We'll use `ngrok` to open our localhost to the internet on an HTTPS-based web address. Both HTTPS and a public web address are neccessary for Twitter Oauth to work.
+3a. (Optional) Install [ngrok](https://ngrok.com/) IF you want to get Twitter login and posting working locally. First you will have to create an account and then do the basic setup on their page. We'll use `ngrok` to open our localhost to the internet on an HTTPS-based web address. Both HTTPS and a public web address are neccessary for Twitter Oauth to work.
 
-5. Open a terminal and `cd` to your clone of this repository. From there, run `nvm install` to install the right version of Node.js onto your machine.
+4. Open a terminal and `cd` to your clone of this repository. From there, run `nvm install` to install the right version of Node.js onto your machine.
 
-6. Run `npm install` in  the `fetch/`, `server/`, and `client/` folders to install their respective dependencies.
+5. Run `npm install` in  the `fetch/`, `server/`, and `client/` folders to install their respective dependencies.
 
-7. You're done! I'm proud of you. 😁👍
+6. You're done! I'm proud of you. 😁👍
 
 ### Setup
 
@@ -72,13 +72,13 @@ Running the dashboard in development requires starting up three separate Node.js
 
 Open up four terminal windows or tabs, and then execute the commands below in the order they are listed, one to each terminal. In each case, make sure to `cd` into the corresponding folder first.
 
-1. Run the `ngrok` proxy to reroute localhost onto a secure web address
+0. (Optional, for local Twitter Posting) Run the `ngrok` proxy to reroute localhost onto a secure web address
     - On Mac/Linux, run `./ngrok http http://localhost:3000   --host-header="localhost:3000"`
     - On Windows, run `ngrok.exe http http://localhost:3000 --host-header="localhost:3000"`
-    - Everytime you must update `CALLBACK_URL` in .env and your Twitter developer callbacks with the newly generated ngrok URL in HTTPS. The URL will look something like `https://fcd6-128-61-35-51.ngrok.io`.
-3. Run the `fetch` app with `npm run dev`
-4. Run the `server` app with `npm run dev`\*
-5. Run the `client` app with `npm start`
+    - Everytime you must update `CALLBACK_URL` in .env and inside your Twitter developer account "callbacks" section with the newly generated ngrok URL in HTTPS. The URL will look something like `https://fcd6-128-61-35-51.ngrok.io`.
+1. Run the `fetch` app with `npm run dev`
+2. Run the `server` app with `npm run dev`\*
+3. Run the `client` app with `npm start`
 
 \* A default admin user with the name `Georgia Tech` and password `letmein1` will be created when you run the `server` app for the first time.
 
