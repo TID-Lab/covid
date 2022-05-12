@@ -14,7 +14,7 @@ import Login from '../Login';
 import PrivacyPolicy from '../PrivacyPolicy';
 import Terms from '../Terms';
 import DataDeletion from '../DataDeletion';
-
+import Header from '../Header';
 
 // TODO: Style hyperlinks in the Terms, etc. pages
 
@@ -25,7 +25,7 @@ const App = () => {
     <div className='Root'>
       <div className='App'>
         <Router>
-
+          <Header />
           <Switch>
             <Route exact path="/">
               <Login />
