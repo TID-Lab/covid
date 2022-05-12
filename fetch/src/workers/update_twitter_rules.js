@@ -8,7 +8,7 @@
 const TwitterV1 = require('twit');
 const TwitterV2 = require('twitter-v2');
 const { parentPort } = require('worker_threads');
-const { COVID_KEYWORDS } = require('../../../constants');
+const { COVID_KEYWORDS } = require('../constants');
 const { fetch: { credentials: { twitter } } } = require('../util/config');
 
 const TWITTER_SCREEN_NAME = 'amyzlc';

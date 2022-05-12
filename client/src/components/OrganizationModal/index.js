@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { fetchOrganizations } from '../../api/org';
-import { useShowPopup } from '../../hooks/popup';
+import { fetchOrganizations } from 'api/org';
+import { useShowPopup } from 'hooks/popup';
 import NewOrganization from '../NewOrganization';
 import Organization from '../Organization';
 

@@ -1,8 +1,8 @@
 import './index.module.css';
 
 import { useDispatch } from 'react-redux';
-import { getNextPage } from '../../api/post';
-import notify from '../../util/notify';
+import { getNextPage } from 'api/post';
+import notify from 'util/notify';
 
 const NextPageButton = () => {
   const dispatch = useDispatch();

@@ -4,9 +4,9 @@
 
 const useDebug = require('debug');
 const routes = require('express').Router();
-const Organization = require('../../models/organization');
-const { hashPassword } = require('../../util/org');
-const { is } = require('../../util/org');
+const Organization = require('models/organization');
+const { hashPassword } = require('util/org');
+const { is } = require('util/org');
 
 const debug = useDebug('api');
 

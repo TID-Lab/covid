@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import './index.css';
+import './index.module.css';
 
 import Footer from 'components/Footer';
 import Login from 'components/Login';

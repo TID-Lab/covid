@@ -1,7 +1,7 @@
 import './index.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import {useState, useEffect, useRef } from 'react';
-import { twitterLogin, twitterLogout } from '../../api/auth.js'
+import { twitterLogin, twitterLogout } from 'api/auth.js'
 import queryString from 'query-string';
 import { useHistory } from 'react-router-dom'
 import PopupModal from '../PopupModal'

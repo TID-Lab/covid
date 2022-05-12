@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const {
   db: { name: dbName },
   api: { posts: { pageSize } },
-} = require('../../util/config');
+} = require('util/config');
 
 // Converts an HTTP request body to a Mongoose filter
 function bodyToFilter(body) {

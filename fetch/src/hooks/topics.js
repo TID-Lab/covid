@@ -1,6 +1,6 @@
 const AhoCorasick = require('aho-corasick-node');
 
-const { COVID_TOPICS } = require('../../../constants');
+const { COVID_TOPICS } = require('../constants');
 
 // Assembles Aho Corasick automatons for optimized substring search.
 function assembleAutomatons() {

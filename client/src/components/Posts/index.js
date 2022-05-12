@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { page, lastPage } from '../../api/post';
+import { page, lastPage } from 'api/post';
 
 import './index.module.css';
 

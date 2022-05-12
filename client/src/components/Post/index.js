@@ -1,9 +1,9 @@
 import './index.module.css';
 
 import { useState, useEffect, useCallback } from 'react';
-import { authFetch } from '../../util/auth';
+import { authFetch } from 'util/auth';
 import { useDispatch, useSelector } from 'react-redux';
-import store from '../../store'
+import store from 'store'
 
 const embedHTMLCache = [];
 

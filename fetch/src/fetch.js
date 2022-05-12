@@ -2,7 +2,7 @@ const { Downstream, builtin } = require('downstream');
 const useDebug = require('debug');
 const { fetch: { credentials } } = require('./util/config');
 const { get, set } = require('./util/settings');
-const { COVID_KEYWORDS } = require('../../constants');
+const { COVID_KEYWORDS } = require('constants');
 
 // hooks
 const addTopics = require('./hooks/topics');

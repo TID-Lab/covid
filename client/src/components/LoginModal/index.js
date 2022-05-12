@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchOrganizations } from '../../api/org';
+import { fetchOrganizations } from 'api/org';
 
 import './index.module.css';
 

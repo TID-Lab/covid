@@ -3,9 +3,9 @@
 const useDebug = require('debug');
 const session = require('express-session');
 const routes = require('express').Router();
-const Organization = require('../../models/organization');
-const { comparePassword } = require('../../util/org');
-const oauth = require('../../util/oauth-promise')(process.env.CALLBACK_URL || "https://peach.ipat.gatech.edu/social-media-dashboard");
+const Organization = require('models/organization');
+const { comparePassword } = require('util/org');
+const oauth = require('util/oauth-promise')(process.env.CALLBACK_URL || "https://peach.ipat.gatech.edu/social-media-dashboard");
 
 const debug = useDebug('api');
 

@@ -2,7 +2,7 @@
 
 const useDebug = require('debug');
 const routes = require('express').Router();
-const Topic = require('../../models/topic');
+const Topic = require('models/topic');
 
 const debug = useDebug('api');
 

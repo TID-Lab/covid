@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { editOrganization } from '../../api/org';
-import notify from '../../util/notify';
+import { editOrganization } from 'api/org';
+import notify from 'util/notify';
 
-import { useHidePopup } from '../../hooks/popup';
+import { useHidePopup } from 'hooks/popup';
 
 import './index.module.css';
 

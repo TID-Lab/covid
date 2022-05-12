@@ -1,5 +1,5 @@
 import './index.css'
-import useAuth from '../../hooks/auth';
+import useAuth from 'hooks/auth';
 import LandingFooter from '../LandingFooter';
 import TextLogo from '../TextLogo';
 // TODO: Separate out into several components
