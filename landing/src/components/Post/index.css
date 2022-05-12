@@ -1,0 +1,82 @@
+.Post {
+  margin: 20px;
+  flex-shrink: 1;
+  min-width: 400px;
+}
+
+.Post > * {
+  width: 100%;
+}
+
+.Post > .cover {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+.Post > .container {
+  /* background-color: white; */
+  /* border-radius: 20px; */
+  height: fit-content;
+}
+
+.Post > .container.facebook {
+  background-color: white;
+}
+
+.Post > .cover > img {
+  height: 80px;
+  animation-duration: 2s;
+  animation-name: pulse;
+  animation-iteration-count: infinite;
+}
+
+.Post > .container> .content > * {
+  margin: 0px !important;
+}
+
+.Post .hidden {
+  display: none;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+.Post > .annotations {
+  height: fit-content;
+}
+
+.Post .column {
+  float: left;
+  padding: 10px;
+}
+
+.Post .column p {
+  margin: 0;
+}
+
+
+.Post .left {
+  width: 70%;
+}
+
+.Post .retweet a {
+  text-decoration: underline;
+}
+
+.Post .submitButton {
+  background-color: white;
+}

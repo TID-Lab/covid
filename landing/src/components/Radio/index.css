@@ -1,0 +1,15 @@
+.Radio {
+  margin: 10px 0 10px 0;
+}
+
+.RadioImage {
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+}
+
+.Radio label {
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+}

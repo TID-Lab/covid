@@ -1,0 +1,15 @@
+.PageFooter {
+  flex: 0 0 30px;
+  align-self: flex-end;
+  background-color: white;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: flex-end;
+  border-top: 1px solid lightgray;
+  font-size: 12px;
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-top-left-radius: 5px;
+}

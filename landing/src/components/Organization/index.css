@@ -1,0 +1,16 @@
+.Organization {
+  margin-top: 5px;
+}
+
+.Organization span {
+  background-color: #ddd;
+  padding: 5px;
+  margin-right: 10px;
+  font-size: 16px;
+  border-radius: 3px;
+  user-select: none;
+}
+
+.Organization .Edit {
+  margin-right: 10px;
+}

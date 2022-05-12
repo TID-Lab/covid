@@ -1,0 +1,12 @@
+.LabeledDate {
+  margin: 5px 0 5px 0;
+}
+
+.LabeledDate input {
+  width: 100%;
+  margin-top: 5px;
+}
+
+.LabeledDate label {
+  font-size: 15px;
+}

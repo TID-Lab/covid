@@ -1,0 +1,9 @@
+.OrganizationSettings {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: auto;
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
