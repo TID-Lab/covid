@@ -27,7 +27,11 @@ const App = () => {
         <Router>
           <Header />
           <Switch>
-            <Route exact path="/">
+            <Route exact path="/"> 
+              <Login />
+              <Footer />
+            </Route>
+            <Route path="/login">
               <Login />
               <Footer />
             </Route>
@@ -37,7 +41,6 @@ const App = () => {
             <Route path="/settings">
               <Settings />
             </Route>
-          
             <Route path="/privacy-policy">
               <PrivacyPolicy />
             </Route>
