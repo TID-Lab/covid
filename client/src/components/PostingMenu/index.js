@@ -15,7 +15,7 @@ function checkOAuth(history) {
     const {oauth_token, oauth_verifier} = queryString.parse(window.location.search); 
     
     if (oauth_token && oauth_verifier) {
-      history.push('/social-media-dashboard')
+      history.push('/dashboard')
       try {
         //Oauth Step 3
         const res = await fetch('/api/auth/twitter/oauth/access_token', {

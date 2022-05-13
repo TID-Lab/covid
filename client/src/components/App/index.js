@@ -35,7 +35,7 @@ const App = () => {
               <Login />
               <Footer />
             </Route>
-            <Route path="/social-media-dashboard">
+            <Route path="/dashboard">
               <Dashboard />
             </Route>
             <Route path="/settings">
