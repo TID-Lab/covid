@@ -2,8 +2,8 @@
 
 const routes = require('express').Router();
 const axios = require('axios').default;
-const { api: { proxy: { facebookToken, instagramToken } } } = require('util/config');
-const oauth = require('util/oauth-promise')(process.env.CALLBACK_URL || "https://peach.ipat.gatech.edu/dashboard");
+const { api: { proxy: { facebookToken, instagramToken } } } = require('../../util/config');
+const oauth = require('../../util/oauth-promise')(process.env.CALLBACK_URL || "https://peach.ipat.gatech.edu/dashboard");
 
 // A proxy for the Twitter oEmbed API
 routes.get('/twitter', async (req, res) => {
