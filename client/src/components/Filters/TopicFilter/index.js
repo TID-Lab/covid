@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 
 import * as c from './index.module.css';
 
-import Radio from '../Radio';
+import Radio from 'components/Radio';
 
 const COVID_TOPICS = { // temporary
   'all': 'All',

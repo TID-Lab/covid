@@ -4,10 +4,10 @@ import { useEffect } from 'react';
 import * as c from './index.module.css';
 
 
-import DateFilter from '../DateFilter';
-import TopicFilter from '../TopicFilter';
-import AccountFilters from '../AccountFilters';
-import PlatformFilter from '../PlatformFilter';
+import DateFilter from './DateFilter';
+import TopicFilter from './TopicFilter';
+import AccountFilters from './AccountFilters';
+import PlatformFilter from './PlatformFilter';
 import { getPosts } from 'api/post';
 import notify from 'util/notify';
 

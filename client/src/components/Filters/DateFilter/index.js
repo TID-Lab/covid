@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import * as c from './index.module.css';
 
 
-import LabeledDate from '../LabeledDate';
+import LabeledDate from 'components/LabeledDate';
 
 const DateFilter = (props) => {
   const { from, to } = props.dates;

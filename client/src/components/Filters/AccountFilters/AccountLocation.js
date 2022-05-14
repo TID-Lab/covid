@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 
-import Radio from '../Radio';
+import Radio from 'components/Radio';
 
 import * as c from './index.module.css';
 

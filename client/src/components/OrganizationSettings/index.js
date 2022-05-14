@@ -1,4 +1,4 @@
-import OrganizationModal from '../OrganizationModal';
+import OrganizationModal from './OrganizationModal';
 import * as c from './index.module.css';
 
 

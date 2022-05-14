@@ -4,7 +4,7 @@ import { page, lastPage } from 'api/post';
 import * as c from './index.module.css';
 
 
-import Post from '../Post';
+import Post from './Post';
 import PrevPageButton from '../PrevPageButton';
 import NextPageButton from '../NextPageButton';
 
