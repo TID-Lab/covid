@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import Radio from '../Radio';
 
 import * as c from './index.module.css';
-;
+
 
 const AccountLocation = (props) => {
   const { location } = props;

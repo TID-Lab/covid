@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import Radio from '../Radio';
 
 import * as c from './index.module.css';
-;
 
 const AccountTypes = (props) => {
   const { institutions } = props;
