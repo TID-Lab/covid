@@ -1,7 +1,8 @@
 import { useSelector } from 'react-redux';
 import { page, lastPage } from 'api/post';
 
-import './index.module.css';
+import * as c from './index.module.css';
+
 
 import Post from '../Post';
 import PrevPageButton from '../PrevPageButton';
@@ -11,7 +12,7 @@ const Posts = () => {
   const posts = useSelector(state => state.posts);
 
   return (
-    <div className='Posts' id='Posts'>
+    <div className={c.Posts} id='Posts'>
 
         {(page > 0) ? <PrevPageButton /> : ''}
 

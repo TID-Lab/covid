@@ -1,4 +1,4 @@
-import './index.module.css';
+import * as c from './index.module.css';
 
 import { useState, useEffect, useCallback } from 'react';
 import { authFetch } from 'util/auth';
@@ -135,26 +135,26 @@ const Post = (props) => {
   // }
 
   return (
-    <div className='Post'>
+    <div className={c.Post}>
       {(!isRendered) ? (
-        <div className='cover'>
+        <div className={c.cover}>
           <img src={coverImagePath} alt={platform} />
         </div>
       ): ''}
       {(retweet) ? (
-        <div className='retweet'>
+        <div className={c.retweet}>
           Retweeted by <a href={'https://twitter.com/' + data.author} target='_blank' rel='noreferrer'>@{data.author}</a>:
         </div>
       ): ''}
       <div className={containerClassName}>
         <div className={embedClass} id={elementID} dangerouslySetInnerHTML={{__html: embedHTML}}></div>
       </div>
-      <div className='annotations'>
-        <div className='column left'>
+      <div className={c.annotations}>
+        <div className={`${c.column} ${c.left}`}>
           <p><b>Topics:</b> {data.topics.map(topic => COVID_TOPICS[topic]).filter(Boolean).join(', ')}</p>
           <p><b>Account:</b> {data.tags.map(tag => TAGS[tag]).filter(Boolean).join(', ')}</p>
         </div>
-        <div className='column right'>
+        <div className={`${c.column} ${c.right}`}>
           <form onSubmit={createPost}>
             <button className='submitButton' type='submit'>Use as basis of a post</button>
           </form>

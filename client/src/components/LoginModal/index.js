@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { fetchOrganizations } from 'api/org';
 
-import './index.module.css';
+import * as c from './index.module.css';
 
 const LoginModal = () => {
   const [ orgs, setOrgs ] = useState([]);
@@ -14,7 +14,7 @@ const LoginModal = () => {
   }, []);
 
   return (
-  <div className='Modal LoginModal'>
+  <div className={`Modal ${c.LoginModal}`}>
     <img src='/images/projectpeach.png' alt='Project Peach'></img>
     <h1>Organization Login</h1>
     <form method='post' action='/api/auth/login'>

@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
-import './index.module.css';
+import * as c from './index.module.css';
+
 
 import DateFilter from '../DateFilter';
 import TopicFilter from '../TopicFilter';
@@ -24,7 +25,7 @@ const Filters = () => {
   }, [ filters, dispatch ])
 
   return (
-    <div className='Filters'>
+    <div className={c.Filters}>
         <DateFilter dates={dates } />
         <TopicFilter topic={topic} />
         <AccountFilters accounts={accounts} />

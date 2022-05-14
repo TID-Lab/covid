@@ -5,17 +5,17 @@ import {
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import './index.module.css';
+import * as c from './index.module.css';
 
 import Footer from 'components/Footer';
 import Login from 'components/Login';
 import Header from 'components/Header';
 
-import Dashboard from './Dashboard';
-import Settings from './Settings';
-import PrivacyPolicy from './PrivacyPolicy';
-import Terms from './Terms';
-import DataDeletion from './DataDeletion';
+import Dashboard from 'pages/Dashboard';
+import Settings from 'pages/Settings';
+import PrivacyPolicy from 'pages/PrivacyPolicy';
+import Terms from 'pages/Terms';
+import DataDeletion from 'pages/DataDeletion';
 
 // TODO: Style hyperlinks in the Terms, etc. pages
 
@@ -23,7 +23,7 @@ const App = () => {
   const popupModal = useSelector(state => state.popup);
 
   return (
-    <div className='Root'>
+    <div className={c.Root}>
       <div className='App'>
         <Router>
           <Header />
@@ -52,7 +52,7 @@ const App = () => {
 
         </Router>
       </div>
-      <div id='Popup'>
+      <div id='Popup' className={c.Popup}>
         {popupModal}
       </div>
     </div>

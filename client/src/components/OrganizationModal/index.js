@@ -4,7 +4,7 @@ import { useShowPopup } from 'hooks/popup';
 import NewOrganization from '../NewOrganization';
 import Organization from '../Organization';
 
-import './index.module.css';
+import * as c from './index.module.css';
 
 const OrganizationModal = () => {
   const [ orgs, setOrgs ] = useState([]);
@@ -46,9 +46,9 @@ const OrganizationModal = () => {
   }
 
   return (
-    <div className='Modal OrganizationModal'>
+    <div className={`Modal ${c.OrganizationModal}`}>
         <h1>Organization Settings</h1>
-        <div className='Row Header'>
+        <div className={`Row ${c.Header}`}>
           <p><b>{orgs.length} Organizations</b></p>
           <button onClick={showCreateModal}>New Organization</button>
         </div>

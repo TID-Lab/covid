@@ -1,4 +1,5 @@
-import './index.module.css';
+import * as c from './index.module.css';
+
 import { useDispatch, useSelector } from 'react-redux';
 import {useState, useEffect, useRef } from 'react';
 import { twitterLogin, twitterLogout } from 'api/auth.js'
@@ -212,7 +213,7 @@ const PostingMenu = () => {
 
   // need to figure out disabling login button since spamming it sends multiple requests (look into event.preventDefault())
   return (
-    <div id="flyoutMenu" className={visibility}>
+    <div id="flyoutMenu" className={`${visibility} ${c.flyoutmenu}`}>
       <div className="inputMenu">
         <div style={{display: "flex", flexDirection: "row"}}>
           <b style={{margin: "0", marginLeft: "1rem", marginRight: "1rem", paddingTop: "8px"}}> Search Trusted Resources </b>

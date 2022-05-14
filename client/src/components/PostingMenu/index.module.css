@@ -1,4 +1,4 @@
-#flyoutMenu {
+.flyoutMenu {
   border-left:2px solid grey;
   width: 30vw;
   height: 100vh;
@@ -13,22 +13,22 @@
   overflow-y: auto;
 }
  
-#flyoutMenu.hide {
+.flyoutMenu.hide {
   transform: translate3d(30vw, 0, 0);
 }
  
-#flyoutMenu.show {
+.flyoutMenu.show {
   transform: translate3d(0, 0, 0);
   overflow: hidden;
 }
  
-#flyoutMenu h2 a {
+.flyoutMenu h2 a {
   color: #333;
   margin-left: 15px;
   text-decoration: none;
 }
  
-#flyoutMenu h2 a:hover {
+.flyoutMenu h2 a:hover {
   text-decoration: underline;
 }
 
@@ -48,7 +48,7 @@
   margin: 0.8vw;
 }
 
-#postInput {
+.postInput {
   margin:.8vw;
   width: 27vw;
   height: 30vh;
@@ -83,14 +83,14 @@
   position:relative;
 }
 
-#the-count {
+.the-count {
   float: right;
   padding: 0.1rem 0 0 0;
   font-size: 0.875rem;
   text-align: right;
 }
 
-#image_uploads {
+.image_uploads {
   border: 1px solid #ccc;
   display: inline-block;
   padding: 6px 12px;

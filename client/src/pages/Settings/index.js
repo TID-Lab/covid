@@ -4,7 +4,7 @@ import {
     useRouteMatch,
   } from "react-router-dom";
 
-import './index.css';
+import * as c from './index.module.css';
 
 import OrganizationSettings from 'components/OrganizationSettings';
 import TopicSettings from "components/TopicSettings";
@@ -16,7 +16,7 @@ const Settings = () => {
     let { path } = useRouteMatch();
 
     return (
-    <div className='Root Settings'>
+    <div className={`Root ${c.Settings}`}>
         <Switch>
             <Route exact path={path}>
                 TODO

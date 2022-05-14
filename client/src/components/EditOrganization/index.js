@@ -4,7 +4,8 @@ import notify from 'util/notify';
 
 import { useHidePopup } from 'hooks/popup';
 
-import './index.module.css';
+import * as c from './index.module.css';
+
 
 const EditOrganization = (props) => {
   const { _id, name:initName, onEdit } = props;
@@ -47,9 +48,9 @@ const EditOrganization = (props) => {
   }
 
   return (
-    <div className='Modal EditOrganization'>
+    <div className={`Modal ${c.EditOrganization}`}>
       <h1>Edit Organization</h1>
-      <input className='Name' type='text' value={name} onChange={onNameChange} placeholder='Name'></input>
+      <input className={c.Name} type='text' value={name} onChange={onNameChange} placeholder='Name'></input>
       <input type='password' value={password} onChange={onPasswordChange} placeholder='New Password'></input>
       <p>Leave blank to keep the current password.</p>
       <div>

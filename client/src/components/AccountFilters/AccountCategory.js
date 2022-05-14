@@ -2,7 +2,8 @@ import { useDispatch } from 'react-redux';
 
 import Radio from '../Radio';
 
-import './index.module.css';
+import * as c from './index.module.css';
+
 
 const CATEGORIES = {
   'all': 'All',
@@ -26,7 +27,7 @@ const AccountCategories = (props) => {
 
 
   return (
-    <div className='AccountFilter'>
+    <div className={c.AccountFilter}>
       <h4>Account categories</h4>
       {Object.keys(CATEGORIES).map(id => (
         <Radio key={id} id={id} name={CATEGORIES[id]} selected={category} onClick={onRadioClick}/>

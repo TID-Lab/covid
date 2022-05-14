@@ -1,4 +1,5 @@
-import './index.module.css';
+import * as c from './index.module.css';
+;
 
 const Toggle = (props) => {
   const {

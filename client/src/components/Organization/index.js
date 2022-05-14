@@ -1,4 +1,4 @@
-import './index.module.css';
+import * as c from './index.module.css';
 
 import notify from 'util/notify';
 import { deleteOrganization } from 'api/org';
@@ -37,7 +37,7 @@ const Organization = (props) => {
   }
   
   return (
-    <div className='Row Organization'>
+    <div className={`Row ${c.Organization}`}>
       <div>
         <span>{role}</span>
         {name}

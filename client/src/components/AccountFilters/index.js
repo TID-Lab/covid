@@ -4,7 +4,8 @@ import AccountLocation from './AccountLocation';
 import AccountIdentity from './AccountIdentity';
 import AccountCategories from './AccountCategory';
 
-import './index.module.css';
+import * as c from './index.module.css';
+
 
 const AccountFilter = (props) => {
   const { accounts } = props;

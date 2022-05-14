@@ -1,4 +1,5 @@
-import './index.module.css';
+import * as c from './index.module.css';
+;
 
 
 const Radio = (props) => {
@@ -13,9 +14,9 @@ const Radio = (props) => {
   }
 
   return (
-    <div className='Radio' onClick={onRadioClick}>
+    <div className={c.Radio} onClick={onRadioClick}>
       <label>
-          <svg viewBox="0 0 100 100" className="RadioImage" height="100" width="100" stroke={color} fill={color}>
+          <svg viewBox="0 0 100 100" className={c.RadioImage} height="100" width="100" stroke={color} fill={color}>
             <circle cx="50" cy="50" r="40" strokeWidth="15" fill="rgb(0,0,0,0)" />
             {
               isSelected ?

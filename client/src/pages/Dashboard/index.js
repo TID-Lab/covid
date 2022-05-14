@@ -1,4 +1,5 @@
-import './index.module.css';
+import * as c from './index.module.css';
+
 
 import Filters from 'components/Filters';
 import Posts from 'components/Posts';
@@ -9,7 +10,7 @@ const Dashboard = () => {
   useAuth();
 
   return (
-    <div className='Dashboard'>
+    <div className={c.Dashboard}>
       <Filters />
       <Posts />
       <PostingMenu />

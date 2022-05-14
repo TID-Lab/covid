@@ -4,7 +4,7 @@ import notify from 'util/notify';
 
 import { useHidePopup } from 'hooks/popup';
 
-import './index.module.css';
+import * as c from './index.module.css';
 
 const ROLES = [ 'org', 'admin' ];
 
@@ -57,7 +57,7 @@ const NewOrganization = (props) => {
   }
 
   return (
-    <div className='Modal NewOrganization'>
+    <div className={`Modal ${c.NewOrganization}`}>
       <h1>New Organization</h1>
       <select onChange={onRoleChange} value={role}>
         {ROLES.map(role => (
