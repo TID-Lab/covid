@@ -28,17 +28,20 @@ const App = () => {
         <Router>
           <Header />
           <Switch>
-            <Route exact path="/">
+            <Route exact path="/"> 
               <Login />
               <Footer />
             </Route>
-            <Route path="/social-media-dashboard">
+            <Route path="/login">
+              <Login />
+              <Footer />
+            </Route>
+            <Route path="/dashboard">
               <Dashboard />
             </Route>
             <Route path="/settings">
               <Settings />
             </Route>
-          
             <Route path="/privacy-policy">
               <PrivacyPolicy />
             </Route>

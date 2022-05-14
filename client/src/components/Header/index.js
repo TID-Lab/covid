@@ -14,7 +14,7 @@ const Header = () => {
   function onMenuClick() {
     dispatch({type: 'postingMenu/set', payload: !postingMenu})
   }
-  if (pathname === '/social-media-dashboard') {
+  if (pathname === '/dashboard') {
     return (
       <div className={c.PageHeader}>
         <Logo />

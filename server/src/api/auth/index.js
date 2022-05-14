@@ -5,7 +5,7 @@ const session = require('express-session');
 const routes = require('express').Router();
 const Organization = require('models/organization');
 const { comparePassword } = require('util/org');
-const oauth = require('util/oauth-promise')(process.env.CALLBACK_URL || "https://peach.ipat.gatech.edu/social-media-dashboard");
+const oauth = require('util/oauth-promise')(process.env.CALLBACK_URL || "https://peach.ipat.gatech.edu/dashboard");
 
 const debug = useDebug('api');
 
@@ -50,7 +50,7 @@ routes.post('/login', async (req, res) => {
   const { _id } = org;
   req.session.org = _id;
 
-  res.redirect('/social-media-dashboard');
+  res.redirect('/dashboard');
 });
 
 
@@ -59,7 +59,7 @@ routes.post('/login', async (req, res) => {
  */
 routes.post('/logout', async (req, res) => {
   req.session.org = undefined;
-  res.redirect('/social-media-dashboard');
+  res.redirect('/dashboard');
 });
 
 /**
