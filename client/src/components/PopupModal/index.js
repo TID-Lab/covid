@@ -5,9 +5,9 @@ import * as c from './index.module.css';
  
 const Popup = props => {
   return (
-    <div className={c.popup-box}>
+    <div className={c.popup_box}>
       <div className={c.box}>
-        <span className="close-icon" onClick={props.handleClose}>x</span>
+        <span className={c.close_icon} onClick={props.handleClose}>x</span>
         {props.content}
       </div>
     </div>

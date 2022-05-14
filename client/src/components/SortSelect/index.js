@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 
 import * as c from './index.module.css';
-;
 
 const SORT_BY = {
   'engagementNormed': 'Most engagement (scaled)',

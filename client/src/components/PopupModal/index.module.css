@@ -1,5 +1,5 @@
 /* Popup style */
-.popup-box {
+.popup_box {
   position: fixed;
   background: #00000050;
   width: 100%;
@@ -22,7 +22,7 @@
   overflow: auto;
 }
  
-.close-icon {
+.close_icon {
   content: 'x';
   cursor: pointer;
   position: fixed;

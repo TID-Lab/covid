@@ -1,5 +1,4 @@
 import * as c from './index.module.css';
-;
 
 
 const Radio = (props) => {

@@ -13,11 +13,11 @@
   overflow-y: auto;
 }
  
-.flyoutMenu.hide {
+.hide {
   transform: translate3d(30vw, 0, 0);
 }
  
-.flyoutMenu.show {
+.show {
   transform: translate3d(0, 0, 0);
   overflow: hidden;
 }
@@ -73,7 +73,7 @@
   /* border-color: white; */
   /* margin-right: 2rem; */
 }
-.gcse-search {
+.gcse_search {
   height: 30wh;
 }
 .preview {	
@@ -83,7 +83,7 @@
   position:relative;
 }
 
-.the-count {
+.the_count {
   float: right;
   padding: 0.1rem 0 0 0;
   font-size: 0.875rem;

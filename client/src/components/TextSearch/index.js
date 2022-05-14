@@ -1,7 +1,6 @@
 import { useDispatch } from 'react-redux';
 
 import * as c from './index.module.css';
-;
 
 let timeout
 
