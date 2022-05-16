@@ -23,8 +23,8 @@ const AboutPage = (props) => {
       </ul>
       <h2 className="DataSource"> Usage Information </h2>
       <ul>
-        <li> <a href="https://peach.ipat.gatech.edu/social-media-dashboard/privacy-policy"  target='_blank' rel='noopener noreferrer'> Privacy Policy </a> </li>
-        <li> <a href="https://peach.ipat.gatech.edu/social-media-dashboard/terms"  target='_blank' rel='noopener noreferrer'> Terms and Conditions </a> </li>
+        <li> <a href="https://peach.ipat.gatech.edu/dashboard/privacy-policy"  target='_blank' rel='noopener noreferrer'> Privacy Policy </a> </li>
+        <li> <a href="https://peach.ipat.gatech.edu/dashboard/terms"  target='_blank' rel='noopener noreferrer'> Terms and Conditions </a> </li>
       </ul>
       <h1 className="AboutTitle"> Georgia Capacity Modeling Dashboard </h1>
       <h2 className="DataSource"> Data Sources </h2>

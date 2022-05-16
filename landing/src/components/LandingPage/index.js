@@ -38,7 +38,7 @@ const LandingPage = (props) => {
               <h1>Georgia Social Media Monitoring</h1>
               <h2> This dashboard aggregates COVID-19 related social media posts to effectively target misformation online. </h2>
               <a className="BlueButton" href="/login">See Dashboard</a>
-              {/* <a className="BlueButton" href="https://peach.ipat.gatech.edu/social-media-dashboard" target='_blank' rel='noopener noreferrer'>See Dashboard</a> */}
+              {/* <a className="BlueButton" href="https://peach.ipat.gatech.edu/dashboard" target='_blank' rel='noopener noreferrer'>See Dashboard</a> */}
             </div>
             
           <div className='DashboardBlurb'>

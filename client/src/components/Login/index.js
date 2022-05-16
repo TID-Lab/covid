@@ -4,7 +4,7 @@ import useAuth from '../../hooks/auth';
 import LoginModal from '../LoginModal';
 
 const Login = () => {
-  useAuth(false, '/social-media-dashboard');
+  useAuth(false, '/dashboard');
 
   return (
   <div className='Login'>

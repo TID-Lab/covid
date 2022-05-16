@@ -18,7 +18,7 @@
   display: none;
 }
 
-/* @font-face {
+@font-face {
   font-family: 'SF-Pro-Display';
   src: local('SF-Pro-Display'), url(../../fonts//sf-pro-fonts/SF-Pro-Display-Regular.otf) format('opentype');
 }
@@ -27,4 +27,4 @@
   font-family: 'SF-Pro-Display';
   font-weight: 700;
   src: local('SF-Pro-Display'), url(../../fonts//sf-pro-fonts/SF-Pro-Display-Bold.otf) format('opentype');
-} */
+}

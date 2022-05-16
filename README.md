@@ -82,6 +82,8 @@ Open up four terminal windows or tabs, and then execute the commands below in th
 
 \* A default admin user with the name `Georgia Tech` and password `letmein1` will be created when you run the `server` app for the first time.
 
+If you want to run the landing page, do the above but with step 5 inside the `landing` folder. If, for some reason, you want to run both the dashboard and landing pages in development, you will need to host them on different ports (npm should automatically prompt you to try 3001).
+
 ## Maintenance
 
 To do any maintenance on the production deployment of the dashboard, SSH into the virtual machine where the production dashboard is being hosted first.
@@ -133,7 +135,9 @@ First, make sure that you've pushed those changes to this GitHub repo, and then 
 
 **If you made changes...**
 
-- in the `client/` folder, **do nothing**. There should be a git hook on the production VM that automatically builds the client-side React application for you with the new code. If you're paranoid, just run `npm run build` from the `client/` folder to manually build the React app.
+- in the `client/` folder, **do nothing**. There should be a git hook on the production VM that automatically builds the client-side React application for you with the new code. If you're paranoid, just run `npm run build` from the `client/` folder to manually build the React app. (NOTE: haven't had luck with the git hook, so run this to be safe.)
+
+- in the `landing/` folder, **do nothing**. There should be a git hook on the production VM that automatically builds the client-side React application for you with the new code. If you're paranoid, just run `npm run build` from the `landing/` folder to manually build the React app. (NOTE: haven't had luck with the git hook, so run this to be safe.)
 
 - in the `fetch/` folder, run `pm2 restart fetch`.
 

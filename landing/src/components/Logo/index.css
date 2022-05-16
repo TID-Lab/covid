@@ -1,0 +1,21 @@
+.Logo {
+  flex: 0 0 250px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  user-select: none;
+  /* font-size: 80%; */
+}
+
+.Logo img {
+  height: 40px;
+  margin-left: 10px;
+}
+
+.Logo b {
+  font-weight: 900;
+}
+
+.Logo h3 {
+  margin-left: 10px;
+}
