@@ -31,3 +31,8 @@
 .PageButton:hover button {
   transform: scale(1.25);
 }
+
+.NoResults {
+  display: flex;
+  justify-content: center;
+}
