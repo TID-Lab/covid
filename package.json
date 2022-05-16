@@ -1,0 +1,6 @@
+{
+  "name": "@tid-lab/covid",
+  "devDependencies": {
+    "cypress": "^9.6.1"
+  }
+}

@@ -1,4 +1,5 @@
 {
+  "name": "@tid-lab/covid-fetch",
   "scripts": {
     "start": "node src/app.js",
     "dev": "cross-env DEBUG=core,db,fetch node src/app.js",
