@@ -5,8 +5,7 @@ import './index.css';
 const ClearFilters = () => {
   const dispatch = useDispatch();
   const filters = useSelector(state => state.filters);
-  const { dates, platforms } = filters;
-  const { from, to } = dates;
+  const { platforms } = filters;
 
   function onClick() {
     dispatch({ type: 'dates/fromSet', payload: ''});
