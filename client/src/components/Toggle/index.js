@@ -15,9 +15,9 @@ const Toggle = (props) => {
   const strokeColor = toggled ? 'var(--body-primary-orange)': '#868686';
 
   return (
-    <div className='Toggle' onClick={onClick}>
+    <div className={c.Toggle} onClick={onClick}>
       <label>
-        <svg className="ToggleImage" viewBox="0 0 100 100" fill={fillColor} stroke={strokeColor}>
+        <svg className={c.ToggleImage} viewBox="0 0 100 100" fill={fillColor} stroke={strokeColor}>
           <rect x="10" y="10" width="80" height="80" strokeWidth="15" rx="10" ry="10" />
           {
             toggled ?

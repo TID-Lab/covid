@@ -18,7 +18,7 @@ const NextPageButton = () => {
   }
 
   return (
-    <div className={c.ageButton} onClick={onClick}>
+    <div className={c.PageButton} onClick={onClick}>
       <button>Next Page</button>
     </div>
   );
