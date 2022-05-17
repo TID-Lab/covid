@@ -1,5 +1,9 @@
 {
   "name": "@tid-lab/covid",
+  "scripts": {
+    "test:dev": "cypress open",
+    "test": "cypress run"
+  },
   "devDependencies": {
     "cypress": "^9.6.1"
   }
