@@ -1,0 +1,22 @@
+.TextLogo {
+  flex: 0 0 5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  user-select: none;
+  /* font-size: 80%; */
+  color: #FFFFFF;
+}
+
+.TextLogo img {
+  height: 80px;
+  margin-left: 10px;
+}
+
+.TextLogo b {
+  font-weight: 900;
+}
+
+.TextLogo h3 {
+  margin-left: 10px;
+}

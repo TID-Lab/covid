@@ -1,10 +1,8 @@
 import { useLocation } from 'react-router-dom';
-import './index.css';
-
+import * as c from './index.module.css';
 import Logo from '../Logo';
 import SortSelect from '../SortSelect';
 import TextSearch from '../TextSearch';
-import LandingHeader from '../LandingHeader';
 // import { Button } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -18,23 +16,25 @@ const Header = () => {
   }
   if (pathname === '/social-media-dashboard') {
     return (
-      <div className='PageHeader'>
+      <div className={c.PageHeader}>
         <Logo />
         <SortSelect />
         <TextSearch />
         <button style={{marginLeft: "auto", marginRight: "1.5rem", marginTop: "0.5rem", marginBottom: "0.5rem", maxHeight: "3rem"}} onClick={ onMenuClick }> + Create Post </button>
       </div>
     )
-  } else if (pathname.includes('/social-media-dashboard') || pathname.includes('/login')) {
+  } else if (pathname === '/' ) {
     return (
-      <div className='PageHeader'>
+      <div className={c.PageHeader}>
         <Logo />
       </div>
-    )
-  }
-   else {
-      return (<LandingHeader />)
-  }
+    ) 
+  } else {
+      return ( // return nothing for now LOL
+        <div></div>
+      )
+    }
 }
+
 
 export default Header;

@@ -1,16 +1,16 @@
 // import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-import './index.css';
+import * as c from './index.module.css';
 
 const Footer = () => {
   return (
-    <div className='PageFooter'>
-      <Link to='/social-media-dashboard/privacy-policy'>Privacy Policy</Link>
+    <div className={c.PageFooter}>
+      <Link to='/privacy-policy'>Privacy Policy</Link>
       &nbsp; &middot; &nbsp;
-      <Link to='/social-media-dashboard/terms'>Terms of Service</Link>
+      <Link to='/terms'>Terms of Service</Link>
       &nbsp; &middot; &nbsp;
-      <Link to='/social-media-dashboard/data-deletion'>Data Deletion</Link>
+      <Link to='/data-deletion'>Data Deletion</Link>
     </div>
   )
 }
