@@ -31,7 +31,7 @@ const Header = () => {
     )
   } else if (pathname === '/' ) {
     return (
-      <div className={c.PageHeader}>
+      <div className="flex bg-white items-center px-2 py-1 border-b border-gray-400">
         <Logo />
       </div>
     ) 
