@@ -17,14 +17,16 @@ const Header = () => {
   }
   if (pathname === '/social-media-dashboard') {
     return (
-      <div className={c.PageHeader}>
-        <Logo />
-        <SortSelect />
-        <TextSearch />
+      <div className="flex justify-between bg-white items-center px-2 py-1 border-b border-gray-400">
+        <div className='flex '>
+          <Logo />
+          <SortSelect />
+          <TextSearch />
+        </div>
+     
         <Button onClick={ onMenuClick }>
         + Create Post
         </Button>
-        {/* <button style={{marginLeft: "auto", marginRight: "1.5rem", marginTop: "0.5rem", marginBottom: "0.5rem", maxHeight: "3rem"}} > + Create Post </button> */}
       </div>
     )
   } else if (pathname === '/' ) {

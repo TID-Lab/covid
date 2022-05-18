@@ -4,6 +4,6 @@
   background-color: white;
   display: flex;
   flex-flow: row;
-  align-items: stretch;
+  align-items: center;
   border-bottom: 1px solid lightgray;
 }

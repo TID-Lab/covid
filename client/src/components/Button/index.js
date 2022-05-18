@@ -1,15 +1,34 @@
-const Button = ({children,onClick}) => {
+import PropTypes from 'prop-types';
+// define button styles here
+const btnStyle = {
+  primary: "bg-primary hover:bg-gray-600 text-white py-2 px-6 rounded-full", //big primary button
+  transparent: ""
+}
 
+
+const Button = ({
+  children, 
+  onClick, 
+  className, 
+  style,
+  variant = "primary"
+}) => {
 
   return (
     <button 
-    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+    type="button"
+    className={`grid gap-4 auto-cols-auto ${btnStyle[variant]} ${className}`}
+    style={style}
     onClick={onClick}
-    onKeyPress={onClick}
+    onKeyDown={onClick}
     >
      {children}
     </button>
   );
 };
+
+Button.propTypes = {
+  variant: PropTypes.oneOf(["primary","transparent","outline"])
+}
 
 export default Button;
