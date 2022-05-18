@@ -1,4 +1,4 @@
-import './index.css';
+import * as c from './index.module.css';
 
 
 const Topic = (props) => {
