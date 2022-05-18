@@ -25,7 +25,7 @@ const Posts = () => {
     );
   } else {
     return (
-      <div className='NoResults' id='NoResults'>No results found.</div>
+      <div className={c.NoResults} id='NoResults'>No results found.</div>
     )
   }
   

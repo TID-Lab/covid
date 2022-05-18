@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import './index.css';
+import c from './index.css';
 
 const ClearFilters = () => {
   const dispatch = useDispatch();
