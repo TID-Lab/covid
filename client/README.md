@@ -29,6 +29,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+
 ### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
@@ -44,6 +45,37 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## CSS development
+
+We are using [Tailwind CSS](https://tailwindcss.com/) as our css framwork. frameworks helps us have a unified design accross the websites, and helps avoid certain pitfalls with css by writing more maintainable code. It also can help with accessibility considerations.
+
+Tailwind differs from other frameworks in that they use a "utility first" approach, which aims to solve certain issues with css development at scale. [read about the argument for utility-first here.](https://tailwindcss.com/docs/utility-first)
+ 
+
+### Isolated CSS
+
+>generally, we should not need to use this as tailwind should take care of things, but having this option will help us as a backup / hotfix. 
+
+Additionally, we are using CSS modules when writing component-specific stylesheets. CSS module help "isolate" css styles so they don't accidentally affect other code. 
+
+import the CSS into the a component by first writing:
+
+```import c from './index.module.css'```
+
+this exposes the css class names into the component as js code, and then you uss in your code like how you would a js variable: 
+```
+<div className={c.exampleClass}>
+</div>
+```
+if you have multiple classnames, you can join them using template literals, take note of the use of the tilda instead of quotes:
+
+```
+<div className={`style ${c.exampleClass} ${c.anotherExampleClass}`}> 
+</div>
+```
+
+
 
 ### Code Splitting
 

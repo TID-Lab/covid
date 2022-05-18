@@ -1,4 +1,4 @@
-import * as c from './index.module.css';
+import c from './index.module.css';
 
 import { useDispatch, useSelector } from 'react-redux';
 import {useState, useEffect, useRef } from 'react';

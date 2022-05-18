@@ -1,5 +1,5 @@
-import * as c from './index.module.css';
-
+import c from './index.module.css';
+import Button from 'components/Button';
 
 import { useDispatch } from 'react-redux';
 import { getNextPage } from 'api/post';
@@ -18,7 +18,8 @@ const NextPageButton = () => {
   }
 
   return (
-    <div className={c.PageButton} onClick={onClick}>
+    <div className='PageButtonq' onClick={onClick}>
+      <Button>Next Page</Button>
       <button>Next Page</button>
     </div>
   );

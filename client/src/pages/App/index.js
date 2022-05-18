@@ -4,8 +4,9 @@ import {
   Route,
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import 'css/index.css';
 
-import * as c from './index.module.css';
+import c from './index.module.css';
 
 import Footer from 'components/Footer';
 import Login from 'components/Login';

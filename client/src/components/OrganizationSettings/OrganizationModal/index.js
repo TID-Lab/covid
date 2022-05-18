@@ -4,7 +4,7 @@ import { useShowPopup } from 'hooks/popup';
 import NewOrganization from '../NewOrganization';
 import Organization from '../Organization';
 
-import * as c from './index.module.css';
+import c from './index.module.css';
 
 const OrganizationModal = () => {
   const [ orgs, setOrgs ] = useState([]);

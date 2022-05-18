@@ -1,10 +1,11 @@
 import { useLocation } from 'react-router-dom';
-import * as c from './index.module.css';
+import c from './index.module.css';
 import Logo from '../Logo';
 import SortSelect from '../SortSelect';
 import TextSearch from '../TextSearch';
 // import { Button } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Button from 'components/Button';
 
 const Header = () => {
   const { pathname } = useLocation(); // TODO show search only if in dashboard mode
@@ -20,7 +21,10 @@ const Header = () => {
         <Logo />
         <SortSelect />
         <TextSearch />
-        <button style={{marginLeft: "auto", marginRight: "1.5rem", marginTop: "0.5rem", marginBottom: "0.5rem", maxHeight: "3rem"}} onClick={ onMenuClick }> + Create Post </button>
+        <Button onClick={ onMenuClick }>
+        + Create Post
+        </Button>
+        {/* <button style={{marginLeft: "auto", marginRight: "1.5rem", marginTop: "0.5rem", marginBottom: "0.5rem", maxHeight: "3rem"}} > + Create Post </button> */}
       </div>
     )
   } else if (pathname === '/' ) {
