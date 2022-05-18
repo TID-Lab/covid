@@ -40,24 +40,39 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## CSS development
 
 We are using [Tailwind CSS](https://tailwindcss.com/) as our css framwork. frameworks helps us have a unified design accross the websites, and helps avoid certain pitfalls with css by writing more maintainable code. It also can help with accessibility considerations.
 
-Tailwind differs from other frameworks in that they use a "utility first" approach, which aims to solve certain issues with css development at scale. [read about the argument for utility-first here.](https://tailwindcss.com/docs/utility-first)
+Tailwind differs from other frameworks in that they use a "utility first" approach, which aims to solve certain issues with css development at scale. 
  
+To get started, skim through these to see how tailwind works:
+
+(listed in order of importance)
+
+1. https://tailwindcss.com/docs/utility-first (read this first!)
+2. https://tailwindcss.com/docs/reusing-styles 
+3. https://tailwindcss.com/docs/hover-focus-and-other-states
+4. https://tailwindcss.com/docs/responsive-design 
+5. https://tailwindcss.com/docs/adding-custom-styles (optional)
+
+you can also take a look at example components to see how its implemented:
+- https://tailwindcomponents.com/
+- https://tailwindui.com/
+
+
+### Project Setup
+Our global css is under the `src/css/` folder, and tailwind global styles can be configured under `tailwindconfig.json`.
+
+If you've noticed, the tailwind config just copies css variables from `src/css/variables.css`. the idea behind this is to keep a "single source of truth" to things like color, spacing, type, etc.
 
 ### Isolated CSS
 
->generally, we should not need to use this as tailwind should take care of things, but having this option will help us as a backup / hotfix. 
-
 Additionally, we are using CSS modules when writing component-specific stylesheets. CSS module help "isolate" css styles so they don't accidentally affect other code. 
+
+>generally, we should not need to use this as tailwind should take care of things, but having this option will help us as a backup / hotfix & a smooth refactor experience. 
+
 
 import the CSS into the a component by first writing:
 
@@ -75,9 +90,14 @@ if you have multiple classnames, you can join them using template literals, take
 </div>
 ```
 
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
 
 
-### Code Splitting
+<!-- ### Code Splitting
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
@@ -99,4 +119,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 ### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify) -->

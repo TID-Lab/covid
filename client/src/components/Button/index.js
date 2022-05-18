@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 // define button styles here
 const btnStyle = {
   primary: "bg-primary hover:bg-gray-600 text-white py-2 px-6 rounded-full", //big primary button
-  transparent: ""
+  transparent: "",
+  outline: ""
 }
 
 
@@ -26,7 +27,7 @@ const Button = ({
     </button>
   );
 };
-
+// replace with typescript way in the future
 Button.propTypes = {
   variant: PropTypes.oneOf(["primary","transparent","outline"])
 }
