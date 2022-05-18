@@ -81,6 +81,19 @@ if you have multiple classnames, you can join them using template literals, take
 </div>
 ```
 
+### Other notes on CSS
+- with isolated css you cannot uses dashes (`-`) in your names. instead you should use camel case or underscores. 
+
+- I would also recommend camelCase over PascalCase just so we dont confuse css classes with react components
+
+- dont use html id to define css (js and css should be separate)
+
+- most layouts in css can be built with `flexbox` and `css grids`. you should use these over other methods, as those are old workarounds. 
+
+- you should avoid the use of `!important`
+
+- be careful when using `z-index`, `positon`, `overflow`, as their properties depend heavily on cascading and parents.  
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
