@@ -1,7 +1,8 @@
-import './index.css';
+import * as c from './index.module.css';
+
 import { useDispatch, useSelector } from 'react-redux';
 import {useState, useEffect, useRef } from 'react';
-import { twitterLogin, twitterLogout } from '../../api/auth.js'
+import { twitterLogin, twitterLogout } from 'api/auth.js'
 import queryString from 'query-string';
 import { useHistory } from 'react-router-dom'
 import PopupModal from '../PopupModal'
@@ -143,10 +144,10 @@ const PostingMenu = () => {
 
 
 
-  var visibility = "hide";
+  var visibility = c.hide;
   const postingMenuStatus = useSelector(state => state.postingMenu);
   if (postingMenuStatus) {
-    visibility = "show";
+    visibility = c.show;
   }
 
   function wordCount(e){
@@ -212,26 +213,26 @@ const PostingMenu = () => {
 
   // need to figure out disabling login button since spamming it sends multiple requests (look into event.preventDefault())
   return (
-    <div id="flyoutMenu" className={visibility}>
-      <div className="inputMenu">
+    <div id="flyoutMenu" className={`${visibility} ${c.flyoutMenu}`}>
+      <div className={c.inputMenu}>
         <div style={{display: "flex", flexDirection: "row"}}>
           <b style={{margin: "0", marginLeft: "1rem", marginRight: "1rem", paddingTop: "8px"}}> Search Trusted Resources </b>
           <button className="closeButton" onClick={closeClick}>Close</button>
         </div>
-        <div class="gcse-search"></div>
+        <div class={c.gcse_search}></div>
         <hr style={{color: "grey", backgroundColor: "grey", height: 1, margin: 0}}/>
         
         <b style={{ marginBottom: "0", marginLeft: "1rem", marginTop:"1rem"}}> Compose Message </b>
-        <textarea id="postInput" type="text" placeholder="Post Message "  ref={(textarea) => textAreaRef = textarea} value = {postText ? postText : ""} onChange={wordCount}></textarea>
+        <textarea id="postInput" className={c.postInput} type="text" placeholder="Post Message "  ref={(textarea) => textAreaRef = textarea} value = {postText ? postText : ""} onChange={wordCount}></textarea>
         <p style={{margin: "0.2rem", marginLeft: "1rem"}}>{ "Character Count: " + characterCount}</p>
         {/* <button className="postButton" onClick={() => window.open('https://twitter.com/intent/tweet?' + encodeQueryData({"text": document.getElementById("postInput").value}),'_blank')}>Tweet</button> */}
         {/* add undo button perhaps */}
         <div style={{display: "flex", flexDirection: "row"}}>
-          <button id="postButtonId" className="postButton" disabled={buttonDisabled} onClick={() => twitterLoginStatus ? twitterPost(): twitterLogin(setButtonDisabled)}>{twitterLoginStatus ? "Post to Twitter": "Login to Twitter" }</button>
-          <button className="postButton" onClick={() => {twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus)}}>Logout</button>
+          <button id="postButtonId" className={c.postButton} disabled={buttonDisabled} onClick={() => twitterLoginStatus ? twitterPost(): twitterLogin(setButtonDisabled)}>{twitterLoginStatus ? "Post to Twitter": "Login to Twitter" }</button>
+          <button className={c.postButton} onClick={() => {twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus)}}>Logout</button>
         </div>
 
-        <button className="postButton" onClick={instagramPostHandler}>Post to Instagram</button>
+        <button className={c.postButton} onClick={instagramPostHandler}>Post to Instagram</button>
         {showModal && <PopupModal
           content={<>
             <b>Copied Post to Clipboard</b>

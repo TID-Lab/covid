@@ -1,8 +1,8 @@
-import './index.css';
+import * as c from './index.module.css';
 
 import { useDispatch } from 'react-redux';
-import { getPrevPage, page } from '../../api/post';
-import notify from '../../util/notify';
+import { getPrevPage, page } from 'api/post';
+import notify from 'util/notify';
 
 const NextPageButton = () => {
   const dispatch = useDispatch();

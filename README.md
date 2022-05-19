@@ -19,6 +19,7 @@ This dashboard is composed of two [Node.js](https://nodejs.org) applications tha
 `server` is an [Express](https://expressjs.com/) app that hosts both a client-side [React](https://reactjs.org/) application in production and a server-side RESTful web API that queries the database based on user input.
 
 Both applications...
+
 - interface with the database through the [Mongoose](https://mongoosejs.com/) model layer.
 - are managed in production using [PM2](https://pm2.keymetrics.io/).
 - pull their secrets & API keys from a shared [.env](https://www.npmjs.com/package/dotenv) file located at the project root folder.
@@ -28,8 +29,8 @@ Both applications...
 - `fetch/` - Contains the source code for the `fetch` application.
 - `server/` - Contains the source code for the `server` application.
 - `client/`
-  - In *development*, this folder contains the source code for a self-hosted version of the client-side React application that comes with a bunch of goodies that you'll want to use (like hot module reloading). All client-side requests are proxied to the RESTful web API hosted by the server.
-  - In *production*, this folder contains a `build/` folder that stores a bundled & optimized version of the React app which is served up as static files by the `server`.
+  - In _development_, this folder contains the source code for a self-hosted version of the client-side React application that comes with a bunch of goodies that you'll want to use (like hot module reloading). All client-side requests are proxied to the RESTful web API hosted by the server.
+  - In _production_, this folder contains a `build/` folder that stores a bundled & optimized version of the React app which is served up as static files by the `server`.
 - `assets/` - Contains image files for this README :-)
 
 ## Development Environment
@@ -42,13 +43,13 @@ Both applications...
 
 3. Install [nvm](https://github.com/nvm-sh/nvm). We'll use this to install Node.js properly in the next step.
 
-4. Install [ngrok](https://ngrok.com/). First you will have to create an account and then do the basic setup on their page. We'll use `ngrok` to open our localhost to the internet on an HTTPS-based web address. Both HTTPS and a public web address are neccessary for Twitter Oauth to work.
+3a. (Optional) Install [ngrok](https://ngrok.com/) IF you want to get Twitter login and posting working locally. First you will have to create an account and then do the basic setup on their page. We'll use `ngrok` to open our localhost to the internet on an HTTPS-based web address. Both HTTPS and a public web address are neccessary for Twitter Oauth to work.
 
-5. Open a terminal and `cd` to your clone of this repository. From there, run `nvm install` to install the right version of Node.js onto your machine.
+4. Open a terminal and `cd` to your clone of this repository. From there, run `nvm install` to install the right version of Node.js onto your machine.
 
-6. Run `npm install` in  the `fetch/`, `server/`, and `client/` folders to install their respective dependencies.
+5. Run `npm install` in the `fetch/`, `server/`, and `client/` folders to install their respective dependencies.
 
-7. You're done! I'm proud of you. 😁👍
+6. You're done! I'm proud of you. 😁👍
 
 ### Setup
 
@@ -72,15 +73,29 @@ Running the dashboard in development requires starting up three separate Node.js
 
 Open up four terminal windows or tabs, and then execute the commands below in the order they are listed, one to each terminal. In each case, make sure to `cd` into the corresponding folder first.
 
-1. Run the `ngrok` proxy to reroute localhost onto a secure web address
-    - On Mac/Linux, run `./ngrok http http://localhost:3000   --host-header="localhost:3000"`
-    - On Windows, run `ngrok.exe http http://localhost:3000 --host-header="localhost:3000"`
-    - Everytime you must update `CALLBACK_URL` in .env and your Twitter developer callbacks with the newly generated ngrok URL in HTTPS. The URL will look something like `https://fcd6-128-61-35-51.ngrok.io`.
-3. Run the `fetch` app with `npm run dev`
-4. Run the `server` app with `npm run dev`\*
-5. Run the `client` app with `npm start`
+0. (Optional, for local Twitter Posting) Run the `ngrok` proxy to reroute localhost onto a secure web address
+   - On Mac/Linux, run `./ngrok http http://localhost:3000 --host-header="localhost:3000"`
+   - On Windows, run `ngrok.exe http http://localhost:3000 --host-header="localhost:3000"`
+   - Everytime you must update `CALLBACK_URL` in .env and inside your Twitter developer account "callbacks" section with the newly generated ngrok URL in HTTPS. The URL will look something like `https://fcd6-128-61-35-51.ngrok.io`.
+1. Run the `fetch` app with `npm run dev`
+2. Run the `server` app with `npm run dev`\*
+3. Run the `client` app with `npm start`
 
 \* A default admin user with the name `Georgia Tech` and password `letmein1` will be created when you run the `server` app for the first time.
+
+If you want to run the landing page, do the above but with step 5 inside the `landing` folder. If, for some reason, you want to run both the dashboard and landing pages in development, you will need to host them on different ports (npm should automatically prompt you to try 3001).
+
+### Testing
+
+To run the tests use the following command:
+
+```bash
+npm run test:dev
+```
+
+This will open up a cypress window and let's you manage all the tests from there.
+
+All unit tests can be found in the `cypress/integration` folder.
 
 ## Maintenance
 
@@ -120,6 +135,7 @@ This project uses [PM2](https://pm2.keymetrics.io/) to manage its Node.js applic
 </html>
 
 For all commands above, your options for `<process>` are:
+
 - `fetch`
 - `server`
 
@@ -133,7 +149,9 @@ First, make sure that you've pushed those changes to this GitHub repo, and then 
 
 **If you made changes...**
 
-- in the `client/` folder, **do nothing**. There should be a git hook on the production VM that automatically builds the client-side React application for you with the new code. If you're paranoid, just run `npm run build` from the `client/` folder to manually build the React app.
+- in the `client/` folder, **do nothing**. There should be a git hook on the production VM that automatically builds the client-side React application for you with the new code. If you're paranoid, just run `npm run build` from the `client/` folder to manually build the React app. (NOTE: haven't had luck with the git hook, so run this to be safe.)
+
+- in the `landing/` folder, **do nothing**. There should be a git hook on the production VM that automatically builds the client-side React application for you with the new code. If you're paranoid, just run `npm run build` from the `landing/` folder to manually build the React app. (NOTE: haven't had luck with the git hook, so run this to be safe.)
 
 - in the `fetch/` folder, run `pm2 restart fetch`.
 
@@ -143,17 +161,10 @@ And that's it. You've upgraded the dashboard! Woo woo 🎉
 
 ### Testing out the `fetch` application
 
-If you're going to test out new changes that you've made to the `fetch` application locally *and* you intend on pulling in live data to play with, beware that you'll need to temporarily stop the production `fetch` app in order to stay under the API rate limits for each social media platform. Otherwise, both your local `fetch` app and the production instance will probably trigger those rate limits, and then neither will be able to pull in data.
+If you're going to test out new changes that you've made to the `fetch` application locally _and_ you intend on pulling in live data to play with, beware that you'll need to temporarily stop the production `fetch` app in order to stay under the API rate limits for each social media platform. Otherwise, both your local `fetch` app and the production instance will probably trigger those rate limits, and then neither will be able to pull in data.
 
 **In some cases, one way to avoid this problem is to just play with existing data.** You'll have to get creative with simulating the production environment, but your development cycle will be much faster as a result!
-
 
 ## License
 
 This project is licensed under the [GNU GPLv3](./LICENSE) license.
-
-
-
-
-
-

@@ -88,17 +88,24 @@ module.exports = () => new Promise((resolve, reject) => {
   // Mount the client-side React app
 
   const build = [__dirname, '..', '..', '..', 'client', 'build'];
-
-  function sendIndex(_, res) {
+  const buildLanding = [__dirname, '..', '..', '..', 'landing', 'build'];
+  
+  function sendClientIndex(_, res) {
     res.sendFile(path.join(...build, 'index.html'));
   }
 
+  function sendLandingIndex(_, res) {
+    res.sendFile(path.join(...buildLanding, 'index.html'));
+  }
+
   if (process.env.NODE_ENV === 'production') {
-    app.get('/social-media-dashboard', is('org', 'admin'), sendIndex); // authenticate the homepage
-    app.use(express.static(path.join(...build))); // static files
-    app.get('/login', sendIndex); // do not authenticate the login page
-    app.get('/', sendIndex); // do not authenticate the landing page
-    app.get('*', is('org', 'admin'), sendIndex); // authenticate everything else
+    app.get('/social-media-dashboard', is('org', 'admin'), sendClientIndex); // authenticate the homepage
+    app.get('/login', sendClientIndex); // do not authenticate the login page
+    app.get('/', sendLandingIndex); // do not authenticate the landing page
+    app.use(express.static(path.join(...build))); // static files for dashboard
+    // static files for landing page --- Not sure if this is the most elegant way. Be careful if there are overlapping file names
+    app.use(express.static(path.join(...buildLanding))); 
+    app.get('*', is('org', 'admin'), sendClientIndex); // authenticate everything else
   }
 
   // Swallow errors

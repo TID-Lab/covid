@@ -7,6 +7,9 @@
 const COVID_KEYWORDS = [
   'covid',
   'coronavirus',
+  'corona',
+  'rona',
+  'omicron',
   'vaccine',
   'vacunas',
   'vax',
@@ -14,6 +17,7 @@ const COVID_KEYWORDS = [
   'vxxed',
   'unvxxed',
   'pandemic',
+  'pandemia',
   'masks',
   'n95',
   'quarantine',
