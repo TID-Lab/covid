@@ -8,6 +8,7 @@ import DateFilter from './DateFilter';
 import TopicFilter from './TopicFilter';
 import AccountFilters from './AccountFilters';
 import PlatformFilter from './PlatformFilter';
+import ClearFilters from '../ClearFilters';
 import { getPosts } from 'api/post';
 import notify from 'util/notify';
 
@@ -30,6 +31,7 @@ const Filters = () => {
         <TopicFilter topic={topic} />
         <AccountFilters accounts={accounts} />
         <PlatformFilter platforms={platforms} />
+        <ClearFilters/>
     </div>
   );
 }
