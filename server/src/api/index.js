@@ -8,6 +8,19 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const config = require('../util/config');
 const { is } = require('../util/org');
+// import model. 
+const resourcePost = require('../models/resource');
+
+// import sample data;
+const data = require('../sampleData');
+
+
+// resourcePost.collection.insertMany(data, function(err,r) {
+//   console.log("Error in server/models/resources");
+//   console.log("Something went wrong!")    
+//   db.close();
+// })
+
 
 // API routes
 const postRoutes = require('./post');
@@ -15,6 +28,7 @@ const topicRoutes = require('./topic');
 const proxyRoutes = require('./proxy');
 const orgRoutes = require('./org');
 const authRoutes = require('./auth');
+const resourceRoutes = require('./resource');
 
 const debug = useDebug('api');
 const app = express();
@@ -66,6 +80,7 @@ module.exports = () => new Promise((resolve, reject) => {
   apiRoutes.use('/post', is('org', 'admin'), postRoutes); // routes for social media posts
   apiRoutes.use('/topic', is('org', 'admin'), topicRoutes); // routes for COVID-19 topics
   apiRoutes.use('/proxy', is('org', 'admin'), proxyRoutes); // routes for oEmbed API proxies
+  apiRoutes.use('/resource', is('org', 'admin'), resourceRoutes); //routes for resource posts.
   apiRoutes.use('/org', orgRoutes); // routes for partner organizations
   apiRoutes.use('/auth', authRoutes); // routes for user authentication
   app.use('/api', apiRoutes); // mounts all the routes above to the /api route
@@ -105,3 +120,8 @@ module.exports = () => new Promise((resolve, reject) => {
     resolve();
   });
 });
+
+// This methods add sample data into the resources schema in the covid collection.
+resourcePost.collection.insertMany(data, function(err,r) {
+  console.log("We have added sample data onto the database.");
+})

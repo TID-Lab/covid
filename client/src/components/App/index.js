@@ -18,7 +18,7 @@ import DataDeletion from '../DataDeletion';
 import LandingPage from '../LandingPage';
 import AboutPage from '../AboutPage';
 import TeamPage from '../TeamPage';
-import Resources from '../../Pages/Resources/index';
+import ResourceDashboard from '../ResourceDashboard/index';
 
 // TODO: Style hyperlinks in the Terms, etc. pages
 
@@ -32,7 +32,7 @@ const App = () => {
           <Header />
           <Switch>
             <Route path="/resources">
-              <Resources/>
+              <ResourceDashboard/>
             </Route>
             <Route exact path="/">
               <LandingPage />
