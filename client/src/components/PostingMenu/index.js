@@ -219,7 +219,7 @@ const PostingMenu = () => {
           <b style={{margin: "0", marginLeft: "1rem", marginRight: "1rem", paddingTop: "8px"}}> Search Trusted Resources </b>
           <button className="closeButton" onClick={closeClick}>Close</button>
         </div>
-        <div class={c.gcse_search}></div>
+        {/* <div class={c.gcse_search}></div> */}
         <hr style={{color: "grey", backgroundColor: "grey", height: 1, margin: 0}}/>
         
         <b style={{ marginBottom: "0", marginLeft: "1rem", marginTop:"1rem"}}> Compose Message </b>
