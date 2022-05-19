@@ -7,7 +7,7 @@ const Login = () => {
   useAuth(false, '/social-media-dashboard');
 
   return (
-  <div className={c.Login}>
+  <div className="flex flex-auto flex-row justify-center items-center overflow-auto overflow-y-auto">
     <LoginModal />
   </div>
   );
