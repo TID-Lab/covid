@@ -18,9 +18,8 @@ const NextPageButton = () => {
   }
 
   return (
-    <div className='PageButtonq' onClick={onClick}>
+    <div className='PageButton' onClick={onClick}>
       <Button>Next Page</Button>
-      <button>Next Page</button>
     </div>
   );
 };
