@@ -7,14 +7,6 @@
 }
 
 
-
-
-
-.LoginModal input, .LoginModal select, .LoginModal button {
-  width: 250px;
-}
-
-
 .LoginModal button {
   margin-top: 15px;
   padding-top: 10px;
