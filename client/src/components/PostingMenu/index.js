@@ -6,6 +6,7 @@ import { twitterLogin, twitterLogout } from 'api/auth.js'
 import queryString from 'query-string';
 import { useHistory } from 'react-router-dom'
 import PopupModal from '../PopupModal'
+import Button from 'components/Button';
 
 function twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus) {
   twitterLogout()
@@ -158,8 +159,6 @@ const PostingMenu = () => {
     dispatch({type: 'postingText/set', payload: currentText})
   }
 
-  
-
   const returnFileSize = (number) => {
     if(number < 1024) {
       return number + 'bytes';
@@ -214,25 +213,47 @@ const PostingMenu = () => {
   // need to figure out disabling login button since spamming it sends multiple requests (look into event.preventDefault())
   return (
     <div id="flyoutMenu" className={`${visibility} ${c.flyoutMenu}`}>
-      <div className={c.inputMenu}>
-        <div style={{display: "flex", flexDirection: "row"}}>
-          <b style={{margin: "0", marginLeft: "1rem", marginRight: "1rem", paddingTop: "8px"}}> Search Trusted Resources </b>
+      <div className="flex flex-col mx-3 ">
+        <div className="flex justify-between my-3">
+          {/* <b style={{margin: "0", marginLeft: "1rem", marginRight: "1rem", paddingTop: "8px"}}> Search Trusted Resources </b> */}
+          <h3><b> Compose Message </b></h3> {/* fix this after decoupling h1 from font size*/}
           <button className="closeButton" onClick={closeClick}>Close</button>
         </div>
         {/* <div class={c.gcse_search}></div> */}
-        <hr style={{color: "grey", backgroundColor: "grey", height: 1, margin: 0}}/>
+        <hr className="h-1"/>
         
-        <b style={{ marginBottom: "0", marginLeft: "1rem", marginTop:"1rem"}}> Compose Message </b>
-        <textarea id="postInput" className={c.postInput} type="text" placeholder="Post Message "  ref={(textarea) => textAreaRef = textarea} value = {postText ? postText : ""} onChange={wordCount}></textarea>
-        <p style={{margin: "0.2rem", marginLeft: "1rem"}}>{ "Character Count: " + characterCount}</p>
+        <textarea id="postInput" className="w-full h-[30vh] my-3 resize-none bg-gray-100 border-0 focus:border " type="text" placeholder="Post Message "  ref={(textarea) => textAreaRef = textarea} value = {postText ? postText : ""} onChange={wordCount}></textarea>
+        <p className="text-sm">{ "Character Count: " + characterCount}</p>
         {/* <button className="postButton" onClick={() => window.open('https://twitter.com/intent/tweet?' + encodeQueryData({"text": document.getElementById("postInput").value}),'_blank')}>Tweet</button> */}
         {/* add undo button perhaps */}
-        <div style={{display: "flex", flexDirection: "row"}}>
-          <button id="postButtonId" className={c.postButton} disabled={buttonDisabled} onClick={() => twitterLoginStatus ? twitterPost(): twitterLogin(setButtonDisabled)}>{twitterLoginStatus ? "Post to Twitter": "Login to Twitter" }</button>
-          <button className={c.postButton} onClick={() => {twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus)}}>Logout</button>
+        <div className="grid grid-flow-row gap-4 mt-4 ">
+          <div className='grid gap-4 grid-cols-2'>
+            <Button 
+              id="postButtonId" 
+              className="w-full text-center" 
+              variant="secondary"
+              disabled={buttonDisabled} 
+              onClick={() => twitterLoginStatus ? twitterPost(): twitterLogin(setButtonDisabled)}
+              >
+                {twitterLoginStatus ? "Post to Twitter": "Login to Twitter" }
+            </Button>
+            <Button 
+              className="w-full text-center" 
+              variant="secondary"
+              onClick={() => {twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus)}}
+              >
+                Logout
+            </Button>
+          </div>
+         
+          <Button 
+            className="w-full text-center mt-4"
+            variant="secondary"
+            onClick={instagramPostHandler}>
+             Post to Instagram
+          </Button>
         </div>
 
-        <button className={c.postButton} onClick={instagramPostHandler}>Post to Instagram</button>
         {showModal && <PopupModal
           content={<>
             <b>Copied Post to Clipboard</b>
