@@ -32,7 +32,18 @@ const Header = () => {
         <Logo />
       </div>
     ) 
-  } else {
+  } else if (pathname === '/resources') {
+    return (
+      <div className={c.PageHeader}>
+      <Logo />
+      <button style={{marginLeft: "0.5rem", marginRight: "1.5rem", marginTop: "0.5rem", marginBottom: "0.5rem", maxHeight: "3rem"}} onClick={()=> window.open("/social-media-dashboard", "_self") }> Monitoring </button>
+      <SortSelect />
+      <TextSearch />
+      <button style={{marginLeft: "auto", marginRight: "1.5rem", marginTop: "0.5rem", marginBottom: "0.5rem", maxHeight: "3rem"}} onClick={ onMenuClick }> + Create Post </button>
+    </div>
+    )
+  }
+  else {
       return ( // return nothing for now LOL
         <div></div>
       )

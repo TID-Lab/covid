@@ -18,7 +18,7 @@ import DataDeletion from '../DataDeletion';
 import LandingPage from '../LandingPage';
 import AboutPage from '../AboutPage';
 import TeamPage from '../TeamPage';
-import ResourceDashboard from '../ResourceDashboard/index';
+import ResourceDashboard from '../../pages/ResourceDashboard/index';
 
 // TODO: Style hyperlinks in the Terms, etc. pages
 

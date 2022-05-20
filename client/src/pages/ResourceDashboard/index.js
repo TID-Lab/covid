@@ -1,8 +1,9 @@
-import './index.css';
+import * as c from './index.module.css';
 
-//import Filters from '../Filters';
-import Posts from '../Posts'; // We will not be using this. It is just here for example purposes.
-import useAuth from '../../hooks/auth';
+import Filters from 'components/Filters';
+import Posts from 'components/Posts';
+import useAuth from 'hooks/auth';
+import PostingMenu from 'components/PostingMenu';
 // Need to import resources
 // Need to import Filters for Resources
 
@@ -12,8 +13,10 @@ const ResourceDashboard = () => {
   useAuth();
 
   return (
-    <div className="ResourceDashboard">
+    <div className={c.Dashboard}>
+      <Filters/>
       <Posts/>
+      <PostingMenu/>
     </div>
   )
 }
