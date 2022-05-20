@@ -4,7 +4,6 @@ import {
   Route,
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import 'css/index.css';
 
 import c from './index.module.css';
 
