@@ -1,5 +1,6 @@
-# Getting Started with Create React App
+# Client App
 
+This is the frontend for the covid social media dashboard project\
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Development
