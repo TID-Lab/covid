@@ -1,6 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import './index.css';
-
+import * as c from './index.module.css';
 import Logo from '../Logo';
 import SortSelect from '../SortSelect';
 import TextSearch from '../TextSearch';
@@ -17,7 +16,7 @@ const Header = () => {
   }
   if (pathname === '/social-media-dashboard') {
     return (
-      <div className='PageHeader'>
+      <div className={c.PageHeader}>
         <Logo />
         <SortSelect />
         <TextSearch />
@@ -26,7 +25,7 @@ const Header = () => {
     )
   } else if (pathname === '/' ) {
     return (
-      <div className='PageHeader'>
+      <div className={c.PageHeader}>
         <Logo />
       </div>
     ) 
