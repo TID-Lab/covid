@@ -1,4 +1,5 @@
 {
+  "name": "@tid-lab/covid-server",
   "scripts": {
     "start": "node src/app.js",
     "dev": "cross-env DEBUG=core,db,api,util node src/app.js",

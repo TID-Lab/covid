@@ -1,0 +1,13 @@
+{
+  "name": "@tid-lab/covid",
+  "scripts": {
+    "test:dev": "cypress open",
+    "test": "cypress run --headless",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "cypress": "^9.6.1",
+    "husky": "^8.0.0",
+    "pretty-quick": "^3.1.3"
+  }
+}
