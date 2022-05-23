@@ -51,34 +51,54 @@ routes.post('/', async (req, res) => {
 
   req.body.organization = org;
   try {
-    console.log(req.body)
+    console.log(req.body);
     const tag = await CustomTag.create(req.body);
     res.status(200).send(tag);
-  } catch(err) {
+  } catch (err) {
     debug(`${err}`);
     res.status(500).send(err);
   }
 });
 
+// Update a tag via replacement
+routes.put('/', async (req, res) => {
+  const { _id } = req.body;
+  const replacement = req.replacementBody;
+  if (typeof _id !== 'string') {
+    res.status(400).send();
+    return;
+  }
+  try {
+    const result = await CustomTag.replaceOne({ _id }, replacement);
+    if (result.modifiedCount === 0) {
+      res.status(404).send();
+      return;
+    }
+    res.status(200).send();
+  } catch (err) {
+    debug(`${err}`);
+    res.status(500).send();
+  }
+});
 
-// Update a tag [TODO]
-routes.post('/:id', async (req, res) => {
-  CustomTag.findById(req.params.id, function(err, tag) {
-    if (err) return res.send(err.status, err.message);
-    if (!tag) return res.send(404);
-    // Update the actual values
-    // tag = _.extend(tag, _.omit(req.body, 'creator'));
-
-    // Update the values
-    tag.save(function(err) {
-      if (err) {
-        res.send(err.status, err.message);
-      } else {
-        res.send(200);
-      }
-    });
-  });
-})
-
+// Deletes a tag
+routes.delete('/', async (req, res) => {
+  const { _id } = req.body;
+  if (typeof _id !== 'string') {
+    res.status(400).send();
+    return;
+  }
+  try {
+    const result = await CustomTag.deleteOne({ _id });
+    if (result.deletedCount === 0) {
+      res.status(404).send();
+      return;
+    }
+    res.status(200).send();
+  } catch (err) {
+    debug(`${err}`);
+    res.status(500).send();
+  }
+});
 
 module.exports = routes;

@@ -176,6 +176,22 @@ const Post = (props) => {
     e.preventDefault();
     setTagName(nameTextAreaRef.value);
     setTagDescription(descTextAreaRef.value);
+    const checkDupes = () => {
+      tags.then((a) => {
+        const tags_list = a;
+        for (var i = 0; i < tags_list.length; i++) {
+          var name =  tags_list[i].name;
+          var dupTag = tags_list[i];
+          console.log(nameTextAreaRef.value === name);
+          if (nameTextAreaRef.value === name) {
+            console.log(dupTag);
+            deleteTag(dupTag);
+          }
+        }
+      });
+    };
+    checkDupes();
+
     //mongo POST
 
     const new_tag = createTag({

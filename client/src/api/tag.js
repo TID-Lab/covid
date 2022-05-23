@@ -25,12 +25,13 @@ async function fetchTags() {
 /**
  * Deletes a tag via DELETE /api/tag
  */
-async function deleteTag(id) {
+async function deleteTag(tag) {
   const options = {
     ...defaultOptions,
     method: 'DELETE',
+    body: JSON.stringify(tag),
   }
-  const res = await authFetch(`/api/tag/${id}`, options);
+  const res = await authFetch(`/api/tag`, options);
   return res.status === 200;
 }
 
@@ -49,13 +50,14 @@ async function createTag(tag) {
 }
 
 /**
- * Edits a tag via GET /api/tag
+ * Edits a tag via PUT /api/tag
  */
-async function editTag(tag) {
+async function editTag(tag, replacementTag) {
   const options = {
     ...defaultOptions,
     method: 'PUT',
     body: JSON.stringify(tag),
+    replacementBody: replacementTag
   }
   const res = await authFetch(`/api/tag`, options);
   const body = await res.json();
