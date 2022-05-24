@@ -5,7 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Development
 
-for first time users, install dependancies with `npm i`
+for first time users, install dependencies with `npm i`
 
 
 ### `npm start`
