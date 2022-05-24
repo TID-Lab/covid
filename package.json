@@ -3,7 +3,6 @@
   "scripts": {
     "test:dev": "cypress open",
     "test": "cypress run --headless",
-    "prepare": "husky install",
     "lint:client": "cd client && eslint src",
     "lint:fetch": "cd fetch && eslint src",
     "lint:landing": "cd landing && eslint src",
@@ -21,7 +20,6 @@
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.30.0",
     "eslint-plugin-react-hooks": "^4.5.0",
-    "husky": "^8.0.0",
     "npm-run-all": "^4.1.5",
     "prettier": "2.6.2",
     "prettier-eslint": "^15.0.0"
