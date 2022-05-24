@@ -4,7 +4,7 @@ import {
     useRouteMatch,
   } from "react-router-dom";
 
-import * as c from './index.module.css';
+import c from './index.module.css';
 
 import OrganizationSettings from 'components/OrganizationSettings';
 import TopicSettings from "components/TopicSettings";

@@ -1,8 +1,9 @@
-import * as c from './index.module.css';
+import c from './index.module.css';
 
 import { useDispatch } from 'react-redux';
 import { getPrevPage, page } from 'api/post';
 import notify from 'util/notify';
+import Button from 'components/Button';
 
 const NextPageButton = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const NextPageButton = () => {
 
   return (
     <div className='PageButton' onClick={onClick}>
-      <button>Previous Page</button>
+      <Button>Previous Page</Button>
     </div>
   );
 };

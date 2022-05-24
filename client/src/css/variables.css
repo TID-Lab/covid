@@ -18,4 +18,13 @@
   /* light orange/peach color to match projectpeach.org alternate background */
   --body-highlight-green: #166402;
   /* green color to match the green button on projectpeach.org */
+
+
+
+  /* new variables */
+
+  /* colors */
+  --c-primary: #CD4C2C;
+  --c-white: #fff;
+  --c-black: #000;
 }

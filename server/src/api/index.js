@@ -102,9 +102,9 @@ module.exports = () => new Promise((resolve, reject) => {
     app.get('/social-media-dashboard', is('org', 'admin'), sendClientIndex); // authenticate the homepage
     app.get('/login', sendClientIndex); // do not authenticate the login page
     app.get('/', sendLandingIndex); // do not authenticate the landing page
-    app.use(express.static(path.join(...build))); // static files for dashboard
     // static files for landing page --- Not sure if this is the most elegant way. Be careful if there are overlapping file names
     app.use(express.static(path.join(...buildLanding))); 
+    app.use(express.static(path.join(...build))); // static files for dashboard
     app.get('*', is('org', 'admin'), sendClientIndex); // authenticate everything else
   }
 

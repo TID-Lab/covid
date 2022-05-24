@@ -1,10 +1,11 @@
 import { useLocation } from 'react-router-dom';
-import * as c from './index.module.css';
+import c from './index.module.css';
 import Logo from '../Logo';
 import SortSelect from '../SortSelect';
 import TextSearch from '../TextSearch';
 // import { Button } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Button from 'components/Button';
 
 const Header = () => {
   const { pathname } = useLocation(); // TODO show search only if in dashboard mode
@@ -18,17 +19,22 @@ const Header = () => {
 
   if (pathname === '/social-media-dashboard') {
     return (
-      <div className={c.PageHeader}>
-        <Logo />
-        <button style={{marginLeft: "0.5rem", marginRight: "1.5rem", marginTop: "0.5rem", marginBottom: "0.5rem", maxHeight: "3rem"}} onClick={()=> window.open("/resources", "_self") }> Resources </button>
-        <SortSelect />
-        <TextSearch />
-        <button style={{marginLeft: "auto", marginRight: "1.5rem", marginTop: "0.5rem", marginBottom: "0.5rem", maxHeight: "3rem"}} onClick={ onMenuClick }> + Create Post </button>
+      <div className="flex justify-between bg-white items-center px-2 py-1 border-b border-gray-400">
+        <div className='flex '>
+          <Logo />
+          <button style={{marginLeft: "0.5rem", marginRight: "1.5rem", marginTop: "0.5rem", marginBottom: "0.5rem", maxHeight: "3rem"}} onClick={()=> window.open("/resources", "_self") }> Resources </button>
+          <SortSelect />
+          <TextSearch />
+        </div>
+     
+        <Button onClick={ onMenuClick }>
+        + Create Post
+        </Button>
       </div>
     )
   } else if (pathname === '/' ) {
     return (
-      <div className={c.PageHeader}>
+      <div className="flex bg-white items-center px-2 py-1 border-b border-gray-400">
         <Logo />
       </div>
     ) 
