@@ -16,6 +16,7 @@ import Settings from 'pages/Settings';
 import PrivacyPolicy from 'pages/PrivacyPolicy';
 import Terms from 'pages/Terms';
 import DataDeletion from 'pages/DataDeletion';
+import ResourceDashboard from 'pages/ResourceDashboard';
 
 // TODO: Style hyperlinks in the Terms, etc. pages
 
@@ -28,6 +29,9 @@ const App = () => {
         <Router>
           <Header />
           <Switch>
+            <Route path="/resources">
+              <ResourceDashboard/>
+            </Route>
             <Route exact path="/"> 
               <Login />
               <Footer />
@@ -52,7 +56,6 @@ const App = () => {
               <DataDeletion />
             </Route>
           </Switch>
-
         </Router>
       </div>
       <div id='Popup' className={c.Popup}>
