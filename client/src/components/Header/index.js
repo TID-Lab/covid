@@ -40,13 +40,17 @@ const Header = () => {
     ) 
   } else if (pathname === '/resources') {
     return (
-      <div className={c.PageHeader}>
-      <Logo />
+      <div className="flex justify-between bg-white items-center px-2 py-1 border-b border-gray-400">
+        <div className='flex '>
+        <Logo />
       <button style={{marginLeft: "0.5rem", marginRight: "1.5rem", marginTop: "0.5rem", marginBottom: "0.5rem", maxHeight: "3rem"}} onClick={()=> window.open("/social-media-dashboard", "_self") }> Monitoring </button>
       <SortSelect />
       <TextSearch />
-      <button style={{marginLeft: "auto", marginRight: "1.5rem", marginTop: "0.5rem", marginBottom: "0.5rem", maxHeight: "3rem"}} onClick={ onMenuClick }> + Create Post </button>
-    </div>
+      </div>
+      <Button onClick={ onMenuClick }>
+        + Create Post
+        </Button>
+      </div>
     )
   }
   else {
