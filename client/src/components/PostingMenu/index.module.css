@@ -42,11 +42,7 @@
   border-bottom: 1px solid lightgray;
 }
 
-.inputMenu {
-  display: flex;
-  flex-flow: column;
-  margin: 0.8vw;
-}
+
 
 .postInput {
   margin:.8vw;

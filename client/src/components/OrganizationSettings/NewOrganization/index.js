@@ -4,7 +4,7 @@ import notify from 'util/notify';
 
 import { useHidePopup } from 'hooks/popup';
 
-import * as c from './index.module.css';
+import c from './index.module.css';
 
 const ROLES = [ 'org', 'admin' ];
 

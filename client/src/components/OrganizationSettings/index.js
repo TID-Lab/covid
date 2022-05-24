@@ -1,5 +1,5 @@
 import OrganizationModal from './OrganizationModal';
-import * as c from './index.module.css';
+import c from './index.module.css';
 
 
 const OrganizationSettings = () => {

@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
-import * as c from './index.module.css';
+import c from './index.module.css';
 
 
 import DateFilter from './DateFilter';

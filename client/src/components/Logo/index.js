@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import * as c from './index.module.css';
+import c from './index.module.css';
 
 const Logo = () => {
   return (
