@@ -22,7 +22,7 @@ const Header = () => {
       <div className="flex justify-between bg-white items-center px-2 py-1 border-b border-gray-400">
         <div className='flex '>
           <Logo />
-          <button style={{marginLeft: "0.5rem", marginRight: "1.5rem", marginTop: "0.5rem", marginBottom: "0.5rem", maxHeight: "3rem"}} onClick={()=> window.open("/resources", "_self") }> Resources </button>
+          <Button style={{marginLeft: "0.5rem", marginRight: "1.5rem", marginTop: "0.5rem", marginBottom: "0.5rem", maxHeight: "3rem"}} onClick={()=> window.open("/resources", "_self") }> Resources </Button>
           <SortSelect />
           <TextSearch />
         </div>
@@ -43,7 +43,7 @@ const Header = () => {
       <div className="flex justify-between bg-white items-center px-2 py-1 border-b border-gray-400">
         <div className='flex '>
         <Logo />
-      <button style={{marginLeft: "0.5rem", marginRight: "1.5rem", marginTop: "0.5rem", marginBottom: "0.5rem", maxHeight: "3rem"}} onClick={()=> window.open("/social-media-dashboard", "_self") }> Monitoring </button>
+      <Button style={{marginLeft: "0.5rem", marginRight: "1.5rem", marginTop: "0.5rem", marginBottom: "0.5rem", maxHeight: "3rem"}} onClick={()=> window.open("/social-media-dashboard", "_self") }> Monitoring </Button>
       <SortSelect />
       <TextSearch />
       </div>
