@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import c from './index.module.css';
+import './index.css';
 
 const SORT_BY = {
   'engagementNormed': 'Most engagement (scaled)',
@@ -17,7 +17,7 @@ const SortSelect = () => {
   }
 
   return (
-    <div className={c.SortSelect}>
+    <div className='SortSelect'>
       <select value={sortBy} onChange={onChange}>
       {Object.keys(SORT_BY).map(val => (
         <option key={val} value={val}>{SORT_BY[val]}</option>

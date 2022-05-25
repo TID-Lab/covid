@@ -8,7 +8,6 @@ import popupReducer from './popup';
 import postingMenuReducer from './postingMenu';
 import postingTextReducer from './postingText';
 import postingImageReducer from './postingImage';
-import resourcesReducer from './resources';
 
 const rootReducer = combineReducers({
     filters: filtersReducer,
@@ -17,7 +16,6 @@ const rootReducer = combineReducers({
     postingMenu: postingMenuReducer,
     postingText: postingTextReducer,
     postingImage: postingImageReducer,
-    resources: resourcesReducer
 });
   
 export default rootReducer;

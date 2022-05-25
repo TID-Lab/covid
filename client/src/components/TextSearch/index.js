@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 
-import c from './index.module.css';
+import './index.css';
 
 let timeout
 
@@ -15,7 +15,7 @@ const TextSearch = () => {
   }
 
   return (
-    <div className={c.TextSearch}>
+    <div className='TextSearch'>
       <input type='text' onChange={onChange} placeholder='Search' />
     </div>
   );

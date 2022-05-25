@@ -1,11 +1,10 @@
-import OrganizationModal from './OrganizationModal';
-import c from './index.module.css';
-
+import OrganizationModal from '../OrganizationModal';
+import './index.css';
 
 const OrganizationSettings = () => {
 
   return (
-    <div className={c.OrganizationSettings}>
+    <div className='OrganizationSettings'>
         <OrganizationModal />
     </div>
   );

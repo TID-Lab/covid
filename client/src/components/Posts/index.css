@@ -1,0 +1,33 @@
+.Posts {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: row;
+  overflow: auto;
+}
+
+.PageButton {
+  letter-spacing: 0;
+  margin: 20px;
+  flex-shrink: 1;
+  min-width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.PageButton button {
+  padding: 10px 15px 10px 15px;
+  background-color: var(--body-primary-orange);
+  color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: none;
+  transition: all 0.25s ease;
+}
+
+.PageButton:hover {
+  cursor: pointer;
+}
+
+.PageButton:hover button {
+  transform: scale(1.25);
+}

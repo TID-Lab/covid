@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 
-import c from './index.module.css';
+import './index.css';
 
 const Logo = () => {
   return (
     // <a href='https://www.projectpeach.org/' target='_blank' rel='noopener noreferrer'>
     <Link to='/'>
-      <span className={c.Logo}>
+      <span className='Logo'>
         <img src='/images/projectpeach.png' alt='Project Peach'></img>
         <div style={{textAlign:'left', marginLeft:'0.5em'}}>  
           <h3 style={{margin:'0px'}}>Project <b className='bold'>PEACH</b></h3>

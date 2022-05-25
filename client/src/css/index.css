@@ -1,9 +1,0 @@
-/* note! install the VSCODE plugins: postcss language support, tailwind css... should pop up in your recommendations  */
-/* note 2: only GLOBAL css should be written in here, and you really shouldnt need to add actual css with tailwind */
-
-@import 'tailwind.css';
-/* variables */
-@import 'variables.css';
-/* base style*/
-@import 'base.css';
-

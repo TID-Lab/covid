@@ -1,13 +1,13 @@
-import c from './index.module.css';
+import './index.css';
 
-import useAuth from 'hooks/auth';
+import useAuth from '../../hooks/auth';
 import LoginModal from '../LoginModal';
 
 const Login = () => {
-  useAuth(false, '/social-media-dashboard');
+  useAuth(false, '/dashboard');
 
   return (
-  <div className="flex flex-auto flex-row justify-center items-center overflow-auto overflow-y-auto">
+  <div className='Login'>
     <LoginModal />
   </div>
   );

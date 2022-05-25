@@ -1,5 +1,4 @@
-import c from './index.module.css';
-
+import './index.css';
 
 const LabeledDate = (props) => {
   const {
@@ -13,7 +12,7 @@ const LabeledDate = (props) => {
   }
 
   return (
-    <div className={c.LabeledDate}>
+    <div className='LabeledDate'>
       <label>
         {label}
         <input type='date' value={date} onChange={onChange}/>

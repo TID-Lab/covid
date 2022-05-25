@@ -2,8 +2,7 @@ import { useDispatch } from 'react-redux';
 
 import Radio from '../Radio';
 
-import c from './index.module.css';
-
+import './index.css';
 
 const CuratedToggle = (props) => {
   const { curatedOnly } = props;

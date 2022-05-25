@@ -1,13 +1,12 @@
 // Followed https://www.cluemediator.com/create-simple-popup-in-reactjs
 import React from "react";
-import c from './index.module.css';
-
+import './index.css'
  
 const Popup = props => {
   return (
-    <div className={c.popup_box}>
-      <div className={c.box}>
-        <span className={c.close_icon} onClick={props.handleClose}>x</span>
+    <div className="popup-box">
+      <div className="box">
+        <span className="close-icon" onClick={props.handleClose}>x</span>
         {props.content}
       </div>
     </div>

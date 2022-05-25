@@ -1,0 +1,30 @@
+.Root {
+  width: 100%;
+  height: 100%;
+}
+
+.Root > * {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  position: absolute;
+}
+
+#Popup {
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+/* @font-face {
+  font-family: 'SF-Pro-Display';
+  src: local('SF-Pro-Display'), url(../../fonts//sf-pro-fonts/SF-Pro-Display-Regular.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'SF-Pro-Display';
+  font-weight: 700;
+  src: local('SF-Pro-Display'), url(../../fonts//sf-pro-fonts/SF-Pro-Display-Bold.otf) format('opentype');
+} */

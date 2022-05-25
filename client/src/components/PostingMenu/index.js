@@ -1,12 +1,10 @@
-import c from './index.module.css';
-
+import './index.css';
 import { useDispatch, useSelector } from 'react-redux';
 import {useState, useEffect, useRef } from 'react';
-import { twitterLogin, twitterLogout } from 'api/auth.js'
+import { twitterLogin, twitterLogout } from '../../api/auth.js'
 import queryString from 'query-string';
 import { useHistory } from 'react-router-dom'
 import PopupModal from '../PopupModal'
-import Button from 'components/Button';
 
 function twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus) {
   twitterLogout()
@@ -17,7 +15,7 @@ function checkOAuth(history) {
     const {oauth_token, oauth_verifier} = queryString.parse(window.location.search); 
     
     if (oauth_token && oauth_verifier) {
-      history.push('/social-media-dashboard')
+      history.push('/dashboard')
       try {
         //Oauth Step 3
         const res = await fetch('/api/auth/twitter/oauth/access_token', {
@@ -26,7 +24,7 @@ function checkOAuth(history) {
           headers: {
              'Content-Type': 'application/json'
              }})
-        return res.status === 200
+        return res.status == 200
       } catch (error) {
         console.error(error); 
       }
@@ -55,7 +53,7 @@ const PostingMenu = () => {
       
       dispatch({type: 'postingText/set', payload: document.getElementById("postInput").value})
       setButtonDisabled(true)
-      if (characterCount === 0) {
+      if (characterCount == 0) {
         alert("Cannot post with empty message");
         setButtonDisabled(false)
         return;
@@ -73,10 +71,10 @@ const PostingMenu = () => {
             'Content-Type': 'application/json'
             }})
         // Unauthorized means we reset login status
-        if (res.status === 401) {
+        if (res.status == 401) {
           alert("Login Expired")
           setTwitterLoginStatus(false)
-        } else if (res.status === 400) {
+        } else if (res.status == 400) {
           alert("Bad input. (Likely a duplicate tweet, please write something else!)")
         } else {
           setShowSuccess(true);
@@ -123,7 +121,7 @@ const PostingMenu = () => {
   },[])
 
   useEffect(() => {
-    if (postText !== false) {
+    if (postText != false) {
       setCharacterCount(postText.length);
     }
   }, [postText])
@@ -145,10 +143,10 @@ const PostingMenu = () => {
 
 
 
-  var visibility = c.hide;
+  var visibility = "hide";
   const postingMenuStatus = useSelector(state => state.postingMenu);
   if (postingMenuStatus) {
-    visibility = c.show;
+    visibility = "show";
   }
 
   function wordCount(e){
@@ -158,6 +156,8 @@ const PostingMenu = () => {
     // This may be wasteful, temp solution
     dispatch({type: 'postingText/set', payload: currentText})
   }
+
+  
 
   const returnFileSize = (number) => {
     if(number < 1024) {
@@ -212,48 +212,26 @@ const PostingMenu = () => {
 
   // need to figure out disabling login button since spamming it sends multiple requests (look into event.preventDefault())
   return (
-    <div id="flyoutMenu" className={`${visibility} ${c.flyoutMenu}`}>
-      <div className="flex flex-col mx-3 ">
-        <div className="flex justify-between my-3">
-          {/* <b style={{margin: "0", marginLeft: "1rem", marginRight: "1rem", paddingTop: "8px"}}> Search Trusted Resources </b> */}
-          <h3><b> Compose Message </b></h3> {/* fix this after decoupling h1 from font size*/}
+    <div id="flyoutMenu" className={visibility}>
+      <div className="inputMenu">
+        <div style={{display: "flex", flexDirection: "row"}}>
+          <b style={{margin: "0", marginLeft: "1rem", marginRight: "1rem", paddingTop: "8px"}}> Search Trusted Resources </b>
           <button className="closeButton" onClick={closeClick}>Close</button>
         </div>
-        {/* <div class={c.gcse_search}></div> */}
-        <hr className="h-1"/>
+        <div class="gcse-search"></div>
+        <hr style={{color: "grey", backgroundColor: "grey", height: 1, margin: 0}}/>
         
-        <textarea id="postInput" className="w-full h-[30vh] my-3 resize-none bg-gray-100 border-0 focus:border " type="text" placeholder="Post Message "  ref={(textarea) => textAreaRef = textarea} value = {postText ? postText : ""} onChange={wordCount}></textarea>
-        <p className="text-sm">{ "Character Count: " + characterCount}</p>
+        <b style={{ marginBottom: "0", marginLeft: "1rem", marginTop:"1rem"}}> Compose Message </b>
+        <textarea id="postInput" type="text" placeholder="Post Message "  ref={(textarea) => textAreaRef = textarea} value = {postText ? postText : ""} onChange={wordCount}></textarea>
+        <p style={{margin: "0.2rem", marginLeft: "1rem"}}>{ "Character Count: " + characterCount}</p>
         {/* <button className="postButton" onClick={() => window.open('https://twitter.com/intent/tweet?' + encodeQueryData({"text": document.getElementById("postInput").value}),'_blank')}>Tweet</button> */}
         {/* add undo button perhaps */}
-        <div className="grid grid-flow-row gap-4 mt-4 ">
-          <div className='grid gap-4 grid-cols-2'>
-            <Button 
-              id="postButtonId" 
-              className="w-full text-center" 
-              variant="secondary"
-              disabled={buttonDisabled} 
-              onClick={() => twitterLoginStatus ? twitterPost(): twitterLogin(setButtonDisabled)}
-              >
-                {twitterLoginStatus ? "Post to Twitter": "Login to Twitter" }
-            </Button>
-            <Button 
-              className="w-full text-center" 
-              variant="secondary"
-              onClick={() => {twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus)}}
-              >
-                Logout
-            </Button>
-          </div>
-         
-          <Button 
-            className="w-full text-center mt-4"
-            variant="secondary"
-            onClick={instagramPostHandler}>
-             Post to Instagram
-          </Button>
+        <div style={{display: "flex", flexDirection: "row"}}>
+          <button id="postButtonId" className="postButton" disabled={buttonDisabled} onClick={() => twitterLoginStatus ? twitterPost(): twitterLogin(setButtonDisabled)}>{twitterLoginStatus ? "Post to Twitter": "Login to Twitter" }</button>
+          <button className="postButton" onClick={() => {twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus)}}>Logout</button>
         </div>
 
+        <button className="postButton" onClick={instagramPostHandler}>Post to Instagram</button>
         {showModal && <PopupModal
           content={<>
             <b>Copied Post to Clipboard</b>

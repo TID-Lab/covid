@@ -1,6 +1,6 @@
 
 
-import c from './index.module.css';
+import './index.css';
 // TODO: DELETE if we finalize dark design :)
 const TextLogo = () => {
   return (

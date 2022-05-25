@@ -1,0 +1,9 @@
+.PageHeader {
+  flex: 0 0 50px;
+  /* background-color: red; */
+  background-color: white;
+  display: flex;
+  flex-flow: row;
+  align-items: stretch;
+  border-bottom: 1px solid lightgray;
+}

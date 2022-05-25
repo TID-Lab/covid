@@ -1,3 +1,6 @@
+import './index.css';
+
+
 const Radio = (props) => {
   const { name, id, selected, onClick } = props;
 
@@ -10,9 +13,9 @@ const Radio = (props) => {
   }
 
   return (
-    <div className="my-2" onClick={onRadioClick}>
-      <label className="text-base flex items-center">
-          <svg viewBox="0 0 100 100" className="w-4 h-4 mr-2" height="100" width="100" stroke={color} fill={color}>
+    <div className='Radio' onClick={onRadioClick}>
+      <label>
+          <svg viewBox="0 0 100 100" className="RadioImage" height="100" width="100" stroke={color} fill={color}>
             <circle cx="50" cy="50" r="40" strokeWidth="15" fill="rgb(0,0,0,0)" />
             {
               isSelected ?

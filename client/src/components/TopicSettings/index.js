@@ -1,4 +1,4 @@
-import c from './index.module.css';
+import './index.css';
 
 
 const TopicSettings = () => {

@@ -1,0 +1,39 @@
+.LoginModal {
+  width: 400px;
+}
+
+.LoginModal > img {
+  width: 50px;
+}
+
+.LoginModal > form {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.LoginModal > h1 {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+.LoginModal input, .LoginModal select, .LoginModal button {
+  width: 250px;
+  margin-bottom: 15px;
+}
+
+.LoginModal select, .LoginModal input {
+  padding-left: 15px;
+}
+
+.LoginModal button {
+  margin-top: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: var(--body-highlight-green);
+  color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: none;
+}
