@@ -1,0 +1,6 @@
+.Dashboard {
+  display: flex;
+  flex-flow: row;
+  flex: 1 1 auto;
+  overflow: hidden;
+}
