@@ -8,13 +8,17 @@ const resourceSchema = new Schema({
   fetchedAt: { type: Date, required: true },
   author: { type: String, required: true },
   url: { type: String, required: true },
+  type: {
+    type: String,
+    enum: ['image', 'website', 'video', 'pdf'],
+    required: true,
+  },
   platformID: { type: String, required: true },
   content: { type: String },
-  imageurl : {type: String }
-})
+  imageurl: { type: String },
+});
 
-resourceSchema.index({content: "text", author: "text"});
-
+resourceSchema.index({ content: 'text', author: 'text' });
 
 const resourcePost = model('resource', resourceSchema);
 
