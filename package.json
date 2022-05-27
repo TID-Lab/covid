@@ -13,7 +13,8 @@
     "prettier:server": "cd server && prettier src --check",
     "lint": "run-s lint:client lint:fetch lint:landing lint:server",
     "prettier": "run-s prettier:client prettier:fetch prettier:landing prettier:server",
-    "prettier:fix": "npm run prettier -- --write"
+    "prettier:fix": "npm run prettier -- --write",
+    "dev": "stmux -- [ [ -t \"Fetch (Compile)\" \"cd fetch && npm run dev:compile\" .. -t \"Fetch (Run)\" \"cd fetch && npm run dev:run\" ] : [ -t \"Server (Compile)\" \"cd server && npm run dev:compile\" .. -t \"Server (Run)\" \"cd server && npm run dev:run\" ] : [ -t \"Landing\" \"cd landing && npm start\" .. -t \"Client\" \"cd client && npm start\" ] ]"
   },
   "devDependencies": {
     "cypress": "^9.6.1",
