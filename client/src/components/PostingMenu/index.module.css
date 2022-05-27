@@ -1,33 +1,32 @@
 .flyoutMenu {
-  border-left:2px solid grey;
+  border-left: 2px solid grey;
   width: 30vw;
   height: 100vh;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   position: fixed;
   top: 0;
   left: 70vw;
-  transition: transform .3s
-              cubic-bezier(0, .52, 0, 1);
+  transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1);
   overflow: scroll;
   z-index: 1000;
   overflow-y: auto;
 }
- 
+
 .hide {
   transform: translate3d(30vw, 0, 0);
 }
- 
+
 .show {
   transform: translate3d(0, 0, 0);
   overflow: hidden;
 }
- 
+
 .flyoutMenu h2 a {
   color: #333;
   margin-left: 15px;
   text-decoration: none;
 }
- 
+
 .flyoutMenu h2 a:hover {
   text-decoration: underline;
 }
@@ -42,10 +41,8 @@
   border-bottom: 1px solid lightgray;
 }
 
-
-
 .postInput {
-  margin:.8vw;
+  margin: 0.8vw;
   width: 27vw;
   height: 30vh;
   resize: none;
@@ -72,11 +69,11 @@
 .gcse_search {
   height: 30wh;
 }
-.preview {	
+.preview {
   height: 300px;
-  overflow-y:auto;
-  float:left;
-  position:relative;
+  overflow-y: auto;
+  float: left;
+  position: relative;
 }
 
 .the_count {

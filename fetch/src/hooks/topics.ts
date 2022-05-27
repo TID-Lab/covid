@@ -31,8 +31,8 @@ module.exports = async function addTopics(post, next) {
   const searchables = [
     post.content,
     // TODO add other fields!
-    // FB: raw > imageText, raw > 
-    // IG: raw > imageText 
+    // FB: raw > imageText, raw >
+    // IG: raw > imageText
     // Tw: if possible, the post being replied to or retweeted
   ];
 

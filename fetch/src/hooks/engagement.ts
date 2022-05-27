@@ -22,9 +22,7 @@ module.exports = async function addEngagement(post, next) {
       } = raw;
       const {
         user: {
-          public_metrics: {
-            followers_count,
-          },
+          public_metrics: { followers_count },
         },
       } = raw;
       engagementRaw = quote_count + reply_count + retweet_count + like_count;
@@ -49,21 +47,26 @@ module.exports = async function addEngagement(post, next) {
         },
       } = raw;
       const { subscriberCount } = raw;
-      engagementRaw = likeCount
-        + loveCount
-        + wowCount
-        + hahaCount
-        + sadCount
-        + angryCount
-        + thankfulCount
-        + careCount
-        + commentCount
-        + shareCount;
+      engagementRaw =
+        likeCount +
+        loveCount +
+        wowCount +
+        hahaCount +
+        sadCount +
+        angryCount +
+        thankfulCount +
+        careCount +
+        commentCount +
+        shareCount;
       engagementNormed = engagementRaw / subscriberCount;
       break;
     }
     case 'instagram': {
-      const { statistics: { actual: { favoriteCount, commentCount } } } = raw;
+      const {
+        statistics: {
+          actual: { favoriteCount, commentCount },
+        },
+      } = raw;
       const { subscriberCount } = raw;
       engagementRaw = favoriteCount + commentCount;
       engagementNormed = engagementRaw / subscriberCount;

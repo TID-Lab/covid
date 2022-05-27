@@ -43,7 +43,7 @@ const COVID_TOPICS = {
     'obes',
     'overweight',
   ],
-  'testing': [
+  testing: [
     ' test',
     'prueba',
     'pcr',
@@ -53,7 +53,7 @@ const COVID_TOPICS = {
     'negative',
     'covid result',
   ],
-  'vaccines': [
+  vaccines: [
     'vacc',
     'vax',
     'vxx',
@@ -70,14 +70,8 @@ const COVID_TOPICS = {
     'one and done',
     'oneanddone',
   ],
-  'booster': [
-    'boost',
-    'third dose',
-    'third shot',
-    '3rd dose',
-    '3rd shot',
-  ],
-  'treatments': [
+  booster: ['boost', 'third dose', 'third shot', '3rd dose', '3rd shot'],
+  treatments: [
     'treatment',
     'cure',
     'antiviral',
@@ -101,13 +95,8 @@ const COVID_TOPICS = {
     'post acute',
     'pasc',
   ],
-  'variants': [
-    'variant',
-    'delta',
-    'lambda',
-    'omicron',
-  ],
-  'georgia': [
+  variants: ['variant', 'delta', 'lambda', 'omicron'],
+  georgia: [
     'georgia',
     ' ga ',
     'atl',
@@ -119,6 +108,6 @@ const COVID_TOPICS = {
     'albany',
     'dougherty',
   ],
-}
+};
 
 module.exports = { COVID_KEYWORDS, COVID_TOPICS };

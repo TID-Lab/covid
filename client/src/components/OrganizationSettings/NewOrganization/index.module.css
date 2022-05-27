@@ -11,7 +11,8 @@
   width: 100%;
 }
 
-.NewOrganization input, .NewOrganization select {
+.NewOrganization input,
+.NewOrganization select {
   margin-bottom: 20px;
 }
 

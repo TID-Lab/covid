@@ -5,12 +5,14 @@ const path = require('path');
  * via a simple JSON object that can be imported from other modules.
  */
 
-require('dotenv').config({ path: path.join(__dirname, '..', '..', '..', '.env') });
+require('dotenv').config({
+  path: path.join(__dirname, '..', '..', '..', '.env'),
+});
 
 module.exports = {
   db: {
     name: process.env.DB_NAME || 'covid',
-    url: process.env.DB_URL || 'mongodb://localhost:27017/covid',
+    url: process.env.DB_URL || 'mongodb://admin:secret@localhost:27017/covid',
   },
   fetch: {
     credentials: {

@@ -1,6 +1,6 @@
 // Combines together every reducer into a root reducer
 
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 
 import filtersReducer from './filters';
 import postsReducer from './posts';
@@ -11,13 +11,13 @@ import postingImageReducer from './postingImage';
 import resourcesReducer from './resources';
 
 const rootReducer = combineReducers({
-    filters: filtersReducer,
-    posts: postsReducer,
-    popup: popupReducer,
-    postingMenu: postingMenuReducer,
-    postingText: postingTextReducer,
-    postingImage: postingImageReducer,
-    resources: resourcesReducer
+  filters: filtersReducer,
+  posts: postsReducer,
+  popup: popupReducer,
+  postingMenu: postingMenuReducer,
+  postingText: postingTextReducer,
+  postingImage: postingImageReducer,
+  resources: resourcesReducer,
 });
-  
+
 export default rootReducer;

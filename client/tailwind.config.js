@@ -1,10 +1,9 @@
-const colors = require('tailwindcss/colors')
+const colors = require('tailwindcss/colors');
 
 module.exports = {
   content: [
-    "./src/pages/**/*.{js,jsx,ts,tsx}",
-    "./src/components/**/*.{js,jsx,ts,tsx}",
-
+    './src/pages/**/*.{js,jsx,ts,tsx}',
+    './src/components/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
     colors: {
@@ -13,9 +12,8 @@ module.exports = {
       primary: 'var(--c-primary)',
       white: 'var(--c-white)',
       black: 'var(--c-black)',
-      
+
       gray: colors.gray, // temporary, replace later with proper colors
-      
     },
     fontFamily: {
       sans: ['Poppins', 'sans-serif'],
@@ -23,4 +21,4 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-}
+};

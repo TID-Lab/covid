@@ -24,7 +24,7 @@ module.exports = {
   },
   db: {
     name: process.env.DB_NAME || 'covid',
-    url: process.env.DB_URL || 'mongodb://localhost:27017/covid',
+    url: process.env.DB_URL || 'mongodb://admin:secret@localhost:27017/covid',
   },
   auth: {
     sessionSecret: process.env.SESSION_SECRET,

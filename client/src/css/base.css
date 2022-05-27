@@ -3,12 +3,13 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,700,900');
 @import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
 
-
 * {
   box-sizing: border-box;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   width: 100%;
   height: 100%;
 }
@@ -23,11 +24,16 @@ body {
   overflow: hidden;
 }
 
-body, input, textarea, select {
+body,
+input,
+textarea,
+select {
   letter-spacing: 0.03em;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: var(--header-font);
 }
 
@@ -39,7 +45,10 @@ h2 {
   font-size: var(--header-medium-size);
 }
 
-input, textarea, select, button {
+input,
+textarea,
+select,
+button {
   background: none;
   font-size: calc(var(--body-font-size) - 2px);
   font-family: inherit;
@@ -48,7 +57,9 @@ input, textarea, select, button {
   border-radius: 3px;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
   padding-left: 10px;
 }
 
@@ -60,10 +71,10 @@ button {
   cursor: pointer;
 }
 
-input, textarea {
+input,
+textarea {
   padding: 10px;
 }
-
 
 ::placeholder,
 ::-moz-placeholder,
@@ -73,11 +84,14 @@ input, textarea {
   color: var(--body-secondary);
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   outline: none;
 }
 
-a, a:visited {
+a,
+a:visited {
   color: var(--body-primary);
   text-decoration: none;
 }
@@ -95,8 +109,9 @@ a, a:visited {
   border-radius: 10px;
 }
 
-
-.Modal button, .Modal select, .Modal input {
+.Modal button,
+.Modal select,
+.Modal input {
   padding: 5px;
 }
 
