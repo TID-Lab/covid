@@ -1,3 +1,4 @@
+// @ts-nocheck
 import './index.css'
 import useAuth from '../../hooks/auth';
 import LandingFooter from '../LandingFooter';
