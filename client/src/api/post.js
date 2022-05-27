@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Functions for the /api/post API endpoints
 
 import { authFetch } from '../util/auth';
@@ -6,17 +7,18 @@ let body = {};
 const defaultOptions = {
   method: 'POST',
   headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  }
-}
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
+};
 // Converts from the filters state object to an HTTP request body
 function filtersToBody(filters) {
   const { dates, topic, accounts, platforms, page, sortBy, search } = filters;
-  const { curatedOnly, categories, identities, institutions, location } = accounts;
+  const { curatedOnly, categories, identities, institutions, location } =
+    accounts;
   const body = { platforms, page, sortBy, search };
 
-  const { from:fromString, to:toString } = dates;
+  const { from: fromString, to: toString } = dates;
 
   const from = new Date(fromString);
   from.setMinutes(from.getMinutes() + from.getTimezoneOffset());
@@ -38,10 +40,10 @@ function filtersToBody(filters) {
       body.identity = identities;
     }
     if (institutions !== 'all') {
-      body.institutions = (institutions === 'institutional');
+      body.institutions = institutions === 'institutional';
     }
     if (location !== 'all') {
-      body.georgia = (location === 'georgia');
+      body.georgia = location === 'georgia';
     }
   }
   return body;
@@ -56,8 +58,8 @@ export let lastPage = true;
 async function fetchPosts() {
   const options = {
     ...defaultOptions,
-    body: JSON.stringify(body)
-  }
+    body: JSON.stringify(body),
+  };
   const res = await authFetch(`/api/post/${page}`, options);
 
   const { posts, lastPage: isLastPage } = await res.json();
