@@ -9,10 +9,18 @@ import './css/index.css';
 
 import store from './store';
 import App from './pages/App';
+import TrackerProvider from 'util/trackerProvider';
+import MatomoTracker from 'util/matomoTracker';
+import { MatomoProvider } from '@jonkoops/matomo-tracker-react';
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <TrackerProvider 
+      useTracker={true} 
+      vendor={children => <MatomoProvider >{children}</MatomoProvider>}
+    >
+      <App />
+    </TrackerProvider>
   </Provider>,
   document.getElementById('root')
 );
