@@ -9,7 +9,7 @@ import MatomoTracker from 'util/matomoTracker';
 
 import './css/index.css';
 
-//  so i had a different solution in mind when i first wrote this but now its a overcomplicated, refactor later
+//  so i had a different solution in mind when i first wrote this matomo tracker thing but now its overcomplicated, refactor later
 ReactDOM.render(
   <Provider store={store}>
     <TrackerProvider 
