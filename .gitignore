@@ -1,4 +1,4 @@
-.env
+/.env
 .env.production
 node_modules
 mongostart.ps1

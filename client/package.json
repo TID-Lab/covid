@@ -12,7 +12,7 @@
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
-    "eslint-config-react-app": "link:../node_modules/eslint-config-react-app",
+    "eslint-config-react-app": "^7.0.1",
     "react-scripts": "5.0.1",
     "redux": "^4.0.5",
     "web-vitals": "^1.1.1"
@@ -24,7 +24,10 @@
   },
   "eslintConfig": {
     "extends": [
+      "react-app",
+      "react-app/jest",
       "../eslintrc-react-base.js"
+
     ]
   },
   "browserslist": {
