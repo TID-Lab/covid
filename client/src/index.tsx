@@ -13,7 +13,7 @@ import './css/index.css';
 ReactDOM.render(
   <Provider store={store}>
     <TrackerProvider 
-      useTracker={process.env.REACT_APP_USE_TRACKER === 'true' && true} 
+      useTracker={process.env.REACT_APP_TRACKER_ACTIVE === 'true' && true} 
       vendor={children => <MatomoTracker>{children}</MatomoTracker>}
     >
       <App />
