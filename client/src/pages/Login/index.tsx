@@ -2,9 +2,16 @@
 import c from './index.module.css';
 
 import useAuth from 'hooks/auth';
-import LoginModal from '../LoginModal';
+import LoginModal from '../../components/LoginModal';
+i
 
 const Login = () => {
+
+  const {trackPageView} = useTracker();
+  useEffect(() => {
+    trackPageView()
+  }, [])
+
   useAuth(false, '/social-media-dashboard');
 
   return (
