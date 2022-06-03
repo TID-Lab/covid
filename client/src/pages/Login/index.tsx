@@ -3,7 +3,6 @@ import c from './index.module.css';
 
 import useAuth from 'hooks/auth';
 import LoginModal from '../../components/LoginModal';
-i
 
 const Login = () => {
 
