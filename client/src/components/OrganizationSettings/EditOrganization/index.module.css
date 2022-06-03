@@ -3,7 +3,8 @@
   padding-top: 10px;
 }
 
-.EditOrganization input, .EditOrganization p {
+.EditOrganization input,
+.EditOrganization p {
   width: 100%;
 }
 

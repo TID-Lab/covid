@@ -33,7 +33,7 @@
   animation-iteration-count: infinite;
 }
 
-.Post > .container> .content > * {
+.Post > .container > .content > * {
   margin: 0px !important;
 }
 
@@ -67,7 +67,6 @@
 .Post .column p {
   margin: 0;
 }
-
 
 .Post .left {
   width: 70%;

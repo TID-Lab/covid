@@ -4,13 +4,13 @@
   flex-direction: column;
   align-items: stretch;
   /* font-size: 80%; */
-  color: #FFFFFF;
+  color: #ffffff;
   padding-bottom: 20px;
-  margin-left:2%;
-  margin-right:2%;
+  margin-left: 2%;
+  margin-right: 2%;
 }
 .TeamMemberBlurb h1 {
-  font-family: "SF-Pro-Display";
+  font-family: 'SF-Pro-Display';
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
@@ -20,12 +20,12 @@
   letter-spacing: 0.38px;
 
   /* SystemGray / 04 / Dark */
-  color: #3A3A3C;
+  color: #3a3a3c;
 }
 
 .TeamMemberBlurb h2 {
   /* Default / Regular / Body */
-  font-family: "SF-Pro-Display";
+  font-family: 'SF-Pro-Display';
   font-style: normal;
   font-weight: normal;
   font-size: 17px;
@@ -36,23 +36,23 @@
   letter-spacing: -0.408px;
 
   /* SystemGray / 04 / Dark */
-  color: #3A3A3C;
+  color: #3a3a3c;
 }
 .TeamMemberBlurb a {
-/* Default / Bold / Body */
-  font-family: "SF-Pro-Display";
+  /* Default / Bold / Body */
+  font-family: 'SF-Pro-Display';
   font-style: normal;
   font-weight: 600;
   font-size: 17px;
   line-height: 22px;
-  
+
   margin-left: 1rem;
 
   /* identical to box height, or 129% */
   letter-spacing: -0.408px;
 
   /* SystemBlue / Dark */
-  color: #0A84FF;
+  color: #0a84ff;
 }
 .TeamMemberBlurb img {
   width: 15rem;
