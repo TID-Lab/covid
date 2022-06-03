@@ -20,9 +20,7 @@ function useTracker() {
     pushInstruction: matomoPush
   } = useMatomo();
 
-  const trackPageView = (params?: TrackPageViewParams) => {
-    isTrackerActive && matomoTrackPageView(params)
-  };
+  const trackPageView = (params?: TrackPageViewParams) => isTrackerActive && matomoTrackPageView(params);
 
   const trackEvent = (params: TrackEventParams) => isTrackerActive && matomoTrackEvent(params);
 

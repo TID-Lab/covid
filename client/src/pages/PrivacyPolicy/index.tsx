@@ -1,4 +1,12 @@
+import useTracker from "hooks/useTracker";
+import { useEffect } from "react";
+
 const PrivacyPolicy = () => {
+  const {trackPageView} = useTracker();
+ useEffect(() => {
+    trackPageView()
+  }, [])
+  
   return (
     <div className="Policy" style={{ overflow: 'auto' }}>
       <h1>Privacy Policy</h1>

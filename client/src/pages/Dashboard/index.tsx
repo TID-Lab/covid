@@ -18,7 +18,7 @@ const Dashboard = () => {
   }, [])
 
   return (
-    <div className={c.Dashboard}>
+    <div className="flex flex-row overflow-hidden">
       <Filters />
       <Posts />
       <PostingMenu />
