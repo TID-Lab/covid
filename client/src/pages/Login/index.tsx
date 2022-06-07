@@ -1,8 +1,9 @@
-// @ts-nocheck
 import c from './index.module.css';
 
 import useAuth from 'hooks/auth';
 import LoginModal from '../../components/LoginModal';
+import useTracker from 'hooks/useTracker';
+import { useEffect } from 'react';
 
 const Login = () => {
 

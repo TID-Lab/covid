@@ -2,18 +2,7 @@ import React, { CSSProperties } from "react";
 
 // define button styles here
 
-export enum Style {
-  PRIMARY = 'primary',
-  SECONDARY = 'secondary',
-  OUTLINE = 'outline'
-}
 
-export enum Size {
-  SM = 'sm',
-  MD = 'md',
-  LG = 'lg',
-  XL = 'xl'
-}
 const btnStyle = {
   primary: 'bg-primary hover:bg-gray-600 text-white rounded-full', //big primary button
   secondary: 'bg-gray-100 hover:bg-gray-300 text-black rounded-md',
@@ -35,8 +24,8 @@ const Button = ({
   onClick,
   className,
   style,
-  variant = Style.PRIMARY,
-  size = Size.LG,
+  variant = 'primary',
+  size = 'lg',
 }:ButtonProps) => {
   return (
     <button
@@ -59,7 +48,7 @@ interface ButtonProps {
   onClick?:any
   className?: string
   style?: CSSProperties
-  variant?: Style
-  size?: Size
+  variant?: 'primary' | 'secondary' | 'outline' | 'transparent'
+  size?: 'sm' | 'md' | 'lg' | 'xl'
 }
 export default Button;
