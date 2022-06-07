@@ -1,0 +1,13 @@
+.NewResource button {
+  align-self: flex-end;
+  margin-left: 10px;
+  padding-top: 10px;
+}
+
+label {
+  display: inline-block;
+  width: 80px;
+  text-align: left;
+}
+
+li div { display: table-cell; vertical-align: middle; }

@@ -13,7 +13,8 @@ const resourceSchema = new Schema({
     enum: ['image', 'website', 'video', 'pdf'],
     required: true,
   },
-  platformID: { type: String, required: true },
+  topics: { type: [], required: true },
+  platformID: { type: String },
   content: { type: String },
   imageurl: { type: String },
 });

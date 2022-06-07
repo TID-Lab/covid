@@ -1,17 +1,20 @@
 /* eslint-disable no-underscore-dangle */
 
-// API routes for social media posts
+// API routes for resources
 
 const routes = require('express').Router();
 const mongoose = require('mongoose');
+const useDebug = require('debug');
+const Resources = require('../../models/resource');
 const {
   db: { name: dbName },
   api: { posts: { pageSize } },
 } = require('../../util/config');
 
+const debug = useDebug('api');
 
 // Returns a page of resource posts using the given search query
-routes.post('/:resource', async (req, res) => {
+routes.get('/:page', async (req, res) => {
   const MongoClient = mongoose.connection.client;
   const database = MongoClient.db(dbName);
 
@@ -43,7 +46,62 @@ routes.post('/:resource', async (req, res) => {
   res.status(200).send({
     resources,
     lastPage,
-  })
+  });
+});
+
+// Creates a new Resource
+routes.post('/', async (req, res) => {
+  if (typeof req.body !== 'object') {
+    res.status(400).send();
+  }
+  const {
+    authoredAt,
+    fetchedAt,
+    author,
+    url,
+    type,
+    topics,
+    platformID,
+    content,
+    imageurl,
+  } = req.body;
+  try {
+    const resour = await Resources.create({
+      authoredAt,
+      fetchedAt,
+      author,
+      url,
+      type,
+      topics,
+      platformID,
+      content,
+      imageurl,
+    });
+    res.status(200).send(resour);
+  } catch (err) {
+    debug(`${err}`);
+    res.status(500).send();
+  }
+});
+
+// Deletes a resource given URL
+routes.delete('/', async (req, res) => {
+  const { url } = req.body;
+  if (typeof url !== 'string') {
+    res.status(400).send();
+    return;
+  }
+  try {
+    const result = await Resources.deleteOne({ url });
+    if (result.deletedCount === 0) {
+      res.status(404).send();
+      return;
+    }
+    res.status(200).send();
+  } catch (err) {
+    debug(`${err}`);
+    res.status(500).send();
+  }
 });
 
 module.exports = routes;

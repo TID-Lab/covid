@@ -4,7 +4,6 @@ import { authFetch } from '../util/auth';
 
 let body = {};
 const defaultOptions = {
-  method: 'POST',
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
@@ -20,7 +19,8 @@ export let lastPage = true;
 async function fetchResources() {
   const options = {
     ...defaultOptions,
-    body: JSON.stringify(body)
+    method: 'GET',
+    body: JSON.stringify(body),
   }
   const res = await authFetch(`/api/resource/${page}`, options);
 
@@ -32,7 +32,7 @@ async function fetchResources() {
 /**
  * Fetches resources using the given set of filters.
  */
-export async function getResources(filters) {
+async function getResources(filters) {
   page = 0;
   //body = filtersToBody(filters);
   return await fetchResources();
@@ -40,15 +40,47 @@ export async function getResources(filters) {
 /**
  * Fetches the next page of resources.
  */
-export async function getNextPage() {
+async function getNextPage() {
   page += 1;
-  return await fetchPosts();
+  return await fetchResources();
 }
 
 /**
  * Fetches the previous page of resources.
  */
-export async function getPrevPage() {
+async function getPrevPage() {
   if (page > 0) page -= 1;
-  return await fetchPosts();
+  return await fetchResources();
 }
+
+async function createResource(resource) {
+  const options = {
+    ...defaultOptions,
+    method: 'POST',
+    body: JSON.stringify(resource)
+  }
+  const res = await authFetch(`/api/resource`, options);
+  const body = await res.json();
+  return body;
+}
+
+async function deleteResource(resource) {
+  const options = {
+    ...defaultOptions,
+    method: 'DELETE',
+    body: JSON.stringify(resource)
+  }
+  console.log(body);
+  const res = await authFetch(`/api/resource`, options);
+  console.log(res);
+  return res.status === 200;
+}
+
+export {
+  getResources,
+  getNextPage,
+  getPrevPage,
+  createResource,
+  fetchResources,
+  deleteResource,
+};
