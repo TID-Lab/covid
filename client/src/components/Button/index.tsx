@@ -12,7 +12,7 @@ const btnStyle = {
 
 const btnSize = {
   sm: '',
-  md: 'py1 px-4',
+  md: 'py-1 px-3',
   lg: 'py-2 px-6 ',
   xl: ''
 };
