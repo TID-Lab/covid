@@ -4,11 +4,11 @@ module.exports = {
     amd: true,
     node: true,
   },
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
-  ],
+  // extends: [
+  //   'eslint:recommended',
+  //   'plugin:react/recommended',
+  //   'plugin:react-hooks/recommended',
+  // ],
   settings: {
     react: {
       version: 'detect',
@@ -21,7 +21,7 @@ module.exports = {
     ecmaVersion: 2020,
     sourceType: 'module',
   },
-  plugins: ['react-hooks', 'react'],
+  //plugins: ['react-hooks', 'react'],
   rules: {
     'react/prop-types': [0],
     'react/react-in-jsx-scope': 'off',
