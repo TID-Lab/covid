@@ -14,7 +14,7 @@
     "lint": "run-s lint:client lint:fetch lint:landing lint:server",
     "prettier": "run-s prettier:client prettier:fetch prettier:landing prettier:server",
     "prettier:fix": "npx prettier --write .",
-    "dev": "stmux -- [ [ -s 1/4 -t \"Fetch (Compiler)\" \"cd fetch && npm run dev:compile\" .. -s 3/4 -t \"Fetch (Run)\" \"cd fetch && npm run dev:run\" ] : [ -s 1/4 -t \"Server (Compiler)\" \"cd server && npm run dev:compile\" .. -s 3/4 -t \"Server (Run)\" \"cd server && npm run dev:run\" ] : [ -t \"Landing\" \"cd landing && npm start\" .. -t \"Client\" \"cd client && npm start\" ] ]",
+    "dev": "stmux -- [ [ -s 1/4 -t \"Fetch (Compiler)\" \"cd fetch && npm run dev:compile\" .. -s 3/4 -t \"Fetch (Run)\" \"cd fetch && npm run dev:run\" ] : [ -s 1/4 -t \"Server (Compiler)\" \"cd server && npm run dev:compile\" .. -s 3/4 -t \"Server (Run)\" \"cd server && npm run dev:run\" ] : [ -t \"Landing\" \"cd client && npm start\" ] ]",
     "dev:client": "stmux -- [ [ -t \"Fetch [Run]\" \"cd fetch && npm run build && npm run dev:run\" :  -t \"Server [Run]\" \"cd server && npm run build && npm run dev:run\" ] .. -f -t \"Client\" \"cd client && npm start\" ]"
   },
   "devDependencies": {
@@ -24,6 +24,7 @@
     "eslint-plugin-react-hooks": "^4.5.0",
     "npm-run-all": "^4.1.5",
     "prettier": "2.6.2",
-    "prettier-eslint": "^15.0.0"
+    "prettier-eslint": "^15.0.0",
+    "stmux": "^1.8.4"
   }
 }
