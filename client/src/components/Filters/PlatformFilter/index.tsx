@@ -4,17 +4,23 @@ import { useDispatch } from 'react-redux';
 import c from './index.module.css';
 
 import Toggle from 'components/Toggle';
+import useTracker from 'hooks/useTracker';
 
 const PlatformFilter = (props) => {
   const { platforms } = props;
   const dispatch = useDispatch();
+  const { trackEvent } = useTracker();
 
   function onToggled(value) {
     return (toggled) => {
       if (!toggled) {
         dispatch({ type: 'platforms/added', payload: value });
+        trackEvent({ category: 'Filter', action: 'Add Platform', name: value} as MatomoEvent)
+
       } else {
         dispatch({ type: 'platforms/removed', payload: value });
+        trackEvent({ category: 'Filter', action: 'Remove Platform', name: value} as MatomoEvent)
+
       }
     };
   }

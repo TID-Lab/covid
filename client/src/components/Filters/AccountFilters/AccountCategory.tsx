@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import Radio from 'components/Radio';
 
 import c from './index.module.css';
+import useTracker from 'hooks/useTracker';
 
 const CATEGORIES = {
   all: 'All',
@@ -20,9 +21,12 @@ const CATEGORIES = {
 const AccountCategories = (props) => {
   const { categories: category } = props;
   const dispatch = useDispatch();
+  const {trackEvent} = useTracker();
 
   function onRadioClick(id) {
     dispatch({ type: 'accounts/categories/set', payload: id });
+    trackEvent({ category: 'Filter', action: 'Set Account Category', name: id} as MatomoEvent)
+
   }
 
   return (

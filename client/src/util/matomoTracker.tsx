@@ -9,6 +9,7 @@ type MatomoTrackerProps = {
 const instance = createInstance({
   urlBase: 'https://cartercenter.matomo.cloud/',
   siteId: 6,
+  linkTracking: false 
   // userId: 'UID76903202', // optional, default value: `undefined`.
   // trackerUrl: 'https://LINK.TO.DOMAIN/tracking.php', // optional, default value: `${urlBase}matomo.php`
   // srcUrl: 'https://LINK.TO.DOMAIN/tracking.js', // optional, default value: `${urlBase}matomo.js`

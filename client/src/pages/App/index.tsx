@@ -14,12 +14,16 @@ import PrivacyPolicy from 'pages/PrivacyPolicy';
 import Terms from 'pages/Terms';
 import DataDeletion from 'pages/DataDeletion';
 import ResourceDashboard from 'pages/ResourceDashboard';
+import useTracker from 'hooks/useTracker';
+
 
 // TODO: Style hyperlinks in the Terms, etc. pages
 
 const App = () => {
   const popupModal = useSelector((state) => state.popup);
-
+  const {enableLinkTracking } = useTracker();
+  
+  enableLinkTracking();
   return (
     <div className={c.Root}>
       <div className="App">

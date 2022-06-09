@@ -4,13 +4,17 @@ import { useDispatch } from 'react-redux';
 import Radio from 'components/Radio';
 
 import c from './index.module.css';
+import useTracker from 'hooks/useTracker';
 
 const AccountLocation = (props) => {
   const { location } = props;
   const dispatch = useDispatch();
+  const {trackEvent} = useTracker();
 
   function onRadioClick(id) {
     dispatch({ type: 'accounts/location/set', payload: id });
+    trackEvent({ category: 'Filter', action: 'Set Account Location', name: id} as MatomoEvent)
+
   }
 
   return (

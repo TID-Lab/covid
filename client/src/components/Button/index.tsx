@@ -7,7 +7,7 @@ const btnStyle = {
   primary: 'bg-primary hover:bg-gray-600 text-white rounded-full', //big primary button
   secondary: 'bg-gray-100 hover:bg-gray-300 text-black rounded-md',
   transparent: '',
-  outline: '',
+  outline: 'border border-gray-100 hover:bg-gray-300 text-black rounded-full',
 };
 
 const btnSize = {

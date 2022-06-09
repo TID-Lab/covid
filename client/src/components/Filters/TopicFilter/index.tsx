@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import c from './index.module.css';
 
 import Radio from 'components/Radio';
+import useTracker from 'hooks/useTracker';
 
 const COVID_TOPICS = {
   // temporary
@@ -21,9 +22,12 @@ const COVID_TOPICS = {
 const TopicFilter = (props) => {
   const { topic } = props;
   const dispatch = useDispatch();
+  const { trackEvent } = useTracker();
 
   function onRadioClick(id) {
     dispatch({ type: 'topic/set', payload: id });
+    trackEvent({ category: 'Filter', action: 'Set Topic', name: id} as MatomoEvent)
+
   }
 
   return (
