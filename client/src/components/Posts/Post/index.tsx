@@ -6,8 +6,7 @@ import { authFetch } from 'util/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import store from 'store';
 import useTracker from 'hooks/useTracker';
-import { unstable_renderSubtreeIntoContainer } from 'react-dom';
-const embedHTMLCache  = [];
+const embedHTMLCache = [];
 
 function waitForEmbed(parent, callback) {
   const iframe = parent.querySelector('iframe');
@@ -30,7 +29,7 @@ const Post = (props) => {
 
   const [isLoaded, setLoaded] = useState(false);
   const [isRendered, setRendered] = useState(false);
-  const {trackEvent} = useTracker();
+  const { trackEvent } = useTracker();
 
   const wait = useCallback(() => {
     waitForEmbed(element, () => {
@@ -114,15 +113,14 @@ const Post = (props) => {
   function copyLink(e) {
     e.preventDefault();
     navigator.clipboard.writeText(data.url);
-    trackEvent({ category: 'Post', action: 'Copy Link'} as MatomoEvent)
-
+    trackEvent({ category: 'Post', action: 'Copy Link' } as MatomoEvent);
   }
 
   // Function for copying text of post to user's clipboard
   function copyText(e) {
     e.preventDefault();
     navigator.clipboard.writeText(data.content);
-    trackEvent({ category: 'Post', action: 'Copy Text'} as MatomoEvent)
+    trackEvent({ category: 'Post', action: 'Copy Text' } as MatomoEvent);
   }
 
   // Function for copying post and opening posting menu
@@ -132,8 +130,10 @@ const Post = (props) => {
     const postText = data.content;
     store.dispatch({ type: 'postingMenu/set', payload: !postingMenu });
     store.dispatch({ type: 'postingText/set', payload: postText });
-    trackEvent({ category: 'Post', action: 'Send to Posting Menu'} as MatomoEvent)
-
+    trackEvent({
+      category: 'Post',
+      action: 'Send to Posting Menu',
+    } as MatomoEvent);
   }
 
   // some FB posts render with a transparent background
@@ -195,16 +195,15 @@ const Post = (props) => {
           </p>
         </div>
         <div className={`${c.column} ${c.right}`}>
-          <Button variants="outline" size="md" onClick={createPost}>  
-          Use as basis of a post
+          <Button variants="outline" size="md" onClick={createPost}>
+            Use as basis of a post
           </Button>
-          <Button variants="outline" size="md" onClick={copyLink}>  
-          Copy link
+          <Button variants="outline" size="md" onClick={copyLink}>
+            Copy link
           </Button>
-          <Button variants="outline" size="md" onClick={copyText}>  
-          Copy text
+          <Button variants="outline" size="md" onClick={copyText}>
+            Copy text
           </Button>
-         
         </div>
       </div>
     </div>
