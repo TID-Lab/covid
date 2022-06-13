@@ -1,7 +1,6 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties } from 'react';
 
 // define button styles here
-
 
 const btnStyle = {
   primary: 'bg-primary hover:bg-gray-600 text-white rounded-full', //big primary button
@@ -14,7 +13,7 @@ const btnSize = {
   sm: '',
   md: 'py-1 px-3',
   lg: 'py-2 px-6 ',
-  xl: ''
+  xl: '',
 };
 
 const Button = ({
@@ -26,14 +25,14 @@ const Button = ({
   style,
   variant = 'primary',
   size = 'lg',
-}:ButtonProps) => {
+}: ButtonProps) => {
   return (
     <button
       type="button"
       id={id}
       className={`grid gap-4 auto-cols-auto ${btnStyle[variant]} ${btnSize[size]} ${className}`}
       style={style}
-      onClick={()=> onClick()}
+      onClick={() => onClick()}
       //onKeyDown={()=>onClick()}
       disabled={disabled}
     >
@@ -42,13 +41,13 @@ const Button = ({
   );
 };
 interface ButtonProps {
-  children?: React.ReactNode
-  disabled?: boolean
-  id?: string
-  onClick?:any
-  className?: string
-  style?: CSSProperties
-  variant?: 'primary' | 'secondary' | 'outline' | 'transparent'
-  size?: 'sm' | 'md' | 'lg' | 'xl'
+  children?: React.ReactNode;
+  disabled?: boolean;
+  id?: string;
+  onClick?: any;
+  className?: string;
+  style?: CSSProperties;
+  variant?: 'primary' | 'secondary' | 'outline' | 'transparent';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 export default Button;

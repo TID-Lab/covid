@@ -6,8 +6,8 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    //   'plugin:react/recommended',
-    //   'plugin:react-hooks/recommended',
+    // 'plugin:react/recommended',
+    // 'plugin:react-hooks/recommended',
   ],
   settings: {
     react: {
@@ -21,7 +21,7 @@ module.exports = {
     ecmaVersion: 2020,
     sourceType: 'module',
   },
-  //plugins: ['react-hooks', 'react'],
+  // plugins: ['react-hooks', 'react'],
   rules: {
     'react/prop-types': [0],
     'react/react-in-jsx-scope': 'off',
@@ -34,7 +34,10 @@ module.exports = {
     'no-unused-vars': 'warn',
     'no-case-declarations': 'warn',
     'no-undef': 'warn',
-    indent: ['warn', 2],
+    indent: ['warn', 2, {       // avoid conflict with jsx elements
+      ignoredNodes: [
+        'JSXElement', 'JSXElement > *', 'JSXAttribute', 'JSXIdentifier', 'JSXNamespacedName', 'JSXMemberExpression', 'JSXSpreadAttribute', 'JSXExpressionContainer', 'JSXOpeningElement', 'JSXClosingElement', 'JSXText', 'JSXEmptyExpression', 'JSXSpreadChild'],
+    }],
     'react/jsx-key': 'warn',
     'no-trailing-spaces': [1],
     'no-multiple-empty-lines': [1, { max: 1 }],
