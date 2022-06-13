@@ -12,9 +12,9 @@ import './css/index.css';
 //  so i had a different solution in mind when i first wrote this matomo tracker thing but now its overcomplicated, refactor later
 ReactDOM.render(
   <Provider store={store}>
-    <TrackerProvider 
-      useTracker={process.env.REACT_APP_TRACKER_ACTIVE === 'true' && true} 
-      vendor={children => <MatomoTracker>{children}</MatomoTracker>}
+    <TrackerProvider
+      useTracker={process.env.REACT_APP_TRACKER_ACTIVE === 'true' && true}
+      vendor={(children) => <MatomoTracker>{children}</MatomoTracker>}
     >
       <App />
     </TrackerProvider>

@@ -3,7 +3,7 @@
   "scripts": {
     "test:dev": "cypress open",
     "test": "cypress run --headless",
-    "lint:client": "cd client && eslint src",
+    "lint:client": "cd client && eslint src/* ",
     "lint:fetch": "cd fetch && eslint src",
     "lint:landing": "cd landing && eslint src",
     "lint:server": "cd server && eslint src",

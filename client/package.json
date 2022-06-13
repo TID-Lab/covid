@@ -21,14 +21,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest",
-      "../eslintrc-react-base.js"
-    ],
-    "root": true
-  },
   "browserslist": {
     "production": [
       ">0.2%",
