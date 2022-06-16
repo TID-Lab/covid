@@ -6,6 +6,8 @@ import { authFetch } from 'util/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import store from 'store';
 import useTracker from 'hooks/useTracker';
+import Button from 'components/Button';
+
 const embedHTMLCache = [];
 
 function waitForEmbed(parent, callback) {
@@ -178,7 +180,7 @@ const Post = (props) => {
         ></div>
       </div>
       <div className={c.annotations}>
-        <div className={`${c.column} ${c.left}`}>
+        <div className={``}>
           <p>
             <b>Topics:</b>{' '}
             {data.topics
@@ -194,15 +196,15 @@ const Post = (props) => {
               .join(', ')}
           </p>
         </div>
-        <div className={`${c.column} ${c.right}`}>
-          <Button variants="outline" size="md" onClick={createPost}>
-            Use as basis of a post
-          </Button>
-          <Button variants="outline" size="md" onClick={copyLink}>
+        <div className={`flex space-x-1 pb-4 `}>
+          <Button variant="outline" size="md" onClick={copyLink}>
             Copy link
           </Button>
-          <Button variants="outline" size="md" onClick={copyText}>
+          <Button variant="outline" size="md" onClick={copyText}>
             Copy text
+          </Button>
+          <Button variant="primary" size="md" onClick={createPost}>
+            Make Post
           </Button>
         </div>
       </div>

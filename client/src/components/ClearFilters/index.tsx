@@ -8,7 +8,7 @@ const ClearFilters = () => {
   const dispatch = useDispatch();
   const filters = useSelector((state) => state.filters);
   const { platforms } = filters;
-  const {trackEvent} = useTracker();
+  const { trackEvent } = useTracker();
   function onClick() {
     dispatch({ type: 'dates/fromSet', payload: '' });
     dispatch({ type: 'dates/toSet', payload: '' });
@@ -28,12 +28,14 @@ const ClearFilters = () => {
     if (!platforms.includes('twitter')) {
       dispatch({ type: 'platforms/added', payload: 'twitter' });
     }
-    trackEvent({ category: 'Filter', action: 'Clear All Filters'} as MatomoEvent)
-
+    trackEvent({
+      category: 'Filter',
+      action: 'Clear All Filters',
+    } as MatomoEvent);
   }
 
   return (
-    <div className="" >
+    <div className="">
       <Button onCLick={onClick}>Clear Filters</Button>
     </div>
   );

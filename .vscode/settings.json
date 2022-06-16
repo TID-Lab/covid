@@ -3,5 +3,6 @@
   "editor.insertSpaces": true,
   "files.eol": "\n",
   "prettier.configPath": ".prettierrc.json",
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.jsxSingleQuote": true
 }
