@@ -6,6 +6,11 @@
   @apply bg-slate-100;
 }
 
+.navlink {
+  @apply border-b-2;
+  @apply border-transparent;
+}
+
 .active {
   @apply border-primary;
 }

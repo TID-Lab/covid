@@ -34,22 +34,22 @@ const Header = () => {
         </div>
 
         <div className="flex justify-between items-center px-2 py-1 border-b  border-gray-400">
-          <div className="flex items-center h-fit grow space-x-2 basis-0">
+          <div className="flex items-center h-fit grow space-x-5 pl-2 basis-0">
             <NavLink
-              className={`${c.navlink} py-1 border-b-2 border-transparent`}
+              className={`${c.navlink} py-1 `}
               activeClassName={c.active}
               to="/social-media-dashboard"
             >
-              <p className={`${c.navlink_inner} px-2 py-1 rounded-lg`}>
+              <p className={`${c.navlink_inner} -mx-2 px-2 py-0.5 rounded-lg`}>
                 Monitoring
               </p>
             </NavLink>
             <NavLink
-              className={`${c.navlink} py-1 border-b-2 border-transparent`}
+              className={`${c.navlink} py-1 `}
               activeClassName={c.active}
               to="/resources"
             >
-              <p className={`${c.navlink_inner} px-2 py-1 rounded-lg`}>
+              <p className={`${c.navlink_inner} -mx-2 px-2 py-0.5 rounded-lg`}>
                 Resources
               </p>{' '}
             </NavLink>
