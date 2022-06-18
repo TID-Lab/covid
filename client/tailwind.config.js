@@ -12,7 +12,7 @@ module.exports = {
       primary: 'var(--c-primary)',
       white: 'var(--c-white)',
       black: 'var(--c-black)',
-
+      slate: colors.slate,
       gray: colors.gray, // temporary, replace later with proper colors
     },
     fontFamily: {

@@ -1,15 +1,15 @@
-import { MatomoProvider, createInstance } from "@jonkoops/matomo-tracker-react";
-import { MatomoInstance } from "@jonkoops/matomo-tracker-react/lib/types";
-import React from "react";
+import { MatomoProvider, createInstance } from '@jonkoops/matomo-tracker-react';
+import { MatomoInstance } from '@jonkoops/matomo-tracker-react/lib/types';
+import React from 'react';
 
 type MatomoTrackerProps = {
-  value: MatomoInstance,
-  children?: React.ReactNode
-}
+  value: MatomoInstance;
+  children?: React.ReactNode;
+};
 const instance = createInstance({
   urlBase: 'https://cartercenter.matomo.cloud/',
   siteId: 6,
-  linkTracking: false 
+  linkTracking: false,
   // userId: 'UID76903202', // optional, default value: `undefined`.
   // trackerUrl: 'https://LINK.TO.DOMAIN/tracking.php', // optional, default value: `${urlBase}matomo.php`
   // srcUrl: 'https://LINK.TO.DOMAIN/tracking.js', // optional, default value: `${urlBase}matomo.js`
@@ -25,13 +25,9 @@ const instance = createInstance({
   //   setSecureCookie: true,
   //   setRequestMethod: 'POST'
   // }
-})
+});
 
 const MatomoTracker = ({ children }: MatomoTrackerProps) => {
- return ( 
-  <MatomoProvider value={instance}>
-    {children}
-  </MatomoProvider>
- )
-}
+  return <MatomoProvider value={instance}>{children}</MatomoProvider>;
+};
 export default MatomoTracker;

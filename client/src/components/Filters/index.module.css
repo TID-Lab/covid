@@ -1,7 +1,7 @@
 .Filters {
   background-color: white;
   border-right: 1px solid lightgray;
-  flex: 0 0 250px;
+  flex: 0 0 300px;
   padding: 10px;
   overflow-y: auto;
   user-select: none;

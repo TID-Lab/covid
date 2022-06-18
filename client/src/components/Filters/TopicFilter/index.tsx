@@ -1,10 +1,11 @@
 // @ts-nocheck
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import c from './index.module.css';
 
 import Radio from 'components/Radio';
 import useTracker from 'hooks/useTracker';
+import ChipSelector from 'components/ChipSelector';
 
 const COVID_TOPICS = {
   // temporary
@@ -12,27 +13,39 @@ const COVID_TOPICS = {
   vaccines: 'Vaccines',
   booster: 'Boosters',
   treatments: ' Treatments',
-  variants: 'Variants',
   'long-hauler': 'Long COVID',
-  testing: 'Testing',
+  variants: 'Variants',
+
   'covid-diabetes': 'COVID x Diabetes',
+  testing: 'Testing',
   georgia: 'Georgia',
 };
 
 const TopicFilter = (props) => {
   const { topic } = props;
   const dispatch = useDispatch();
+  const selected = useSelector((state) => state.filters.topic);
+
   const { trackEvent } = useTracker();
 
   function onRadioClick(id) {
     dispatch({ type: 'topic/set', payload: id });
-    trackEvent({ category: 'Filter', action: 'Set Topic', name: id} as MatomoEvent)
-
+    trackEvent({
+      category: 'Filter',
+      action: 'Set Topic',
+      name: id,
+    } as MatomoEvent);
   }
 
   return (
     <div className="Filter Topics">
-      <h3>COVID-19 Topics</h3>
+      <ChipSelector
+        options={COVID_TOPICS}
+        header="COVID_19 Topics"
+        active={selected}
+        onSelect={(e) => onRadioClick(e.target.value)}
+      />
+      {/* <h3>COVID-19 Topics</h3>
       {Object.keys(COVID_TOPICS).map((id) => (
         <Radio
           key={id}
@@ -41,7 +54,8 @@ const TopicFilter = (props) => {
           selected={topic}
           onClick={onRadioClick}
         />
-      ))}
+      ))} */}
+
       {/* <Link to='/settings/topics'>
         <span>Edit Topics</span>
       </Link> */}

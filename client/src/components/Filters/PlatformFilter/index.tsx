@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import c from './index.module.css';
 
@@ -15,12 +15,18 @@ const PlatformFilter = (props) => {
     return (toggled) => {
       if (!toggled) {
         dispatch({ type: 'platforms/added', payload: value });
-        trackEvent({ category: 'Filter', action: 'Add Platform', name: value} as MatomoEvent)
-
+        trackEvent({
+          category: 'Filter',
+          action: 'Add Platform',
+          name: value,
+        } as MatomoEvent);
       } else {
         dispatch({ type: 'platforms/removed', payload: value });
-        trackEvent({ category: 'Filter', action: 'Remove Platform', name: value} as MatomoEvent)
-
+        trackEvent({
+          category: 'Filter',
+          action: 'Remove Platform',
+          name: value,
+        } as MatomoEvent);
       }
     };
   }
