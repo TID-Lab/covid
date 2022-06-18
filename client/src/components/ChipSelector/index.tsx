@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import c from './index.module.css';
 
+//for whatever reason tailwind is not detecting classes if i dont have the space in front of the string
 const style = {
   default: ' border-slate-500 active:bg-slate-200 hover:bg-slate-100',
   active: ' bg-slate-200 border-slate-300 ',

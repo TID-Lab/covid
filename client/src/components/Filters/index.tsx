@@ -11,7 +11,7 @@ import PlatformFilter from './PlatformFilter';
 import ClearFilters from '../ClearFilters';
 import { getPosts } from 'api/post';
 import notify from 'util/notify';
-
+import SortSelect from 'components/SortSelect';
 const Filters = () => {
   const dispatch = useDispatch();
   const filters = useSelector((state) => state.filters);
@@ -26,7 +26,8 @@ const Filters = () => {
   }, [filters, dispatch]);
 
   return (
-    <div className={c.Filters}>
+    <div className="bg-white border-r border-gray-400 px-2 py-4 space-y-4 overflow-y-auto">
+      <SortSelect />
       <DateFilter dates={dates} />
       <TopicFilter topic={topic} />
       <AccountFilters accounts={accounts} />

@@ -9,9 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from 'components/Button';
 import useTracker from 'hooks/useTracker';
 
-
 const Header = () => {
-  const {trackEvent} = useTracker();
+  const { trackEvent } = useTracker();
   const { pathname } = useLocation(); // TODO show search only if in dashboard mode
   // const [postingVisible, setPostingVisible] = useState(false);
   const dispatch = useDispatch();
@@ -19,69 +18,49 @@ const Header = () => {
 
   function onMenuClick() {
     dispatch({ type: 'postingMenu/set', payload: !postingMenu });
-    trackEvent({ category: 'Post', action: 'Create Post'} as MatomoEvent)
-
+    trackEvent({ category: 'Post', action: 'Create Post' } as MatomoEvent);
   }
 
-  if (pathname === '/social-media-dashboard') {
+  if (pathname === '/social-media-dashboard' || pathname === '/resources') {
     return (
-      <div className="flex justify-between bg-white items-center px-2 py-1 border-b border-gray-400">
-        <div className="flex ">
+      <header className={`bg-white grid ${c.header_grid}`}>
+        <div className="border-r border-gray-400">
           <Logo />
-          <button
-            style={{
-              marginLeft: '0.5rem',
-              marginRight: '1.5rem',
-              marginTop: '0.5rem',
-              marginBottom: '0.5rem',
-              maxHeight: '3rem',
-            }}
-            onClick={() => window.open('/resources', '_self')}
-          >
-            {' '}
-            Resources{' '}
-          </button>
-          <SortSelect />
-          <TextSearch />
         </div>
 
-        <Button onClick={onMenuClick}>+ Create Post</Button>
-      </div>
+        <div className="flex justify-between items-center px-2 py-1 border-b  border-gray-400">
+          <div className="flex items-center h-fit grow basis-0">
+            <Button
+              variant="secondary"
+              size="md"
+              onClick={() =>
+                window.open(
+                  pathname === '/resources'
+                    ? '/social-media-dashboard'
+                    : '/resources',
+                  '_self'
+                )
+              }
+            >
+              {pathname === '/resources' ? 'Resources' : 'Monitoring'}
+            </Button>
+          </div>
+          <TextSearch />
+          <div className="grow basis-0"></div>
+          <Button onClick={onMenuClick}>+ Create Post</Button>
+        </div>
+      </header>
     );
   } else if (pathname === '/') {
     return (
-      <div className="flex bg-white items-center px-2 py-1 border-b border-gray-400">
+      <header className="flex bg-white items-center px-2 py-1 border-b border-gray-400">
         <Logo />
-      </div>
-    );
-  } else if (pathname === '/resources') {
-    return (
-      <div className="flex justify-between bg-white items-center px-2 py-1 border-b border-gray-400">
-        <div className="flex ">
-          <Logo />
-          <button
-            style={{
-              marginLeft: '0.5rem',
-              marginRight: '1.5rem',
-              marginTop: '0.5rem',
-              marginBottom: '0.5rem',
-              maxHeight: '3rem',
-            }}
-            onClick={() => window.open('/social-media-dashboard', '_self')}
-          >
-            {' '}
-            Monitoring{' '}
-          </button>
-          <SortSelect />
-          <TextSearch />
-        </div>
-        <Button onClick={onMenuClick}>+ Create Post</Button>
-      </div>
+      </header>
     );
   } else {
     return (
       // return nothing for now LOL
-      <div></div>
+      <></>
     );
   }
 };

@@ -1,0 +1,3 @@
+.header_grid {
+  grid-template-columns: var(--sidebar-w) auto;
+}

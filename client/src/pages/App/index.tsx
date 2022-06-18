@@ -16,13 +16,12 @@ import DataDeletion from 'pages/DataDeletion';
 import ResourceDashboard from 'pages/ResourceDashboard';
 import useTracker from 'hooks/useTracker';
 
-
 // TODO: Style hyperlinks in the Terms, etc. pages
 
 const App = () => {
   const popupModal = useSelector((state) => state.popup);
-  const {enableLinkTracking } = useTracker();
-  
+  const { enableLinkTracking } = useTracker();
+
   enableLinkTracking();
   return (
     <div className={c.Root}>
