@@ -8,6 +8,7 @@ import TextSearch from '../TextSearch';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from 'components/Button';
 import useTracker from 'hooks/useTracker';
+import { Link, NavLink } from 'react-router-dom';
 
 const Header = () => {
   const { trackEvent } = useTracker();
@@ -24,30 +25,39 @@ const Header = () => {
   if (pathname === '/social-media-dashboard' || pathname === '/resources') {
     return (
       <header className={`bg-white grid ${c.header_grid}`}>
-        <div className="border-r border-gray-400">
-          <Logo />
+        <div className="border-r border-gray-400 px-2 py-2">
+          <div className="hover:bg-slate-100 rounded-lg">
+            <Link to="/">
+              <Logo />
+            </Link>
+          </div>
         </div>
 
         <div className="flex justify-between items-center px-2 py-1 border-b  border-gray-400">
-          <div className="flex items-center h-fit grow basis-0">
-            <Button
-              variant="secondary"
-              size="md"
-              onClick={() =>
-                window.open(
-                  pathname === '/resources'
-                    ? '/social-media-dashboard'
-                    : '/resources',
-                  '_self'
-                )
-              }
+          <div className="flex items-center h-fit grow space-x-2 basis-0">
+            <NavLink
+              className={`${c.navlink} py-1 border-b-2 border-transparent`}
+              activeClassName={c.active}
+              to="/social-media-dashboard"
             >
-              {pathname === '/resources' ? 'Resources' : 'Monitoring'}
-            </Button>
+              <p className={`${c.navlink_inner} px-2 py-1 rounded-lg`}>
+                Monitoring
+              </p>
+            </NavLink>
+            <NavLink
+              className={`${c.navlink} py-1 border-b-2 border-transparent`}
+              activeClassName={c.active}
+              to="/resources"
+            >
+              <p className={`${c.navlink_inner} px-2 py-1 rounded-lg`}>
+                Resources
+              </p>{' '}
+            </NavLink>
           </div>
           <TextSearch />
-          <div className="grow basis-0"></div>
-          <Button onClick={onMenuClick}>+ Create Post</Button>
+          <div className="grow basis-0 flex justify-end">
+            <Button onClick={onMenuClick}>+ Create Post</Button>
+          </div>
         </div>
       </header>
     );

@@ -1,3 +1,11 @@
 .header_grid {
   grid-template-columns: var(--sidebar-w) auto;
 }
+
+.navlink:hover > .navlink_inner {
+  @apply bg-slate-100;
+}
+
+.active {
+  @apply border-primary;
+}
