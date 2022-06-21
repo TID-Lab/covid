@@ -9,5 +9,5 @@ interface MatomoEvent {
   name: string
 }
 //lol. theres probably a better way to do this
-type MatomoFilterAction = 'Search' | 'Set Topics' | 'Set Account Type' | ' SetAccount Location' | 'Set Account Category' | 'S etAccount Identity' | 'Add Platforms' |  'Remove Platforms' | 'Clear Filters' | 'Sort By'
+type MatomoFilterAction = 'Search' | 'Set Topics' | 'Set Account Type' | ' Set Account Location' | 'Set Account Category' | 'Set Account Identity' | 'Add Platforms' |  'Remove Platforms' | 'Clear Filters' | 'Sort By'
 type MatomoPostAction = 'Create Post' | 'Copy Text' | 'Copy Link' | 'Copy Image' |  'Posted To' 

@@ -11,8 +11,8 @@ const isTrackerActive = process.env.REACT_APP_TRACKER_ACTIVE === 'true' && true
 
 function useTracker() {
   const {
-    trackPageView: matomoTrackPageView, 
-    trackEvent: matomoTrackEvent, 
+    trackPageView: matomoTrackPageView,
+    trackEvent: matomoTrackEvent,
     trackEvents: matomoTrackEvents,
     trackSiteSearch: matomoSiteSearch,
     trackLink:matomoLink,
