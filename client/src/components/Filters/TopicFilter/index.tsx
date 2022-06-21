@@ -6,20 +6,7 @@ import c from './index.module.css';
 import Radio from 'components/Radio';
 import useTracker from 'hooks/useTracker';
 import ChipSelector from 'components/ChipSelector';
-
-const COVID_TOPICS = {
-  // temporary
-  all: 'All',
-  vaccines: 'Vaccines',
-  booster: 'Boosters',
-  treatments: ' Treatments',
-  'long-hauler': 'Long COVID',
-  variants: 'Variants',
-
-  'covid-diabetes': 'COVID x Diabetes',
-  testing: 'Testing',
-  georgia: 'Georgia',
-};
+import { COVID_TOPICS } from 'util/filterData';
 
 const TopicFilter = (props) => {
   const { topic } = props;

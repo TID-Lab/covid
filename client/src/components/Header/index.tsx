@@ -33,7 +33,7 @@ const Header = () => {
           </div>
         </div>
 
-        <div className="flex justify-between items-center px-2 py-1 border-b  border-gray-400">
+        <div className="flex justify-between items-center px-2 py-1 ">
           <div className="flex items-center h-fit grow space-x-5 pl-2 basis-0">
             <NavLink
               className={`${c.navlink} py-1 `}

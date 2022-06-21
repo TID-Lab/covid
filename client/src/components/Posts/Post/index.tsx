@@ -7,7 +7,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import store from 'store';
 import useTracker from 'hooks/useTracker';
 import Button from 'components/Button';
-
+import {
+  COVID_TOPICS,
+  ACC_CATEGORIES,
+  ACC_TYPE,
+  IDENTITIES,
+} from 'util/filterData';
 const embedHTMLCache = [];
 
 function waitForEmbed(parent, callback) {
@@ -47,7 +52,10 @@ const Post = (props) => {
     }
     if (!isLoaded) {
       if (!embedHTMLCache[platformID]) {
-        fetchHTML().then(() => setLoaded(true));
+        fetchHTML().then(
+          () => setLoaded(true),
+          () => setLoaded(false)
+        );
       } else {
         setLoaded(true);
       }
@@ -78,38 +86,8 @@ const Post = (props) => {
   // Determine if post is a retweet
   const retweet = platform === 'twitter' && data.content.startsWith('RT @');
 
-  // Getting topic and account tag labels for the post
-
-  // Topics (from TopicFilter\index.js)
-  const COVID_TOPICS = {
-    // temporary
-    all: 'All',
-    vaccines: 'Vaccines',
-    booster: 'Boosters',
-    treatments: ' Treatments',
-    variants: 'Variants',
-    'long-hauler': 'Long COVID',
-    testing: 'Testing',
-    'covid-diabetes': 'COVID x Diabetes',
-    georgia: 'Georgia',
-  };
-
-  // Account tags (CATEGORIES from AccountCategories\index.js, plus institutional and GA and identities)
-  const TAGS = {
-    all: 'All',
-    government: 'Government',
-    media: 'Media',
-    faith: 'Faith',
-    health: 'Health',
-    diabetes: 'Diabetes',
-    institutional: 'Institutional',
-    georgia: 'Georgia',
-    misinfo: 'Known Misinfo Spreaders',
-    partners: 'Project Partners',
-    trusted: 'Trusted Resources',
-    blackafam: 'Black/African American',
-    latinx: 'Hispanic/Latinx',
-  };
+  //  tags , combine account categories, account type, and identities
+  const TAGS = { ...ACC_CATEGORIES, ...ACC_TYPE, ...IDENTITIES };
 
   // Function for copying link to post to user's clipboard
   function copyLink(e) {

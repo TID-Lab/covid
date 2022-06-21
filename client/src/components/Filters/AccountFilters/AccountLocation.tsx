@@ -9,17 +9,21 @@ import useTracker from 'hooks/useTracker';
 const AccountLocation = (props) => {
   const { location } = props;
   const dispatch = useDispatch();
-  const {trackEvent} = useTracker();
+  const { trackEvent } = useTracker();
 
   function onRadioClick(id) {
     dispatch({ type: 'accounts/location/set', payload: id });
-    trackEvent({ category: 'Filter', action: 'Set Account Location', name: id} as MatomoEvent)
-
+    trackEvent({
+      category: 'Filter',
+      action: 'Set Account Location',
+      name: id,
+    } as MatomoEvent);
   }
 
   return (
     <div className={c.AccountFilter}>
       <h4>Account location</h4>
+
       <Radio
         id={'all'}
         name={'All'}

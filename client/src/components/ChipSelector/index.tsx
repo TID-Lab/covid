@@ -14,8 +14,8 @@ function ChipSelector({
   onSelect,
 }: ChipSelectorProps) {
   return (
-    <form className="focus:outline ">
-      <legend>{header}</legend>
+    <div>
+      <h3>{header}</h3>
       <div className="gap-x-2 gap-y-3 flex relative flex-wrap ">
         {Object.keys(options).map((id) => (
           <div key={id}>
@@ -38,7 +38,7 @@ function ChipSelector({
           </div>
         ))}
       </div>
-    </form>
+    </div>
   );
 }
 

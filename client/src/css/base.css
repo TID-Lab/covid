@@ -19,7 +19,7 @@ body {
   font-family: var(--body-font);
   font-size: var(--body-font-size);
   font-weight: normal;
-  background-color: var(--body-background);
+  //background-color: var(--body-background);
   color: var(--body-primary);
   overflow: hidden;
 }

@@ -5,22 +5,20 @@ import Radio from 'components/Radio';
 
 import c from './index.module.css';
 import useTracker from 'hooks/useTracker';
-
-const IDENTITIES = {
-  all: 'All',
-  blackafam: 'Black/African American',
-  latinx: 'Hispanic/Latinx',
-};
+import { IDENTITIES } from 'util/filterData';
 
 const AccountIdentity = (props) => {
   const { identities: identity } = props;
   const dispatch = useDispatch();
-  const {trackEvent} = useTracker();
+  const { trackEvent } = useTracker();
 
   function onRadioClick(id) {
     dispatch({ type: 'accounts/identities/set', payload: id });
-    trackEvent({ category: 'Filter', action: 'Set Account Identity', name: id} as MatomoEvent)
-
+    trackEvent({
+      category: 'Filter',
+      action: 'Set Account Identity',
+      name: id,
+    } as MatomoEvent);
   }
 
   return (

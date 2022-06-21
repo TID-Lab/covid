@@ -2,8 +2,6 @@
 import { useSelector } from 'react-redux';
 import { page, lastPage } from 'api/post';
 
-import c from './index.module.css';
-
 import Post from './Post';
 import PrevPageButton from '../PrevPageButton';
 import NextPageButton from '../NextPageButton';
@@ -12,7 +10,7 @@ const Posts = () => {
   const posts = useSelector((state) => state.posts);
   if (posts.length > 0) {
     return (
-      <div className={c.Posts} id="Posts">
+      <div className="flex flex-row overflow-auto" id="Posts">
         {page > 0 ? <PrevPageButton /> : ''}
 
         {posts.map((post) => (
@@ -24,8 +22,8 @@ const Posts = () => {
     );
   } else {
     return (
-      <div className={c.NoResults} id="NoResults">
-        No results found.
+      <div className="grid place-items-center" id="NoResults">
+        <p class="bold text-lg">No results found.</p>
       </div>
     );
   }
