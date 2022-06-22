@@ -4,10 +4,10 @@
   padding-top: 10px;
 }
 
-label {
+.NewResource label {
   display: inline-block;
   width: 80px;
   text-align: left;
 }
 
-li div { display: table-cell; vertical-align: middle; }
+.NewResource li div { display: table-cell; vertical-align: middle; }
