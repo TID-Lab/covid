@@ -6,6 +6,7 @@ const routes = require('express').Router();
 const mongoose = require('mongoose');
 const useDebug = require('debug');
 const Resources = require('../../models/resource');
+const Organization = require('../../models/organization');
 const {
   db: { name: dbName },
   api: { posts: { pageSize } },
@@ -14,8 +15,8 @@ const {
 const debug = useDebug('api');
 
 // Returns a page of resource posts using the given search query
-routes.get('/:page', async (req, res) => {
-  const MongoClient = mongoose.connection.client;
+routes.get('/', async (req, res) => {
+/*   const MongoClient = mongoose.connection.client;
   const database = MongoClient.db(dbName);
 
   const { body, params } = req;
@@ -46,7 +47,16 @@ routes.get('/:page', async (req, res) => {
   res.status(200).send({
     resources,
     lastPage,
-  });
+  }); */
+
+  let resources;
+  try {
+    resources = await Resources.find({});
+  } catch (err) {
+    debug(`${err}`);
+    res.status(500).send();
+  }
+  res.status(200).send(resources);
 });
 
 // Creates a new Resource
@@ -54,10 +64,23 @@ routes.post('/', async (req, res) => {
   if (typeof req.body !== 'object') {
     res.status(400).send();
   }
+  const id = req.session.org;
+  if (!id) {
+    res.status(401).send();
+    return;
+  }
+  const organization = await Organization.findById(id);
+  if (!organization) {
+    res.status(401).send();
+    return;
+  }
+
+  req.body.organization = organization;
   const {
     authoredAt,
     fetchedAt,
     author,
+    name,
     url,
     type,
     topics,
@@ -70,6 +93,8 @@ routes.post('/', async (req, res) => {
       authoredAt,
       fetchedAt,
       author,
+      organization,
+      name,
       url,
       type,
       topics,

@@ -20,12 +20,9 @@ async function fetchResources() {
   const options = {
     ...defaultOptions,
     method: 'GET',
-    body: JSON.stringify(body),
   }
-  const res = await authFetch(`/api/resource/${page}`, options);
-
-  const { resources, lastPage: isLastPage } = await res.json();
-  lastPage = isLastPage;
+  const res = await fetch('/api/resource', options);
+  const resources = await res.json();
   return resources;
 }
 
@@ -70,9 +67,7 @@ async function deleteResource(resource) {
     method: 'DELETE',
     body: JSON.stringify(resource)
   }
-  console.log(body);
   const res = await authFetch(`/api/resource`, options);
-  console.log(res);
   return res.status === 200;
 }
 

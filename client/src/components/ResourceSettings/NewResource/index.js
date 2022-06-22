@@ -15,7 +15,7 @@ const NewResource = () => {
   const [author, setAuthor] = useState('');
   const [url, setUrl] = useState('');
   const [type, setType] = useState(TYPES[0]);
-  const [imageUrl, setImageUrl] = useState('');
+  const [imageurl, setImageUrl] = useState('');
   const [topics, setTopics] = useState('');
   
 
@@ -49,7 +49,7 @@ const NewResource = () => {
 
   function onClick() {
     try {
-      if (!imageUrl){
+      if (!imageurl){
         createResource({
           authoredAt,
           fetchedAt,
@@ -67,7 +67,7 @@ const NewResource = () => {
           name,
           url,
           type,
-          imageUrl
+          imageurl
         });
       }
       
@@ -90,7 +90,7 @@ const NewResource = () => {
   }
 
   return(
-    <div className={`Modal ${c.NewOrganization}`}>
+    <div className={`Modal ${c.NewResource}`}>
       <h1>New Resource</h1>
       <div>
         <label>Type: </label>
@@ -114,7 +114,7 @@ const NewResource = () => {
       </div>
       <div>
         {type !== 'image' && <p>Image URL: </p>}
-        {type !== 'image' && <input className='ImageURL' type='text' value={imageUrl} onChange={onImageUrlChange} placeholder='Image URL'></input>}
+        {type !== 'image' && <input className='ImageURL' type='text' value={imageurl} onChange={onImageUrlChange} placeholder='Image URL'></input>}
       </div>
       <ul>
         <p1>Topics: </p1>

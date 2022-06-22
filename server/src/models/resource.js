@@ -1,12 +1,14 @@
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
 /**
  * The moongose schema for a resource.
  */
 
-const resourceSchema = new Schema({
+const resourceSchema = new mongoose.Schema({
   authoredAt: { type: Date, required: true },
   fetchedAt: { type: Date, required: true },
   author: { type: String, required: true },
+  organization: { type: mongoose.Schema.Types.ObjectId, ref: 'Organization', required: true },
+  name: { type: String, required: true },
   url: { type: String, required: true },
   type: {
     type: String,
@@ -21,6 +23,6 @@ const resourceSchema = new Schema({
 
 resourceSchema.index({ content: 'text', author: 'text' });
 
-const resourcePost = model('resource', resourceSchema);
+const resourcePost = mongoose.model('resource', resourceSchema);
 
 module.exports = resourcePost;
