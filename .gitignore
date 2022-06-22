@@ -1,4 +1,6 @@
-.env
+/.env
 .env.production
 node_modules
 mongostart.ps1
+.DS_Store
+dist

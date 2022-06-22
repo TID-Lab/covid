@@ -1,12 +1,12 @@
 .Filter.Topics h3 {
-    margin: 0 0 5px 0;
+  margin: 0 0 5px 0;
 }
 
 .Filter.Topics span {
-    display: block;
-    font-size: 14px;
-    color: var(--link-color);
-    text-decoration: underline;
-    text-align: center;
-    margin-top: 10px;
+  display: block;
+  font-size: 14px;
+  color: var(--link-color);
+  text-decoration: underline;
+  text-align: center;
+  margin-top: 10px;
 }

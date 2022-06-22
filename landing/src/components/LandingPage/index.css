@@ -4,17 +4,16 @@ section {
   width: 100%;
   padding-bottom: 5rem;
   scroll-snap-align: center;
-  
 }
 
 .IntroPage {
   /* height: 70%; */
-  height:90%;
+  height: 90%;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  background: #F2F3F5;
-  background: radial-gradient(50% 50% at 50% 50%, #2D2A58 0%, #1A1C2E 100%);
+  background: #f2f3f5;
+  background: radial-gradient(50% 50% at 50% 50%, #2d2a58 0%, #1a1c2e 100%);
 }
 .PeachImage {
   flex: 0 0 5rem;
@@ -45,7 +44,7 @@ section {
   /* identical to box height, or 79% */
   letter-spacing: 0.35px;
 
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .Body {
@@ -60,17 +59,14 @@ section {
   /* or 158% */
   letter-spacing: 0.38px;
   color: rgba(255, 255, 255, 0.81);
-
-
 }
 
 .CirclePictures {
-  margin-top:2rem;
+  margin-top: 2rem;
   flex-grow: 4;
 }
 
 #ThirdPicture {
-  
   margin-left: 5rem;
   position: relative;
   left: 2rem;
@@ -90,7 +86,8 @@ section {
   /* .CirclePictures {
     display: none;
   } */
-  #FirstPicture, #SecondPicture {
+  #FirstPicture,
+  #SecondPicture {
     display: none;
   }
 
@@ -113,7 +110,7 @@ section {
   }
 }
 
-@media screen and (min-width:1970px) {
+@media screen and (min-width: 1970px) {
   .CirclePictures {
     display: none;
   }
@@ -122,17 +119,13 @@ section {
   overflow-y: auto;
   margin-top: 0px;
   padding-top: 0px;
-   
+
   scroll-behavior: smooth;
 }
 
-
-
-
-
 .DashboardPage h1 {
   /* Default / Bold / Title1 */
-  /* position: absolute; */ 
+  /* position: absolute; */
   font-family: 'SF-Pro-Display';
   font-style: normal;
   font-weight: bold;
@@ -141,10 +134,10 @@ section {
   letter-spacing: 0.36px;
 
   /* SystemGray / 05 / Dark */
-  color: #2C2C2E;
+  color: #2c2c2e;
 }
 .DashboardPage {
-  padding-left:2rem;
+  padding-left: 2rem;
   padding-top: 1rem;
   font-family: 'SF-Pro-Display';
   font-style: normal;
@@ -153,11 +146,11 @@ section {
   line-height: 33px;
   letter-spacing: 0.36px;
 
-/* SystemGray / 05 / Dark */
-background: rgba(235, 235, 245, .8);
+  /* SystemGray / 05 / Dark */
+  background: rgba(235, 235, 245, 0.8);
 }
 
-.Dashboards { 
+.Dashboards {
   /* padding-left: 2rem; */
   display: flex;
   flex-direction: row;
@@ -168,7 +161,7 @@ background: rgba(235, 235, 245, .8);
   letter-spacing: -0.408px;
   font-family: 'SF-Pro-Display';
   /* SystemBlue / Light */
-  color: #007AFF;
+  color: #007aff;
 }
 
 .DashboardBlurb {
@@ -181,22 +174,21 @@ background: rgba(235, 235, 245, .8);
   margin-bottom: 25px;
 }
 .DashboardBlurb img {
-  
   /* style={{width:'440px', height:'309px'}} */
   max-width: 100%;
   height: auto;
 }
 .DashboardBlurb h1 {
-  padding-left:0px;
-font-weight: 600;
-font-size: 20px;
-line-height: 24px;
+  padding-left: 0px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
 
-/* identical to box height */
-letter-spacing: 0.36px;
+  /* identical to box height */
+  letter-spacing: 0.36px;
 
-/* SystemGray / 04 / Dark */
-color: #3A3A3C;
+  /* SystemGray / 04 / Dark */
+  color: #3a3a3c;
 }
 
 .DashboardBlurb h2 {
@@ -209,14 +201,14 @@ color: #3A3A3C;
   letter-spacing: 0.38px;
 
   /* SystemGray / 04 / Dark */
-  color: #3A3A3C;
+  color: #3a3a3c;
 }
 
 .DashboardBlurb a {
   padding: 10px;
   width: 205px;
   /* SystemBlue / Dark */
-  background: #0A84FF;
+  background: #0a84ff;
   border-radius: 5px;
   /* Default / Bold / Body */
   font-family: 'SF-Pro-Display';
@@ -230,6 +222,5 @@ color: #3A3A3C;
   letter-spacing: -0.408px;
 
   /* System Background / Light / Primary */
-  color: #FFFFFF;
+  color: #ffffff;
 }
-

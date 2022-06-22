@@ -1,9 +1,7 @@
 .AboutPage {
-  
   /* min-height: 100%; */
   overflow-y: auto;
   background: rgba(235, 235, 245, 0.3);
-  
 }
 
 .AboutSection {
@@ -11,9 +9,8 @@
   max-height: 200%; */
 }
 
-
 .AboutPageTitle {
-  font-family: "SF-Pro-Display";
+  font-family: 'SF-Pro-Display';
   font-style: bold;
   /* font-weight: 500; */
   font-size: 30px;
@@ -22,11 +19,11 @@
   margin-left: 20px;
   margin-bottom: 2rem;
   /* SystemGray / 05 / Dark */
-  color: #2C2C2E;
+  color: #2c2c2e;
 }
 
 .AboutTitle {
-  font-family: "SF-Pro-Display";
+  font-family: 'SF-Pro-Display';
   font-style: normal;
   font-weight: 500;
   font-size: 28px;
@@ -34,25 +31,25 @@
   letter-spacing: 0.36px;
   margin-left: 20px;
   /* SystemGray / 05 / Dark */
-  color: #2C2C2E;
+  color: #2c2c2e;
 }
 
 .DataSource {
   margin-left: 20px;
-  font-family: "SF-Pro-Display";
+  font-family: 'SF-Pro-Display';
   font-style: normal;
   font-weight: 600;
   font-size: 17px;
   line-height: 22px;
-  
+
   /* identical to box height, or 129% */
   letter-spacing: -0.408px;
-  
+
   /* SystemGray / 03 / Dark */
-  color: #48484A;
+  color: #48484a;
 }
 .AboutPage a {
-  font-family: "SF-Pro-Display";
+  font-family: 'SF-Pro-Display';
   font-style: normal;
   font-weight: normal;
   font-size: 17px;
@@ -62,5 +59,5 @@
   letter-spacing: -0.408px;
 
   /* SystemBlue / Dark */
-  color: #0A84FF;
+  color: #0a84ff;
 }

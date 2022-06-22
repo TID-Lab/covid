@@ -1,5 +1,8 @@
 {
-    "editor.tabSize": 2,
-    "editor.insertSpaces": true,
-    "files.eol": "\n",
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "files.eol": "\n",
+  "prettier.configPath": ".prettierrc.json",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.jsxSingleQuote": true
 }
