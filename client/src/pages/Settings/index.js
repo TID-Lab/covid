@@ -2,14 +2,14 @@ import {
     Switch,
     Route,
     useRouteMatch,
-  } from "react-router-dom";
+  } from 'react-router-dom';
 
 import c from './index.module.css';
 
 import OrganizationSettings from 'components/OrganizationSettings';
-import TopicSettings from "components/TopicSettings";
+import TopicSettings from 'components/TopicSettings';
 import useAuth from 'hooks/auth';
-import ResourceSettings from "components/ResourceSettings";
+import ResourceSettings from 'components/ResourceSettings';
 
 const Settings = () => {
     useAuth();

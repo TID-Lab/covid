@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import { useShowPopup } from 'hooks/popup';
-import NewResource from "../NewResource";
-import EditResource from "../EditResource";
-import Button from "components/Button";
-import { fetchResources, deleteResource } from "api/resource";
+import NewResource from '../NewResource';
+import EditResource from '../EditResource';
+import Button from 'components/Button';
+import { fetchResources, deleteResource } from 'api/resource';
 
 import c from './index.module.css';
 

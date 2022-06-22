@@ -1,6 +1,6 @@
-import { MatomoProvider, createInstance } from "@jonkoops/matomo-tracker-react";
-import { MatomoInstance } from "@jonkoops/matomo-tracker-react/lib/types";
-import React from "react";
+import { MatomoProvider, createInstance } from '@jonkoops/matomo-tracker-react';
+import { MatomoInstance } from '@jonkoops/matomo-tracker-react/lib/types';
+import React from 'react';
 
 type MatomoTrackerProps = {
   value: MatomoInstance,

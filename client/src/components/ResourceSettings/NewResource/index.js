@@ -1,5 +1,5 @@
-import Button from "components/Button";
-import { createResource } from "api/resource";
+import Button from 'components/Button';
+import { createResource } from 'api/resource';
 import { useHidePopup } from 'hooks/popup';
 import notify from 'util/notify';
 import { useState } from 'react';

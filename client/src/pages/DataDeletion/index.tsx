@@ -1,5 +1,5 @@
-import useTracker from "hooks/useTracker";
-import { useEffect } from "react";
+import useTracker from 'hooks/useTracker';
+import { useEffect } from 'react';
 
 const DataDeletion = () => {
   const {trackPageView} = useTracker();

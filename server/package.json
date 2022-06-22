@@ -2,7 +2,7 @@
   "name": "@tid-lab/covid-server",
   "main": "dist/app.js",
   "scripts": {
-    "start": "node src/app.js",
+    "start": "node dist/app.js",
     "build": "tsc",
     "dev": "cross-env DEBUG=core,db,api,util stmux -- [ -t \"Compiling Code\" \"npm run dev:compile\" ..  -t \"Running Code\" \"npm run dev:run\" ]",
     "dev:compile": "tsc --watch",
