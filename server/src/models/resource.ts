@@ -11,7 +11,7 @@ const resourceSchema = new mongoose.Schema({
   author: { type: String, required: true },
   organization: { type: mongoose.Schema.Types.ObjectId, ref: 'Organization', required: true },
   name: { type: String, required: true },
-  url: { type: String, required: true },
+  url: { type: String },
   type: {
     type: String,
     enum: ['image', 'website', 'video', 'pdf'],
@@ -20,6 +20,10 @@ const resourceSchema = new mongoose.Schema({
   topics: { type: [], required: true },
   platformID: { type: String },
   content: { type: String },
+  language: {
+    type: String,
+    enum: ['en', 'es']
+  },
   imageurl: { type: String },
 });
 
