@@ -115,14 +115,14 @@ const Post = (props) => {
   function copyLink(e) {
     e.preventDefault();
     navigator.clipboard.writeText(data.url);
-    trackEvent({ category: 'Post', action: 'Copy Link' } as MatomoEvent);
+    trackEvent({ category: 'Post', action: 'Copy Link' });
   }
 
   // Function for copying text of post to user's clipboard
   function copyText(e) {
     e.preventDefault();
     navigator.clipboard.writeText(data.content);
-    trackEvent({ category: 'Post', action: 'Copy Text' } as MatomoEvent);
+    trackEvent({ category: 'Post', action: 'Copy Text' });
   }
 
   // Function for copying post and opening posting menu
@@ -135,7 +135,7 @@ const Post = (props) => {
     trackEvent({
       category: 'Post',
       action: 'Send to Posting Menu',
-    } as MatomoEvent);
+    });
   }
 
   // some FB posts render with a transparent background

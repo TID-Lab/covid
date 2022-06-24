@@ -31,7 +31,7 @@ const ClearFilters = () => {
     trackEvent({
       category: 'Filter',
       action: 'Clear All Filters',
-    } as MatomoEvent);
+    });
   }
 
   return (

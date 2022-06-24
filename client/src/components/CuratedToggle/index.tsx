@@ -9,12 +9,15 @@ import useTracker from 'hooks/useTracker';
 const CuratedToggle = (props) => {
   const { curatedOnly } = props;
   const dispatch = useDispatch();
-  const {trackEvent} = useTracker();
+  const { trackEvent } = useTracker();
 
   function onRadioClick(id) {
     dispatch({ type: 'accounts/curatedOnly/set', payload: id !== 'all' });
-    trackEvent({ category: 'Filter', action: 'Set Curated Accounts', name: id !== 'all'} as MatomoEvent)
-
+    trackEvent({
+      category: 'Filter',
+      action: 'Set Curated Accounts',
+      name: id !== 'all',
+    });
   }
 
   const selected = curatedOnly ? 'curatedOnly' : 'all';

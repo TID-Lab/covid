@@ -52,12 +52,11 @@ const PostingMenu = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   let textAreaRef = useRef<HTMLAreaElement>(null);
   const postText = useSelector((state) => state.postingText);
-  const {trackEvent} = useTracker();
+  const { trackEvent } = useTracker();
 
   const dispatch = useDispatch();
   function closeClick() {
     dispatch({ type: 'postingMenu/set', payload: false });
-
   }
 
   function twitterPost() {
@@ -91,23 +90,35 @@ const PostingMenu = () => {
         if (res.status === 401) {
           alert('Login Expired');
           setTwitterLoginStatus(false);
-          trackEvent({ category: 'Post', action: 'Post to Twitter', name: '401 error'} as MatomoEvent)
-
+          trackEvent({
+            category: 'Post',
+            action: 'Post to Twitter',
+            name: '401 error',
+          });
         } else if (res.status === 400) {
           alert(
             'Bad input. (Likely a duplicate tweet, please write something else!)'
           );
-          trackEvent({ category: 'Post', action: 'Post to Twitter', name: '400 error'} as MatomoEvent)
-
+          trackEvent({
+            category: 'Post',
+            action: 'Post to Twitter',
+            name: '400 error',
+          });
         } else {
           setShowSuccess(true);
-          trackEvent({ category: 'Post', action: 'Post to Twitter', name: 'success!'} as MatomoEvent)
-
+          trackEvent({
+            category: 'Post',
+            action: 'Post to Twitter',
+            name: 'success!',
+          });
         }
       } catch (error) {
         console.error(error);
-        trackEvent({ category: 'Post', action: 'Post to Twitter', name: error} as MatomoEvent)
-
+        trackEvent({
+          category: 'Post',
+          action: 'Post to Twitter',
+          name: error,
+        });
       }
       setButtonDisabled(false);
     })();
