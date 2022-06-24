@@ -30,7 +30,8 @@ const TopicFilter = (props) => {
         options={COVID_TOPICS}
         header="COVID_19 Topics"
         active={selected}
-        onSelect={(e) => onRadioClick(e.target.value)}
+        onSelect={onRadioClick}
+        id="filterTopics"
       />
       {/* <h3>COVID-19 Topics</h3>
       {Object.keys(COVID_TOPICS).map((id) => (

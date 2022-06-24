@@ -10,7 +10,10 @@ const Posts = () => {
   const posts = useSelector((state) => state.posts);
   if (posts.length > 0) {
     return (
-      <div className="flex flex-row overflow-auto" id="Posts">
+      <div
+        className="flex flex-row overflow-auto py-2 px-4 space-x-6"
+        id="Posts"
+      >
         {page > 0 ? <PrevPageButton /> : ''}
 
         {posts.map((post) => (
@@ -23,7 +26,7 @@ const Posts = () => {
   } else {
     return (
       <div className="grid place-items-center" id="NoResults">
-        <p class="bold text-lg">No results found.</p>
+        <p className="bold text-lg">No results found.</p>
       </div>
     );
   }

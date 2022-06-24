@@ -26,7 +26,7 @@ const Filters = () => {
   }, [filters, dispatch]);
 
   return (
-    <div className="bg-white border-r border-gray-400 px-2 py-4 space-y-4 overflow-x-hidden ">
+    <div className="bg-white border-r border-gray-400 pl-4 pr-2 py-4 space-y-4 overflow-x-hidden ">
       <SortSelect />
       <DateFilter dates={dates} />
       <TopicFilter topic={topic} />

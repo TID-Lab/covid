@@ -1,10 +1,11 @@
-import { ReactNode } from 'react';
+import { Fragment, ReactNode } from 'react';
 import c from './index.module.css';
 
 //for whatever reason tailwind is not detecting classes if i dont have the space in front of the string
 const style = {
-  default: ' border-slate-500 active:bg-slate-200 hover:bg-slate-100',
-  active: ' bg-slate-200 border-slate-300 ',
+  default:
+    ' border-slate-500 active:bg-slate-200 hover:bg-slate-100 py-2 px-4 ',
+  active: ' bg-slate-200 border-slate-300 py-1 pl-2 pr-4 ',
 };
 
 function ChipSelector({
@@ -12,33 +13,41 @@ function ChipSelector({
   active,
   header,
   onSelect,
+  id,
 }: ChipSelectorProps) {
   return (
-    <div>
-      <h3>{header}</h3>
+    <form>
+      <legend>{header}</legend>
       <div className="gap-x-2 gap-y-3 flex relative flex-wrap ">
-        {Object.keys(options).map((id) => (
-          <div key={id}>
+        {Object.keys(options).map((key, index) => (
+          <Fragment key={key}>
             <input
               type="radio"
               className={`${c.radio}`}
-              id={id}
-              value={id}
-              checked={id === active}
-              onChange={onSelect}
+              id={`${id}:${index}`}
+              value={key}
+              checked={key === active}
+              onChange={(e) => onSelect(e.target.value)}
             />
             <label
-              className={`cursor-pointer border text-xs py-2 px-4 rounded-lg outline-gray-500 focus:outline focus: outline-2 outline-offset-1  ${
-                id === active ? style.active : style.default
+              className={`cursor-pointer border text-xs rounded-lg flex gap-x-1 items-center  ${
+                key === active ? style.active : style.default
               }}`}
-              htmlFor={id}
+              htmlFor={`${id}:${index}`}
             >
-              {options[id]}
+              <span
+                className={
+                  key === active
+                    ? ' w-[12px] h-[24px] rounded bg-primary inline-block'
+                    : ' hidden '
+                }
+              ></span>{' '}
+              {options[key]}
             </label>
-          </div>
+          </Fragment>
         ))}
       </div>
-    </div>
+    </form>
   );
 }
 
@@ -49,6 +58,7 @@ interface ChipSelectorProps {
   active: string;
   header: ReactNode;
   onSelect: any;
+  id: string;
 }
 
 export default ChipSelector;

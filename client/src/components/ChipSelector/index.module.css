@@ -5,6 +5,7 @@
   left: 0;
 }
 
-.radio label {
-  
+.radio:focus + label {
+  @apply outline;
+  @apply outline-offset-1;
 }

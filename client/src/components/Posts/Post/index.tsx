@@ -127,9 +127,9 @@ const Post = (props) => {
   // }
 
   return (
-    <div className={c.Post}>
+    <div className={`flex-shrink min-w-[400px] h-full w-full ${c.Post}`}>
       {!isRendered ? (
-        <div className={c.cover}>
+        <div className={`border border-slate-300 ${c.cover}`}>
           <img src={coverImagePath} alt={platform} />
         </div>
       ) : (
