@@ -18,7 +18,7 @@ const AccountIdentity = (props) => {
       category: 'Filter',
       action: 'Set Account Identity',
       name: id,
-    } as MatomoEvent);
+    });
   }
 
   return (

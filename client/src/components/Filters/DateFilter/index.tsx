@@ -13,20 +13,12 @@ const DateFilter = (props) => {
 
   function onFromChanged(date) {
     dispatch({ type: 'dates/fromSet', payload: date });
-    trackEvent({
-      category: 'Filter',
-      action: 'Set From Date',
-      name: date,
-    } as MatomoEvent);
+    trackEvent({ category: 'Filter', action: 'Set From Date', name: date });
   }
 
   function onToChanged(date) {
     dispatch({ type: 'dates/toSet', payload: date });
-    trackEvent({
-      category: 'Filter',
-      action: 'Set To Date',
-      name: date,
-    } as MatomoEvent);
+    trackEvent({ category: 'Filter', action: 'Set To Date', name: date });
   }
 
   return (

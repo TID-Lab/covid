@@ -14,11 +14,7 @@ const AccountTypes = (props) => {
 
   function onRadioClick(id) {
     dispatch({ type: 'accounts/institutions/set', payload: id });
-    trackEvent({
-      category: 'Filter',
-      action: 'Set Account Type',
-      name: id,
-    } as MatomoEvent);
+    trackEvent({ category: 'Filter', action: 'Set Account Type', name: id });
   }
 
   return (

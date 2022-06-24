@@ -19,7 +19,7 @@ const Header = () => {
 
   function onMenuClick() {
     dispatch({ type: 'postingMenu/set', payload: !postingMenu });
-    trackEvent({ category: 'Post', action: 'Create Post' } as MatomoEvent);
+    trackEvent({ category: 'Post', action: 'Create Post' });
   }
 
   if (pathname === '/social-media-dashboard' || pathname === '/resources') {

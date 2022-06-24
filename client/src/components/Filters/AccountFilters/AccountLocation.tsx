@@ -17,7 +17,7 @@ const AccountLocation = (props) => {
       category: 'Filter',
       action: 'Set Account Location',
       name: id,
-    } as MatomoEvent);
+    });
   }
 
   return (

@@ -15,18 +15,14 @@ const PlatformFilter = (props) => {
     return (toggled) => {
       if (!toggled) {
         dispatch({ type: 'platforms/added', payload: value });
-        trackEvent({
-          category: 'Filter',
-          action: 'Add Platform',
-          name: value,
-        } as MatomoEvent);
+        trackEvent({ category: 'Filter', action: 'Add Platform', name: value });
       } else {
         dispatch({ type: 'platforms/removed', payload: value });
         trackEvent({
           category: 'Filter',
           action: 'Remove Platform',
           name: value,
-        } as MatomoEvent);
+        });
       }
     };
   }

@@ -1,19 +1,23 @@
 import useTracker from 'hooks/useTracker';
 import { useDispatch } from 'react-redux';
-
+import { ChangeEvent } from 'react';
 import c from './index.module.css';
 
 let timeout: any;
 
 const TextSearch = () => {
   const dispatch = useDispatch();
-  const {trackEvent} = useTracker();
+  const { trackEvent } = useTracker();
 
-  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
+  function onChange(e: ChangeEvent<HTMLInputElement>) {
     clearTimeout(timeout);
     timeout = setTimeout(() => {
       dispatch({ type: 'search/set', payload: e.target.value });
-      trackEvent({ category: 'Filter', action: 'Search', name: e.target.value } as MatomoEvent)
+      trackEvent({
+        category: 'Filter',
+        action: 'Search',
+        name: e.target.value,
+      });
     }, 2000);
   }
 

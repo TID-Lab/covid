@@ -16,7 +16,7 @@ const AccountCategories = (props) => {
       category: 'Filter',
       action: 'Set Account Category',
       name: id,
-    } as MatomoEvent);
+    });
   }
 
   return (
