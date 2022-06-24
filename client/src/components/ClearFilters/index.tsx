@@ -35,7 +35,7 @@ const ClearFilters = () => {
   }
 
   return (
-    <div className="">
+    <div>
       <Button onCLick={onClick}>Clear Filters</Button>
     </div>
   );
