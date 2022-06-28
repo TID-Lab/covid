@@ -178,7 +178,7 @@ const PostingMenu = () => {
   }, []);
 
   var visibility = c.hide;
-  const postingMenuStatus = useSelector((state) => state.postingMenu);
+  const postingMenuStatus = useAppSelector((state) => state.postingMenu);
   if (postingMenuStatus) {
     visibility = c.show;
   }
