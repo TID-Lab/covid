@@ -3,7 +3,6 @@ import c from './index.module.css';
 
 import { useState, useEffect, useCallback } from 'react';
 import { authFetch } from 'util/auth';
-import { useDispatch, useSelector } from 'react-redux';
 import store from 'store';
 import useTracker from 'hooks/useTracker';
 import Button from 'components/Button';

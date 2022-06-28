@@ -1,7 +1,7 @@
 // @ts-nocheck
 import c from './index.module.css';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from 'hooks/useTypedRedux';
 import { useState, useEffect, useRef } from 'react';
 import { twitterLogin, twitterLogout } from 'api/auth';
 import queryString from 'query-string';
@@ -50,11 +50,13 @@ const PostingMenu = () => {
   const [pictureList, setPictureList] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-  let textAreaRef = useRef<HTMLAreaElement>(null);
-  const postText = useSelector((state) => state.postingText);
-  const { trackEvent } = useTracker();
 
-  const dispatch = useDispatch();
+  const postText = useAppSelector((state) => state.postingText);
+  const { trackEvent } = useTracker();
+  const dispatch = useAppDispatch();
+
+  let textAreaRef = useRef<HTMLAreaElement>(null);
+
   function closeClick() {
     dispatch({ type: 'postingMenu/set', payload: false });
   }

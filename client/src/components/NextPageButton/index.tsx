@@ -2,13 +2,13 @@
 import c from './index.module.css';
 import Button from 'components/Button';
 
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from 'hooks/useTypedRedux';
 import { getNextPage } from 'api/post';
 import notify from 'util/notify';
 import useTracker from 'hooks/useTracker';
 
 const NextPageButton = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { trackEvent } = useTracker();
 
   function onClick() {

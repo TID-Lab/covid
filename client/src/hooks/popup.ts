@@ -1,10 +1,10 @@
 // @ts-nocheck
 // React hooks for showing & hiding the popup component
 
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from 'hooks/useTypedRedux';
 
 function useShowPopup() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (popupModal) => {
     dispatch({ type: 'popup/set', payload: popupModal });
@@ -13,7 +13,7 @@ function useShowPopup() {
 }
 
 function useHidePopup() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return () => {
     document.getElementById('Popup').style.display = 'none';

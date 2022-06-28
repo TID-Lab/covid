@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from 'hooks/useTypedRedux';
 
 import c from './index.module.css';
 
@@ -21,7 +21,7 @@ const COVID_TOPICS = {
 
 const TopicFilter = (props) => {
   const { topic } = props;
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { trackEvent } = useTracker();
 
   function onRadioClick(id) {
