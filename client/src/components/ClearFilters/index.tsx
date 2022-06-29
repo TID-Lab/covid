@@ -1,12 +1,12 @@
 // @ts-nocheck
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from 'hooks/useTypedRedux';
 import Button from 'components/Button';
 import c from './index.css';
 import useTracker from 'hooks/useTracker';
 
 const ClearFilters = () => {
-  const dispatch = useDispatch();
-  const filters = useSelector((state) => state.filters);
+  const dispatch = useAppDispatch();
+  const filters = useAppSelector((state) => state.filters);
   const { platforms } = filters;
   const { trackEvent } = useTracker();
   function onClick() {

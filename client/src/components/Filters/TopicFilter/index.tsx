@@ -1,5 +1,4 @@
-// @ts-nocheck
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from 'hooks/useTypedRedux';
 
 import c from './index.module.css';
 
@@ -8,14 +7,14 @@ import useTracker from 'hooks/useTracker';
 import ChipSelector from 'components/ChipSelector';
 import { COVID_TOPICS } from 'util/filterData';
 
-const TopicFilter = (props) => {
+const TopicFilter = (props: any) => {
   const { topic } = props;
-  const dispatch = useDispatch();
-  const selected = useSelector((state) => state.filters.topic);
+  const dispatch = useAppDispatch();
+  const selected = useAppSelector((state) => state.filters.topic);
 
   const { trackEvent } = useTracker();
 
-  function onRadioClick(id) {
+  function onRadioClick(id: string) {
     dispatch({ type: 'topic/set', payload: id });
     trackEvent({ category: 'Filter', action: 'Set Topic', name: id });
   }

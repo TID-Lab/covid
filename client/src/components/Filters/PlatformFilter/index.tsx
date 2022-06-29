@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch } from 'hooks/useTypedRedux';
 
 import c from './index.module.css';
 
@@ -8,7 +8,7 @@ import useTracker from 'hooks/useTracker';
 
 const PlatformFilter = (props) => {
   const { platforms } = props;
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { trackEvent } = useTracker();
 
   function onToggled(value) {

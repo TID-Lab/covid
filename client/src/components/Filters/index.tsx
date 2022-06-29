@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppDispatch, useAppSelector } from 'hooks/useTypedRedux';
 import { useEffect } from 'react';
 
 import c from './index.module.css';
@@ -13,8 +13,8 @@ import { getPosts } from 'api/post';
 import notify from 'util/notify';
 import SortSelect from 'components/SortSelect';
 const Filters = () => {
-  const dispatch = useDispatch();
-  const filters = useSelector((state) => state.filters);
+  const dispatch = useAppDispatch();
+  const filters = useAppSelector((state) => state.filters);
   const { dates, topic, accounts, platforms } = filters;
 
   useEffect(() => {

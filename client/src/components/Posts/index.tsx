@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { useSelector } from 'react-redux';
+import { useAppSelector } from 'hooks/useTypedRedux';
 import { page, lastPage } from 'api/post';
 
 import Post from './Post';
@@ -7,7 +7,7 @@ import PrevPageButton from '../PrevPageButton';
 import NextPageButton from '../NextPageButton';
 
 const Posts = () => {
-  const posts = useSelector((state) => state.posts);
+  const posts = useAppSelector((state) => state.posts);
   if (posts.length > 0) {
     return (
       <div

@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from 'hooks/useTypedRedux';
 
 import c from './index.module.css';
 
@@ -19,7 +19,7 @@ import useTracker from 'hooks/useTracker';
 // TODO: Style hyperlinks in the Terms, etc. pages
 
 const App = () => {
-  const popupModal = useSelector((state) => state.popup);
+  const popupModal = useAppSelector((state) => state.popup);
   const { enableLinkTracking } = useTracker();
 
   enableLinkTracking();
