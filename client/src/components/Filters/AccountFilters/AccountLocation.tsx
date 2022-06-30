@@ -1,6 +1,5 @@
 // @ts-nocheck
 import { useAppDispatch } from 'hooks/useTypedRedux';
-
 import Radio from 'components/Radio';
 
 import c from './index.module.css';

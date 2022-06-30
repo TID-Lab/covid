@@ -1,11 +1,11 @@
 // The reducer for the COVID-19 topics radio buttons
 import { PayloadAction } from '@reduxjs/toolkit';
-
-const initState = 'all';
+import { COVID_TOPICS_TYPE, COVID_TOPICS } from 'util/filterData';
+const initState: COVID_TOPICS_TYPE = 'all';
 
 export default function topicReducer(
   state = initState,
-  action: PayloadAction<string>
+  action: PayloadAction<COVID_TOPICS_TYPE>
 ) {
   switch (action.type) {
     case 'topic/set':
