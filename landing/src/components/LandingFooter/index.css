@@ -1,15 +1,14 @@
-
 .Credits {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 .Credits h1 {
-/* Default / Bold / Title2 */
+  /* Default / Bold / Title2 */
   font-family: 'SF-Pro-Display';
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
   line-height: 28px;
-  
+
   /* identical to box height, or 156% */
   text-align: center;
   letter-spacing: 0.35px;
@@ -18,7 +17,7 @@
 
   /* identical to box height, or 127% */
   letter-spacing: 0.35px;
-  color: #8E8E93;
+  color: #8e8e93;
 }
 
 .CreditImages {
@@ -28,12 +27,12 @@
   flex-wrap: wrap;
   margin-left: 2rem;
   margin-right: 2rem;
-  
+
   padding-bottom: 2rem;
-  
 }
 
-.CreditImages img, .CreditImages a {
+.CreditImages img,
+.CreditImages a {
   max-width: 100%;
   /* flex-basis: 20%; */
   height: auto;
@@ -41,4 +40,3 @@
   margin-right: 1rem;
   margin-bottom: 1rem;
 }
-

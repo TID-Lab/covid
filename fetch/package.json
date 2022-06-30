@@ -1,9 +1,14 @@
 {
   "name": "@tid-lab/covid-fetch",
+  "main": "dist/app.js",
   "scripts": {
-    "start": "node src/app.js",
-    "dev": "cross-env DEBUG=core,db,fetch node src/app.js",
-    "serve": "pm2 startOrRestart ecosystem.config.js",
+    "start": "node dist/app.js",
+    "build": "tsc",
+    "dev": "cross-env DEBUG=core,db,fetch stmux -- [ -t \"Running Code\" \"npm run dev:run\" .. -t \"Compiling Code\" \"npm run dev:compile\" ]",
+    "dev:compile": "tsc --watch",
+    "dev:run": "nodemon dist/app.js",
+    "serve:start": "pm2 startOrRestart ecosystem.config.js",
+    "serve": "run-s build serve:start",
     "stop": "pm2 stop ecosystem.config.js"
   },
   "dependencies": {
@@ -24,6 +29,10 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.23.1",
-    "eslint-plugin-react-hooks": "^4.2.0"
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "nodemon": "^2.0.16",
+    "npm-run-all": "^4.1.5",
+    "stmux": "^1.8.4",
+    "typescript": "^4.7.2"
   }
 }

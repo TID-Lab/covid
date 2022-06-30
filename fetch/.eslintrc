@@ -1,7 +1,0 @@
-{
-    "extends": "airbnb",
-    "rules": {
-        "camelcase": "off",
-        "no-param-reassign": "off"
-    }
-}
