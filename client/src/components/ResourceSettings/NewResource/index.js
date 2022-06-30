@@ -49,8 +49,9 @@ const NewResource = () => {
 
   function onClick() {
     try {
+      var resource = null;
       if (!imageurl){
-        createResource({
+        resource = createResource({
           authoredAt,
           fetchedAt,
           author,
@@ -60,7 +61,7 @@ const NewResource = () => {
           topics
         });
       } else {
-        createResource({
+        resource = createResource({
           authoredAt,
           fetchedAt,
           author,
@@ -70,15 +71,16 @@ const NewResource = () => {
           imageurl
         });
       }
-      
 
-      hidePopup();
-      notify('Resource saved to database.');
+      if (resource != null) {
+        hidePopup();
+        notify('Resource saved to database.');
 
-      setName('');
-      setAuthor('');
-      setUrl('');
-      setType(TYPES[0]);
+        setName('');
+        setAuthor('');
+        setUrl('');
+        setType(TYPES[0]);
+      }
 
     } catch (err) {
       notify('An error occurred.');

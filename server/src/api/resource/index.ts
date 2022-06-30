@@ -14,7 +14,9 @@ const {
     posts: { pageSize },
   },
 } = require('../../util/config');
-
+const axios = require('axios').default;
+extractor = require('unfluff');
+const cheerio = require('cheerio');
 const debug = useDebug('api');
 
 // Returns a page of resource posts using the given search query
@@ -46,7 +48,7 @@ routes.post('/', async (req, res) => {
   }
 
   req.body.organization = organization;
-  const {
+  var {
     authoredAt,
     fetchedAt,
     author,
@@ -55,9 +57,59 @@ routes.post('/', async (req, res) => {
     type,
     topics,
     platformID,
-    content,
     imageurl,
   } = req.body;
+  var html = null;
+  var language = 'en';
+  try {
+    if (url) {
+      // May need https://www.npmjs.com/package/after-load to load JS heavy apps, but let's see if we can get by with just axios :)
+      response = await axios.get(url);
+      if(response.status === 200) {
+        html = response.data;
+
+        // Can add language versatility, extractor(html, language) where language is language's two letter code
+        data = extractor(html);
+
+        // Fill in blank/other fields of resource data object with unfluff extractor
+        var desc = data.description
+        if (data.author) {
+          var extracted_author = data.author.toString()
+        }
+        author = author || extracted_author
+        name = name || data.title
+        authoredAt = data.date || authoredAt
+        language = data.language || 'en'
+
+
+        // Using cheerio to extract the main text (through p, h1...)
+        const $ = cheerio.load(html);
+        // This just adds some spaces between html elements
+        $("*").each(function (index) {
+          $(this).prepend(' ');
+          $(this).append(' ');
+        }); 
+        var scraped_text = $('p, h1, h2, h3, h4, h5').text().replace(/\s{2,}/g, ' ').trim();
+
+        // OPTIONAL PROCESSING W/ CHEERIO IF WANTED IN FUTURE
+        /* Collect the "href" and "title" of each link and add them to an array */
+        // const linkObjects = $('a');
+        // const links = [];
+        // linkObjects.each((index, element) => {
+        //   links.push({
+        //     text: $(element).text(), // get the text
+        //     href: $(element).attr('href'), // get the href attribute
+        //   });
+        // });
+
+        /* Get images from page */
+        // images = $('img').map(function(){ return $(this).attr('src'); })
+    
+      }
+    }
+  } catch (err) {
+    console.log(err);
+  }
   try {
     const resour = await Resources.create({
       authoredAt,
@@ -65,12 +117,15 @@ routes.post('/', async (req, res) => {
       author,
       organization,
       name,
+      desc,
       url,
       type,
       topics,
       platformID,
-      content,
-      imageurl,
+      content: scraped_text,
+      raw: html,
+      language,
+      imageurl
     });
     res.status(200).send(resour);
   } catch (err) {

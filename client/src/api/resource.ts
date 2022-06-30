@@ -58,7 +58,11 @@ async function createResource(resource) {
     body: JSON.stringify(resource)
   }
   const res = await authFetch(`/api/resource`, options);
-  const body = await res.json();
+  if (res.status === 200) {
+    var body = await res.json();
+  } else {
+    return null;
+  }
   return body;
 }
 

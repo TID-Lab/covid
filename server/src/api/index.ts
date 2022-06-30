@@ -121,6 +121,7 @@ module.exports = () =>
       reject(err);
     });
 
+
     // If the HTTP server started, resolve.
     debug('Starting the API module...');
     server.listen(config.api.port, () => {
@@ -129,7 +130,13 @@ module.exports = () =>
     });
   });
 
-// This methods add sample data into the resources schema in the covid collection.
-resourcePost.collection.insertMany(data, function (err, r) {
-  console.log('We have added sample data onto the database.');
-});
+    // This methods add sample data into the resources schema in the covid collection.
+    try {
+      if (resourcePost.count() == 0) {
+        resourcePost.insertMany(data, function (err, r) {
+          debug('We have added sample data onto the database.');
+        });
+    }
+    } catch (err) {
+      debug(err);
+    }
