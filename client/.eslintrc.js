@@ -1,3 +1,10 @@
 module.exports = {
-  extends: '../eslintrc-react-base.js',
+  'extends': [
+    'react-app',
+    'react-app/jest',
+    '../eslintrc-react-base.js',
+    '../eslintrc-react-plugins.js'
+
+  ],
+  'root': true
 };

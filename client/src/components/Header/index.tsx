@@ -7,8 +7,10 @@ import TextSearch from '../TextSearch';
 // import { Button } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from 'components/Button';
+import useTracker from 'hooks/useTracker';
 
 const Header = () => {
+  const { trackEvent } = useTracker();
   const { pathname } = useLocation(); // TODO show search only if in dashboard mode
   // const [postingVisible, setPostingVisible] = useState(false);
   const dispatch = useDispatch();
@@ -16,6 +18,7 @@ const Header = () => {
 
   function onMenuClick() {
     dispatch({ type: 'postingMenu/set', payload: !postingMenu });
+    trackEvent({ category: 'Post', action: 'Create Post' });
   }
 
   if (pathname === '/social-media-dashboard') {
