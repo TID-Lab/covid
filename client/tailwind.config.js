@@ -16,7 +16,7 @@ module.exports = {
       gray: colors.gray, // temporary, replace later with proper colors
     },
     fontFamily: {
-      sans: ['Poppins', 'sans-serif'],
+      sans: ['Open Sauce Two', 'sans-serif'],
     },
     extend: {},
   },

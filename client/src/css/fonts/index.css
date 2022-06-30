@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'Open Sauce Two';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./opensaucetwo-regular-webfont.woff2') format('woff2'),
+    url('./opensaucetwo-regular-webfont.woff') format('woff');
+}
+@font-face {
+  font-family: 'Open Sauce Two';
+  font-style: Bold;
+  font-weight: 700;
+
+  src: url('./opensaucetwo-bold-webfont.woff2') format('woff2'),
+    url('./opensaucetwo-bold-webfont.woff') format('woff');
+}
