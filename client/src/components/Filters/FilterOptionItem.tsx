@@ -39,7 +39,6 @@ const FilterOptionItem = ({
         onSelect={onRadioClick}
         id={header.replace('', '_')}
       />
-      <p>{selected}</p>
     </>
   );
 };

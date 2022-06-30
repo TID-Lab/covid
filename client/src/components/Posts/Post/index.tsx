@@ -9,7 +9,7 @@ import Button from 'components/Button';
 import {
   COVID_TOPICS,
   ACC_CATEGORIES,
-  ACC_TYPE,
+  INSTITUTION,
   IDENTITIES,
 } from 'util/filterData';
 const embedHTMLCache = [];
@@ -86,7 +86,7 @@ const Post = (props) => {
   const retweet = platform === 'twitter' && data.content.startsWith('RT @');
 
   //  tags , combine account categories, account type, and identities
-  const TAGS = { ...ACC_CATEGORIES, ...ACC_TYPE, ...IDENTITIES };
+  const TAGS = { ...ACC_CATEGORIES, ...INSTITUTION, ...IDENTITIES };
 
   // Function for copying link to post to user's clipboard
   function copyLink(e) {

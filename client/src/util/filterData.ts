@@ -12,21 +12,21 @@ export const ACC_CATEGORIES = {
 
 export type ACC_CATEGORIES_TYPE = keyof typeof ACC_CATEGORIES;
 
-export const ACC_TYPE = {
+export const INSTITUTION = {
   all: 'All',
   institutional: 'Institutional',
   nonInstitutional: 'Non-Institutional',
 } as const;
 
-export type ACC_TYPE_TYPE = keyof typeof ACC_TYPE;
+export type INSTITUTION_TYPE = keyof typeof INSTITUTION;
 
 export const LOCATION = {
   all: 'All',
-  institutional: 'Institutional',
-  nonInstitutional: 'Non-Institutional',
+  georgia: 'Georgia',
+  nonGeorgia: 'non-Georgia',
 } as const;
 
-export type LOCATION_TYPE = keyof typeof ACC_TYPE;
+export type LOCATION_TYPE = keyof typeof LOCATION;
 
 export const COVID_TOPICS = {
   all: 'All',

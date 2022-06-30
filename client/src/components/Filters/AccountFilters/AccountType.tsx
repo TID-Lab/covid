@@ -5,7 +5,7 @@ import Radio from 'components/Radio';
 
 import c from './index.module.css';
 import useTracker from 'hooks/useTracker';
-import { ACC_TYPE } from 'util/filterData';
+import { INSTITUTION } from 'util/filterData';
 
 const AccountTypes = (props) => {
   const { institutions } = props;
@@ -20,11 +20,11 @@ const AccountTypes = (props) => {
   return (
     <div className={c.AccountFilter}>
       <h4>Type of account</h4>
-      {Object.keys(ACC_TYPE).map((id) => (
+      {Object.keys(INSTITUTION).map((id) => (
         <Radio
           key={id}
           id={id}
-          name={ACC_TYPE[id]}
+          name={INSTITUTION[id]}
           selected={institutions}
           onClick={onRadioClick}
         />
