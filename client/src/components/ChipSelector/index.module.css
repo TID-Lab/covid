@@ -9,3 +9,7 @@
   @apply outline;
   @apply outline-offset-1;
 }
+
+form {
+  width: calc(100% + 2rem);
+}

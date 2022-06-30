@@ -1,10 +1,11 @@
+import Icon from 'components/Icon';
 import { Fragment, ReactNode } from 'react';
 import c from './index.module.css';
 
 //for whatever reason tailwind is not detecting classes if i dont have the space in front of the string
 const style = {
   default:
-    ' border-slate-500 active:bg-slate-200 hover:bg-slate-100 py-2 px-4 ',
+    ' border-slate-500 active:bg-slate-200 hover:bg-slate-100 py-2 px-4  ',
   active: ' bg-slate-200 border-slate-300 py-1 pl-2 pr-4 ',
 };
 
@@ -16,7 +17,7 @@ function ChipSelector({
   id,
 }: ChipSelectorProps) {
   return (
-    <form>
+    <form className="border-t-[1.5px] border-slate-300 pl-4 pr-2">
       <legend>{header}</legend>
       <div className="gap-x-2 gap-y-3 flex relative flex-wrap ">
         {Object.keys(options).map((key, index) => (
@@ -30,18 +31,18 @@ function ChipSelector({
               onChange={(e) => onSelect(e.target.value)}
             />
             <label
-              className={`cursor-pointer border text-xs rounded-lg flex gap-x-1 items-center  ${
+              className={` cursor-pointer border text-xs rounded-lg flex gap-x-1 items-center  ${
                 key === active ? style.active : style.default
               }}`}
               htmlFor={`${id}:${index}`}
             >
               <span
-                className={
-                  key === active
-                    ? ' w-[12px] h-[24px] rounded bg-primary inline-block'
-                    : ' hidden '
-                }
-              ></span>{' '}
+                className={`overflow-hidden inline-block  ${
+                  key === active ? ' w-auto text-slate-600' : '  w-0 '
+                }`}
+              >
+                <Icon type="check-sm" />
+              </span>
               {options[key]}
             </label>
           </Fragment>
