@@ -6,7 +6,7 @@ import c from './index.module.css';
 const style = {
   default:
     ' border-slate-500 active:bg-slate-200 hover:bg-slate-100 py-2 px-4  ',
-  active: ' bg-slate-200 border-slate-300 py-1 pl-2 pr-4 ',
+  active: ' bg-slate-200 border-slate-300 font-bold py-1 pl-2 pr-4 ',
 };
 
 function ChipSelector({
@@ -14,11 +14,19 @@ function ChipSelector({
   active,
   header,
   onSelect,
+  className,
+  hideLabel = false,
   id,
 }: ChipSelectorProps) {
   return (
-    <form className="border-t-[1.5px] border-slate-300 pl-4 pr-2">
-      <legend>{header}</legend>
+    <form className={className}>
+      <h2
+        className={`text-sm font-bold mb-3 mt-3 text-slate-700 ${
+          hideLabel ? ' overflow-hidden w-0 h-0 ' : ''
+        }`}
+      >
+        {header}
+      </h2>
       <div className="gap-x-2 gap-y-3 flex relative flex-wrap ">
         {Object.keys(options).map((key, index) => (
           <Fragment key={key}>
@@ -59,6 +67,8 @@ interface ChipSelectorProps {
   active: string;
   header: ReactNode;
   onSelect: any;
+  className?: string;
+  hideLabel?: boolean;
   id: string;
 }
 

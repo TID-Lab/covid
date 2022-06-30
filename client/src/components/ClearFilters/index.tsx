@@ -1,10 +1,13 @@
-// @ts-nocheck
 import { useAppDispatch, useAppSelector } from 'hooks/useTypedRedux';
 import Button from 'components/Button';
 import c from './index.css';
 import useTracker from 'hooks/useTracker';
+import { ReactNode } from 'react';
 
-const ClearFilters = () => {
+interface ClearFiltersProps {
+  children: ReactNode;
+}
+const ClearFilters = ({ children }: ClearFiltersProps) => {
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.filters);
   const { platforms } = filters;
@@ -36,7 +39,9 @@ const ClearFilters = () => {
 
   return (
     <div>
-      <Button onCLick={onClick}>Clear Filters</Button>
+      <Button variant="outline" size="md" onClick={onClick}>
+        {children}
+      </Button>
     </div>
   );
 };

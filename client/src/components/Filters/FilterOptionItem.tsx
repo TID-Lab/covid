@@ -13,6 +13,7 @@ interface FilterOptionItemProps {
   dispatchType: string;
   track: MatomoEvent;
 }
+
 const FilterOptionItem = ({
   selector,
   items,
@@ -37,6 +38,7 @@ const FilterOptionItem = ({
         header={header}
         active={selected}
         onSelect={onRadioClick}
+        className={' pl-4 pr-2'}
         id={header.replace('', '_')}
       />
     </>
