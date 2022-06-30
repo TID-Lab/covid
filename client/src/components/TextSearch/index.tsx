@@ -1,17 +1,23 @@
-// @ts-nocheck
+import useTracker from 'hooks/useTracker';
 import { useDispatch } from 'react-redux';
-
+import { ChangeEvent } from 'react';
 import c from './index.module.css';
 
-let timeout;
+let timeout: any;
 
 const TextSearch = () => {
   const dispatch = useDispatch();
+  const { trackEvent } = useTracker();
 
-  function onChange(e) {
+  function onChange(e: ChangeEvent<HTMLInputElement>) {
     clearTimeout(timeout);
     timeout = setTimeout(() => {
       dispatch({ type: 'search/set', payload: e.target.value });
+      trackEvent({
+        category: 'Filter',
+        action: 'Search',
+        name: e.target.value,
+      });
     }, 2000);
   }
 

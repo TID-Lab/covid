@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import Radio from 'components/Radio';
 
 import c from './index.module.css';
+import useTracker from 'hooks/useTracker';
 
 const IDENTITIES = {
   all: 'All',
@@ -14,9 +15,15 @@ const IDENTITIES = {
 const AccountIdentity = (props) => {
   const { identities: identity } = props;
   const dispatch = useDispatch();
+  const { trackEvent } = useTracker();
 
   function onRadioClick(id) {
     dispatch({ type: 'accounts/identities/set', payload: id });
+    trackEvent({
+      category: 'Filter',
+      action: 'Set Account Identity',
+      name: id,
+    });
   }
 
   return (

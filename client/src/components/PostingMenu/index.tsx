@@ -8,6 +8,7 @@ import queryString from 'query-string';
 import { useHistory } from 'react-router-dom';
 import PopupModal from '../PopupModal';
 import Button from 'components/Button';
+import useTracker from 'hooks/useTracker';
 
 function twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus) {
   twitterLogout();
@@ -51,6 +52,7 @@ const PostingMenu = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   let textAreaRef = useRef<HTMLAreaElement>(null);
   const postText = useSelector((state) => state.postingText);
+  const { trackEvent } = useTracker();
 
   const dispatch = useDispatch();
   function closeClick() {
@@ -88,15 +90,35 @@ const PostingMenu = () => {
         if (res.status === 401) {
           alert('Login Expired');
           setTwitterLoginStatus(false);
+          trackEvent({
+            category: 'Post',
+            action: 'Post to Twitter',
+            name: '401 error',
+          });
         } else if (res.status === 400) {
           alert(
             'Bad input. (Likely a duplicate tweet, please write something else!)'
           );
+          trackEvent({
+            category: 'Post',
+            action: 'Post to Twitter',
+            name: '400 error',
+          });
         } else {
           setShowSuccess(true);
+          trackEvent({
+            category: 'Post',
+            action: 'Post to Twitter',
+            name: 'success!',
+          });
         }
       } catch (error) {
         console.error(error);
+        trackEvent({
+          category: 'Post',
+          action: 'Post to Twitter',
+          name: error,
+        });
       }
       setButtonDisabled(false);
     })();
@@ -230,9 +252,9 @@ const PostingMenu = () => {
             <b> Compose Message </b>
           </h3>{' '}
           {/* fix this after decoupling h1 from font size*/}
-          <button className="closeButton" onClick={closeClick}>
+          <Button variant="secondary" size="md" onClick={closeClick}>
             Close
-          </button>
+          </Button>
         </div>
         {/* <div class={c.gcse_search}></div> */}
         <hr className="h-1" />

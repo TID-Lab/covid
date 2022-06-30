@@ -1,9 +1,12 @@
+//@ts-nocheck
 import c from './index.module.css';
 
 import { useState, useEffect, useCallback } from 'react';
 import { authFetch } from 'util/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import store from 'store';
+import useTracker from 'hooks/useTracker';
+import Button from 'components/Button';
 
 const embedHTMLCache = [];
 
@@ -28,6 +31,7 @@ const Post = (props) => {
 
   const [isLoaded, setLoaded] = useState(false);
   const [isRendered, setRendered] = useState(false);
+  const { trackEvent } = useTracker();
 
   const wait = useCallback(() => {
     waitForEmbed(element, () => {
@@ -111,12 +115,14 @@ const Post = (props) => {
   function copyLink(e) {
     e.preventDefault();
     navigator.clipboard.writeText(data.url);
+    trackEvent({ category: 'Post', action: 'Copy Link' });
   }
 
   // Function for copying text of post to user's clipboard
   function copyText(e) {
     e.preventDefault();
     navigator.clipboard.writeText(data.content);
+    trackEvent({ category: 'Post', action: 'Copy Text' });
   }
 
   // Function for copying post and opening posting menu
@@ -126,6 +132,10 @@ const Post = (props) => {
     const postText = data.content;
     store.dispatch({ type: 'postingMenu/set', payload: !postingMenu });
     store.dispatch({ type: 'postingText/set', payload: postText });
+    trackEvent({
+      category: 'Post',
+      action: 'Send to Posting Menu',
+    });
   }
 
   // some FB posts render with a transparent background
@@ -170,7 +180,7 @@ const Post = (props) => {
         ></div>
       </div>
       <div className={c.annotations}>
-        <div className={`${c.column} ${c.left}`}>
+        <div className={``}>
           <p>
             <b>Topics:</b>{' '}
             {data.topics
@@ -186,22 +196,16 @@ const Post = (props) => {
               .join(', ')}
           </p>
         </div>
-        <div className={`${c.column} ${c.right}`}>
-          <form onSubmit={createPost}>
-            <button className="submitButton" type="submit">
-              Use as basis of a post
-            </button>
-          </form>
-          <form onSubmit={copyLink}>
-            <button className="submitButton" type="submit">
-              Copy link
-            </button>
-          </form>
-          <form onSubmit={copyText}>
-            <button className="submitButton" type="submit">
-              Copy text
-            </button>
-          </form>
+        <div className={`flex space-x-1 pb-4 `}>
+          <Button variant="outline" size="md" onClick={copyLink}>
+            Copy link
+          </Button>
+          <Button variant="outline" size="md" onClick={copyText}>
+            Copy text
+          </Button>
+          <Button variant="primary" size="md" onClick={createPost}>
+            Make Post
+          </Button>
         </div>
       </div>
     </div>

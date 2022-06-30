@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import c from './index.module.css';
 
 import Footer from 'components/Footer';
-import Login from 'components/Login';
+import Login from 'pages/Login';
 import Header from 'components/Header';
 
 import Dashboard from 'pages/Dashboard';
@@ -14,12 +14,16 @@ import PrivacyPolicy from 'pages/PrivacyPolicy';
 import Terms from 'pages/Terms';
 import DataDeletion from 'pages/DataDeletion';
 import ResourceDashboard from 'pages/ResourceDashboard';
+import useTracker from 'hooks/useTracker';
+
 
 // TODO: Style hyperlinks in the Terms, etc. pages
 
 const App = () => {
   const popupModal = useSelector((state) => state.popup);
-
+  const {enableLinkTracking } = useTracker();
+  
+  enableLinkTracking();
   return (
     <div className={c.Root}>
       <div className="App">
