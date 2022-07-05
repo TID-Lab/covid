@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import './index.css';
 
+import TagSort from '../TagSort';
 import Logo from '../Logo';
 import SortSelect from '../SortSelect';
 import TextSearch from '../TextSearch';
@@ -22,6 +23,7 @@ const Header = () => {
         <Logo />
         <SortSelect />
         <TextSearch />
+        <TagSort />
         <button style={{marginLeft: "auto", marginRight: "1.5rem", marginTop: "0.5rem", marginBottom: "0.5rem", maxHeight: "3rem"}} onClick={ onMenuClick }> + Create Post </button>
       </div>
     )

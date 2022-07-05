@@ -10,6 +10,8 @@ import { deleteTag } from '../../api/tag';
 import { createTag } from '../../api/tag';
 import { editTag } from '../../api/tag';
 import {createOrganization} from "../../api/org";
+import  * as React  from 'react'
+
 
 const embedHTMLCache = [];
 
@@ -100,8 +102,12 @@ const Post = (props) => {
     'covid-diabetes': 'COVID x Diabetes',
     'georgia': 'Georgia'
   }
-
-  // Account tags (CATEGORIES from AccountCategories\index.js, plus institutional and GA)
+    //sortBy = useSelector(state => state.filters.sortBy);
+    //dispatch = useDispatch();
+   
+     
+    
+      // Account tags (CATEGORIES from AccountCategories\index.js, plus institutional and GA)
   const TAGS = {
     'all': 'All',
     'government': 'Government',
@@ -212,13 +218,11 @@ const Post = (props) => {
 
   // some FB posts render with a transparent background
   const containerClassName = (platform === 'facebook') ? 'container facebook' : 'container';
-
   // if (isRendered) {
   //   return ();
   // } else {
   //   return ();
   // }
-
   return (
     <div className='Post'>
       {(!isRendered) ? (
@@ -238,7 +242,6 @@ const Post = (props) => {
         <div className='column left'>
           <p><b>Topics:</b> {data.topics.map(topic => COVID_TOPICS[topic]).filter(Boolean).join(', ')}</p>
           <p><b>Account:</b> {data.tags.map(tag => TAGS[tag]).filter(Boolean).join(', ')}</p>
-          <p><b>Tags</b></p>
 
           <button className="tagPopup" onClick={tagPopup}>+</button>
           {showTagModal && <PopupModal

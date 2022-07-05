@@ -1,0 +1,13 @@
+.TagSort {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.TagSort select {
+  width: 200px;
+  height: 30px;
+  /* border-radius: 15px; */
+  padding-left: 15px;
+  background-color: white;
+}
