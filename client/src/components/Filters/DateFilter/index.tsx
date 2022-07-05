@@ -48,6 +48,7 @@ const DateFilter = ({ selector }: DateFilterProps) => {
     const today = new Date();
     let startDate = new Date();
     switch (preset) {
+      //we need to refactor this later LOL
       case 'today':
         startDate.setDate(today.getDate() - 1);
         break;
