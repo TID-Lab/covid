@@ -49,3 +49,15 @@ export const IDENTITIES = {
 } as const;
 
 export type IDENTITIES_TYPE = keyof typeof IDENTITIES;
+
+export const DATE_PRESETS = {
+  today: 'Today',
+  '7days': '7 days',
+  month: 'this month',
+  '30days': '30 days',
+  '60days': '60 days',
+  year: 'this year',
+  custom: 'custom',
+} as const;
+
+export type DATE_PRESET_TYPE = keyof typeof DATE_PRESETS;
