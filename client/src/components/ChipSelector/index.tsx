@@ -1,6 +1,5 @@
 import Icon from 'components/Icon';
-import { Fragment, ReactNode } from 'react';
-import c from './index.module.css';
+import { ReactNode } from 'react';
 import { RadioGroup } from '@headlessui/react';
 
 //for whatever reason tailwind is not detecting classes if i dont have the space in front of the string
@@ -36,17 +35,18 @@ function ChipSelector({
                 className={` cursor-pointer border text-xs rounded-lg flex gap-x-1 items-center  ${
                   key === active ? style.active : style.default
                 }}`}
-                htmlFor={`${id}:${index}`}
               >
-                <span
-                  className={`overflow-hidden inline-block  ${
-                    key === active ? ' w-auto text-slate-600' : '  w-0 '
-                  }`}
-                >
-                  <Icon type="check-sm" />
-                </span>
-                {options[key]}
+                {' '}
               </RadioGroup.Label>
+
+              <span
+                className={`overflow-hidden inline-block  ${
+                  key === active ? ' w-auto text-slate-600' : '  w-0 '
+                }`}
+              >
+                <Icon type="check-sm" />
+              </span>
+              {options[key]}
             </RadioGroup.Option>
           ))}
         </div>
