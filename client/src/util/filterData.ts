@@ -55,10 +55,10 @@ export const DATE_PRESETS = {
   '7days': '7 days',
   '30days': '30 days',
   '60days': '60 days',
-  month: 'this month',
+  month: 'This Month',
 
-  year: 'this year',
-  custom: 'custom',
+  year: 'This Year',
+  custom: 'Custom',
 } as const;
 
 export type DATE_PRESET_TYPE = keyof typeof DATE_PRESETS;

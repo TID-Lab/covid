@@ -23,7 +23,10 @@ interface dateType {
   from: string;
   to: string;
 }
+// number of visisble options vs hidden away inside the dropdown
 const showNumber = 4;
+
+//array of keys of dates
 const presetArray = Object.keys(DATE_PRESETS);
 
 const DateFilter = ({ selector }: DateFilterProps) => {
