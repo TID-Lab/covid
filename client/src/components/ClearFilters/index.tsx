@@ -16,12 +16,12 @@ const ClearFilters = ({ children }: ClearFiltersProps) => {
   function onClick() {
     const today = new Date();
     let startDate = new Date();
-    startDate.setDate(today.getDate() - 1);
+    startDate.setDate(today.getDate() - 7);
 
     dispatch({
       type: 'dates/set',
       payload: {
-        preset: 'today',
+        preset: '7days',
         from: formatDate(startDate),
         to: formatDate(today),
       },

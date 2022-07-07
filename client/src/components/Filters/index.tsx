@@ -19,7 +19,7 @@ import {
 const Filters = () => {
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.filters);
-  const { dates, topic, accounts, platforms } = filters;
+  const { platforms } = filters;
 
   useEffect(() => {
     getPosts(filters)

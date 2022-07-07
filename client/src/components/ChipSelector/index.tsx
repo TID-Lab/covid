@@ -14,12 +14,12 @@ function ChipSelector({
   active,
   header,
   onSelect,
-  className,
   hideLabel = false,
   id,
+  ...props
 }: ChipSelectorProps) {
   return (
-    <form className={className}>
+    <form {...props}>
       <h2
         className={`text-sm font-bold mb-3 mt-3 text-slate-700 ${
           hideLabel ? ' overflow-hidden w-0 h-0 ' : ''
