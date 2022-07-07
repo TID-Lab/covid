@@ -6,7 +6,7 @@ import c from './index.module.css';
 const style = {
   default:
     ' border-slate-500 active:bg-slate-200 hover:bg-slate-100 py-2 px-4  ',
-  active: ' bg-slate-200 border-slate-300 font-bold py-1 pl-2 pr-4 ',
+  active: ' bg-slate-200 border-slate-300 font-bold py-2 pl-2 pr-4 ',
 };
 
 function ChipSelector({

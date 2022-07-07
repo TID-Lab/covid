@@ -156,7 +156,7 @@ const DateFilter = ({ selector }: DateFilterProps) => {
                 .map((key, index) => (
                   <Listbox.Option
                     key={index}
-                    className={`cursor-pointer  text-xs bg-white py-2 px-4 hover:bg-slate-100
+                    className={`cursor-pointer  text-xs bg-white py-2 pl-2 pr-4 hover:bg-slate-100
                  m-0 flex gap-x-1 items-center ${
                    selected.preset === key ? 'font-bold' : ''
                  }`}
