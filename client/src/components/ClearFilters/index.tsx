@@ -3,6 +3,7 @@ import Button from 'components/Button';
 import c from './index.css';
 import useTracker from 'hooks/useTracker';
 import { ReactNode } from 'react';
+import formatDate from 'util/formatDate';
 
 interface ClearFiltersProps {
   children: ReactNode;
@@ -13,8 +14,18 @@ const ClearFilters = ({ children }: ClearFiltersProps) => {
   const { platforms } = filters;
   const { trackEvent } = useTracker();
   function onClick() {
-    dispatch({ type: 'dates/fromSet', payload: '' });
-    dispatch({ type: 'dates/toSet', payload: '' });
+    const today = new Date();
+    let startDate = new Date();
+    startDate.setDate(today.getDate() - 1);
+
+    dispatch({
+      type: 'dates/set',
+      payload: {
+        preset: 'today',
+        from: formatDate(startDate),
+        to: formatDate(today),
+      },
+    });
 
     dispatch({ type: 'topic/set', payload: 'all' });
     dispatch({ type: 'accounts/institutions/set', payload: 'all' });

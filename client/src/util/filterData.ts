@@ -53,9 +53,10 @@ export type IDENTITIES_TYPE = keyof typeof IDENTITIES;
 export const DATE_PRESETS = {
   today: 'Today',
   '7days': '7 days',
-  month: 'this month',
   '30days': '30 days',
   '60days': '60 days',
+  month: 'this month',
+
   year: 'this year',
   custom: 'custom',
 } as const;

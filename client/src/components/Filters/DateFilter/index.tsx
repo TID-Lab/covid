@@ -5,6 +5,8 @@ import useTracker from 'hooks/useTracker';
 import formatDate from 'util/formatDate';
 import { DATE_PRESETS, DATE_PRESET_TYPE } from 'util/filterData';
 import Icon from 'components/Icon';
+import { Listbox } from '@headlessui/react';
+
 interface DateFilterProps {
   selector: (state: RootState) => any;
 }
@@ -13,7 +15,7 @@ interface DateFilterProps {
 const style = {
   default:
     ' border-slate-500 active:bg-slate-200 hover:bg-slate-100 py-2 px-4  ',
-  active: ' bg-slate-200 border-slate-300 font-bold py-1 pl-2 pr-4 ',
+  active: ' bg-slate-200 border-slate-300 font-bold py-2 pl-2 pr-4 ',
 };
 
 interface dateType {
@@ -21,7 +23,7 @@ interface dateType {
   from: string;
   to: string;
 }
-const showNumber = 2;
+const showNumber = 4;
 const presetArray = Object.keys(DATE_PRESETS);
 
 const DateFilter = ({ selector }: DateFilterProps) => {
@@ -85,7 +87,7 @@ const DateFilter = ({ selector }: DateFilterProps) => {
   }
 
   return (
-    <form className="pl-4 pr-8 ">
+    <form className="pl-4 pr-8 mr-[-3rem]">
       <h2
         id="presetDates "
         className="text-sm font-bold mt-4 mb-2 text-slate-700"
@@ -119,45 +121,57 @@ const DateFilter = ({ selector }: DateFilterProps) => {
             {DATE_PRESETS[key as DATE_PRESET_TYPE]}
           </div>
         ))}
-        <button
-          className={`cursor-pointer border text-xs rounded-lg flex gap-x-1 items-center ${
-            selected.preset === 'custom' ? style.active : style.default
-          }`}
-        >
-          more
-          <Icon type="chevron-down-sm" />
-        </button>
-        <ul
-          className="  dropdown-menu min-w-max absolute hidden bg-white z-50 float-left py-2 list-none   text-left rounded-lg shadow-lg
-          mt-1 hidden m-0 bg-clip-padding border-none"
-        >
-          {presetArray
-            .slice(-(presetArray.length - showNumber))
-            .map((key, index) => (
-              <li
-                key={index}
-                role="radio"
-                className={`cursor-pointer border text-xs rounded-lg flex gap-x-1 items-center ${
-                  selected.preset === key ? style.active : style.default
+        <Listbox value={selected.preset} onChange={setPreset}>
+          <div className="relative">
+            <Listbox.Button
+              className={`cursor-pointer border text-xs rounded-lg flex gap-x-1 items-center ${
+                presetArray
+                  .slice(-(presetArray.length - showNumber))
+                  .find((i) => i == selected.preset)
+                  ? style.active
+                  : style.default
+              }`}
+            >
+              <span
+                className={`overflow-hidden inline-block  ${
+                  presetArray
+                    .slice(-(presetArray.length - showNumber))
+                    .find((i) => i == selected.preset)
+                    ? ' w-auto text-slate-600'
+                    : '  w-0 '
                 }`}
-                aria-checked={selected.preset === key}
-                onClick={() => setPreset(key as DATE_PRESET_TYPE)}
-                tabIndex={selected.preset === key ? 0 : -1}
               >
-                {' '}
-                <span
-                  className={`overflow-hidden inline-block  ${
-                    key === selected.preset
-                      ? ' w-auto text-slate-600'
-                      : '  w-0 '
-                  }`}
-                >
-                  <Icon type="check-sm" />
-                </span>
-                {DATE_PRESETS[key as DATE_PRESET_TYPE]}
-              </li>
-            ))}
-        </ul>
+                <Icon type="check-sm" />
+              </span>
+              {presetArray
+                .slice(0, showNumber)
+                .find((i) => i == selected.preset)
+                ? 'more'
+                : DATE_PRESETS[selected.preset]}
+              <Icon type="chevron-down-sm" />
+            </Listbox.Button>
+            <Listbox.Options className="absolute mt-1 max-h-60 w-max overflow-auto z-50 bg-white rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+              {presetArray
+                .slice(-(presetArray.length - showNumber))
+                .map((key, index) => (
+                  <Listbox.Option
+                    key={index}
+                    className={`cursor-pointer  text-xs bg-white py-2 px-4 hover:bg-slate-100
+                 m-0 flex gap-x-1 items-center ${
+                   selected.preset === key ? 'font-bold' : ''
+                 }`}
+                    value={key}
+                  >
+                    {' '}
+                    <span className={`overflow-hidden inline-block w-[20px] `}>
+                      {selected.preset === key && <Icon type="check-sm" />}
+                    </span>
+                    {DATE_PRESETS[key as DATE_PRESET_TYPE]}
+                  </Listbox.Option>
+                ))}
+            </Listbox.Options>
+          </div>
+        </Listbox>
       </div>
       <div className="flex gap-2 mr-4">
         <LabeledDate
