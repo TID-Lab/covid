@@ -34,16 +34,16 @@ const Filters = () => {
       <header className="pl-4 pr-2 py-4 sticky top-0 bg-white z-30 border-b-[1.5px] border-slate-300">
         <SortSelect />
         <div className="flex justify-between">
-          <h1 class="font-bold text-xl ">Filters</h1>
+          <h1 class="font-bold text-lg text-slate-700 ">Filters</h1>
           <ClearFilters>
-            <span className="text-xs">Clear Filters</span>
+            <span className="text-sm">Clear Filters</span>
           </ClearFilters>
         </div>
       </header>
       <div className="space-y-4 divide-y-[1.5px] divide-slate-300">
         <DateFilter selector={(state) => state.filters.dates} />
         <FilterOptionItem
-          header="COVID_19 TOPICS"
+          header="COVID-19 Topics"
           items={COVID_TOPICS}
           selector={(state) => state.filters.topic}
           dispatchType="topic/set"
