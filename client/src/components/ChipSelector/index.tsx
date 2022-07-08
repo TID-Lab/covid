@@ -36,17 +36,15 @@ function ChipSelector({
                   key === active ? style.active : style.default
                 }}`}
               >
-                {' '}
+                <span
+                  className={`overflow-hidden inline-block  ${
+                    key === active ? ' w-auto text-slate-600' : '  w-0 '
+                  }`}
+                >
+                  <Icon type="check-sm" />
+                </span>
+                {options[key]}
               </RadioGroup.Label>
-
-              <span
-                className={`overflow-hidden inline-block  ${
-                  key === active ? ' w-auto text-slate-600' : '  w-0 '
-                }`}
-              >
-                <Icon type="check-sm" />
-              </span>
-              {options[key]}
             </RadioGroup.Option>
           ))}
         </div>
