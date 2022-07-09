@@ -26,7 +26,9 @@
   --c-blue-100: #e8f2ff;
   --c-blue-200: #c1dcff;
   --c-blue-300: #60a5fa;
-  --c-blue-500: #006ef6;
+  --c-blue-400: #006ef6;
+  /* no values for 500,600 for now*/
+
   --c-blue-700: #1657d6;
   --c-blue-800: #1657d6;
   --c-blue-900: #00479f;

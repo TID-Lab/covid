@@ -36,7 +36,7 @@ const Filters = () => {
         <div className="flex justify-between">
           <h1 class="font-bold text-lg text-slate-700 ">Filters</h1>
           <ClearFilters>
-            <span className="text-sm">Clear Filters</span>
+            <span className="text-xs">Clear Filters</span>
           </ClearFilters>
         </div>
       </header>

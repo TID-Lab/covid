@@ -24,23 +24,23 @@ const Header = () => {
 
   if (pathname === '/social-media-dashboard' || pathname === '/resources') {
     return (
-      <header className={`bg-white grid ${c.header_grid}`}>
+      <header className={`bg-white grid font-medium ${c.header_grid}`}>
         <div className="border-r border-gray-400 px-2 py-2">
-          <div className="hover:bg-slate-100 rounded-lg">
+          <div className="hover:bg-slate-100 rounded-xs">
             <Link to="/">
               <Logo />
             </Link>
           </div>
         </div>
 
-        <div className="flex justify-between items-center px-2 py-1 ">
-          <div className="flex items-center h-fit grow space-x-5 pl-2 basis-0">
+        <div className="flex justify-between items-center px-4 py-2 text-base">
+          <div className="flex items-center h-fit grow space-x-2 pl-2 basis-0">
             <NavLink
               className={`${c.navlink} py-1 `}
               activeClassName={c.active}
               to="/social-media-dashboard"
             >
-              <p className={`${c.navlink_inner} -mx-2 px-2 py-0.5 rounded-lg`}>
+              <p className={`${c.navlink_inner}  px-4 py-1 rounded-xs`}>
                 Monitoring
               </p>
             </NavLink>
@@ -49,7 +49,7 @@ const Header = () => {
               activeClassName={c.active}
               to="/resources"
             >
-              <p className={`${c.navlink_inner} -mx-2 px-2 py-0.5 rounded-lg`}>
+              <p className={`${c.navlink_inner} px-4 py-1 rounded-xs`}>
                 Resources
               </p>{' '}
             </NavLink>

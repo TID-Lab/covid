@@ -13,9 +13,9 @@ interface DateFilterProps {
 
 //for whatever reason tailwind is not detecting classes if i dont have the space in front of the string
 const style = {
-  default:
-    ' border-slate-400 active:bg-slate-200 hover:bg-slate-100 py-2 px-5  ',
-  active: ' bg-slate-200 border-slate-300 font-bold py-2 pl-2 pr-5 ',
+  default: ' border-slate-400 active:bg-blue-200 hover:bg-blue-100 py-2 px-5  ',
+  active:
+    ' bg-blue-100 border-blue-300 text-blue-800 font-bold py-2 pl-2 pr-5 ',
 };
 
 interface dateType {
@@ -90,7 +90,7 @@ const DateFilter = ({ selector }: DateFilterProps) => {
   }
 
   return (
-    <form className="pl-4 pr-8 mr-[-3rem]">
+    <form className="pl-4 pr-8 mr-[-3rem] font-medium">
       <h2
         id="presetDates "
         className="text-sm font-bold mt-3 mb-3 text-slate-700"
@@ -98,7 +98,7 @@ const DateFilter = ({ selector }: DateFilterProps) => {
         Date Range
       </h2>
       <div
-        className="flex flex-wrap gap-x-2 gap-y-4"
+        className="flex flex-wrap gap-x-2 gap-y-4 "
         role="radiogroup"
         aria-labelledby="presetDates"
       >
@@ -116,7 +116,7 @@ const DateFilter = ({ selector }: DateFilterProps) => {
             {' '}
             <span
               className={`overflow-hidden inline-block  ${
-                key === selected.preset ? ' w-auto text-slate-600' : '  w-0 '
+                key === selected.preset ? ' w-auto ' : '  w-0 '
               }`}
             >
               <Icon type="check-sm" />
@@ -127,7 +127,7 @@ const DateFilter = ({ selector }: DateFilterProps) => {
         <Listbox value={selected.preset} onChange={setPreset}>
           <div className="relative">
             <Listbox.Button
-              className={`cursor-pointer border text-sm rounded-xs flex gap-x-1 items-center ${
+              className={`cursor-pointer border text-sm font-medium rounded-xs flex gap-x-1 items-center ${
                 presetArray
                   .slice(-(presetArray.length - showNumber))
                   .find((i) => i == selected.preset)
@@ -140,26 +140,26 @@ const DateFilter = ({ selector }: DateFilterProps) => {
                   presetArray
                     .slice(-(presetArray.length - showNumber))
                     .find((i) => i == selected.preset)
-                    ? ' w-auto text-slate-600'
+                    ? ' w-auto '
                     : '  w-0 '
                 }`}
               >
-                <Icon type="check-sm" className={'mr-[-0.5rem]'} />
+                <Icon type="check-sm" />
               </span>
               {presetArray
                 .slice(0, showNumber)
                 .find((i) => i == selected.preset)
                 ? 'more'
                 : DATE_PRESETS[selected.preset]}
-              <Icon type="chevron-down-sm" />
+              <Icon type="chevron-down-sm" className={'mr-[-0.25rem]'} />
             </Listbox.Button>
-            <Listbox.Options className="absolute mt-1 max-h-60 right-0 w-max overflow-auto z-50 bg-white rounded-xs bg-white py-1 text-base shadow-lg border border-slate-400 focus:outline-none sm:text-sm">
+            <Listbox.Options className="absolute font-normal mt-1 max-h-60 right-0 w-max overflow-auto z-50 bg-white rounded-xs bg-white py-1 text-base shadow-lg border border-blue-300 focus:outline-none sm:text-sm">
               {presetArray
                 .slice(-(presetArray.length - showNumber))
                 .map((key, index) => (
                   <Listbox.Option
                     key={index}
-                    className={`cursor-pointer  text-sm bg-white py-2 pl-2 pr-4 hover:bg-slate-100
+                    className={`cursor-pointer  text-sm py-2 pl-2 pr-4 hover:bg-blue-100
                  m-0 flex gap-x-1 items-center ${
                    selected.preset === key ? 'font-bold' : ''
                  }`}

@@ -8,7 +8,7 @@ import formatDate from 'util/formatDate';
 interface ClearFiltersProps {
   children: ReactNode;
 }
-const ClearFilters = ({ children }: ClearFiltersProps) => {
+const ClearFilters = ({ children, ...props }: ClearFiltersProps) => {
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.filters);
   const { platforms } = filters;
@@ -49,7 +49,7 @@ const ClearFilters = ({ children }: ClearFiltersProps) => {
   }
 
   return (
-    <div>
+    <div {...props}>
       <Button variant="outline" size="md" onClick={onClick}>
         {children}
       </Button>

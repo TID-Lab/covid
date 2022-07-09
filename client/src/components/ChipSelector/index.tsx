@@ -5,8 +5,9 @@ import { RadioGroup } from '@headlessui/react';
 //for whatever reason tailwind is not detecting classes if i dont have the space in front of the string
 const style = {
   default:
-    ' border-slate-400 active:bg-slate-200 text-slate-700 hover:bg-slate-100 py-2 px-5  ',
-  active: ' bg-slate-200 border-slate-300 font-bold py-2 pl-3 pr-5 ',
+    ' border-slate-400 active:bg-blue-200 text-slate-700 hover:bg-blue-100 py-2 px-5  ',
+  active:
+    ' bg-blue-100 border-blue-300 text-blue-800 font-bold py-2 pl-3 pr-5 ',
 };
 
 function ChipSelector({
@@ -28,7 +29,7 @@ function ChipSelector({
         >
           {header}
         </RadioGroup.Label>
-        <div className="gap-x-2 gap-y-4 flex relative flex-wrap mr-[-2rem]">
+        <div className="gap-x-2 gap-y-4 flex relative flex-wrap mr-[-3rem] font-medium">
           {Object.keys(options).map((key, index) => (
             <RadioGroup.Option key={index} value={key}>
               <RadioGroup.Label
@@ -38,7 +39,7 @@ function ChipSelector({
               >
                 <span
                   className={`overflow-hidden inline-block  ${
-                    key === active ? ' w-auto text-slate-600' : ' w-0 '
+                    key === active ? ' w-auto ' : ' w-0 '
                   }`}
                 >
                   <Icon type="check-sm" />

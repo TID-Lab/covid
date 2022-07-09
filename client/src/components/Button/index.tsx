@@ -3,7 +3,8 @@ import React, { CSSProperties } from 'react';
 // define button styles here
 
 const btnStyle = {
-  primary: 'bg-primary hover:bg-gray-600 text-white rounded-full', //big primary button
+  primary:
+    'bg-blue-100 hover:bg-blue-200 border-2 border-blue-300 active:border-blue-400 rounded-full', //big primary button
   secondary: 'bg-gray-100 hover:bg-gray-300 text-black rounded-md',
   transparent: '',
   outline:
@@ -11,8 +12,8 @@ const btnStyle = {
 };
 
 const btnSize = {
-  sm: '',
-  md: 'py-1 px-3',
+  sm: 'py-0 px-2',
+  md: 'py-1 px-4',
   lg: 'py-2 px-6 ',
   xl: '',
 };
@@ -31,7 +32,7 @@ const Button = ({
     <button
       type="button"
       id={id}
-      className={`grid gap-4 auto-cols-auto ${btnStyle[variant]} ${btnSize[size]} ${className}`}
+      className={`grid gap-4 auto-cols-auto font-medium ${btnStyle[variant]} ${btnSize[size]} ${className}`}
       style={style}
       onClick={() => onClick()}
       //onKeyDown={()=>onClick()}

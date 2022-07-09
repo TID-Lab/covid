@@ -14,8 +14,8 @@ export type ACC_CATEGORIES_TYPE = keyof typeof ACC_CATEGORIES;
 
 export const INSTITUTION = {
   all: 'All',
-  institutional: 'Institutional',
-  nonInstitutional: 'Non-Institutional',
+  institutional: 'Institution',
+  nonInstitutional: 'Non-Institution',
 } as const;
 
 export type INSTITUTION_TYPE = keyof typeof INSTITUTION;
