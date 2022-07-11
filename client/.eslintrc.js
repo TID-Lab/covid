@@ -6,5 +6,9 @@ module.exports = {
     '../eslintrc-react-plugins.js'
 
   ],
+  rules: {
+    'react/jsx-indent': ['off']
+
+  },
   'root': true
 };

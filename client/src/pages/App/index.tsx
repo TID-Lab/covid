@@ -25,7 +25,10 @@ const App = () => {
   enableLinkTracking();
   return (
     <div className={c.Root}>
-      <div className="App text-slate-800">
+      <div
+        className="App text-slate-800 ring-offset-2
+ring-blue-300"
+      >
         <Router>
           <Header />
           <Switch>

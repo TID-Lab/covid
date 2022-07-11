@@ -29,7 +29,7 @@ function ChipSelector({
         >
           {header}
         </RadioGroup.Label>
-        <div className="gap-x-2 gap-y-4 flex relative flex-wrap mr-[-3rem] font-medium">
+        <div className="gap-x-2 gap-y-4 flex relative flex-wrap mr-[-3rem] font-regular">
           {Object.keys(options).map((key, index) => (
             <RadioGroup.Option key={index} value={key}>
               <RadioGroup.Label

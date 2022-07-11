@@ -4,7 +4,7 @@ import React, { CSSProperties } from 'react';
 
 const btnStyle = {
   primary:
-    'bg-blue-100 hover:bg-blue-200 border-2 border-blue-300 active:border-blue-400 rounded-full', //big primary button
+    'bg-blue-100 hover:bg-blue-200 border-[1.5px] border-blue-300 active:border-blue-400 rounded-full', //big primary button
   secondary: 'bg-gray-100 hover:bg-gray-300 text-black rounded-md',
   transparent: '',
   outline:
@@ -32,7 +32,7 @@ const Button = ({
     <button
       type="button"
       id={id}
-      className={`grid gap-4 auto-cols-auto font-medium ${btnStyle[variant]} ${btnSize[size]} ${className}`}
+      className={`grid gap-4 auto-cols-auto  focus-visible:ring focus-visible:outline-0 ring-offset-2 font-medium ${btnStyle[variant]} ${btnSize[size]} ${className}`}
       style={style}
       onClick={() => onClick()}
       //onKeyDown={()=>onClick()}

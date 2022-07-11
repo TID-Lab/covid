@@ -24,7 +24,7 @@ interface dateType {
   to: string;
 }
 // number of visisble options vs hidden away inside the dropdown
-const showNumber = 4;
+const showNumber = 2;
 
 //array of keys of dates
 const presetArray = Object.keys(DATE_PRESETS);
@@ -90,7 +90,7 @@ const DateFilter = ({ selector }: DateFilterProps) => {
   }
 
   return (
-    <form className="pl-4 pr-8 mr-[-3rem] font-medium">
+    <form className="pl-4 pr-8 mr-[-3rem] font-regular">
       <h2
         id="presetDates "
         className="text-sm font-bold mt-3 mb-3 text-slate-700"
