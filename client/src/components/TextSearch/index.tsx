@@ -1,3 +1,4 @@
+import Icon from 'components/Icon';
 import useTracker from 'hooks/useTracker';
 import { useAppDispatch } from 'hooks/useTypedRedux';
 import { ChangeEvent } from 'react';
@@ -22,8 +23,14 @@ const TextSearch = () => {
   }
 
   return (
-    <div className={c.TextSearch}>
-      <input type="text" onChange={onChange} placeholder="Search" />
+    <div className={`flex items-center ml-[10px] ${c.TextSearch}`}>
+      <input
+        type="text"
+        className="w-[400px] py-1 pr-8 placeholder:text-slate-500 rounded-xs pl-[15px] bg-slate-50 border border-slate-300 focus:bg-blue-100 focus:border-blue-300"
+        onChange={onChange}
+        placeholder="Search"
+      />
+      <Icon type="search-sm" className="-ml-9 text-slate-500" />
     </div>
   );
 };

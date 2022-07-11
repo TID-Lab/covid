@@ -45,6 +45,7 @@
     "cssnano": "^5.1.7",
     "postcss": "^8.4.13",
     "postcss-import": "^14.1.0",
+    "svgo": "^2.8.0",
     "tailwindcss": "^3.0.24",
     "typescript": "^4.7.2"
   }
