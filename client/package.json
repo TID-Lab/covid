@@ -20,7 +20,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "icongen": "cd ./src/util/icons && svgo -i . && npx ./icon_json_generator.js"
   },
   "browserslist": {
     "production": [
