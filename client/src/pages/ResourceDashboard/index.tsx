@@ -13,7 +13,7 @@ import useTracker from 'hooks/useTracker';
 // This is the resources dashboard and it assembles the resource posts and filters associated with it.
 
 const ResourceDashboard = () => {
-  const {trackPageView} = useTracker();
+  const { trackPageView } = useTracker();
 
   useAuth();
   
