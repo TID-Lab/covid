@@ -19,7 +19,7 @@ const ResourceDashboard = () => {
   
   useEffect(() => {
     trackPageView()
-  }, [])
+  }, []);
 
   return (
     <div className={c.Dashboard}>
