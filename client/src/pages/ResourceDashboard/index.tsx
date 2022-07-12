@@ -18,7 +18,7 @@ const ResourceDashboard = () => {
   useAuth();
   
   useEffect(() => {
-    trackPageView()
+    trackPageView();
   }, []);
 
   return (
