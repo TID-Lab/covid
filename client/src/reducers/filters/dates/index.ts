@@ -1,7 +1,7 @@
-// @ts-nocheck
 // The reducer for the start & end date filters
+import { PayloadAction } from '@reduxjs/toolkit';
 
-function format(date) {
+function format(date: Date) {
   const year = date.getFullYear();
   const month = ('0' + (date.getMonth() + 1)).slice(-2);
   const monthDate = ('0' + date.getDate()).slice(-2);
@@ -17,7 +17,10 @@ const initState = {
   from: format(weekAgo),
 };
 
-export default function datesReducer(state = { ...initState }, action) {
+export default function datesReducer(
+  state = { ...initState },
+  action: PayloadAction<string>
+) {
   switch (action.type) {
     case 'dates/fromSet':
       return {

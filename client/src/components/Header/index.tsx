@@ -5,7 +5,7 @@ import Logo from '../Logo';
 import SortSelect from '../SortSelect';
 import TextSearch from '../TextSearch';
 // import { Button } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from 'hooks/useTypedRedux';
 import Button from 'components/Button';
 import useTracker from 'hooks/useTracker';
 
@@ -13,8 +13,8 @@ const Header = () => {
   const { trackEvent } = useTracker();
   const { pathname } = useLocation(); // TODO show search only if in dashboard mode
   // const [postingVisible, setPostingVisible] = useState(false);
-  const dispatch = useDispatch();
-  const postingMenu = useSelector((state) => state.postingMenu);
+  const dispatch = useAppDispatch();
+  const postingMenu = useAppSelector((state) => state.postingMenu);
 
   function onMenuClick() {
     dispatch({ type: 'postingMenu/set', payload: !postingMenu });

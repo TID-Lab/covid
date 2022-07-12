@@ -1,12 +1,12 @@
 import useTracker from 'hooks/useTracker';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from 'hooks/useTypedRedux';
 import { ChangeEvent } from 'react';
 import c from './index.module.css';
 
 let timeout: any;
 
 const TextSearch = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { trackEvent } = useTracker();
 
   function onChange(e: ChangeEvent<HTMLInputElement>) {

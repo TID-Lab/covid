@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from 'hooks/useTypedRedux';
 
 import c from './index.module.css';
 
@@ -8,7 +8,7 @@ import useTracker from 'hooks/useTracker';
 
 const DateFilter = (props) => {
   const { from, to } = props.dates;
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { trackEvent } = useTracker();
 
   function onFromChanged(date) {

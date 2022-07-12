@@ -1,9 +1,11 @@
-// @ts-nocheck
 // The reducer for the platforms checklist
-
+import { PayloadAction } from '@reduxjs/toolkit';
 const initState = ['facebook', 'instagram', 'twitter'];
 
-export default function platformsReducer(state = [...initState], action) {
+export default function platformsReducer(
+  state = [...initState],
+  action: PayloadAction<string>
+) {
   switch (action.type) {
     case 'platforms/added':
       return [...state, action.payload];

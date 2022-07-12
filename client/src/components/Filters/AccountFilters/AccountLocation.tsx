@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from 'hooks/useTypedRedux';
 
 import Radio from 'components/Radio';
 
@@ -8,7 +8,7 @@ import useTracker from 'hooks/useTracker';
 
 const AccountLocation = (props) => {
   const { location } = props;
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { trackEvent } = useTracker();
 
   function onRadioClick(id) {
