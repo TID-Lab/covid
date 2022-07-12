@@ -1,8 +1,7 @@
-// @ts-nocheck
 import c from './index.module.css';
 
 import { useAppDispatch, useAppSelector } from 'hooks/useTypedRedux';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, createRef } from 'react';
 import { twitterLogin, twitterLogout } from 'api/auth';
 import queryString from 'query-string';
 import { useHistory } from 'react-router-dom';
@@ -10,11 +9,24 @@ import PopupModal from '../PopupModal';
 import Button from 'components/Button';
 import useTracker from 'hooks/useTracker';
 
-function twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus) {
+const states = {
+  successPost: 'Post has been sent successfully',
+  failPost: 'Unknown error has occured while posting',
+  failPost401: 'Login has expired! please login again',
+  failPost400:
+    'Bad input. (Likely a duplicate tweet, please write something else!)',
+  successLogin: 'successfuly logged in to twitter account',
+  failLogin: 'Failed to log in to twitter account',
+  none: '',
+};
+
+type stateType = keyof typeof states;
+
+function twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus: any) {
   twitterLogout();
   setTwitterLoginStatus(false);
 }
-function checkOAuth(history) {
+function checkOAuth(history: any) {
   return (async () => {
     const { oauth_token, oauth_verifier } = queryString.parse(
       window.location.search
@@ -47,15 +59,16 @@ const PostingMenu = () => {
   const [twitterLoginStatus, setTwitterLoginStatus] = useState(false);
   const [characterCount, setCharacterCount] = useState(0);
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const [pictureList, setPictureList] = useState([]);
+  const [pictureList, setPictureList] = useState<any[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [postState, setPostState] = useState(states.none as stateType);
 
   const postText = useAppSelector((state) => state.postingText);
   const { trackEvent } = useTracker();
   const dispatch = useAppDispatch();
 
-  let textAreaRef = useRef<HTMLAreaElement>(null);
+  let textAreaRef = useRef<HTMLTextAreaElement>(null);
 
   function closeClick() {
     dispatch({ type: 'postingMenu/set', payload: false });
@@ -119,18 +132,30 @@ const PostingMenu = () => {
         trackEvent({
           category: 'Post',
           action: 'Post to Twitter',
-          name: error,
+          name: error as string,
         });
       }
       setButtonDisabled(false);
     })();
   }
 
-  function instagramPostHandler(event) {
+  const instagramPostHandler = async (event: any) => {
     event.preventDefault();
-    textAreaRef.select();
-    document.execCommand('copy');
-    setShowModal(true);
+
+    if (textAreaRef.current !== undefined) {
+      if (!navigator.clipboard) {
+        // Clipboard API not available
+        return;
+      }
+      const text = textAreaRef.current.value;
+      try {
+        await navigator.clipboard.writeText(text);
+        event.target.textContent = 'Copied to clipboard';
+      } catch (err) {
+        console.error('Failed to copy!', err);
+      }
+      setShowModal(true);
+    }
     // output = pictureList[0]
     // const blob = new Blob([output]);                   // Step 3
     // const fileDownloadUrl = URL.createObjectURL(blob); // Step 4
@@ -140,42 +165,46 @@ const PostingMenu = () => {
     //     URL.revokeObjectURL(fileDownloadUrl);          // Step 7
     //     this.setState({fileDownloadUrl: ""})
     // })
-  }
+  };
 
   // History is for clearing the query strings when getting the callback
   let history = useHistory();
   // This checks the status once after the component is rendered
 
-  useEffect(async () => {
-    setTwitterLoginStatus(await checkOAuth(history));
-  }, []);
+  useEffect(() => {
+    const AsyncTwitterLoginStatus = async () => {
+      setTwitterLoginStatus(await checkOAuth(history));
+    };
+    const AsyncTimeoutButton = async () => {
+      window.setTimeout(function () {
+        setButtonDisabled(false);
+      }, 5000);
+    };
 
-  useEffect(async () => {
-    window.setTimeout(function () {
-      setButtonDisabled(false);
-    }, 5000);
+    AsyncTimeoutButton().catch(console.error);
+    AsyncTwitterLoginStatus().catch(console.error);
   }, []);
 
   useEffect(() => {
-    if (postText !== false) {
+    if (postText !== '') {
       setCharacterCount(postText.length);
     }
   }, [postText]);
   // combine these use effects?
-  useEffect(() => {
-    if (window && document) {
-      const script = document.createElement('script');
-      const body = document.getElementsByTagName('body')[0];
-      script.src = 'https://cse.google.com/cse.js?cx=23272e42b5a598933';
-      body.appendChild(script);
-      // script.addEventListener('load', () => {
-      //   // window.hbspt.forms.create({
-      //   //   // this example embeds a Hubspot form into a React app but you can tweak it for your use case
-      //   //   // any code inside this 'load' listener will run after the script is appended to the page and loaded in the client
-      //   // })
-      // })
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (window && document) {
+  //     const script = document.createElement('script');
+  //     const body = document.getElementsByTagName('body')[0];
+  //     script.src = 'https://cse.google.com/cse.js?cx=23272e42b5a598933';
+  //     body.appendChild(script);
+  //     // script.addEventListener('load', () => {
+  //     //   // window.hbspt.forms.create({
+  //     //   //   // this example embeds a Hubspot form into a React app but you can tweak it for your use case
+  //     //   //   // any code inside this 'load' listener will run after the script is appended to the page and loaded in the client
+  //     //   // })
+  //     // })
+  //   }
+  // }, []);
 
   var visibility = c.hide;
   const postingMenuStatus = useAppSelector((state) => state.postingMenu);
@@ -191,7 +220,7 @@ const PostingMenu = () => {
     dispatch({ type: 'postingText/set', payload: currentText });
   }
 
-  const returnFileSize = (number) => {
+  const returnFileSize = (number: number) => {
     if (number < 1024) {
       return number + 'bytes';
     } else if (number >= 1024 && number < 1048576) {
@@ -201,15 +230,15 @@ const PostingMenu = () => {
     }
   };
 
-  const handleSubmission = (event) => {
+  const handleSubmission = (event: any) => {
     const files = [...event.target.files];
     setPictureList([]);
     setPictureList((pictureList) => [...pictureList, files]);
   };
 
-  const deleteElement = (nameVal) => {
+  const deleteElement = (nameVal: string) => {
     setPictureList((pictureList) => [
-      pictureList[0].filter((item) => item.name != nameVal),
+      pictureList[0].filter((item: any) => item.name !== nameVal),
     ]);
   };
 
@@ -253,7 +282,6 @@ const PostingMenu = () => {
           <h3>
             <b> Compose Message </b>
           </h3>{' '}
-          {/* fix this after decoupling h1 from font size*/}
           <Button variant="secondary" size="md" onClick={closeClick}>
             Close
           </Button>
@@ -264,12 +292,11 @@ const PostingMenu = () => {
         <textarea
           id="postInput"
           className="w-full h-[30vh] my-3 resize-none bg-gray-100 border-0 focus:border "
-          type="text"
           placeholder="Post Message "
-          ref={(textarea) => (textAreaRef = textarea)}
+          ref={textAreaRef}
           value={postText ? postText : ''}
           onChange={wordCount}
-        ></textarea>
+        />
         <p className="text-sm">{'Character Count: ' + characterCount}</p>
         {/* <button className="postButton" onClick={() => window.open('https://twitter.com/intent/tweet?' + encodeQueryData({"text": document.getElementById("postInput").value}),'_blank')}>Tweet</button> */}
         {/* add undo button perhaps */}
