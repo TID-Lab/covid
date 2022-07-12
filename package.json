@@ -18,6 +18,7 @@
     "dev:client": "stmux --mouse -- [ [ -r -t \"Fetch [Run]\" \"cd fetch && npx cross-env DEBUG=core,db,fetch npm run build && npx cross-env DEBUG=core,db,fetch npm run dev:run\" : -r -t \"Server [Run]\" \"cd server && npx cross-env DEBUG=core,db,api,util npm run build && npx cross-env DEBUG=core,db,api,util npm run dev:run\" ] .. -f -r -t \"Client\" \"cd client && npm start\" ] "
   },
   "devDependencies": {
+    "@types/react-router-dom": "^5.3.3",
     "cypress": "^9.6.1",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.30.0",
