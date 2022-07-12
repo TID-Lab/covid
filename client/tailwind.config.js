@@ -2,7 +2,6 @@
  * custom tailwind configuration
  * refer to docs to see how this changes things: https://tailwindcss.com/docs/configuration
  * for css variables, refer to ./src/css/variables.css
- * 
  */
 
 const colors = require('tailwindcss/colors');

@@ -1,7 +1,7 @@
 import Icon from 'components/Icon';
 import { ReactNode } from 'react';
 import { RadioGroup } from '@headlessui/react';
-
+import { HTMLAttributes } from 'react';
 //for whatever reason tailwind is not detecting classes if i dont have the space in front of the string
 const style = {
   default:
@@ -16,7 +16,6 @@ function ChipSelector({
   header,
   onSelect,
   hideLabel = false,
-  id,
   ...props
 }: ChipSelectorProps) {
   return (
@@ -54,16 +53,14 @@ function ChipSelector({
   );
 }
 
-interface ChipSelectorProps {
+interface ChipSelectorProps extends HTMLAttributes<HTMLDivElement> {
   options: {
     [key: string]: string;
   };
   active: string;
   header: ReactNode;
   onSelect: any;
-  className?: string;
   hideLabel?: boolean;
-  id: string;
 }
 
 export default ChipSelector;

@@ -130,7 +130,7 @@ const DateFilter = ({ selector }: DateFilterProps) => {
               className={`cursor-pointer border text-sm font-medium rounded-xs flex gap-x-1 items-center ${
                 presetArray
                   .slice(-(presetArray.length - showNumber))
-                  .find((i) => i == selected.preset)
+                  .find((i) => i === selected.preset)
                   ? style.active
                   : style.default
               }`}
@@ -139,7 +139,7 @@ const DateFilter = ({ selector }: DateFilterProps) => {
                 className={`overflow-hidden inline-block  ${
                   presetArray
                     .slice(-(presetArray.length - showNumber))
-                    .find((i) => i == selected.preset)
+                    .find((i) => i === selected.preset)
                     ? ' w-auto '
                     : '  w-0 '
                 }`}
@@ -148,12 +148,12 @@ const DateFilter = ({ selector }: DateFilterProps) => {
               </span>
               {presetArray
                 .slice(0, showNumber)
-                .find((i) => i == selected.preset)
+                .find((i) => i === selected.preset)
                 ? 'more'
                 : DATE_PRESETS[selected.preset]}
               <Icon type="chevron-down-sm" className={'mr-[-0.25rem]'} />
             </Listbox.Button>
-            <Listbox.Options className="absolute font-normal mt-1 max-h-60 right-0 w-max overflow-auto z-50 bg-white rounded-xs bg-white py-1 text-base shadow-lg border border-blue-300 focus:outline-none sm:text-sm">
+            <Listbox.Options className="absolute font-normal mt-1 max-h-60 right-0 w-max overflow-auto z-50 bg-white rounded-xs py-1 text-base shadow-lg border border-blue-300 focus:outline-none sm:text-sm">
               {presetArray
                 .slice(-(presetArray.length - showNumber))
                 .map((key, index) => (

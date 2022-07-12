@@ -39,7 +39,6 @@ const FilterOptionItem = ({
         active={selected}
         onSelect={onRadioClick}
         className={' pl-4 pr-2'}
-        id={header.replace('', '_')}
       />
     </>
   );

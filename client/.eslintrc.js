@@ -7,7 +7,8 @@ module.exports = {
 
   ],
   rules: {
-    'react/jsx-indent': ['off']
+    'react/jsx-indent': ['off'],
+    'react/jsx-newline': ['off']
 
   },
   'root': true

@@ -1,11 +1,10 @@
-import React, { CSSProperties } from 'react';
-
+import { HTMLAttributes, ReactNode } from 'react';
 // define button styles here
 
 const btnStyle = {
   primary:
-    'bg-blue-100 hover:bg-blue-200 border-[1.5px] border-blue-300 active:border-blue-400 rounded-full', //big primary button
-  secondary: 'bg-gray-100 hover:bg-gray-300 text-black rounded-md',
+    'bg-blue-100 hover:bg-blue-200 border-[1.5px] border-blue-300 active:border-blue-400 rounded-xs', //big primary button
+  secondary: 'bg-slate-100 hover:bg-slate-300 text-black rounded-xs',
   transparent: '',
   outline:
     'border border-currentColor hover:bg-gray-300 text-black rounded-full',
@@ -15,41 +14,35 @@ const btnSize = {
   sm: 'py-0 px-2',
   md: 'py-1 px-4',
   lg: 'py-2 px-6 ',
-  xl: '',
+  xl: 'py-4 px-9',
 };
 
 const Button = ({
   children,
-  disabled = false,
-  id,
   onClick,
   className,
-  style,
   variant = 'primary',
   size = 'lg',
+  ...props
 }: ButtonProps) => {
   return (
     <button
       type="button"
-      id={id}
       className={`grid gap-4 auto-cols-auto  focus-visible:ring focus-visible:outline-0 ring-offset-2 font-medium ${btnStyle[variant]} ${btnSize[size]} ${className}`}
-      style={style}
       onClick={() => onClick()}
       //onKeyDown={()=>onClick()}
-      disabled={disabled}
+      {...props}
     >
       {children}
     </button>
   );
 };
-interface ButtonProps {
-  children?: React.ReactNode;
+interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+  children?: ReactNode;
   disabled?: boolean;
-  id?: string;
   onClick?: any;
   className?: string;
-  style?: CSSProperties;
-  variant?: 'primary' | 'secondary' | 'outline' | 'transparent';
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  variant?: keyof typeof btnStyle;
+  size?: keyof typeof btnSize;
 }
 export default Button;

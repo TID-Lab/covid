@@ -2,7 +2,6 @@
 import { useLocation } from 'react-router-dom';
 import c from './index.module.css';
 import Logo from '../Logo';
-import SortSelect from '../SortSelect';
 import TextSearch from '../TextSearch';
 // import { Button } from 'react';
 import { useAppDispatch, useAppSelector } from 'hooks/useTypedRedux';
