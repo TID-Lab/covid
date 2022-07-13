@@ -31,11 +31,11 @@ const ClearFilters = () => {
     trackEvent({
       category: 'Filter',
       action: 'Clear All Filters',
-    } as MatomoEvent);
+    });
   }
 
   return (
-    <div className="">
+    <div>
       <Button onCLick={onClick}>Clear Filters</Button>
     </div>
   );

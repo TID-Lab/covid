@@ -9,18 +9,16 @@ import useTracker from 'hooks/useTracker';
 const DateFilter = (props) => {
   const { from, to } = props.dates;
   const dispatch = useDispatch();
-  const {trackEvent} = useTracker();
-  
+  const { trackEvent } = useTracker();
+
   function onFromChanged(date) {
     dispatch({ type: 'dates/fromSet', payload: date });
-    trackEvent({ category: 'Filter', action: 'Set From Date', name: date} as MatomoEvent)
-
+    trackEvent({ category: 'Filter', action: 'Set From Date', name: date });
   }
 
   function onToChanged(date) {
     dispatch({ type: 'dates/toSet', payload: date });
-    trackEvent({ category: 'Filter', action: 'Set To Date', name: date} as MatomoEvent)
-
+    trackEvent({ category: 'Filter', action: 'Set To Date', name: date });
   }
 
   return (

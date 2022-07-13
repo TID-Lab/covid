@@ -2,11 +2,11 @@ import useTracker from 'hooks/useTracker';
 import { useEffect } from 'react';
 
 const DataDeletion = () => {
-  const {trackPageView} = useTracker();
- useEffect(() => {
-    trackPageView()
-  }, [])
-  
+  const { trackPageView } = useTracker();
+  useEffect(() => {
+    trackPageView();
+  }, []);
+
   return (
     <div className="Policy">
       <h1>Data Deletion Instructions</h1>

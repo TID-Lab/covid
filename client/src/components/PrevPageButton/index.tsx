@@ -18,7 +18,7 @@ const NextPageButton = () => {
           trackEvent({
             category: 'Monitoring Page',
             action: 'Navigate to Previous Page',
-          } as MatomoEvent);
+          });
 
           document.getElementById('Posts').scrollTo(0, 0);
         })

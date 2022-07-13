@@ -26,8 +26,7 @@ const TopicFilter = (props) => {
 
   function onRadioClick(id) {
     dispatch({ type: 'topic/set', payload: id });
-    trackEvent({ category: 'Filter', action: 'Set Topic', name: id} as MatomoEvent)
-
+    trackEvent({ category: 'Filter', action: 'Set Topic', name: id });
   }
 
   return (

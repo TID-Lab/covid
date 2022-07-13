@@ -1,13 +1,21 @@
-import {useMatomo} from '@jonkoops/matomo-tracker-react';
+import { useMatomo } from '@jonkoops/matomo-tracker-react';
 
 import {
   TrackEventParams,
   TrackLinkParams,
   TrackPageViewParams,
   TrackSiteSearchParams,
-} from '@jonkoops/matomo-tracker-react/src/types'
+} from '@jonkoops/matomo-tracker-react/src/types';
 
-const isTrackerActive = process.env.REACT_APP_TRACKER_ACTIVE === 'true' && true
+const isTrackerActive = process.env.REACT_APP_TRACKER_ACTIVE === 'true' && true;
+
+//matomo category typings
+
+interface MatomoEvent extends TrackEventParams {
+  category: 'Filter' | 'Post' | 'Monitoring Page' | 'Resources Page';
+  action: string;
+  name: string;
+}
 
 function useTracker() {
   const {
@@ -15,27 +23,31 @@ function useTracker() {
     trackEvent: matomoTrackEvent,
     trackEvents: matomoTrackEvents,
     trackSiteSearch: matomoSiteSearch,
-    trackLink:matomoLink,
+    trackLink: matomoLink,
     enableLinkTracking: matomoLinkTracking,
-    pushInstruction: matomoPush
+    pushInstruction: matomoPush,
   } = useMatomo();
 
-  const trackPageView = (params?: TrackPageViewParams) => isTrackerActive && matomoTrackPageView(params);
+  const trackPageView = (params?: TrackPageViewParams) =>
+    isTrackerActive && matomoTrackPageView(params);
 
-  const trackEvent = (params: TrackEventParams) => isTrackerActive && matomoTrackEvent(params);
+  const trackEvent = (params: MatomoEvent) =>
+    isTrackerActive && matomoTrackEvent(params);
 
-  const trackEvents = () => isTrackerActive && matomoTrackEvents()
+  const trackEvents = () => isTrackerActive && matomoTrackEvents();
 
-  const trackSiteSearch = (params: TrackSiteSearchParams) => isTrackerActive && matomoSiteSearch(params)
+  const trackSiteSearch = (params: TrackSiteSearchParams) =>
+    isTrackerActive && matomoSiteSearch(params);
 
-  const trackLink = (params: TrackLinkParams) => isTrackerActive && matomoLink(params)
+  const trackLink = (params: TrackLinkParams) =>
+    isTrackerActive && matomoLink(params);
 
-  const enableLinkTracking = () => isTrackerActive && matomoLinkTracking()
+  const enableLinkTracking = () => isTrackerActive && matomoLinkTracking();
 
   const pushInstruction = (name: string, ...args: any[]) => {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      isTrackerActive && matomoPush(name, ...args)
-    }
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    isTrackerActive && matomoPush(name, ...args);
+  };
 
   return {
     trackEvent,
@@ -45,6 +57,6 @@ function useTracker() {
     trackLink,
     enableLinkTracking,
     pushInstruction,
-  }
+  };
 }
 export default useTracker;
