@@ -5,6 +5,7 @@
   "dependencies": {
     "@headlessui/react": "^1.6.5",
     "@jonkoops/matomo-tracker-react": "^0.7.0",
+    "@reduxjs/toolkit": "^1.8.3",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.3",
@@ -14,6 +15,8 @@
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^5.0.1",
+    "@reduxjs/toolkit": "^1.8.2",
+    "@reduxjs/toolkit": "^1.8.2",
     "redux": "^4.0.5",
     "web-vitals": "^1.1.1"
   },
