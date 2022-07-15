@@ -21,7 +21,7 @@ async function fetchResources() {
   const options = {
     ...defaultOptions,
     method: 'GET',
-  }
+  };
   const res = await fetch('/api/resource', options);
   const resources = await res.json();
   return resources;
@@ -74,6 +74,18 @@ async function deleteResource(resource) {
   }
   const res = await authFetch(`/api/resource`, options);
   return res.status === 200;
+}
+
+async function editResource(resource, replacementResource) {
+  const options = {
+    ...defaultOptions,
+    method: 'PUT',
+    body: JSON.stringify(resource),
+    replacementBody: replacementResource
+  }
+  const res = await authFetch(`/api/resource`, options);
+  const body = await res.json();
+  return body;
 }
 
 export {

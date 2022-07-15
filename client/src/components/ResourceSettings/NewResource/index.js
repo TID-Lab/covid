@@ -121,35 +121,35 @@ const NewResource = () => {
       <ul>
         <p1>Topics: </p1>
         <li>
-          <p1>Vaccines</p1>
+          <p1>Vaccines </p1>
           <input type='checkbox' value={topics}></input>
         </li>
         <li>
-          <p1>Boosters</p1>
+          <p1>Boosters </p1>
           <input type='checkbox' value={topics}></input>
         </li>
         <li>
-          <p1>Treatments</p1>
+          <p1>Treatments </p1>
           <input type='checkbox' value={topics}></input>
         </li>
         <li>
-          <p1>Variants</p1>
+          <p1>Variants </p1>
           <input type='checkbox' value={topics}></input>
         </li>
         <li>
-          <p1>Long COVID</p1>
+          <p1>Long COVID </p1>
           <input type='checkbox' value={topics}></input>
         </li>
         <li>
-          <p1>Testing</p1>
+          <p1>Testing </p1>
           <input type='checkbox' value={topics}></input>
         </li>
         <li>
-          <p1>COVID x Diabetes</p1>
+          <p1>COVID x Diabetes </p1>
           <input type='checkbox' value={topics}></input>
         </li>
         <li>
-          <p1>Georgia</p1>
+          <p1>Georgia </p1>
           <input type='checkbox' value={topics}></input>
         </li>
       </ul>

@@ -63,6 +63,10 @@ routes.post('/', async (req, res) => {
     platformID,
     imageurl,
   } = req.body;
+  if (typeof url != 'string') {
+    res.status(400).send();
+    return;
+  }
   var html = null;
   var language = 'en';
   var content;
@@ -138,7 +142,7 @@ routes.post('/', async (req, res) => {
     console.log(err);
   }
   try {
-    if (type === 'image') {
+    if (type === 'image' && url) {
       request({uri: url, headers: { 'Content-type' : 'applcation/pdf' }, encoding: null} , function (error, response, body) {
         if (!error && response.statusCode == 200) {
           let fileExtension = url.substring(url.length - 4);
@@ -183,6 +187,27 @@ routes.delete('/', async (req, res) => {
   try {
     const result = await Resources.deleteOne({ url });
     if (result.deletedCount === 0) {
+      res.status(404).send();
+      return;
+    }
+    res.status(200).send();
+  } catch (err) {
+    debug(`${err}`);
+    res.status(500).send();
+  }
+});
+
+// Update a resource via replacement
+routes.put('/', async (req, res) => {
+  const { url } = req.body;
+  const replacement = req.replacementBody;
+  if (typeof url !== 'string') {
+    res.status(400).send();
+    return;
+  }
+  try {
+    const result = await CustomTag.replaceOne({ url }, replacement);
+    if (result.modifiedCount === 0) {
       res.status(404).send();
       return;
     }
