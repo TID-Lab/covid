@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from 'hooks/useTypedRedux';
 
 import './index.css';
 
@@ -12,7 +12,7 @@ import TeamPage from '../TeamPage';
 // TODO: Style hyperlinks in the Terms, etc. pages
 
 const App = () => {
-  const popupModal = useSelector((state) => state.popup);
+  const popupModal = useAppSelector((state) => state.popup);
 
   return (
     <div className="Root">

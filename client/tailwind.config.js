@@ -12,11 +12,11 @@ module.exports = {
       primary: 'var(--c-primary)',
       white: 'var(--c-white)',
       black: 'var(--c-black)',
-
+      slate: colors.slate,
       gray: colors.gray, // temporary, replace later with proper colors
     },
     fontFamily: {
-      sans: ['Poppins', 'sans-serif'],
+      sans: ['Open Sauce Two', 'sans-serif'],
     },
     extend: {},
   },
