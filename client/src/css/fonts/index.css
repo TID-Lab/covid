@@ -1,0 +1,19 @@
+@font-face {
+  font-family: 'Open Sauce Two';
+  src: local('Open Sauce Two Bold'), local('OpenSauceTwo-Bold'),
+    url('OpenSauceTwo-Bold.woff2') format('woff2'),
+    url('OpenSauceTwo-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Open Sauce Two';
+  src: local('Open Sauce Two Regular'), local('OpenSauceTwo-Regular'),
+    url('OpenSauceTwo-Regular.woff2') format('woff2'),
+    url('OpenSauceTwo-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

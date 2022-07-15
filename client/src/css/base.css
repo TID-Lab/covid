@@ -1,11 +1,8 @@
 /* old css, needs to be refactored */
 
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,700,900');
-@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
-
-* {
+/* * {
   box-sizing: border-box;
-}
+} */
 
 html,
 body,
@@ -19,33 +16,33 @@ body {
   font-family: var(--body-font);
   font-size: var(--body-font-size);
   font-weight: normal;
-  background-color: var(--body-background);
+  //background-color: var(--body-background);
   color: var(--body-primary);
   overflow: hidden;
 }
 
-body,
+/* body,
 input,
 textarea,
 select {
   letter-spacing: 0.03em;
-}
+} */
 
-h1,
+/* h1,
 h2,
 h3 {
   font-family: var(--header-font);
-}
-
+} */
+/* 
 h1 {
   font-size: var(--header-large-size);
 }
 
 h2 {
   font-size: var(--header-medium-size);
-}
+} */
 
-input,
+/* input,
 textarea,
 select,
 button {
@@ -55,7 +52,7 @@ button {
   color: inherit;
   border: 1px solid gray;
   border-radius: 3px;
-}
+} */
 
 input,
 textarea,
@@ -71,10 +68,10 @@ button {
   cursor: pointer;
 }
 
-input,
+/* input,
 textarea {
   padding: 10px;
-}
+} */
 
 ::placeholder,
 ::-moz-placeholder,
@@ -84,11 +81,11 @@ textarea {
   color: var(--body-secondary);
 }
 
-input:focus,
+/* input:focus,
 textarea:focus,
 select:focus {
   outline: none;
-}
+} */
 
 a,
 a:visited {
@@ -120,7 +117,7 @@ a:visited {
   text-decoration: underline;
 }
 
-.PageButton {
+/* .PageButton {
   letter-spacing: 0;
   margin: 20px;
   flex-shrink: 1;
@@ -145,4 +142,4 @@ a:visited {
 
 .PageButton:hover button {
   transform: scale(1.25);
-}
+} */

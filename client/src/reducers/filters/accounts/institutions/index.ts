@@ -1,11 +1,11 @@
 // The reducer for the institutional/non-institutional toggle
 import { PayloadAction } from '@reduxjs/toolkit';
-
-const initState = 'all';
+import { INSTITUTION_TYPE } from 'util/filterData';
+const initState: INSTITUTION_TYPE = 'all';
 
 export default function institutions(
   state = initState,
-  action: PayloadAction<string>
+  action: PayloadAction<INSTITUTION_TYPE>
 ) {
   const { payload } = action;
   switch (action.type) {

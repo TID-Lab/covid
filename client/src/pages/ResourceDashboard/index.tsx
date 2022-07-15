@@ -16,13 +16,13 @@ const ResourceDashboard = () => {
   const { trackPageView } = useTracker();
 
   useAuth();
-  
+
   useEffect(() => {
     trackPageView();
   }, []);
 
   return (
-    <div className={c.Dashboard}>
+    <div className={`overflow-hidden grid ${c.dashboard_grid}`}>
       <Filters />
       <Posts />
       <PostingMenu />

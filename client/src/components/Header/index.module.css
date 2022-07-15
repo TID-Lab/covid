@@ -1,0 +1,16 @@
+.header_grid {
+  grid-template-columns: var(--sidebar-w) auto;
+}
+
+.navlink:hover > .navlink_inner {
+  @apply bg-slate-100;
+}
+
+.navlink {
+  @apply border-b-2;
+  @apply border-transparent;
+}
+
+.active {
+  @apply border-primary;
+}

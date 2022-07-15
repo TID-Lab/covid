@@ -10,15 +10,15 @@ import c from './index.module.css';
 
 const Dashboard = () => {
   useAuth();
-  const {trackPageView} = useTracker();
+  const { trackPageView } = useTracker();
 
-   // Track page view
-   useEffect(() => {
-    trackPageView()
-  }, [])
+  // Track page view
+  useEffect(() => {
+    trackPageView();
+  }, []);
 
   return (
-    <div className="flex flex-row overflow-hidden">
+    <div className={`overflow-hidden grid ${c.dashboard_grid}`}>
       <Filters />
       <Posts />
       <PostingMenu />

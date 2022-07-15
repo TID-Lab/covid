@@ -1,37 +1,32 @@
 // The reducer for the start & end date filters
 import { PayloadAction } from '@reduxjs/toolkit';
-
-function format(date: Date) {
-  const year = date.getFullYear();
-  const month = ('0' + (date.getMonth() + 1)).slice(-2);
-  const monthDate = ('0' + date.getDate()).slice(-2);
-  return `${year}-${month}-${monthDate}`;
-}
+import { DATE_PRESET_TYPE } from 'util/filterData';
+import formatDate from 'util/formatDate';
 
 const today = new Date();
 const weekAgo = new Date();
 weekAgo.setDate(today.getDate() - 7);
 
-const initState = {
-  to: format(today),
-  from: format(weekAgo),
+interface dateRange {
+  preset: DATE_PRESET_TYPE;
+  to: string;
+  from: string;
+}
+
+const initState: dateRange = {
+  preset: '7days',
+  to: formatDate(today),
+  from: formatDate(weekAgo),
 };
 
 export default function datesReducer(
   state = { ...initState },
-  action: PayloadAction<string>
+  action: PayloadAction<dateRange>
 ) {
   switch (action.type) {
-    case 'dates/fromSet':
-      return {
-        ...state,
-        from: action.payload,
-      };
-    case 'dates/toSet':
-      return {
-        ...state,
-        to: action.payload,
-      };
+    case 'dates/set':
+      return action.payload;
+
     default:
       return state;
   }

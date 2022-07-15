@@ -1,6 +1,3 @@
-.Dashboard {
-  display: flex;
-  flex-flow: row;
-  flex: 1 1 auto;
-  overflow: hidden;
+.dashboard_grid {
+  grid-template-columns: var(--sidebar-w) auto;
 }
