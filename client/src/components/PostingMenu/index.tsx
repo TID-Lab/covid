@@ -1,13 +1,14 @@
 import c from './index.module.css';
 
 import { useAppDispatch, useAppSelector } from 'hooks/useTypedRedux';
-import { useState, useEffect, useRef, createRef } from 'react';
+import { useState, useEffect, useRef, ChangeEvent } from 'react';
 import { twitterLogin, twitterLogout } from 'api/auth';
 import queryString from 'query-string';
 import { useHistory } from 'react-router-dom';
 import PopupModal from '../PopupModal';
 import Button from 'components/Button';
 import useTracker from 'hooks/useTracker';
+import Icon from 'components/Icon';
 
 const states = {
   successPost: 'Post has been sent successfully',
@@ -20,7 +21,13 @@ const states = {
   none: '',
 };
 
+const notifStyle = {
+  success: ' bg-emerald-100 border-emerald-300  ',
+  fail: ' bg-red-100 border-red-300 ',
+  none: ' invisible ',
+};
 type stateType = keyof typeof states;
+type notifStyleType = keyof typeof notifStyle;
 
 function twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus: any) {
   twitterLogout();
@@ -62,7 +69,7 @@ const PostingMenu = () => {
   const [pictureList, setPictureList] = useState<any[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-  const [postState, setPostState] = useState(states.none as stateType);
+  const [postState, setPostState] = useState<stateType>('none');
 
   const postText = useAppSelector((state) => state.postingText);
   const { trackEvent } = useTracker();
@@ -78,7 +85,7 @@ const PostingMenu = () => {
     (async () => {
       dispatch({
         type: 'postingText/set',
-        payload: document.getElementById('postInput').value,
+        payload: textAreaRef.current !== null ? textAreaRef.current.value : '',
       });
       setButtonDisabled(true);
       if (characterCount === 0) {
@@ -95,7 +102,8 @@ const PostingMenu = () => {
         const res = await fetch('/api/proxy/twitter/tweet', {
           method: 'POST',
           body: JSON.stringify({
-            status: document.getElementById('postInput').value,
+            status:
+              textAreaRef.current !== null ? textAreaRef.current.value : '',
           }),
           headers: {
             'Content-Type': 'application/json',
@@ -103,17 +111,16 @@ const PostingMenu = () => {
         });
         // Unauthorized means we reset login status
         if (res.status === 401) {
-          alert('Login Expired');
           setTwitterLoginStatus(false);
+          setPostState('failPost401');
           trackEvent({
             category: 'Post',
             action: 'Post to Twitter',
             name: '401 error',
           });
         } else if (res.status === 400) {
-          alert(
-            'Bad input. (Likely a duplicate tweet, please write something else!)'
-          );
+          setPostState('failPost400');
+
           trackEvent({
             category: 'Post',
             action: 'Post to Twitter',
@@ -121,6 +128,8 @@ const PostingMenu = () => {
           });
         } else {
           setShowSuccess(true);
+          setPostState('successPost');
+
           trackEvent({
             category: 'Post',
             action: 'Post to Twitter',
@@ -129,6 +138,8 @@ const PostingMenu = () => {
         }
       } catch (error) {
         console.error(error);
+        setPostState('failPost');
+
         trackEvent({
           category: 'Post',
           action: 'Post to Twitter',
@@ -142,7 +153,7 @@ const PostingMenu = () => {
   const instagramPostHandler = async (event: any) => {
     event.preventDefault();
 
-    if (textAreaRef.current !== undefined) {
+    if (textAreaRef.current !== null) {
       if (!navigator.clipboard) {
         // Clipboard API not available
         return;
@@ -167,6 +178,11 @@ const PostingMenu = () => {
     // })
   };
 
+  function returnStyle() {
+    if (postState.includes('fail')) return 'fail';
+    if (postState.includes('success')) return 'success';
+    else return 'none';
+  }
   // History is for clearing the query strings when getting the callback
   let history = useHistory();
   // This checks the status once after the component is rendered
@@ -212,7 +228,7 @@ const PostingMenu = () => {
     visibility = c.show;
   }
 
-  function wordCount(e) {
+  function wordCount(e: ChangeEvent<HTMLTextAreaElement>) {
     var currentText = e.target.value;
     // var characterCount = currentText.length;
     // setCharacterCount(characterCount);
@@ -220,27 +236,27 @@ const PostingMenu = () => {
     dispatch({ type: 'postingText/set', payload: currentText });
   }
 
-  const returnFileSize = (number: number) => {
-    if (number < 1024) {
-      return number + 'bytes';
-    } else if (number >= 1024 && number < 1048576) {
-      return (number / 1024).toFixed(1) + 'KB';
-    } else if (number >= 1048576) {
-      return (number / 1048576).toFixed(1) + 'MB';
-    }
-  };
+  // const returnFileSize = (number: number) => {
+  //   if (number < 1024) {
+  //     return number + 'bytes';
+  //   } else if (number >= 1024 && number < 1048576) {
+  //     return (number / 1024).toFixed(1) + 'KB';
+  //   } else if (number >= 1048576) {
+  //     return (number / 1048576).toFixed(1) + 'MB';
+  //   }
+  // };
 
-  const handleSubmission = (event: any) => {
-    const files = [...event.target.files];
-    setPictureList([]);
-    setPictureList((pictureList) => [...pictureList, files]);
-  };
+  // const handleSubmission = (event: any) => {
+  //   const files = [...event.target.files];
+  //   setPictureList([]);
+  //   setPictureList((pictureList) => [...pictureList, files]);
+  // };
 
-  const deleteElement = (nameVal: string) => {
-    setPictureList((pictureList) => [
-      pictureList[0].filter((item: any) => item.name !== nameVal),
-    ]);
-  };
+  // const deleteElement = (nameVal: string) => {
+  //   setPictureList((pictureList) => [
+  //     pictureList[0].filter((item: any) => item.name !== nameVal),
+  //   ]);
+  // };
 
   // useEffect(() => {
   //   const preview = document.querySelector('.preview');
@@ -276,36 +292,52 @@ const PostingMenu = () => {
   // need to figure out disabling login button since spamming it sends multiple requests (look into event.preventDefault())
   return (
     <div id="flyoutMenu" className={`${visibility} ${c.flyoutMenu}`}>
-      <div className="flex flex-col mx-3 ">
-        <div className="flex justify-between my-3">
+      <div className="flex flex-col gap-y-4 px-9 py-9 h-full">
+        <div className="flex justify-between items-center">
           {/* <b style={{margin: "0", marginLeft: "1rem", marginRight: "1rem", paddingTop: "8px"}}> Search Trusted Resources </b> */}
-          <h3>
-            <b> Compose Message </b>
-          </h3>{' '}
-          <Button variant="secondary" size="md" onClick={closeClick}>
-            Close
+          <h3 className="text-lg">
+            <b> Create Post</b>
+          </h3>
+          <Button
+            variant="secondary"
+            size="md"
+            onClick={closeClick}
+            aria-label="close"
+          >
+            <Icon type="x" />
           </Button>
         </div>
         {/* <div class={c.gcse_search}></div> */}
-        <hr className="h-1" />
+        <div className="h-[5rem]">
+          <div className={`border ${notifStyle[returnStyle()]}`}>
+            {states[postState]}
+          </div>
+        </div>
+        <div className="flex-grow">
+          <textarea
+            id="postInput"
+            className="w-full h-2/3 my-3 py-7 px-6  resize-none rounded-xs bg-slate-100 border border-slate-300 focus:border focus:bg-blue-100 focus:border-blue-300 "
+            placeholder="Draft your message here "
+            ref={textAreaRef}
+            value={postText ? postText : ''}
+            onChange={wordCount}
+          />
+          <div className="text-sm font-medium bg-slate-200 w-2/3 flex justify-between px-6 py-2 items-center rounded-full ">
+            <p className="before:content-['*'] before:h-[1em] before:w-[1em] before:mr-2 before:block flex items-center before:bg-slate-500 before:rounded-full">
+              Charcter Count
+            </p>
+            <p>{characterCount}</p>
+          </div>
+        </div>
 
-        <textarea
-          id="postInput"
-          className="w-full h-[30vh] my-3 resize-none bg-gray-100 border-0 focus:border "
-          placeholder="Post Message "
-          ref={textAreaRef}
-          value={postText ? postText : ''}
-          onChange={wordCount}
-        />
-        <p className="text-sm">{'Character Count: ' + characterCount}</p>
         {/* <button className="postButton" onClick={() => window.open('https://twitter.com/intent/tweet?' + encodeQueryData({"text": document.getElementById("postInput").value}),'_blank')}>Tweet</button> */}
         {/* add undo button perhaps */}
-        <div className="grid grid-flow-row gap-4 mt-4 ">
-          <div className="grid gap-4 grid-cols-2">
+        <div className="grid grid-flow-row gap-4 mt-4 justify-self-end ">
+          <div className="flex gap-4 items-center">
             <Button
               id="postButtonId"
-              className="w-full text-center"
-              variant="secondary"
+              className="text-center"
+              variant="primary"
               disabled={buttonDisabled}
               onClick={() =>
                 twitterLoginStatus
@@ -313,24 +345,44 @@ const PostingMenu = () => {
                   : twitterLogin(setButtonDisabled)
               }
             >
-              {twitterLoginStatus ? 'Post to Twitter' : 'Login to Twitter'}
+              <Icon type="twitter-sm" />
+              {'Post to Twitter'}
             </Button>
-            <Button
-              className="w-full text-center"
-              variant="secondary"
-              onClick={() => {
-                twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus);
-              }}
-            >
-              Logout
-            </Button>
+            <div>
+              {twitterLoginStatus ? (
+                <Button
+                  className=" text-center"
+                  variant="transparent"
+                  size="sm"
+                  onClick={() => {
+                    twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus);
+                  }}
+                >
+                  <Icon type="log-out" />
+                </Button>
+              ) : (
+                <Button
+                  className=" text-center text-sm"
+                  variant="secondary"
+                  size="md"
+                  rounded
+                  aria-label="login"
+                  onClick={() => {
+                    twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus);
+                  }}
+                >
+                  <Icon type="arrow-right-sm" />
+                  Login
+                </Button>
+              )}
+            </div>
           </div>
-
           <Button
-            className="w-full text-center mt-4"
-            variant="secondary"
+            className=" text-center w-fit "
+            variant="primary"
             onClick={instagramPostHandler}
           >
+            <Icon type="instagram-sm" />
             Post to Instagram
           </Button>
         </div>
