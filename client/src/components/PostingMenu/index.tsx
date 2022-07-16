@@ -29,10 +29,6 @@ const notifStyle = {
 type stateType = keyof typeof states;
 type notifStyleType = keyof typeof notifStyle;
 
-function twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus: any) {
-  twitterLogout();
-  setTwitterLoginStatus(false);
-}
 function checkOAuth(history: any) {
   return (async () => {
     const { oauth_token, oauth_verifier } = queryString.parse(
@@ -79,6 +75,11 @@ const PostingMenu = () => {
 
   function closeClick() {
     dispatch({ type: 'postingMenu/set', payload: false });
+  }
+
+  function twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus: any) {
+    twitterLogout();
+    setTwitterLoginStatus(false);
   }
 
   function twitterPost() {
@@ -149,10 +150,7 @@ const PostingMenu = () => {
       setButtonDisabled(false);
     })();
   }
-
-  const instagramPostHandler = async (event: any) => {
-    event.preventDefault();
-
+  async function copyText() {
     if (textAreaRef.current !== null) {
       if (!navigator.clipboard) {
         // Clipboard API not available
@@ -161,12 +159,18 @@ const PostingMenu = () => {
       const text = textAreaRef.current.value;
       try {
         await navigator.clipboard.writeText(text);
-        event.target.textContent = 'Copied to clipboard';
+        //event.target.textContent = 'Copied to clipboard';
       } catch (err) {
         console.error('Failed to copy!', err);
       }
-      setShowModal(true);
     }
+  }
+
+  const instagramPostHandler = async (event: any) => {
+    event.preventDefault();
+    copyText();
+    setShowModal(true);
+
     // output = pictureList[0]
     // const blob = new Blob([output]);                   // Step 3
     // const fileDownloadUrl = URL.createObjectURL(blob); // Step 4
@@ -203,7 +207,7 @@ const PostingMenu = () => {
 
   useEffect(() => {
     if (postText !== '') {
-      setCharacterCount(postText.length);
+      //setCharacterCount(postText.length);
     }
   }, [postText]);
   // combine these use effects?
@@ -233,7 +237,13 @@ const PostingMenu = () => {
     // var characterCount = currentText.length;
     // setCharacterCount(characterCount);
     // This may be wasteful, temp solution
+    setCharacterCount(currentText.length);
     dispatch({ type: 'postingText/set', payload: currentText });
+  }
+  function wordCountWarning(count: number) {
+    if (count > 280) return `${c.wordCountRed} bg-red-100 `;
+    else if (count > 240) return `${c.wordCountYellow} bg-yellow-100 `;
+    return `${c.wordCountGray} bg-slate-200 `;
   }
 
   // const returnFileSize = (number: number) => {
@@ -291,15 +301,18 @@ const PostingMenu = () => {
 
   // need to figure out disabling login button since spamming it sends multiple requests (look into event.preventDefault())
   return (
-    <div id="flyoutMenu" className={`${visibility} ${c.flyoutMenu}`}>
-      <div className="flex flex-col gap-y-4 px-9 py-9 h-full">
+    <div
+      id="flyoutMenu"
+      className={`${visibility} ${c.flyoutMenu} bg-white drop-shadow-xl border-l border-slate-300`}
+    >
+      <div className="flex flex-col gap-y-4 px-7 py-7 h-full">
         <div className="flex justify-between items-center">
           {/* <b style={{margin: "0", marginLeft: "1rem", marginRight: "1rem", paddingTop: "8px"}}> Search Trusted Resources </b> */}
           <h3 className="text-lg">
             <b> Create Post</b>
           </h3>
           <Button
-            variant="secondary"
+            variant="transparent"
             size="md"
             onClick={closeClick}
             aria-label="close"
@@ -308,22 +321,38 @@ const PostingMenu = () => {
           </Button>
         </div>
         {/* <div class={c.gcse_search}></div> */}
-        <div className="h-[5rem]">
+        <div className="h-[4rem]">
           <div className={`border ${notifStyle[returnStyle()]}`}>
             {states[postState]}
           </div>
         </div>
         <div className="flex-grow">
-          <textarea
-            id="postInput"
-            className="w-full h-2/3 my-3 py-7 px-6  resize-none rounded-xs bg-slate-100 border border-slate-300 focus:border focus:bg-blue-100 focus:border-blue-300 "
-            placeholder="Draft your message here "
-            ref={textAreaRef}
-            value={postText ? postText : ''}
-            onChange={wordCount}
-          />
-          <div className="text-sm font-medium bg-slate-200 w-2/3 flex justify-between px-6 py-2 items-center rounded-full ">
-            <p className="before:content-['*'] before:h-[1em] before:w-[1em] before:mr-2 before:block flex items-center before:bg-slate-500 before:rounded-full">
+          <div className="relative h-2/3 mb-4">
+            <textarea
+              id="postInput"
+              className="w-full h-full  py-7 px-6  resize-none rounded-xs bg-slate-100 border border-slate-300 "
+              placeholder="Draft your message here "
+              ref={textAreaRef}
+              value={postText ? postText : ''}
+              onChange={wordCount}
+            />
+            <Button
+              variant="transparent"
+              className="absolute right-1 bottom-3"
+              onClick={copyText}
+            >
+              <Icon type="copy" />
+            </Button>
+          </div>
+
+          <div
+            className={`text-sm font-medium  w-2/3 flex justify-between px-6 py-2 items-center  ${wordCountWarning(
+              characterCount
+            )} rounded-full `}
+          >
+            <p
+              className={`before:content-['*'] before:h-[1em] before:w-[1em] before:mr-2 before:block flex items-center before:rounded-full`}
+            >
               Charcter Count
             </p>
             <p>{characterCount}</p>
@@ -332,50 +361,52 @@ const PostingMenu = () => {
 
         {/* <button className="postButton" onClick={() => window.open('https://twitter.com/intent/tweet?' + encodeQueryData({"text": document.getElementById("postInput").value}),'_blank')}>Tweet</button> */}
         {/* add undo button perhaps */}
-        <div className="grid grid-flow-row gap-4 mt-4 justify-self-end ">
-          <div className="flex gap-4 items-center">
+        <div className="grid grid-cols-[auto_1fr] gap-5 items-center mt-4 mb-3  justify-self-end ">
+          <Button
+            id="postButtonId"
+            className="text-center"
+            variant="primary"
+            disabled={buttonDisabled}
+            onClick={() =>
+              twitterLoginStatus
+                ? twitterPost()
+                : twitterLogin(setButtonDisabled)
+            }
+          >
+            <Icon type="twitter-sm" />
+            {'Post to Twitter'}
+          </Button>
+          <div className="flex justify-between items-center">
+            {twitterLoginStatus ? (
+              <Button
+                className=" text-center text-sm"
+                variant="secondary"
+                size="md"
+                rounded
+                aria-label="login"
+                onClick={() => {
+                  twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus);
+                }}
+              >
+                <Icon type="arrow-right-sm" />
+                <p>Login</p>
+              </Button>
+            ) : (
+              <div className="px-4 py-1 text-sm rounded-full font-medium border bg-slate-100 border-slate-300">
+                <p>adasd</p>
+              </div>
+            )}
             <Button
-              id="postButtonId"
-              className="text-center"
-              variant="primary"
-              disabled={buttonDisabled}
-              onClick={() =>
-                twitterLoginStatus
-                  ? twitterPost()
-                  : twitterLogin(setButtonDisabled)
-              }
+              className=" text-center"
+              variant="transparent"
+              size="md"
+              disabled={twitterLoginStatus}
+              onClick={() => {
+                twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus);
+              }}
             >
-              <Icon type="twitter-sm" />
-              {'Post to Twitter'}
+              <Icon type="log-out" />
             </Button>
-            <div>
-              {twitterLoginStatus ? (
-                <Button
-                  className=" text-center"
-                  variant="transparent"
-                  size="sm"
-                  onClick={() => {
-                    twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus);
-                  }}
-                >
-                  <Icon type="log-out" />
-                </Button>
-              ) : (
-                <Button
-                  className=" text-center text-sm"
-                  variant="secondary"
-                  size="md"
-                  rounded
-                  aria-label="login"
-                  onClick={() => {
-                    twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus);
-                  }}
-                >
-                  <Icon type="arrow-right-sm" />
-                  Login
-                </Button>
-              )}
-            </div>
           </div>
           <Button
             className=" text-center w-fit "
@@ -401,8 +432,7 @@ const PostingMenu = () => {
                 <button
                   onClick={() => window.open('https://instagram.com', '_blank')}
                 >
-                  {' '}
-                  Continue to Instagram{' '}
+                  Continue to Instagram
                 </button>
               </>
             }

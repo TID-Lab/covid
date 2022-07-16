@@ -35,11 +35,9 @@ const Button = ({
   return (
     <button
       type="button"
-      className={` flex items-center  ${
+      className={` flex items-center disabled:opacity-50 disabled:pointer-events-none focus-visible:ring focus-visible:outline-0 ring-offset-2 font-medium ${
         rounded ? 'rounded-full' : 'rounded-xs'
-      }  focus-visible:ring focus-visible:outline-0 ring-offset-2 font-medium ${
-        btnStyle[variant]
-      } ${btnSize[size]} ${className}`}
+      }  ${btnStyle[variant]} ${btnSize[size]} ${className}`}
       onClick={() => onClick()}
       //onKeyDown={()=>onClick()}
       {...props}

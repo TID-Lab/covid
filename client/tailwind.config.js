@@ -21,6 +21,7 @@ module.exports = {
       slate: colors.slate,
       emerald: colors.emerald,
       red: colors.red,
+      yellow: colors.yellow,
 
       gray: colors.gray, // temporary, replace later with proper colors
       blue: {

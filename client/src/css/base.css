@@ -54,15 +54,6 @@ button {
   border-radius: 3px;
 } */
 
-input,
-textarea,
-select {
-  @apply focus-visible:ring;
-  @apply focus-visible:outline-0;
-  @apply ring-offset-2;
-  @apply placeholder:text-slate-500;
-}
-
 /* button {
   font-size: calc(var(--body-font-size) - 2px);
   font-family: inherit;
