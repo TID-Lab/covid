@@ -1,78 +1,77 @@
 import Button from 'components/Button';
-import { fetchResources } from 'api/resource';
-import { useHidePopup } from 'hooks/popup';
+import { fetchResources, deleteResource } from 'api/resource';
+import { useHidePopup, useShowPopup } from 'hooks/popup';
 import notify from 'util/notify';
 import { useEffect, useState, useMemo } from 'react';
+import EditModal from '../EditModal';
 
 import c from './index.module.css';
 
 const EditResource = () => {
   const [resources, setResources] = useState();
-  const [selectedAuthor, setSelectedAuthor] = useState();
-  const [authors, setAuthors] = useState();
   const hidePopup = useHidePopup();
-
-  function onAuthorChange(event) {
-    setSelectedAuthor(event.target.value);
-    formatResources(resources);
-  }
+  const showPopup = useShowPopup();
 
   useEffect(() => {
     async function apiCall() {
       const apiResponse = await fetchResources();
       setResources(apiResponse);
-      const AUTHORS = ['All'];
-      for (let i = 0; i < apiResponse.length; i++) {
-        if(!AUTHORS.includes(apiResponse[i].author)) {
-          AUTHORS[i + 1] = apiResponse[i].author;
-        }
-      }
-      setAuthors(AUTHORS);
     }
     apiCall();
   }, []);
 
-  function formatResources(r) {
-    
-    let resourceArray = [];
-    let counter = 1;
-    for (let i = 0; i < r.length; i++) {
-      if (r[i].author === selectedAuthor || selectedAuthor === 'All' 
-      || !selectedAuthor) {
-        let resourceString = '';
-        resourceString += (counter) + '. [';
-        resourceString += 'Name: \n' + r[i].name + ', ';
-        resourceString += 'Author: \n' + r[i].author + ', ';
-        resourceString +=  'Url: \n' + r[i].url;
-        resourceString += ']';
-        resourceArray[counter - 1] = resourceString;
-        counter++;
-      }
-    }
-    const listItems =  resourceArray.map((resource) =>
-      <li>{resource}</li>
-    );
-    return listItems
-  }
-
-
-
   function onClose() {
     hidePopup();
   }
+  function onDelete(url) {
+    const newResources = [...resources];
+    const index = resources.findIndex((resource) => resource.url === url);
+    newResources.splice(index, 1);
+    const resourceUrl = {
+      url: url,
+    };
+    deleteResource(resourceUrl);
+    setResources(newResources);
+  }
+  function onEdit(url) {
+    const newResources = [...resources];
+    const index = resources.findIndex((resource) => resource.url === url);
+    showCreateModal(newResources[index]);
 
+  }
+  function showCreateModal(resource) {
+    showPopup(
+      <EditModal resource={resource}/>
+    );
+  }
   return (
     <div className={`Modal ${c.ResourceModal}`}>
-      <div>
-        <label>Author: </label>
-        <select onChange={onAuthorChange} value={selectedAuthor}>
-          {authors && authors.map(selectedAuthor => (
-            <option key={selectedAuthor} value={selectedAuthor}>{selectedAuthor.charAt(0).toUpperCase() + selectedAuthor.slice(1)}</option>
-          ))}
-        </select>
-      </div>
-      <h4>Items Found: </h4>
-      <ul>{resources && formatResources(resources)}</ul>
+      <h4>Resources</h4>
+      <table className='border-collapse collapse width 100% overflow-x scroll overflow-y scroll'>
+            <thead>
+              <tr>
+                <th className='border 1px solid #ffffff text-align left padding 8px font-size 10px'>Name</th>
+                <th className='border 1px solid #ffffff text-align left padding 8px font-size 10px'>Author</th>
+                <th className='border 1px solid #ffffff text-align left padding 8px font-size 10px'>Type</th>
+                <th className='border 1px solid #ffffff text-align left padding 8px font-size 10px'>URL</th>
+                <th className='border 1px solid #ffffff text-align left padding 8px font-size 10px'>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+            {resources && resources.map((resource) => (
+                <tr>
+                  <td className='border 1px solid #ffffff text-align left padding 8px font-size 10px'>{resource.name}</td>
+                  <td className='border 1px solid #ffffff text-align left padding 8px font-size 10px'>{resource.author}</td>
+                  <td className='border 1px solid #ffffff text-align left padding 8px font-size 10px'>{resource.type}</td>
+                  <td className='border 1px solid #ffffff text-align left padding 8px font-size 10px overflow-x scroll-m-0'>{resource.url}</td>
+                  <td className='border 1px solid #ffffff text-align left padding 8px font-size 10px overflow-x scroll-m-0'>
+                    <Button onClick={() => onEdit(resource.url)}>Edit</Button>
+                    <Button onClick={() => onDelete(resource.url)}>Delete</Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+      </table>
       <div>
         <button onClick={onClose}>Close</button>
       </div>

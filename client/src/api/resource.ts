@@ -66,22 +66,22 @@ async function createResource(resource) {
   return body;
 }
 
-async function deleteResource(resource) {
+async function deleteResource(resourceUrl) {
   const options = {
     ...defaultOptions,
     method: 'DELETE',
-    body: JSON.stringify(resource)
+    body: JSON.stringify(resourceUrl),
   }
   const res = await authFetch(`/api/resource`, options);
   return res.status === 200;
 }
 
-async function editResource(resource, replacementResource) {
+async function editResource(resourceUrl, replacementResource) {
   const options = {
     ...defaultOptions,
     method: 'PUT',
-    body: JSON.stringify(resource),
-    replacementBody: replacementResource
+    body: JSON.stringify(resourceUrl),
+    replacementBody: JSON.stringify(replacementResource)
   }
   const res = await authFetch(`/api/resource`, options);
   const body = await res.json();
@@ -95,4 +95,5 @@ export {
   createResource,
   fetchResources,
   deleteResource,
+  editResource
 };

@@ -22,7 +22,7 @@ const Header = () => {
     trackEvent({ category: 'Post', action: 'Create Post' });
   }
 
-  if (pathname === '/social-media-dashboard' || pathname === '/resources') {
+  if (pathname === '/social-media-dashboard') {
     return (
       <header className={`bg-white grid ${c.header_grid}`}>
         <div className="border-r border-gray-400 px-2 py-2">

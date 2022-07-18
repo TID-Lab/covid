@@ -20,23 +20,12 @@ const ResourceModal = () => {
       <EditResource/>
     );
   }
-  function deleteLast() {
-    const resources = fetchResources().then((resource)=> {
-      return resource;
-    });
-    const removeResource = async () => {
-      const a = await resources;
-      deleteResource(a[a.length - 1]);
-    }
-    removeResource();
-  }
 
   return (
     <div className={`Modal ${c.ResourceModal}`}>
       <h1>Resource Settings</h1>
-      <Button onClick={showCreateModal}>Add Resource</Button>
-      <Button onClick={showEditModal}>View Resources</Button>
-      <Button onClick={deleteLast}>Delete Resource</Button>
+      <Button onClick={showCreateModal} style={{marginLeft: '0.5rem', marginRight: '1.5rem', marginTop: '0.5rem', marginBottom: '0.5rem', maxHeight: '3rem'}}>Add Resource</Button>
+      <Button onClick={showEditModal} style={{marginLeft: '0.5rem', marginRight: '1.5rem', marginTop: '0.5rem', marginBottom: '0.5rem', maxHeight: '3rem'}}>Edit Resources</Button>
     </div>
   );
 };

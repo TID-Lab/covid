@@ -1,5 +1,5 @@
 import Button from 'components/Button';
-import { createResource } from 'api/resource';
+import { createResource, deleteResource } from 'api/resource';
 import { useHidePopup } from 'hooks/popup';
 import notify from 'util/notify';
 import { useState } from 'react';
@@ -8,20 +8,18 @@ import c from './index.module.css';
 
 const TYPES = ['website', 'video', 'pdf', 'image'];
 
-const NewResource = () => {
+const EditModal = (props) => {
   const authoredAt = Date.now();
   const fetchedAt = Date.now();
-  const [name, setName] = useState('');
-  const [author, setAuthor] = useState('');
-  const [url, setUrl] = useState('');
-  const [type, setType] = useState(TYPES[0]);
+  console.log(props.resource.name);
+  const [name, setName] = useState(props.resource.name);
+  const [author, setAuthor] = useState(props.resource.author);
+  const [url, setUrl] = useState(props.resource.url);
+  const [type, setType] = useState(props.resource.type);
   const [imageurl, setImageUrl] = useState('');
   const [topics, setTopics] = useState('');
-  
-
 
   const hidePopup = useHidePopup();
-
 
   function onNameChange(event) {
     setName(event.target.value);
@@ -49,6 +47,10 @@ const NewResource = () => {
 
   function onClick() {
     try {
+      const resourceUrl = {
+        url: props.resource.url,
+      };
+      deleteResource(resourceUrl);
       var resource = null;
       if (!imageurl){
         resource = createResource({
@@ -72,10 +74,9 @@ const NewResource = () => {
           topics
         });
       }
-
       if (resource != null) {
         hidePopup();
-        notify('Resource saved to database.');
+        notify('Changes have been saved to resource.');
 
         setName('');
         setAuthor('');
@@ -93,8 +94,8 @@ const NewResource = () => {
   }
 
   return(
-    <div className={`Modal ${c.NewResource}`}>
-      <h1>New Resource</h1>
+    <div className={`Modal ${c.EditModal}`}>
+      <h1>Edit Resource</h1>
       <div>
         <label>Type: </label>
         <select onChange={onTypeChange} value={type}>
@@ -154,12 +155,12 @@ const NewResource = () => {
           <input type='checkbox' value={topics}></input>
         </li>
       </ul>
-      <Button className='CreateResourceButton' onClick={onClick}>+ Create Resource</Button>
+      <Button className='CreateResourceButton' onClick={onClick}>Save Changes</Button>
       <div>
-        <button onClick={onClose}>Close</button>
+        <Button onClick={onClose}>Cancel</Button>
       </div>
     </div>
   );
 };
 
-export default NewResource;
+export default EditModal;

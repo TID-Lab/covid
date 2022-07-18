@@ -47,9 +47,12 @@ const Header = () => {
       <SortSelect />
       <TextSearch />
       </div>
-      <Button onClick={ onMenuClick }>
+      <Button onClick={ onMenuClick } className="flex justify-right">
         + Create Post
-        </Button>
+      </Button>
+      <Button onClick={()=> window.open('/settings/resources', '_self') }>
+          Settings
+      </Button>
       </div>
     )
   }

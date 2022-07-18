@@ -1,0 +1,27 @@
+
+table.ResourceTable {
+  border-collapse: collapse;
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: scroll;
+}
+
+th.ResourceTableHead,
+td.ResourceTableData {
+  border: 1px solid #ffffff;
+  text-align: left;
+  padding: 8px;
+  font-size: 10px;
+}
+
+.ActionButtons {
+  font-size: 10px;
+}
+
+th.ResourceTableHead {
+  background-color: rgb(117, 201, 250);
+}
+
+td.ResourceTableData {
+  background-color: rgb(205, 235, 253);
+}

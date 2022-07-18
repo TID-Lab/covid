@@ -179,18 +179,18 @@ routes.post('/', async (req, res) => {
 
 // Deletes a resource given URL
 routes.delete('/', async (req, res) => {
-  const { url } = req.body;
+  const { url }  = req.body;
   if (typeof url !== 'string') {
     res.status(400).send();
     return;
   }
   try {
-    const result = await Resources.deleteOne({ url });
+    const result = await Resources.deleteOne({ url : url });
     if (result.deletedCount === 0) {
       res.status(404).send();
       return;
     }
-    res.status(200).send();
+    res.status(200).send(result);
   } catch (err) {
     debug(`${err}`);
     res.status(500).send();
@@ -200,13 +200,13 @@ routes.delete('/', async (req, res) => {
 // Update a resource via replacement
 routes.put('/', async (req, res) => {
   const { url } = req.body;
-  const replacement = req.replacementBody;
+  const {replacementResource} = req.replacementResource;
   if (typeof url !== 'string') {
     res.status(400).send();
     return;
   }
   try {
-    const result = await CustomTag.replaceOne({ url }, replacement);
+    const result = await CustomTag.replaceOne({ url }, {replacementResource});
     if (result.modifiedCount === 0) {
       res.status(404).send();
       return;
