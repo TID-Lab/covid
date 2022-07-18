@@ -20,19 +20,14 @@ const states = {
   failLogin: 'Failed to log in to twitter account',
   none: '',
 };
-function encodeQueryData(data) {
+function encodeQueryData(data: any) {
   const ret = [];
   for (let d in data)
     ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
   return ret.join('&');
 }
-const notifStyle = {
-  success: ' bg-emerald-100 border-emerald-300  ',
-  fail: ' bg-red-100 border-red-300 ',
-  none: ' invisible ',
-};
+
 type stateType = keyof typeof states;
-type notifStyleType = keyof typeof notifStyle;
 
 const PostingMenu = () => {
   const [twitterLoginStatus, setTwitterLoginStatus] = useState(false);
@@ -191,10 +186,12 @@ const PostingMenu = () => {
   };
 
   function returnStyle() {
-    if (postState.includes('fail')) return 'fail';
-    if (postState.includes('success')) return 'success';
-    else return 'none';
+    if (postState.includes('fail')) return ' bg-red-100 border-red-300 ';
+    if (postState.includes('success'))
+      return ' bg-emerald-100 border-emerald-300  ';
+    else return ' invisible ';
   }
+
   // History is for clearing the query strings when getting the callback
   let history = useHistory();
   // This checks the status once after the component is rendered
@@ -335,11 +332,7 @@ const PostingMenu = () => {
         </div>
         {/* <div class={c.gcse_search}></div> */}
         <div className="h-[4rem]">
-          <div
-            className={`border px-4 py-4 rounded-xs ${
-              notifStyle[returnStyle()]
-            }`}
-          >
+          <div className={`border px-4 py-4 rounded-xs ${returnStyle()}`}>
             {states[postState]}
           </div>
         </div>
