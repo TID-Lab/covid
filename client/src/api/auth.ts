@@ -14,7 +14,7 @@ async function checkAuth() {
  * Returns Oauth https://www.quod.ai/post/how-to-integrate-twitter-login-api-into-your-react-app
  */
 function twitterLogin(setButtonDisabled) {
-  (async () => {
+  return (async () => {
     try {
       setButtonDisabled(true);
       // Oauth Step 1
@@ -28,8 +28,10 @@ function twitterLogin(setButtonDisabled) {
       window.location.href = `https://api.twitter.com/oauth/authenticate?oauth_token=${oauth_token}`;
     } catch (error) {
       console.log(error);
+      return error;
     }
     setButtonDisabled(false);
+    return { statusCode: 200, data: 'yoinkysploinky' };
   })();
 }
 

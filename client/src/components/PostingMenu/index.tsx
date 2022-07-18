@@ -20,7 +20,12 @@ const states = {
   failLogin: 'Failed to log in to twitter account',
   none: '',
 };
-
+function encodeQueryData(data) {
+  const ret = [];
+  for (let d in data)
+    ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
+  return ret.join('&');
+}
 const notifStyle = {
   success: ' bg-emerald-100 border-emerald-300  ',
   fail: ' bg-red-100 border-red-300 ',
@@ -28,35 +33,6 @@ const notifStyle = {
 };
 type stateType = keyof typeof states;
 type notifStyleType = keyof typeof notifStyle;
-
-function checkOAuth(history: any) {
-  return (async () => {
-    const { oauth_token, oauth_verifier } = queryString.parse(
-      window.location.search
-    );
-
-    if (oauth_token && oauth_verifier) {
-      history.push('/social-media-dashboard');
-      try {
-        //Oauth Step 3
-        const res = await fetch('/api/auth/twitter/oauth/access_token', {
-          method: 'POST',
-          body: JSON.stringify({
-            oauth_token: oauth_token,
-            oauth_verifier: oauth_verifier,
-          }),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-        return res.status === 200;
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    return false;
-  })();
-}
 
 const PostingMenu = () => {
   const [twitterLoginStatus, setTwitterLoginStatus] = useState(false);
@@ -72,6 +48,38 @@ const PostingMenu = () => {
   const dispatch = useAppDispatch();
 
   let textAreaRef = useRef<HTMLTextAreaElement>(null);
+
+  function checkOAuth(history: any) {
+    return (async () => {
+      const { oauth_token, oauth_verifier } = queryString.parse(
+        window.location.search
+      );
+
+      if (oauth_token && oauth_verifier) {
+        history.push('/social-media-dashboard');
+        try {
+          //Oauth Step 3
+          const res = await fetch('/api/auth/twitter/oauth/access_token', {
+            method: 'POST',
+            body: JSON.stringify({
+              oauth_token: oauth_token,
+              oauth_verifier: oauth_verifier,
+            }),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+          if (res.status !== 200) setPostState('failLogin');
+
+          return res.status === 200;
+        } catch (error) {
+          console.error(error);
+          setPostState('failLogin');
+        }
+      }
+      return false;
+    })();
+  }
 
   function closeClick() {
     dispatch({ type: 'postingMenu/set', payload: false });
@@ -193,7 +201,9 @@ const PostingMenu = () => {
 
   useEffect(() => {
     const AsyncTwitterLoginStatus = async () => {
-      setTwitterLoginStatus(await checkOAuth(history));
+      const oAuthState = await checkOAuth(history);
+      setTwitterLoginStatus(oAuthState);
+      if (oAuthState) setPostState('successLogin');
     };
     const AsyncTimeoutButton = async () => {
       window.setTimeout(function () {
@@ -206,10 +216,13 @@ const PostingMenu = () => {
   }, []);
 
   useEffect(() => {
-    if (postText !== '') {
-      //setCharacterCount(postText.length);
-    }
-  }, [postText]);
+    const postStateTimer = async () => {
+      window.setTimeout(function () {
+        setPostState('none');
+      }, 15000);
+    };
+    if (postState !== 'none') postStateTimer().catch(console.error);
+  }, [postState]);
   // combine these use effects?
   // useEffect(() => {
   //   if (window && document) {
@@ -322,7 +335,11 @@ const PostingMenu = () => {
         </div>
         {/* <div class={c.gcse_search}></div> */}
         <div className="h-[4rem]">
-          <div className={`border ${notifStyle[returnStyle()]}`}>
+          <div
+            className={`border px-4 py-4 rounded-xs ${
+              notifStyle[returnStyle()]
+            }`}
+          >
             {states[postState]}
           </div>
         </div>
@@ -351,7 +368,7 @@ const PostingMenu = () => {
             )} rounded-full `}
           >
             <p
-              className={`before:content-['*'] before:h-[1em] before:w-[1em] before:mr-2 before:block flex items-center before:rounded-full`}
+              className={`before:content-[''] before:h-[1em] before:w-[1em] before:mr-2 before:block flex items-center before:rounded-full`}
             >
               Charcter Count
             </p>
@@ -368,6 +385,22 @@ const PostingMenu = () => {
             variant="primary"
             disabled={buttonDisabled}
             onClick={() =>
+              window.open(
+                'https://twitter.com/intent/tweet?' +
+                  encodeQueryData({ text: postText }),
+                '_blank'
+              )
+            }
+          >
+            <Icon type="twitter-sm" />
+            {'Post to Twitter'}
+          </Button>
+          {/* <Button
+            id="postButtonId"
+            className="text-center"
+            variant="primary"
+            disabled={buttonDisabled}
+            onClick={() =>
               twitterLoginStatus
                 ? twitterPost()
                 : twitterLogin(setButtonDisabled)
@@ -378,36 +411,37 @@ const PostingMenu = () => {
           </Button>
           <div className="flex justify-between items-center">
             {twitterLoginStatus ? (
+              <div className="px-4 py-1 text-sm rounded-full font-medium border bg-slate-100 border-slate-300">
+                <p>adasd</p>
+              </div>
+            ) : (
               <Button
                 className=" text-center text-sm"
                 variant="secondary"
                 size="md"
                 rounded
+                disabled={buttonDisabled}
                 aria-label="login"
                 onClick={() => {
-                  twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus);
+                  twitterLogin(setButtonDisabled);
                 }}
               >
                 <Icon type="arrow-right-sm" />
                 <p>Login</p>
               </Button>
-            ) : (
-              <div className="px-4 py-1 text-sm rounded-full font-medium border bg-slate-100 border-slate-300">
-                <p>adasd</p>
-              </div>
             )}
             <Button
               className=" text-center"
               variant="transparent"
               size="md"
-              disabled={twitterLoginStatus}
+              disabled={!twitterLoginStatus}
               onClick={() => {
                 twitterLogoutAndUpdateLoginStatus(setTwitterLoginStatus);
               }}
             >
               <Icon type="log-out" />
             </Button>
-          </div>
+          </div> */}
           <Button
             className=" text-center w-fit "
             variant="primary"
