@@ -1,4 +1,9 @@
-import { HTMLAttributes, ReactNode } from 'react';
+import {
+  AriaAttributes,
+  ButtonHTMLAttributes,
+  DetailedHTMLProps,
+  ReactNode,
+} from 'react';
 // define button styles here
 
 const btnStyle = {
@@ -37,7 +42,12 @@ const Button = ({
     </button>
   );
 };
-interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+interface ButtonProps
+  extends DetailedHTMLProps<
+      ButtonHTMLAttributes<HTMLButtonElement>,
+      HTMLButtonElement
+    >,
+    AriaAttributes {
   children?: ReactNode;
   disabled?: boolean;
   onClick?: any;

@@ -54,12 +54,7 @@ button {
   border-radius: 3px;
 } */
 
-input,
-textarea,
-select {
-  padding-left: 10px;
-}
-
+/*
 button {
   font-size: calc(var(--body-font-size) - 2px);
   font-family: inherit;
@@ -67,12 +62,13 @@ button {
   color: inherit;
   cursor: pointer;
 }
+*/
 
 /* input,
 textarea {
   padding: 10px;
 } */
-
+/*
 ::placeholder,
 ::-moz-placeholder,
 ::-webkit-input-placeholder,
@@ -80,6 +76,7 @@ textarea {
 :-ms-input-placeholder {
   color: var(--body-secondary);
 }
+*/
 
 /* input:focus,
 textarea:focus,

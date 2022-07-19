@@ -1,12 +1,16 @@
 import Icon from 'components/Icon';
 import useTracker from 'hooks/useTracker';
 import { useAppDispatch } from 'hooks/useTypedRedux';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, HTMLAttributes } from 'react';
 import c from './index.module.css';
 
 let timeout: any;
 
-const TextSearch = ({ ...props }) => {
+interface TextSearchProps extends HTMLAttributes<HTMLDivElement> {
+  className?: string;
+}
+
+const TextSearch = ({ className, ...props }: TextSearchProps) => {
   const dispatch = useAppDispatch();
   const { trackEvent } = useTracker();
 
@@ -23,7 +27,10 @@ const TextSearch = ({ ...props }) => {
   }
 
   return (
-    <div className={` ml-6 flex items-center ${c.TextSearch}`}>
+    <div
+      className={` ml-6 flex items-center ${c.TextSearch} ${className}`}
+      {...props}
+    >
       <input
         type="text"
         className="w-[400px] py-1 pr-8  placeholder:text-slate-500 rounded-xs pl-[15px]  "
