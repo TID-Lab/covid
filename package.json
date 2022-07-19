@@ -2,7 +2,7 @@
   "name": "@tid-lab/covid",
   "scripts": {
     "test:dev": "cypress open",
-    "test": "npm run dev; cypress run --headless",
+    "test": "cypress run --headless",
     "lint:client": "cd client && eslint src/* ",
     "lint:fetch": "cd fetch && eslint src",
     "lint:landing": "cd landing && eslint src",
