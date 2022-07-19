@@ -38,7 +38,7 @@ const TextSearch = ({ className, ...props }: TextSearchProps) => {
         placeholder="Search"
       />
 
-      <Icon type="search-sm" className="-ml-9 text-slate-500" />
+      <Icon type="search" size="sm" className="-ml-9 text-slate-500" />
     </div>
   );
 };

@@ -1,7 +1,7 @@
-import Icon from 'components/Icon';
 import { ReactNode } from 'react';
 import { RadioGroup } from '@headlessui/react';
 import { HTMLAttributes } from 'react';
+import Chip from 'components/Chip';
 //for whatever reason tailwind is not detecting classes if i dont have the space in front of the string
 const style = {
   default:
@@ -34,19 +34,8 @@ function ChipSelector({
         >
           {Object.keys(options).map((key, index) => (
             <RadioGroup.Option key={index} value={key}>
-              <RadioGroup.Label
-                className={` cursor-pointer border text-sm rounded-xs flex gap-x-1 items-center  ${
-                  key === active ? style.active : style.default
-                }}`}
-              >
-                <span
-                  className={`overflow-hidden inline-block  ${
-                    key === active ? ' w-auto ' : ' w-0 '
-                  }`}
-                >
-                  <Icon type="check-sm" />
-                </span>
-                {options[key]}
+              <RadioGroup.Label>
+                <Chip active={key === active}>{options[key]}</Chip>
               </RadioGroup.Label>
             </RadioGroup.Option>
           ))}
