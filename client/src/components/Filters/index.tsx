@@ -30,10 +30,7 @@ const Filters = () => {
   }, [filters, dispatch]);
 
   return (
-    <section
-      className="bg-white border-r border-gray-400 pb-4 hoverscroll  overflow-x-hidden "
-      style={{ overflowY: 'overlay' }}
-    >
+    <section className="bg-white border-r border-gray-400 pb-4  flex flex-col overflow-hidden ">
       <header className="pl-4 pr-2 py-4 sticky top-0 bg-white z-30 border-b-[1.5px] border-slate-300">
         <SortSelect />
         <div className="flex justify-between">
@@ -43,7 +40,10 @@ const Filters = () => {
           </ClearFilters>
         </div>
       </header>
-      <div className="space-y-4 divide-y-[1.5px] divide-slate-300">
+      <div
+        className="space-y-4 divide-y-[1.5px] overflow-x-hidden flex-grow divide-slate-300 hoverscroll"
+        style={{ overflowY: 'overlay' }}
+      >
         <DateFilter selector={(state) => state.filters.dates} />
         <FilterOptionItem
           header="COVID-19 Topics"

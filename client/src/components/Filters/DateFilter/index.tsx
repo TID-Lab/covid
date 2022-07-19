@@ -143,7 +143,7 @@ const DateFilter = ({ selector }: DateFilterProps) => {
                   className={'mr-[-0.25rem]'}
                 />
               </Listbox.Button>
-              <Listbox.Options className="absolute font-normal mt-1 max-h-60 right-0 w-max overflow-auto z-50 bg-white rounded-xs py-1 text-base shadow-lg border border-blue-300 focus:outline-none sm:text-sm">
+              <Listbox.Options className="absolute font-normal mt-1 max-h-60 right-0 w-max overflow-auto z-50 bg-white rounded-xs py-1 text-base shadow-lg border border-slate-400 focus:outline-none sm:text-sm">
                 {presetArray
                   .slice(-(presetArray.length - showNumber))
                   .map((key, index) => (
