@@ -90,7 +90,7 @@ const DateFilter = ({ selector }: DateFilterProps) => {
   }
 
   return (
-    <form className="pl-4 pr-8 mr-[-3rem] font-regular">
+    <form className="pl-4 pr-8 mr-[-2rem] font-regular">
       <h2
         id="presetDates "
         className="text-sm font-bold mt-3 mb-3 text-slate-700"
@@ -127,7 +127,7 @@ const DateFilter = ({ selector }: DateFilterProps) => {
         <Listbox value={selected.preset} onChange={setPreset}>
           <div className="relative">
             <Listbox.Button
-              className={`cursor-pointer border text-sm font-medium rounded-xs flex gap-x-1 items-center ${
+              className={`cursor-pointer border text-sm font-regular rounded-xs flex gap-x-1 items-center ${
                 presetArray
                   .slice(-(presetArray.length - showNumber))
                   .find((i) => i === selected.preset)

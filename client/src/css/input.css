@@ -1,0 +1,25 @@
+input,
+textarea {
+  @apply focus-visible:ring;
+  @apply focus-visible:outline-0;
+  @apply ring-offset-2;
+  @apply placeholder:text-slate-500;
+  @apply focus:bg-blue-100;
+  @apply focus:border-blue-300;
+  @apply rounded-xs;
+  @apply bg-slate-50;
+  @apply border;
+  @apply border-slate-300;
+}
+
+select {
+  @apply focus-visible:ring;
+  @apply focus-visible:outline-0;
+  @apply ring-offset-2;
+  @apply focus:bg-blue-100;
+  @apply focus:border-blue-300;
+  @apply rounded-xs;
+  @apply bg-slate-50;
+  @apply border;
+  @apply border-slate-300;
+}

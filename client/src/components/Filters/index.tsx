@@ -30,7 +30,10 @@ const Filters = () => {
   }, [filters, dispatch]);
 
   return (
-    <section className="bg-white border-r border-gray-400 pb-4  overflow-x-hidden ">
+    <section
+      className="bg-white border-r border-gray-400 pb-4 hoverscroll  overflow-x-hidden "
+      style={{ overflowY: 'overlay' }}
+    >
       <header className="pl-4 pr-2 py-4 sticky top-0 bg-white z-30 border-b-[1.5px] border-slate-300">
         <SortSelect />
         <div className="flex justify-between">
@@ -44,35 +47,37 @@ const Filters = () => {
         <DateFilter selector={(state) => state.filters.dates} />
         <FilterOptionItem
           header="COVID-19 Topics"
-          items={COVID_TOPICS}
+          options={COVID_TOPICS}
           selector={(state) => state.filters.topic}
           dispatchType="topic/set"
           track={{ category: 'Filter', action: 'Set Topic' }}
+          adjust="mr-[-1.5rem]"
         />
         <FilterOptionItem
           header="Account Categories"
-          items={ACC_CATEGORIES}
+          options={ACC_CATEGORIES}
           selector={(state) => state.filters.accounts.categories}
           dispatchType="accounts/categories/set"
           track={{ category: 'Filter', action: 'Set Account Category' }}
+          adjust="mr-[-2rem]"
         />
         <FilterOptionItem
           header="Account Identity"
-          items={IDENTITIES}
+          options={IDENTITIES}
           selector={(state) => state.filters.accounts.identities}
           dispatchType="accounts/identities/set"
           track={{ category: 'Filter', action: 'Set Account Identity' }}
         />
         <FilterOptionItem
           header="Account Location"
-          items={LOCATION}
+          options={LOCATION}
           selector={(state) => state.filters.accounts.location}
           dispatchType="accounts/location/set"
           track={{ category: 'Filter', action: 'Set Account Location' }}
         />
         <FilterOptionItem
           header="Account Type"
-          items={INSTITUTION}
+          options={INSTITUTION}
           selector={(state) => state.filters.accounts.institutions}
           dispatchType="accounts/institutions/set"
           track={{ category: 'Filter', action: 'Set Account Institution' }}

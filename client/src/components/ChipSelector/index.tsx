@@ -16,6 +16,7 @@ function ChipSelector({
   header,
   onSelect,
   hideLabel = false,
+  adjust = 'mr-[-1.75rem]',
   ...props
 }: ChipSelectorProps) {
   return (
@@ -28,7 +29,9 @@ function ChipSelector({
         >
           {header}
         </RadioGroup.Label>
-        <div className="gap-x-2 gap-y-4 flex relative flex-wrap mr-[-3rem] font-regular">
+        <div
+          className={`gap-x-2 gap-y-4 flex relative flex-wrap ${adjust} font-regular`}
+        >
           {Object.keys(options).map((key, index) => (
             <RadioGroup.Option key={index} value={key}>
               <RadioGroup.Label
@@ -53,13 +56,14 @@ function ChipSelector({
   );
 }
 
-interface ChipSelectorProps extends HTMLAttributes<HTMLDivElement> {
+export interface ChipSelectorProps extends HTMLAttributes<HTMLDivElement> {
   options: {
     [key: string]: string;
   };
   active: string;
   header: ReactNode;
   onSelect: any;
+  adjust?: string;
   hideLabel?: boolean;
 }
 

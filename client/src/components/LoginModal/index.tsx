@@ -15,7 +15,7 @@ const LoginModal = () => {
   }, []);
 
   return (
-    <div className={`Modal ${c.LoginModal}`}>
+    <div className={`Modal border border-slate-300 ${c.LoginModal}`}>
       <img src="/images/projectpeach.png" alt="Project Peach Logo"></img>
       <h1 className="text-center text-3xl mb-9 mt-6">Organization Login</h1>
       <form
@@ -23,7 +23,7 @@ const LoginModal = () => {
         method="post"
         action="/api/auth/login"
       >
-        <select name="name" className="pl-4">
+        <select name="name" className="px-4 py-2">
           <option value="default">Select your organization</option>
           {orgs
             .sort((a, b) => a.name.localeCompare(b.name))
@@ -34,7 +34,7 @@ const LoginModal = () => {
         <input
           name="pwd"
           type="password"
-          className="pl-4"
+          className="px-4 py-2"
           placeholder="Organization password"
         ></input>
         <button type="submit">Login</button>
