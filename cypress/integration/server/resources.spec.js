@@ -96,7 +96,7 @@ it('delete resource', () => {
     },
   })
   .then((resp) => {
-    assert.notExists(resp.body, "resource was deleted successfully");
+    assert.equal(resp.body.deletedCount, 1,"resource was deleted successfully");
   })
 })
 
