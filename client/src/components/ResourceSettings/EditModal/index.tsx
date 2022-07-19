@@ -8,7 +8,7 @@ import c from './index.module.css';
 
 const TYPES = ['website', 'video', 'pdf', 'image'];
 
-const EditModal = (props) => {
+const EditModal = (props: any) => {
   const authoredAt = Date.now();
   const fetchedAt = Date.now();
   console.log(props.resource.name);
@@ -21,27 +21,27 @@ const EditModal = (props) => {
 
   const hidePopup = useHidePopup();
 
-  function onNameChange(event) {
+  function onNameChange(event: any) {
     setName(event.target.value);
   }
 
-  function onAuthorChange(event) {
+  function onAuthorChange(event: any) {
     setAuthor(event.target.value);
   }
 
-  function onUrlChange(event) {
+  function onUrlChange(event: any) {
     setUrl(event.target.value);
   }
 
-  function onTypeChange(event) {
+  function onTypeChange(event: any) {
     setType(event.target.value);
   }
 
-  function onImageUrlChange(event) {
+  function onImageUrlChange(event: any) {
     setImageUrl(event.target.value);
   }
 
-  function onTopicsChange(event) {
+  function onTopicsChange(event: any) {
     setTopics(event.target.value);
   }
 
@@ -117,41 +117,41 @@ const EditModal = (props) => {
         <input className='URL' type='text' value={url} onChange={onUrlChange} placeholder='URL'></input>
       </div>
       <div>
-        {type !== 'image' && <p>Image URL: </p>}
+        {type !== 'image' && <p> Image URL: </p>}
         {type !== 'image' && <input className='ImageURL' type='text' value={imageurl} onChange={onImageUrlChange} placeholder='Image URL'></input>}
       </div>
       <ul>
-        <p1>Topics: </p1>
+        Topics: 
         <li>
-          <p1>Vaccines </p1>
+          Vaccines 
           <input type='checkbox' value={topics}></input>
         </li>
         <li>
-          <p1>Boosters </p1>
+          Boosters 
           <input type='checkbox' value={topics}></input>
         </li>
         <li>
-          <p1>Treatments </p1>
+          Treatments 
           <input type='checkbox' value={topics}></input>
         </li>
         <li>
-          <p1>Variants </p1>
+          Variants 
           <input type='checkbox' value={topics}></input>
         </li>
         <li>
-          <p1>Long COVID </p1>
+          Long COVID 
           <input type='checkbox' value={topics}></input>
         </li>
         <li>
-          <p1>Testing </p1>
+          Testing 
           <input type='checkbox' value={topics}></input>
         </li>
         <li>
-          <p1>COVID x Diabetes </p1>
+          COVID x Diabetes 
           <input type='checkbox' value={topics}></input>
         </li>
         <li>
-          <p1>Georgia </p1>
+          Georgia 
           <input type='checkbox' value={topics}></input>
         </li>
       </ul>

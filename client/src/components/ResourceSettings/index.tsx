@@ -3,7 +3,7 @@ import c from './index.module.css';
 import ResourceModal from './ResourceModal';
 import Button from 'components/Button';
 
-const ResourceSettings = (props) => {
+const ResourceSettings = () => {
 
   return (
     <div className={c.OrganizationSettings}>

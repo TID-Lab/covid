@@ -8,7 +8,7 @@ import EditModal from '../EditModal';
 import c from './index.module.css';
 
 const EditResource = () => {
-  const [resources, setResources] = useState();
+  const [resources, setResources] = useState<any[]>([]);
   const hidePopup = useHidePopup();
   const showPopup = useShowPopup();
 
@@ -23,7 +23,7 @@ const EditResource = () => {
   function onClose() {
     hidePopup();
   }
-  function onDelete(url) {
+  function onDelete(url: string) {
     const newResources = [...resources];
     const index = resources.findIndex((resource) => resource.url === url);
     newResources.splice(index, 1);
@@ -33,13 +33,13 @@ const EditResource = () => {
     deleteResource(resourceUrl);
     setResources(newResources);
   }
-  function onEdit(url) {
+  function onEdit(url: string) {
     const newResources = [...resources];
     const index = resources.findIndex((resource) => resource.url === url);
     showCreateModal(newResources[index]);
 
   }
-  function showCreateModal(resource) {
+  function showCreateModal(resource: Object) {
     showPopup(
       <EditModal resource={resource}/>
     );
