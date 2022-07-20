@@ -17,9 +17,9 @@ interface IconProps extends HTMLAttributes<HTMLDivElement> {
 const Icon = ({ type, size = 'xs', ...props }: IconProps) => {
   return (
     <div
+      {...props}
       style={{ width: iconSizes[size], height: iconSizes[size] }}
       dangerouslySetInnerHTML={{ __html: icons[type] }}
-      {...props}
     />
   );
 };
