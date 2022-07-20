@@ -43,35 +43,35 @@ function bodyToFilter(body) {
     filter.topics = topic;
   }
 
-  // tags
-  const includesTags = [];
-  const excludesTags = [];
+  // tags -> labels
+  const includesLabels = [];
+  const excludesLabels = [];
 
-  if (category) includesTags.push(category);
+  if (category) includesLabels.push(category);
 
   if (typeof institutions === 'boolean') {
     if (institutions) {
-      includesTags.push('institutional');
+      includesLabels.push('institutional');
     } else {
-      excludesTags.push('institutional');
+      excludesLabels.push('institutional');
     }
   }
 
   if (typeof georgia === 'boolean') {
     if (georgia) {
-      includesTags.push('georgia');
+      includesLabels.push('georgia');
     } else {
-      excludesTags.push('georgia');
+      excludesLabels.push('georgia');
     }
   }
 
-  if (includesTags.length > 0) {
-    filter.tags = { $all: includesTags };
+  if (includesLabels.length > 0) {
+    filter.Labels = { $all: includesLabels };
   }
-  if (excludesTags.length > 0) {
-    filter.tags = {
-      ...filter.tags,
-      $nin: excludesTags,
+  if (excludesLabels.length > 0) {
+    filter.Labels = {
+      ...filter.Labels,
+      $nin: excludesLabels,
     };
   }
 
