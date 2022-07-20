@@ -54,19 +54,21 @@ button {
   border-radius: 3px;
 } */
 
-/* button {
+/*
+button {
   font-size: calc(var(--body-font-size) - 2px);
   font-family: inherit;
   background: none;
   color: inherit;
   cursor: pointer;
-} */
+}
+*/
 
 /* input,
 textarea {
   padding: 10px;
 } */
-
+/*
 ::placeholder,
 ::-moz-placeholder,
 ::-webkit-input-placeholder,
@@ -74,6 +76,7 @@ textarea {
 :-ms-input-placeholder {
   color: var(--body-secondary);
 }
+*/
 
 /* input:focus,
 textarea:focus,
@@ -86,7 +89,7 @@ a:visited {
   color: var(--body-primary);
   text-decoration: none;
 }
-
+/*
 .Modal {
   box-sizing: border-box;
   padding: 30px;
@@ -105,6 +108,7 @@ a:visited {
 .Modal input {
   padding: 5px;
 }
+*/
 
 .Policy a {
   color: blue;

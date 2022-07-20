@@ -12,7 +12,7 @@ const LabeledDate = ({ date, onDateChanged, label }: LabeledDateProps) => {
   }
 
   return (
-    <form className={`flex flex-col text-sm`}>
+    <div className={`flex flex-col text-sm`}>
       <label
         className="font-bold mt-2 text-slate-500 "
         htmlFor={label.replace(' ', '_')}
@@ -27,7 +27,7 @@ const LabeledDate = ({ date, onDateChanged, label }: LabeledDateProps) => {
         value={date}
         onChange={onChange}
       />
-    </form>
+    </div>
   );
 };
 

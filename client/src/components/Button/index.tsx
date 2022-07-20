@@ -2,7 +2,6 @@ import {
   AriaAttributes,
   ButtonHTMLAttributes,
   DetailedHTMLProps,
-  HTMLAttributes,
   ReactNode,
 } from 'react';
 // define button styles here
@@ -12,7 +11,7 @@ const btnStyle = {
     'bg-blue-100 hover:bg-blue-200 border-[1.5px] border-blue-300 active:border-blue-400 ', //big primary button
   secondary:
     'bg-slate-100 border-[1.5px] border-slate-300 hover:bg-slate-300 text-black ',
-  transparent: 'hover:bg-slate-300 rounded-xs ',
+  transparent: 'hover:bg-slate-200 rounded-xs underline	',
   outline: 'border border-currentColor hover:bg-gray-300 text-black ',
 };
 

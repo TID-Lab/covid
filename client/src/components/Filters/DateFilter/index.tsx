@@ -5,8 +5,8 @@ import useTracker from 'hooks/useTracker';
 import formatDate from 'util/formatDate';
 import { DATE_PRESETS, DATE_PRESET_TYPE } from 'util/filterData';
 import Icon from 'components/Icon';
-import { Listbox } from '@headlessui/react';
-
+import { Listbox, RadioGroup } from '@headlessui/react';
+import Chip, { ChipStyle } from 'components/Chip';
 interface DateFilterProps {
   selector: (state: RootState) => any;
 }
@@ -90,92 +90,87 @@ const DateFilter = ({ selector }: DateFilterProps) => {
   }
 
   return (
-    <form className="pl-4 pr-8 mr-[-3rem] font-regular">
-      <h2
-        id="presetDates "
-        className="text-sm font-bold mt-3 mb-3 text-slate-700"
-      >
-        Date Range
-      </h2>
-      <div
-        className="flex flex-wrap gap-x-2 gap-y-4 "
-        role="radiogroup"
-        aria-labelledby="presetDates"
-      >
-        {presetArray.slice(0, showNumber).map((key, index) => (
-          <div
-            key={index}
-            role="radio"
-            className={`cursor-pointer border text-sm rounded-xs flex gap-x-1 items-center ${
-              selected.preset === key ? style.active : style.default
-            }`}
-            aria-checked={selected.preset === key}
-            onClick={() => setPreset(key as DATE_PRESET_TYPE)}
-            tabIndex={selected.preset === key ? 0 : -1}
-          >
-            {' '}
-            <span
-              className={`overflow-hidden inline-block  ${
-                key === selected.preset ? ' w-auto ' : '  w-0 '
-              }`}
-            >
-              <Icon type="check-sm" />
-            </span>
-            {DATE_PRESETS[key as DATE_PRESET_TYPE]}
-          </div>
-        ))}
-        <Listbox value={selected.preset} onChange={setPreset}>
-          <div className="relative">
-            <Listbox.Button
-              className={`cursor-pointer border text-sm font-medium rounded-xs flex gap-x-1 items-center ${
-                presetArray
-                  .slice(-(presetArray.length - showNumber))
-                  .find((i) => i === selected.preset)
-                  ? style.active
-                  : style.default
-              }`}
-            >
-              <span
-                className={`overflow-hidden inline-block  ${
+    <div className="pl-4 pr-8 mr-[-2rem] font-regular">
+      <RadioGroup value={selected.preset} onChange={setPreset}>
+        <RadioGroup.Label
+          className={`inline-block text-sm font-bold mb-3 mt-3 text-slate-700`}
+        >
+          Date Range
+        </RadioGroup.Label>
+        <div
+          className={`gap-x-2 gap-y-4 flex relative flex-wrap mr-[-3rem] font-regular`}
+        >
+          {presetArray.slice(0, showNumber).map((key, index) => (
+            <RadioGroup.Option key={index} value={key}>
+              <RadioGroup.Label>
+                <Chip active={key === selected.preset}>
+                  {DATE_PRESETS[key as DATE_PRESET_TYPE]}
+                </Chip>
+              </RadioGroup.Label>
+            </RadioGroup.Option>
+          ))}
+          <Listbox value={selected.preset} onChange={setPreset}>
+            <div className="relative">
+              <Listbox.Button
+                className={`${ChipStyle.common} ${
                   presetArray
                     .slice(-(presetArray.length - showNumber))
                     .find((i) => i === selected.preset)
-                    ? ' w-auto '
-                    : '  w-0 '
+                    ? ChipStyle.active
+                    : ChipStyle.default
                 }`}
               >
-                <Icon type="check-sm" />
-              </span>
-              {presetArray
-                .slice(0, showNumber)
-                .find((i) => i === selected.preset)
-                ? 'more'
-                : DATE_PRESETS[selected.preset]}
-              <Icon type="chevron-down-sm" className={'mr-[-0.25rem]'} />
-            </Listbox.Button>
-            <Listbox.Options className="absolute font-normal mt-1 max-h-60 right-0 w-max overflow-auto z-50 bg-white rounded-xs py-1 text-base shadow-lg border border-blue-300 focus:outline-none sm:text-sm">
-              {presetArray
-                .slice(-(presetArray.length - showNumber))
-                .map((key, index) => (
-                  <Listbox.Option
-                    key={index}
-                    className={`cursor-pointer  text-sm py-2 pl-2 pr-4 hover:bg-blue-100
+                <span
+                  className={`overflow-hidden inline-block  ${
+                    presetArray
+                      .slice(-(presetArray.length - showNumber))
+                      .find((i) => i === selected.preset)
+                      ? ' w-auto '
+                      : '  w-0 '
+                  }`}
+                >
+                  <Icon type="check" size="sm" />
+                </span>
+                {presetArray
+                  .slice(0, showNumber)
+                  .find((i) => i === selected.preset)
+                  ? 'more'
+                  : DATE_PRESETS[selected.preset]}
+                <Icon
+                  type="chevron-down"
+                  size="sm"
+                  className={'mr-[-0.25rem]'}
+                />
+              </Listbox.Button>
+              <Listbox.Options className="absolute font-normal mt-1 max-h-60 right-0 w-max overflow-auto z-50 bg-slate-50 rounded-xs py-1 text-base shadow-lg border border-slate-400 focus:outline-none sm:text-sm">
+                {presetArray
+                  .slice(-(presetArray.length - showNumber))
+                  .map((key, index) => (
+                    <Listbox.Option
+                      key={index}
+                      className={`cursor-pointer  text-sm py-2 pl-2 pr-4 hover:bg-blue-100
                  m-0 flex gap-x-1 items-center ${
                    selected.preset === key ? 'font-bold' : ''
                  }`}
-                    value={key}
-                  >
-                    {' '}
-                    <span className={`overflow-hidden inline-block w-[20px] `}>
-                      {selected.preset === key && <Icon type="check-sm" />}
-                    </span>
-                    {DATE_PRESETS[key as DATE_PRESET_TYPE]}
-                  </Listbox.Option>
-                ))}
-            </Listbox.Options>
-          </div>
-        </Listbox>
-      </div>
+                      value={key}
+                    >
+                      {' '}
+                      <span
+                        className={`overflow-hidden inline-block w-[20px] `}
+                      >
+                        {selected.preset === key && (
+                          <Icon type="check" size="sm" />
+                        )}
+                      </span>
+                      {DATE_PRESETS[key as DATE_PRESET_TYPE]}
+                    </Listbox.Option>
+                  ))}
+              </Listbox.Options>
+            </div>
+          </Listbox>
+        </div>
+      </RadioGroup>
+
       <div className="flex gap-2 ">
         <LabeledDate
           label="From"
@@ -188,7 +183,7 @@ const DateFilter = ({ selector }: DateFilterProps) => {
           onDateChanged={onToChanged}
         />
       </div>
-    </form>
+    </div>
   );
 };
 

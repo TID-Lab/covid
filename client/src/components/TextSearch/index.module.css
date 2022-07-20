@@ -1,6 +1,3 @@
-.TextSearch {
-}
-
 .TextSearch input:focus + div {
   @apply text-blue-700;
 }

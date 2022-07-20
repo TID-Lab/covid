@@ -2,10 +2,10 @@ import { useAppDispatch, useAppSelector } from 'hooks/useTypedRedux';
 import Button from 'components/Button';
 import c from './index.css';
 import useTracker from 'hooks/useTracker';
-import { ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 import formatDate from 'util/formatDate';
 
-interface ClearFiltersProps {
+interface ClearFiltersProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
 }
 const ClearFilters = ({ children, ...props }: ClearFiltersProps) => {

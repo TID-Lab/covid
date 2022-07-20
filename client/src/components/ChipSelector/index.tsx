@@ -1,7 +1,7 @@
-import Icon from 'components/Icon';
 import { ReactNode } from 'react';
 import { RadioGroup } from '@headlessui/react';
 import { HTMLAttributes } from 'react';
+import Chip from 'components/Chip';
 //for whatever reason tailwind is not detecting classes if i dont have the space in front of the string
 const style = {
   default:
@@ -16,6 +16,7 @@ function ChipSelector({
   header,
   onSelect,
   hideLabel = false,
+  adjust = 'mr-[-1.75rem]',
   ...props
 }: ChipSelectorProps) {
   return (
@@ -28,22 +29,13 @@ function ChipSelector({
         >
           {header}
         </RadioGroup.Label>
-        <div className="gap-x-2 gap-y-4 flex relative flex-wrap mr-[-3rem] font-regular">
+        <div
+          className={`gap-x-2 gap-y-4 flex relative flex-wrap ${adjust} font-regular`}
+        >
           {Object.keys(options).map((key, index) => (
             <RadioGroup.Option key={index} value={key}>
-              <RadioGroup.Label
-                className={` cursor-pointer border text-sm rounded-xs flex gap-x-1 items-center  ${
-                  key === active ? style.active : style.default
-                }}`}
-              >
-                <span
-                  className={`overflow-hidden inline-block  ${
-                    key === active ? ' w-auto ' : ' w-0 '
-                  }`}
-                >
-                  <Icon type="check-sm" />
-                </span>
-                {options[key]}
+              <RadioGroup.Label>
+                <Chip active={key === active}>{options[key]}</Chip>
               </RadioGroup.Label>
             </RadioGroup.Option>
           ))}
@@ -53,13 +45,14 @@ function ChipSelector({
   );
 }
 
-interface ChipSelectorProps extends HTMLAttributes<HTMLDivElement> {
+export interface ChipSelectorProps extends HTMLAttributes<HTMLDivElement> {
   options: {
     [key: string]: string;
   };
   active: string;
   header: ReactNode;
   onSelect: any;
+  adjust?: string;
   hideLabel?: boolean;
 }
 

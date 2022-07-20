@@ -2,12 +2,26 @@ import icons from 'util/icons/iconlist.json';
 import { HTMLAttributes } from 'react';
 type iconType = keyof typeof icons;
 
+const iconSizes = {
+  xs: 16,
+  sm: 20,
+  md: 24,
+  lg: 28,
+};
+
 interface IconProps extends HTMLAttributes<HTMLDivElement> {
   type: iconType;
+  size?: keyof typeof iconSizes;
 }
 
-const Icon = ({ type, ...props }: IconProps) => {
-  return <div dangerouslySetInnerHTML={{ __html: icons[type] }} {...props} />;
+const Icon = ({ type, size = 'xs', ...props }: IconProps) => {
+  return (
+    <div
+      {...props}
+      style={{ width: iconSizes[size], height: iconSizes[size] }}
+      dangerouslySetInnerHTML={{ __html: icons[type] }}
+    />
+  );
 };
 
 export default Icon;

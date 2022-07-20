@@ -8,4 +8,7 @@
 @import 'variables.css';
 /* base style*/
 @import 'base.css';
+
 @import 'input.css';
+
+@import 'scrollbar.css';
