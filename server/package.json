@@ -9,10 +9,10 @@
     "dev:run": "nodemon dist/app.js",
     "serve:start": "pm2 startOrRestart ecosystem.config.js",
     "serve": "run-s build serve:start",
-    "stop": "pm2 stop ecosystem.config.js",
-    "addRes": "npm run build && node dist/util/addResources.js"
+    "stop": "pm2 stop ecosystem.config.js"
   },
   "dependencies": {
+    "aho-corasick-node": "^1.0.2",
     "axios": "^0.21.2",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
