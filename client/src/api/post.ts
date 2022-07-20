@@ -49,6 +49,7 @@ function filtersToBody(filters) {
   return body;
 }
 
+// this shouldnt work LOL  i think it needs to be in a redux store, but it does so im not gonna touch it
 export let page = 0;
 export let lastPage = true;
 
@@ -92,9 +93,23 @@ export async function getPrevPage() {
 }
 
 /**
- * generic page fetch of posts.
+ * combined prev/next page fetch of posts.
  */
-export async function getPage(toPage) {
-  if (!lastPage && page > 0) page = toPage;
-  return await fetchPosts();
+export async function getPrevNextPage(toPage) {
+  if (toPage === 'next') return await getNextPage();
+  else return await getPrevPage();
+}
+
+/**
+ * returns current Page
+ */
+export function getPage() {
+  return page;
+}
+
+/**
+ * returns if last page
+ */
+export function isLastPage() {
+  return lastPage;
 }
