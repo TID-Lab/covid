@@ -29,7 +29,7 @@ function waitForEmbed(parent, callback) {
 const Post = (props) => {
   const { data } = props;
   console.log(data);
-  const { url, platform, platformID } = data;
+  const { _id, url, platform, platformID } = data;
   const coverImagePath = `/images/${platform}.png`;
   const elementID = `post-${platform}-${platformID}`;
   const element = document.getElementById(elementID);
@@ -214,8 +214,7 @@ const Post = (props) => {
       name: nameTextAreaRef.value,
       color: colorTextAreaRef.value,
       description: descTextAreaRef.value,
-      organization: 'TEST',
-      posts: ['62630ce3f8d21d00a87ce787']
+      posts: [_id],
     });
     post = 
     setTagName('');
