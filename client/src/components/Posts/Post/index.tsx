@@ -6,6 +6,7 @@ import { authFetch } from 'util/auth';
 import store from 'store';
 import useTracker from 'hooks/useTracker';
 import Button from 'components/Button';
+import Icon from 'components/Icon';
 import {
   COVID_TOPICS,
   ACC_CATEGORIES,
@@ -80,7 +81,7 @@ const Post = (props) => {
   const embedHTML = embedHTMLCache[platformID]
     ? embedHTMLCache[platformID]
     : '';
-  const embedClass = 'content' + (!isRendered ? ' hidden' : '');
+  const embedClass = !isRendered ? ' hidden' : '';
 
   // Determine if post is a retweet
   const retweet = platform === 'twitter' && data.content.startsWith('RT @');
@@ -115,21 +116,19 @@ const Post = (props) => {
     });
   }
 
-  // some FB posts render with a transparent background
-  const containerClassName =
-    platform === 'facebook' ? 'container facebook' : 'container';
-
-  // if (isRendered) {
-  //   return ();
-  // } else {
-  //   return ();
-  // }
-
   return (
-    <div className={`flex-shrink min-w-[400px] h-full w-full ${c.Post}`}>
+    <div
+      className={`${c.overlayborder} min-w-[400px] h-fit relative w-full flex flex-col shadow-lg overflow-hidden rounded-xs ${c.Post} `}
+    >
       {!isRendered ? (
-        <div className={`border border-slate-300 ${c.cover}`}>
-          <img src={coverImagePath} alt={platform} />
+        <div
+          className={`flex justify-center  h-[80vh] items-center  bg-white border-b border-slate-300`}
+        >
+          <img
+            className={`h-[80px] ${c.animation} `}
+            src={coverImagePath}
+            alt={platform}
+          />
         </div>
       ) : (
         ''
@@ -149,14 +148,14 @@ const Post = (props) => {
       ) : (
         ''
       )}
-      <div className={containerClassName}>
+      <div className={`${c.container} bg-white`}>
         <div
-          className={embedClass}
+          className={`${c.content} mr-[-2px] ${embedClass}`}
           id={elementID}
           dangerouslySetInnerHTML={{ __html: embedHTML }}
         ></div>
       </div>
-      <div className={c.annotations}>
+      <div className={`px-2 py-3  `}>
         <div className={``}>
           <p>
             <b>Topics:</b>{' '}
@@ -173,7 +172,7 @@ const Post = (props) => {
               .join(', ')}
           </p>
         </div>
-        <div className={`flex space-x-1 pb-4 `}>
+        <div className={`flex gap-x-1 text-xs`}>
           <Button variant="outline" size="md" onClick={copyLink}>
             Copy link
           </Button>
@@ -184,6 +183,9 @@ const Post = (props) => {
             Make Post
           </Button>
         </div>
+        <Button className="text-xs" variant="transparent" size="md">
+          View Relevent Resources <Icon type="arrow-right" size="xs" />
+        </Button>
       </div>
     </div>
   );
