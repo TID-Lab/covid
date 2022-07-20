@@ -99,17 +99,3 @@ export async function getPrevNextPage(toPage) {
   if (toPage === 'next') return await getNextPage();
   else return await getPrevPage();
 }
-
-/**
- * returns current Page
- */
-export function getPage() {
-  return page;
-}
-
-/**
- * returns if last page
- */
-export function isLastPage() {
-  return lastPage;
-}

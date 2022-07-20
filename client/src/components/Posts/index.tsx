@@ -1,5 +1,5 @@
 import { useAppSelector } from 'hooks/useTypedRedux';
-import { getPage, isLastPage } from 'api/post';
+import { page, lastPage } from 'api/post';
 
 import Post from './Post';
 import PageButton from './PageButton';
@@ -11,7 +11,7 @@ const Posts = () => {
   if (posts.length > 0) {
     return (
       <div ref={postContainer} className="flex overflow-auto py-2 px-4 gap-x-6">
-        {getPage() > 0 && (
+        {page > 0 && (
           <PageButton
             type="prev"
             text="Previous Page"
@@ -27,7 +27,7 @@ const Posts = () => {
           <Post data={post} key={post.url} />
         ))}
 
-        {!isLastPage() && (
+        {!lastPage && (
           <PageButton
             type="next"
             text="Next Page"
