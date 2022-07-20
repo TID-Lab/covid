@@ -7,7 +7,6 @@ import './index.css';
 
 
 class TagSort extends React.Component {
-  //sortBy = useSelector(state => state.filters.sortBy);
   //dispatch = useDispatch();
   constructor(){
     super()
@@ -16,8 +15,14 @@ class TagSort extends React.Component {
       tagNames: []
     }
   }
+  /*
+  const TAGSort = () => {
+    const tagSort = useSelector(state => state.filters.tagSort);
+    const dispatch = useDispatch();
+  }
+  */
    onChange(e) {
-    //dispatch({ type: 'sortBy/set', payload: e.target.value });
+    //dispatch({ type: 'TagSort/set', payload: e.target.value });
   } 
   async componentDidMount (){
     const tagNames = await fetchTags()

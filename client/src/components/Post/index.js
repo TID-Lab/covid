@@ -40,10 +40,12 @@ const Post = (props) => {
   const [ showCreateTagModal, setCreateTagShowModal ] = useState(false);
   let nameTextAreaRef = useRef<HTMLAreaElement>(null);
   let descTextAreaRef = useRef<HTMLAreaElement>(null);
+  let colorTextAreaRef = useRef<HTMLAreaElement>(null);
   const [showFutureUseTagModal, setFutureUseTagShowModal] = useState(false); //temp need to change
 
   const [ tags, setTags ] = useState([]);
   const [ tagName, setTagName ] = useState('Name for new tag');
+  const [tagcolor, setColor] = useState('Set Custom Tag Color');
   const [ tagDescription, setTagDescription ] = useState('Description for new tag');
 
   const wait = useCallback(
@@ -56,9 +58,10 @@ const Post = (props) => {
   useEffect(() => {
     async function fetchHTML() {
       const res = await authFetch(`/api/proxy/${platform}?url=${url}`);
-      const { html } = await res.json();
+      try { var { html } = await res.json() }
+        catch (error) {console.log(error)}
       embedHTMLCache[platformID] = html;
-    }
+    }  
     if (!isLoaded) {
       if (!embedHTMLCache[platformID]) {
         fetchHTML().then(() => setLoaded(true));
@@ -108,7 +111,7 @@ const Post = (props) => {
      
     
       // Account tags (CATEGORIES from AccountCategories\index.js, plus institutional and GA)
-  const TAGS = {
+  const LABELS = {
     'all': 'All',
     'government': 'Government',
     'media': 'Media',
@@ -121,7 +124,14 @@ const Post = (props) => {
     'partners': 'Project Partners',
     'trusted': 'Trusted Resources',
   }
-
+  //colors for customtags
+  const COLORS = {
+    'red':'Red',
+    'green': 'Green',
+    'purple': 'Purple',
+    'blue': 'Blue',
+    'pink': 'Pink',
+  }
   // Function for copying link to post to user's clipboard
   function copyLink(e) {
     e.preventDefault();
@@ -182,6 +192,8 @@ const Post = (props) => {
     e.preventDefault();
     setTagName(nameTextAreaRef.value);
     setTagDescription(descTextAreaRef.value);
+    setColor(colorTextAreaRef.value);
+    setCustomTagField(nameTextAreaRef.value);
     const checkDupes = () => {
       tags.then((a) => {
         const tags_list = a;
@@ -197,22 +209,20 @@ const Post = (props) => {
       });
     };
     checkDupes();
-
     //mongo POST
-
     const new_tag = createTag({
       name: nameTextAreaRef.value,
-      color: 'red',
+      color: colorTextAreaRef.value,
       description: descTextAreaRef.value,
       organization: 'TEST',
       posts: ['62630ce3f8d21d00a87ce787']
     });
-
+    post = 
     setTagName('');
     setTagDescription('');
+    setColor('');
 
     console.log(new_tag)
-
   }
 
 
@@ -223,6 +233,10 @@ const Post = (props) => {
   // } else {
   //   return ();
   // }
+  //<p><b>Tags:</b> {data.customTags.map(tags => TAGS[tags]).filter(Boolean).join(', ')}</p>
+  //<p><b>Account:</b> {data.labels.map(label => LABELS[label]).filter(Boolean).join(', ')}</p>
+
+
   return (
     <div className='Post'>
       {(!isRendered) ? (
@@ -241,7 +255,7 @@ const Post = (props) => {
       <div className='annotations'>
         <div className='column left'>
           <p><b>Topics:</b> {data.topics.map(topic => COVID_TOPICS[topic]).filter(Boolean).join(', ')}</p>
-          <p><b>Account:</b> {data.tags.map(tag => TAGS[tag]).filter(Boolean).join(', ')}</p>
+          <p><b>Account:</b> {data.labels.map(label => LABELS[label]).filter(Boolean).join(', ')}</p>
 
           <button className="tagPopup" onClick={tagPopup}>+</button>
           {showTagModal && <PopupModal
@@ -252,7 +266,7 @@ const Post = (props) => {
                   </input>
                     <button>Search</button>
                 </form>
-
+                
                 <p><button className="tagPopupButton" onClick={saveForFutureUsePopup}><b>Save for future use</b><p>This tag contains resources that I want to use in the future</p></button></p>
 
                 <p> <button className="tagPopup" onClick={createTagPopup}>+ Create New Tag</button></p>
@@ -260,16 +274,21 @@ const Post = (props) => {
               </>}
               handleClose={() => {setTagShowModal(!showTagModal);}}
           />}
-
           {showCreateTagModal && <PopupModal
               content={<>
                 <p><button className="tagPopupBack" onClick={backToTagPopup}>&larr; Back to Tags</button></p>
                 <b>Create a New Tag</b>
                 <p>Tag Name</p>
                 <textarea id="tagName" name="tagName" rows="1" ref={(textarea) => nameTextAreaRef = textarea}></textarea>
-                <p>Tag Description</p>
+                <p>Tag Color</p>
+                  <select  onChange={setColor} ref={(textarea) => colorTextAreaRef = textarea}>
+                  {Object.keys(COLORS).map(val => (
+                  <option key={val} value={val}>{COLORS[val]}</option>
+                  ))}
+                  </select>                
+              <p>Tag Description</p>
                 <textarea id="tagDesc" name="tagDesc" ref={(textarea) => descTextAreaRef = textarea}></textarea>
-                <p><button className="submitButton" onClick={createNewTagButton}>Confirm</button></p>
+                <p><button className="submitButton" onClick={createNewTagButton} >Confirm</button></p>
               </>}
               handleClose={() => {setCreateTagShowModal(!showCreateTagModal);}}
           />}
@@ -303,3 +322,4 @@ const Post = (props) => {
 };
 
 export default Post;
+//</>id="tagColor" name="tagColor" rows="1" ref={(textarea) => colorTextAreaRef = textarea}></textarea>

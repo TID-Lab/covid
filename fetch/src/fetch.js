@@ -6,9 +6,10 @@ const { COVID_KEYWORDS } = require('../../constants');
 
 // hooks
 const addTopics = require('./hooks/topics');
-const addTags = require('./hooks/tags');
+const addLabels = require('./hooks/labels');
 const addEngagement = require('./hooks/engagement');
 const saveToDatabase = require('./hooks/database');
+const addTags = require('./hooks/tags');
 
 const debug = useDebug('fetch');
 
@@ -107,7 +108,7 @@ module.exports = async () => {
 
   // Uses all of our hooks
   downstream.use(addTopics);
-  downstream.use(addTags);
+  downstream.use(addLabels);
   downstream.use(addEngagement);
   downstream.use(saveToDatabase);
 
