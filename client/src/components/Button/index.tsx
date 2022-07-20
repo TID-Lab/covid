@@ -11,8 +11,7 @@ const btnStyle = {
     'bg-blue-100 hover:bg-blue-200 border-[1.5px] border-blue-300 active:border-blue-400 rounded-xs', //big primary button
   secondary: 'bg-slate-100 hover:bg-slate-300 text-black rounded-xs',
   transparent: '',
-  outline:
-    'border border-currentColor hover:bg-gray-300 text-black rounded-full',
+  outline: 'border border-currentColor hover:bg-gray-300 text-black rounded-xs',
 };
 
 const btnSize = {

@@ -24,6 +24,9 @@
   @apply bg-slate-300;
 }
 
+.hoverscroll {
+  scrollbar-width: thin;
+}
 .hoverscroll::-webkit-scrollbar-thumb {
   background: transparent;
 }

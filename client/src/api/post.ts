@@ -90,3 +90,11 @@ export async function getPrevPage() {
   if (page > 0) page -= 1;
   return await fetchPosts();
 }
+
+/**
+ * generic page fetch of posts.
+ */
+export async function getPage(toPage) {
+  if (!lastPage && page > 0) page = toPage;
+  return await fetchPosts();
+}
