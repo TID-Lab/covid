@@ -14,16 +14,8 @@ const {
 
 // Converts an HTTP request body to a Mongoose filter
 function bodyToFilter(body) {
-  const {
-    dates,
-    topic,
-    category,
-    identity,
-    institutions,
-    georgia,
-    platforms,
-    search,
-  } = body || {};
+  const { dates, topic, category, institutions, georgia, platforms, search } =
+    body || {};
 
   const filter = {};
 
@@ -47,37 +39,35 @@ function bodyToFilter(body) {
     filter.topics = topic;
   }
 
-  // tags
-  const includesTags = [];
-  const excludesTags = [];
+  // tags -> labels
+  const includesLabels = [];
+  const excludesLabels = [];
 
-  if (category) includesTags.push(category);
-
-  if (identity) includesTags.push(identity);
+  if (category) includesLabels.push(category);
 
   if (typeof institutions === 'boolean') {
     if (institutions) {
-      includesTags.push('institutional');
+      includesLabels.push('institutional');
     } else {
-      excludesTags.push('institutional');
+      excludesLabels.push('institutional');
     }
   }
 
   if (typeof georgia === 'boolean') {
     if (georgia) {
-      includesTags.push('georgia');
+      includesLabels.push('georgia');
     } else {
-      excludesTags.push('georgia');
+      excludesLabels.push('georgia');
     }
   }
 
-  if (includesTags.length > 0) {
-    filter.tags = { $all: includesTags };
+  if (includesLabels.length > 0) {
+    filter.Labels = { $all: includesLabels };
   }
-  if (excludesTags.length > 0) {
-    filter.tags = {
-      ...filter.tags,
-      $nin: excludesTags,
+  if (excludesLabels.length > 0) {
+    filter.Labels = {
+      ...filter.Labels,
+      $nin: excludesLabels,
     };
   }
 
@@ -127,8 +117,7 @@ routes.post('/:page', async (req, res) => {
   const filter = bodyToFilter(body);
   console.log(filter);
   const postsCollection = database.collection('socialmediaposts');
-  const filteredPosts = await postsCollection.find(filter).toArray();
-  const filteredPostCount = filteredPosts.length;
+  const postCount = await postsCollection.estimatedDocumentCount();
   const skipCount = pageNum * pageSize;
   const posts = await postsCollection
     .find(filter)
@@ -137,7 +126,7 @@ routes.post('/:page', async (req, res) => {
     .limit(pageSize)
     .toArray();
   const lastPage =
-    posts.length === 0 || filteredPostCount - (skipCount + posts.length) <= 0;
+    posts.length === 0 || postCount - (skipCount + posts.length) <= 0;
   res.status(200).send({
     posts,
     lastPage,

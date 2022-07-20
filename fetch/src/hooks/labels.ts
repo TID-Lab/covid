@@ -5,8 +5,8 @@ const { getCrowdTangleLists } = require('../workers');
  * A Downstream hook that annotates a social media post
  * with labels that correspond to sets of authors, like "Georgia" authors.
  */
-module.exports = async function addTags(post, next) {
-  const tags = [];
+module.exports = async function addLabels(post, next) {
+  const labels = [];
   const { platform, raw } = post;
   switch (platform) {
     case 'twitter': {
