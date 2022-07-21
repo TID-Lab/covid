@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { useLocation } from 'react-router-dom';
-import './index.css';
+import './index.module.css';
 
 import TagSort from '../TagSort';
 import Logo from '../Logo';
