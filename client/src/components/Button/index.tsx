@@ -26,9 +26,9 @@ const Button = ({
   children,
   onClick,
   className,
-  rounded = false,
   variant = 'primary',
   size = 'lg',
+  rounded = false,
   ...props
 }: ButtonProps) => {
   return (
@@ -52,9 +52,8 @@ interface ButtonProps
     >,
     AriaAttributes {
   children?: ReactNode;
-  disabled?: boolean;
   onClick?: any;
-  className?: string;
+  className?: undefined | string;
   rounded?: boolean;
   variant?: keyof typeof btnStyle;
   size?: keyof typeof btnSize;

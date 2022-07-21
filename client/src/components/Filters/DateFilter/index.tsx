@@ -6,7 +6,7 @@ import formatDate from 'util/formatDate';
 import { DATE_PRESETS, DATE_PRESET_TYPE } from 'util/filterData';
 import Icon from 'components/Icon';
 import { Listbox, RadioGroup } from '@headlessui/react';
-import Chip from 'components/Chip';
+import Chip, { ChipStyle } from 'components/Chip';
 interface DateFilterProps {
   selector: (state: RootState) => any;
 }
@@ -104,7 +104,6 @@ const DateFilter = ({ selector }: DateFilterProps) => {
             <RadioGroup.Option key={index} value={key}>
               <RadioGroup.Label>
                 <Chip active={key === selected.preset}>
-                  {' '}
                   {DATE_PRESETS[key as DATE_PRESET_TYPE]}
                 </Chip>
               </RadioGroup.Label>
@@ -113,12 +112,12 @@ const DateFilter = ({ selector }: DateFilterProps) => {
           <Listbox value={selected.preset} onChange={setPreset}>
             <div className="relative">
               <Listbox.Button
-                className={`cursor-pointer border text-sm font-regular rounded-xs flex gap-x-1 items-center ${
+                className={`${ChipStyle.common} ${
                   presetArray
                     .slice(-(presetArray.length - showNumber))
                     .find((i) => i === selected.preset)
-                    ? style.active
-                    : style.default
+                    ? ChipStyle.active
+                    : ChipStyle.default
                 }`}
               >
                 <span
@@ -143,7 +142,7 @@ const DateFilter = ({ selector }: DateFilterProps) => {
                   className={'mr-[-0.25rem]'}
                 />
               </Listbox.Button>
-              <Listbox.Options className="absolute font-normal mt-1 max-h-60 right-0 w-max overflow-auto z-50 bg-white rounded-xs py-1 text-base shadow-lg border border-slate-400 focus:outline-none sm:text-sm">
+              <Listbox.Options className="absolute font-normal mt-1 max-h-60 right-0 w-max overflow-auto z-50 bg-slate-50 rounded-xs py-1 text-base shadow-lg border border-slate-400 focus:outline-none sm:text-sm">
                 {presetArray
                   .slice(-(presetArray.length - showNumber))
                   .map((key, index) => (

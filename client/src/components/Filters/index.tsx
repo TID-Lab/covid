@@ -30,10 +30,10 @@ const Filters = () => {
   }, [filters, dispatch]);
 
   return (
-    <section className="bg-white border-r border-gray-400 pb-4  flex flex-col overflow-hidden ">
-      <header className="pl-4 pr-2 py-4 sticky top-0 bg-white z-30 border-b-[1.5px] border-slate-300">
+    <section className="bg-white border-r mt-13 border-slate-400   flex flex-col overflow-hidden ">
+      <header className="pl-4 pr-2  pb-2 sticky top-0 bg-white z-30 border-b-[1.5px] border-slate-300">
         <SortSelect />
-        <div className="flex justify-between">
+        <div className="flex justify-between mt-2">
           <h1 className="font-bold text-lg text-slate-700 ">Filters</h1>
           <ClearFilters>
             <span className="text-xs">Clear Filters</span>

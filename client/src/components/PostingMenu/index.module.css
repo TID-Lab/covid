@@ -1,11 +1,9 @@
 .flyoutMenu {
-  border-left: 2px solid grey;
-  width: 30vw;
+  width: 28vw;
   height: 100vh;
-  background-color: #ffffff;
   position: fixed;
   top: 0;
-  left: 70vw;
+  right: 0;
   transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1);
   overflow: scroll;
   z-index: 1000;
@@ -13,9 +11,20 @@
 }
 
 .hide {
-  transform: translate3d(30vw, 0, 0);
+  transform: translate3d(28vw, 0, 0);
+  pointer-events: none;
 }
 
+.wordCountRed p:before {
+  @apply bg-red-500;
+}
+
+.wordCountYellow p:before {
+  @apply bg-yellow-500;
+}
+.wordCountGray p:before {
+  @apply bg-gray-400;
+}
 .show {
   transform: translate3d(0, 0, 0);
   overflow: hidden;
