@@ -18,7 +18,7 @@ const SortSelect = () => {
 
   return (
     <Listbox value={selected} onChange={setSelected}>
-      <div className="relative mt-1">
+      <div className="relative ">
         <Listbox.Button className="relative font-medium text-sm w-full rounded-xs cursor-pointer bg-slate-50 border border-slate-300 py-2 pl-3 pr-7 text-left focus:outline-none focus-visible:border-blue-300 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 ">
           <span className="text-slate-600">Sort By:</span>
           <span className=" truncate"> {SORT_BY[selected]}</span>
