@@ -383,7 +383,7 @@ const PostingMenu = () => {
                 : twitterLogin(setButtonDisabled)
             }
           >
-            <Icon type="twitter-sm" />
+            <Icon type="twitter" />
             {'Post to Twitter'}
           </Button>
           <div className="flex justify-between items-center">
@@ -403,7 +403,7 @@ const PostingMenu = () => {
                   twitterLogin(setButtonDisabled);
                 }}
               >
-                <Icon type="arrow-right-sm" />
+                <Icon type="arrow-right" />
                 <p>Login</p>
               </Button>
             )}
@@ -435,7 +435,7 @@ const PostingMenu = () => {
               )
             }
           >
-            <Icon type="twitter-sm" />
+            <Icon type="twitter" size="sm" />
             {'Post to Twitter'}
           </Button>
           <Button
@@ -443,7 +443,7 @@ const PostingMenu = () => {
             variant="primary"
             onClick={instagramPostHandler}
           >
-            <Icon type="instagram-sm" />
+            <Icon type="instagram" size="sm" />
             Post to Instagram
           </Button>
         </div>
