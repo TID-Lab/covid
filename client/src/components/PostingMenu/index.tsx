@@ -372,22 +372,6 @@ const PostingMenu = () => {
         {/* <button className="postButton" onClick={() => window.open('https://twitter.com/intent/tweet?' + encodeQueryData({"text": document.getElementById("postInput").value}),'_blank')}>Tweet</button> */}
         {/* add undo button perhaps */}
         <div className="grid grid-cols-[auto_1fr] gap-5 items-center mt-4 mb-3  justify-self-end ">
-          <Button
-            id="postButtonId"
-            className="text-center"
-            variant="primary"
-            disabled={buttonDisabled}
-            onClick={() =>
-              window.open(
-                'https://twitter.com/intent/tweet?' +
-                  encodeQueryData({ text: postText }),
-                '_blank'
-              )
-            }
-          >
-            <Icon type="twitter-sm" />
-            {'Post to Twitter'}
-          </Button>
           {/* <Button
             id="postButtonId"
             className="text-center"
@@ -435,8 +419,27 @@ const PostingMenu = () => {
               <Icon type="log-out" />
             </Button>
           </div> */}
+        </div>
+        <div className=" flex flex-col gap-y-4">
+          <p className="text-slate-600 text-sm font-medium">POST TO</p>
           <Button
-            className=" text-center w-fit "
+            id="postButtonId"
+            className="w-fit "
+            variant="primary"
+            disabled={buttonDisabled}
+            onClick={() =>
+              window.open(
+                'https://twitter.com/intent/tweet?' +
+                  encodeQueryData({ text: postText }),
+                '_blank'
+              )
+            }
+          >
+            <Icon type="twitter-sm" />
+            {'Post to Twitter'}
+          </Button>
+          <Button
+            className=" w-fit "
             variant="primary"
             onClick={instagramPostHandler}
           >
