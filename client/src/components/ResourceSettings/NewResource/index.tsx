@@ -47,11 +47,11 @@ const NewResource = () => {
     setTopics(event.target.value);
   }
 
-  function onClick() {
+  async function onClick() {
     try {
       var resource = null;
       if (!imageurl){
-        resource = createResource({
+        resource = await createResource({
           authoredAt,
           fetchedAt,
           author,
@@ -61,7 +61,7 @@ const NewResource = () => {
           topics
         });
       } else {
-        resource = createResource({
+        resource = await createResource({
           authoredAt,
           fetchedAt,
           author,
@@ -72,17 +72,16 @@ const NewResource = () => {
           topics
         });
       }
-
-      if (resource != null) {
+      if(resource) {
         hidePopup();
         notify('Resource saved to database.');
-
         setName('');
         setAuthor('');
         setUrl('');
         setType(TYPES[0]);
+      } else {
+        notify('An error occurred. Pleas make sure resource has a Name, Author, and URL.');
       }
-
     } catch (err) {
       notify('An error occurred.');
     }

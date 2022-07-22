@@ -88,6 +88,13 @@ export async function handleResourceRequest(body : {authoredAt: number, fetchedA
         /* Get images from page */
         const images = $('img').map(function(){ return $(this).attr('src'); })
         imageurl = images[0]
+        /* Save Parsed Image from Website */
+        // request({uri: imageurl, headers: { 'Content-type' : 'applcation/image' }, encoding: null} , function (error, response, body) {
+        //   if (!error && response.statusCode == 200) {
+        //     let fileExtension = url.substring(url.length - 4);
+        //     fs.writeFileSync(path.resolve('../assets') + '/resources/' + name + fileExtension, body);
+        //   }
+        // });
     
       } else {
         return {status: 400, res: "Invalid URL"}
@@ -122,7 +129,7 @@ export async function handleResourceRequest(body : {authoredAt: number, fetchedA
   }
   try {
     if (type === 'image' && url) {
-      request({uri: url, headers: { 'Content-type' : 'applcation/pdf' }, encoding: null} , function (error, response, body) {
+      request({uri: url, headers: { 'Content-type' : 'applcation/image' }, encoding: null} , function (error, response, body) {
         if (!error && response.statusCode == 200) {
           let fileExtension = url.substring(url.length - 4);
           fs.writeFileSync(path.resolve('../assets') + '/resources/' + name + fileExtension, body);
@@ -139,6 +146,9 @@ export async function handleResourceRequest(body : {authoredAt: number, fetchedA
   }
   
   try {
+    if (!url || !name || !type || !author) {
+      return {status: 500}
+    }
     const resour = await Resources.create({
       authoredAt,
       fetchedAt,
