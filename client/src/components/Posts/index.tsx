@@ -12,7 +12,7 @@ const Posts = () => {
     return (
       <div
         ref={postContainer}
-        className="flex overflow-auto py-2 px-6 gap-x-4 pt-13 hoverscroll "
+        className="flex overflow-auto py-2 px-6 gap-x-8 bg-slate-100 pt-13 hoverscroll "
         style={{ overflow: 'overlay' }}
       >
         {page > 0 && (

@@ -117,11 +117,11 @@ const Post = (props) => {
 
   return (
     <article
-      className={`${c.overlayborder} min-w-[400px] h-fit min-h-[30vh] relative w-full flex flex-col shadow-lg overflow-hidden rounded-xs ${c.Post} `}
+      className={`${c.overlayborder} min-w-[400px]  bg-white h-fit min-h-[30vh] relative w-full flex flex-col shadow-lg overflow-hidden rounded-xs ${c.Post} `}
     >
       {!isRendered ? (
         <div
-          className={`flex justify-center  h-[80vh] items-center  bg-white border-b border-slate-300`}
+          className={`flex justify-center  h-[75vh] items-center  bg-white border-b border-slate-300`}
         >
           <img
             className={`h-[80px] ${c.animation} `}
@@ -154,7 +154,7 @@ const Post = (props) => {
           dangerouslySetInnerHTML={{ __html: embedHTML }}
         ></div>
       </div>
-      <footer className={`px-2 py-3  `}>
+      <footer className={`px-2 py-3 `}>
         <div className="grid grid-cols-2 gap-x-2 font-medium">
           <div className="flex gap-x-2">
             <div className="rounded-full  flex-grow  min-w-[2rem] max-w-[2rem] w-[2rem] h-[2rem] flex justify-center  items-center bg-slate-600 text-slate-100">
