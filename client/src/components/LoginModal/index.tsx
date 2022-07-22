@@ -17,9 +17,9 @@ const LoginModal = () => {
   return (
     <div className={`Modal ${c.LoginModal}`}>
       <img src="/images/projectpeach.png" alt="Project Peach Logo"></img>
-      <h1 className="text-center text-3xl mb-9 mt-6">Organization Login</h1>
+      <h1 className="mt-6 text-3xl text-center mb-9">Organization Login</h1>
       <form
-        className="grid grid-col items-center justify-start gap-y-4"
+        className="grid items-center justify-start grid-col gap-y-4"
         method="post"
         action="/api/auth/login"
       >
