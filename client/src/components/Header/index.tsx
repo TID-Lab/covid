@@ -30,9 +30,9 @@ const Header = () => {
   if (pathname === '/social-media-dashboard' || pathname === '/resources') {
     return (
       <header
-        className={`bg-white grid font-medium ${c.header_grid} text-slate-700`}
+        className={`grid font-medium ${c.header_grid} text-slate-700 fixed top-0 left-0 z-50 w-full`}
       >
-        <div className="border-r border-gray-400 px-2 py-2  flex justify-between items-center">
+        <div className="border-r bg-white  border-slate-400 px-2 py-2  flex justify-between items-center">
           <Logo />
           <Menu as="div" className="relative text-left">
             <Menu.Button className=" hover:bg-slate-200 pl-3 flex gap-x-1  border-slate-300 items-center font-medium pr-1 py-1 text-sm rounded-xs">
@@ -92,7 +92,9 @@ const Header = () => {
           </Menu>
         </div>
 
-        <div className="flex justify-between items-center px-4 py-2 text-base">
+        <div
+          className={`flex justify-between items-center px-4 py-2 text-base  ${c.firefoxfix}`}
+        >
           <div className="flex items-center h-fit grow space-x-2 pl-2 basis-0">
             <NavLink
               className={`${c.navlink} py-1 `}
@@ -130,7 +132,7 @@ const Header = () => {
     );
   } else if (pathname === '/') {
     return (
-      <header className="flex bg-white items-center px-2 py-1 border-b border-gray-400">
+      <header className="flex bg-white items-center px-2 py-1 border-b border-slate-300">
         <Logo />
       </header>
     );

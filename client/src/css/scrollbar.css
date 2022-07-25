@@ -25,6 +25,9 @@
 }
 
 .hoverscroll {
+  scrollbar-width: none;
+}
+.hoverscroll:hover {
   scrollbar-width: thin;
 }
 .hoverscroll::-webkit-scrollbar-thumb {
