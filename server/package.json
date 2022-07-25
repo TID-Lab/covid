@@ -2,7 +2,7 @@
   "name": "@tid-lab/covid-server",
   "main": "dist/app.js",
   "scripts": {
-    "start": "node dist/app.js",
+    "start": "cross-env DEBUG=core,db,api,util node dist/app.js",
     "build": "tsc",
     "dev": "cross-env DEBUG=core,db,api,util stmux -- [ -t \"Compiling Code\" \"npm run dev:compile\" ..  -t \"Running Code\" \"npm run dev:run\" ]",
     "dev:compile": "tsc --watch",
@@ -12,27 +12,35 @@
     "stop": "pm2 stop ecosystem.config.js"
   },
   "dependencies": {
+    "aho-corasick-node": "^1.0.2",
     "axios": "^0.21.2",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "chalk": "^4.1.0",
+    "cheerio": "^1.0.0-rc.11",
     "connect-mongo": "^4.4.1",
     "cross-env": "^7.0.3",
     "debug": "^4.3.1",
     "dotenv": "^8.6.0",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
+    "fs": "^0.0.1-security",
     "mongoose": "^5.12.2",
-    "oauth": "^0.9.15"
+    "oauth": "^0.9.15",
+    "path": "^0.12.7",
+    "pdf-parse": "^1.1.1",
+    "request": "^2.88.2",
+    "unfluff": "^3.2.0"
   },
   "devDependencies": {
+    "csv-parse": "^5.3.0",
     "eslint": "^7.23.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.23.1",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "nodemon": "^2.0.16",
+    "nodemon": "^2.0.19",
     "npm-run-all": "^4.1.5",
     "stmux": "^1.8.4",
     "typescript": "^4.7.2"

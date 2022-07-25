@@ -18,6 +18,7 @@ const Header = () => {
   function onMenuClick() {
     dispatch({ type: 'postingMenu/set', payload: !postingMenu });
   }
+
   if (pathname === '/social-media-dashboard') {
     return (
       <div className="PageHeader">
