@@ -1,0 +1,21 @@
+.ResourceModal {
+  width: 600px;
+  margin-top: 50px;
+}
+
+.ResourceModal .Header {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid lightgray;
+}
+
+.ResourceModal .Row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+}

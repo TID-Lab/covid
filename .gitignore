@@ -4,3 +4,6 @@ node_modules
 mongostart.ps1
 .DS_Store
 dist
+cypress/videos/fetch/topics.spec.js.mp4
+cypress/videos/frontend/createPost.spec.js.mp4
+cypress/videos/server/resources.spec.js.mp4

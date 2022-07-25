@@ -14,13 +14,8 @@ const { is } = require('../util/org');
 const resourcePost = require('../models/resource');
 
 // import sample data;
-const data = require('../sampleData');
-
-// resourcePost.collection.insertMany(data, function(err,r) {
-//   console.log("Error in server/models/resources");
-//   console.log("Something went wrong!")
-//   db.close();
-// })
+// const data = require('../sampleData');
+const { addResourcesFromCSV } = require('../util/addResources')
 
 // API routes
 const postRoutes = require('./post');
@@ -121,15 +116,31 @@ module.exports = () =>
       reject(err);
     });
 
+
+
     // If the HTTP server started, resolve.
     debug('Starting the API module...');
     server.listen(config.api.port, () => {
       debug(`API module started, listening on port ${config.api.port}.`);
       resolve();
     });
+    // // This methods add sample data into the resources schema in the covid collection.
+    // try {
+    //   if (resourcePost.count() == 0) {
+    //     resourcePost.insertMany(data, function (err, r) {
+    //       debug('We have added sample data onto the database.');
+    //     });
+    // }
+    // } catch (err) {
+    //   debug(err);
+    // }
+
+    // add the following to .env to enable autopopulation
+    // ADD_RES=../covid_res.csv
+    if (process.env.ADD_RES) {
+      setTimeout(addResourcesFromCSV, 1500, "../covid_res.csv");
+    }
+
+
   });
 
-// This methods add sample data into the resources schema in the covid collection.
-resourcePost.collection.insertMany(data, function (err, r) {
-  console.log('We have added sample data onto the database.');
-});

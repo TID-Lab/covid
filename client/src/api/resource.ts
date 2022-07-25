@@ -5,7 +5,6 @@ import { authFetch } from '../util/auth';
 
 let body = {};
 const defaultOptions = {
-  method: 'POST',
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
@@ -21,19 +20,17 @@ export let lastPage = true;
 async function fetchResources() {
   const options = {
     ...defaultOptions,
-    body: JSON.stringify(body),
+    method: 'GET',
   };
-  const res = await authFetch(`/api/resource/${page}`, options);
-
-  const { resources, lastPage: isLastPage } = await res.json();
-  lastPage = isLastPage;
+  const res = await fetch('/api/resource', options);
+  const resources = await res.json();
   return resources;
 }
 
 /**
  * Fetches resources using the given set of filters.
  */
-export async function getResources(filters) {
+async function getResources(filters) {
   page = 0;
   //body = filtersToBody(filters);
   return await fetchResources();
@@ -41,15 +38,62 @@ export async function getResources(filters) {
 /**
  * Fetches the next page of resources.
  */
-export async function getNextPage() {
+async function getNextPage() {
   page += 1;
-  return await fetchPosts();
+  return await fetchResources();
 }
 
 /**
  * Fetches the previous page of resources.
  */
-export async function getPrevPage() {
+async function getPrevPage() {
   if (page > 0) page -= 1;
-  return await fetchPosts();
+  return await fetchResources();
 }
+
+async function createResource(resource) {
+  const options = {
+    ...defaultOptions,
+    method: 'POST',
+    body: JSON.stringify(resource)
+  }
+  const res = await authFetch(`/api/resource`, options);
+  if (res.status === 200) {
+    var body = await res.json();
+  } else {
+    return null;
+  }
+  return body;
+}
+
+async function deleteResource(resourceUrl) {
+  const options = {
+    ...defaultOptions,
+    method: 'DELETE',
+    body: JSON.stringify(resourceUrl),
+  }
+  const res = await authFetch(`/api/resource`, options);
+  return res.status === 200;
+}
+
+async function editResource(resourceUrl, replacementResource) {
+  const options = {
+    ...defaultOptions,
+    method: 'PUT',
+    body: JSON.stringify(resourceUrl),
+    replacementBody: JSON.stringify(replacementResource)
+  }
+  const res = await authFetch(`/api/resource`, options);
+  const body = await res.json();
+  return body;
+}
+
+export {
+  getResources,
+  getNextPage,
+  getPrevPage,
+  createResource,
+  fetchResources,
+  deleteResource,
+  editResource
+};
