@@ -1,41 +1,34 @@
-.Post {
+.overlayborder::after {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  @apply border;
+  @apply border-slate-300;
+  @apply rounded-xs;
+  box-sizing: border-box;
+  pointer-events: none;
 }
 
 .Post > * {
   width: 100%;
 }
-
-.Post > .cover {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
+.content > * {
+  margin: 0px !important;
 }
 
 .Post > .container {
   /* background-color: white; */
   /* border-radius: 20px; */
-  height: fit-content;
+  //height: fit-content;
 }
 
-.Post > .container.facebook {
-  background-color: white;
-}
-
-.Post > .cover > img {
-  height: 80px;
+.animation {
   animation-duration: 2s;
   animation-name: pulse;
   animation-iteration-count: infinite;
-}
-
-.Post > .container > .content > * {
-  margin: 0px !important;
-}
-
-.Post .hidden {
-  display: none;
 }
 
 @keyframes pulse {
@@ -51,15 +44,14 @@
     transform: scale(1);
   }
 }
-
-.Post > .annotations {
+.annotations {
   height: fit-content;
 }
 
-.Post .retweet a {
+.retweet a {
   text-decoration: underline;
 }
 
-.Post .submitButton {
+.submitButton {
   background-color: white;
 }

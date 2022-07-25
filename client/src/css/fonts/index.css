@@ -17,3 +17,13 @@
   font-style: normal;
   font-display: swap;
 }
+
+@font-face {
+  font-family: 'Open Sauce Two';
+  src: local('Open Sauce Two Medium'), local('OpenSauceTwo-Medium'),
+    url('OpenSauceTwo-Medium.woff2') format('woff2'),
+    url('OpenSauceTwo-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}

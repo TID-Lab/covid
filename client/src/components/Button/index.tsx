@@ -1,54 +1,62 @@
-import React, { CSSProperties } from 'react';
-
+import {
+  AriaAttributes,
+  ButtonHTMLAttributes,
+  DetailedHTMLProps,
+  ReactNode,
+} from 'react';
 // define button styles here
 
 const btnStyle = {
-  primary: 'bg-primary hover:bg-gray-600 text-white rounded-full', //big primary button
-  secondary: 'bg-gray-100 hover:bg-gray-300 text-black rounded-md',
-  transparent: '',
-  outline:
-    'border border-currentColor hover:bg-gray-300 text-black rounded-full',
+  primary:
+    'bg-blue-100 hover:bg-blue-200 border-[1.5px] border-blue-300 active:border-blue-400 ', //big primary button
+  secondary:
+    'bg-slate-100 border-[1.5px] border-slate-300 hover:bg-slate-300 text-black ',
+  transparent: 'hover:bg-slate-200 rounded-xs underline	',
+  outline: 'border border-currentColor hover:bg-gray-300 text-black ',
 };
 
 const btnSize = {
-  sm: '',
-  md: 'py-1 px-3',
-  lg: 'py-2 px-6 ',
-  xl: '',
+  sm: 'py-0 px-4 gap-2',
+  md: 'py-1 px-4 gap-3',
+  lg: 'py-2 px-6 gap-4',
+  xl: 'py-4 px-9 gap-4',
 };
 
 const Button = ({
   children,
-  disabled = false,
-  id,
   onClick,
   className,
-  style,
+  rounded = false,
   variant = 'primary',
   size = 'lg',
+  ...props
 }: ButtonProps) => {
   return (
     <button
       type="button"
-      id={id}
-      className={`grid gap-4 auto-cols-auto ${btnStyle[variant]} ${btnSize[size]} ${className}`}
-      style={style}
+      className={` flex items-center disabled:opacity-50 disabled:pointer-events-none focus-visible:ring focus-visible:outline-0 ring-offset-2 font-medium ${
+        rounded ? 'rounded-full' : 'rounded-xs'
+      }  ${btnStyle[variant]} ${btnSize[size]} ${className}`}
       onClick={() => onClick()}
       //onKeyDown={()=>onClick()}
-      disabled={disabled}
+      {...props}
     >
       {children}
     </button>
   );
 };
-interface ButtonProps {
-  children?: React.ReactNode;
+interface ButtonProps
+  extends DetailedHTMLProps<
+      ButtonHTMLAttributes<HTMLButtonElement>,
+      HTMLButtonElement
+    >,
+    AriaAttributes {
+  children?: ReactNode;
   disabled?: boolean;
-  id?: string;
   onClick?: any;
   className?: string;
-  style?: CSSProperties;
-  variant?: 'primary' | 'secondary' | 'outline' | 'transparent';
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  rounded?: boolean;
+  variant?: keyof typeof btnStyle;
+  size?: keyof typeof btnSize;
 }
 export default Button;
