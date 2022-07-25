@@ -17,5 +17,14 @@
 }
 
 .active > .navlink_inner {
-  @apply bg-slate-100;
+  @apply bg-slate-200;
+}
+.firefoxfix {
+  @apply backdrop-blur-lg;
+  @apply bg-slate-100/95;
+}
+@supports not (backdrop-filter: blur(12px)) {
+  .firefoxfix {
+    background: rgba(255, 255, 255, 0.95);
+  }
 }

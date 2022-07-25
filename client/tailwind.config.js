@@ -19,6 +19,7 @@ module.exports = {
       white: 'var(--c-white)',
       black: 'var(--c-black)',
       slate: colors.slate,
+      tailwhite: colors.white,
       emerald: colors.emerald,
       red: colors.red,
       yellow: colors.yellow,
