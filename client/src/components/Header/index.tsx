@@ -28,7 +28,7 @@ const Header = () => {
     });
   }
 
-  if (pathname === '/social-media-dashboard' || pathname === '/resources') {
+  if (pathname === '/social-media-dashboard') {
     return (
       <header
         className={`bg-white grid font-medium ${c.header_grid} text-slate-700`}
