@@ -72,6 +72,7 @@ module.exports = {
     },
     spacing: {
       '0': '0px',
+      '0.5': '0.188rem',
       '1': '.312rem',
       '2': '.438rem',
       '3': '.5rem',
@@ -87,5 +88,5 @@ module.exports = {
     },
     extend: {},
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/line-clamp')],
 };

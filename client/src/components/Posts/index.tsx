@@ -39,7 +39,7 @@ const Posts = ({
         style={{ overflow: 'overlay' }}
       >
         {page > 0 && (
-          <div className="h-[80vh] flex place-items-center w-[400px]">
+          <div className="h-[80vh] flex justify-center items-center w-[400px]">
             <Button onClick={() => onClick(-1, 'Navigate to Previous Page')}>
               Previous Page
             </Button>
@@ -49,7 +49,7 @@ const Posts = ({
         {children}
 
         {!isLastPage && (
-          <div className="h-[80vh] flex place-items-center w-[400px]">
+          <div className="h-[80vh] flex justify-center items-center w-[400px]">
             <Button onClick={() => onClick(1, 'Navigate to Next Page')}>
               Next Page
             </Button>

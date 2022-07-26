@@ -60,8 +60,8 @@ const ResourceDashboard = () => {
         category={'Monitoring Page'}
         changePage={(num: number) => updatePage(num)}
       >
-        {posts.map((post) => (
-          <ResourcesPost data={post} key={post.url} />
+        {posts.map((post, index) => (
+          <ResourcesPost data={post} key={index} />
         ))}
       </Posts>
       <PostingMenu />

@@ -3,6 +3,7 @@ import { HTMLAttributes } from 'react';
 type iconType = keyof typeof icons;
 
 const iconSizes = {
+  '2xs': 12,
   xs: 16,
   sm: 20,
   md: 24,

@@ -9,7 +9,7 @@ export interface ResourceSchema {
   author: string;
   organization: string;
   name: string;
-  desc: string;
+  desc?: string;
   url: string;
   type: 'image' | 'website' | 'video' | 'pdf';
 
