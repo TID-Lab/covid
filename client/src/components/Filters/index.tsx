@@ -21,13 +21,13 @@ const Filters = () => {
   const filters = useAppSelector((state) => state.filters);
   const { platforms } = filters;
 
-  useEffect(() => {
-    getPosts(filters)
-      .then((posts) => {
-        dispatch({ type: 'posts/set', payload: posts });
-      })
-      .catch((_) => notify('An error occurred while filtering posts'));
-  }, [filters, dispatch]);
+  // useEffect(() => {
+  //   getPosts(filters)
+  //     .then((posts) => {
+  //       dispatch({ type: 'posts/set', payload: posts });
+  //     })
+  //     .catch((_) => notify('An error occurred while filtering posts'));
+  // }, [filters, dispatch]);
 
   return (
     <section className="bg-white border-r mt-13 border-slate-400   flex flex-col overflow-hidden ">

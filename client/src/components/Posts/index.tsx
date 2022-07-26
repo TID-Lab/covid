@@ -1,14 +1,39 @@
 import { useAppSelector } from 'hooks/useTypedRedux';
-import { page, lastPage } from 'api/post';
+import Button from 'components/Button';
 
-import Post from './Post';
 import PageButton from './PageButton';
-import { useRef } from 'react';
+import { ReactNode, useRef, useState } from 'react';
+import useTracker, { MatomoCategories } from 'hooks/useTracker';
 
-const Posts = () => {
+interface PostsProps {
+  page: number;
+  children: ReactNode;
+  hasContent: boolean;
+  isLastPage: boolean;
+  changePage: any;
+  category: MatomoCategories;
+}
+const Posts = ({
+  page,
+  children,
+  hasContent,
+  isLastPage,
+  changePage,
+  category,
+}: PostsProps) => {
   const postContainer = useRef<HTMLDivElement>(null);
-  const posts = useAppSelector((state) => state.posts);
-  if (posts.length > 0) {
+  const { trackEvent } = useTracker();
+
+  // set new page, then scroll back to top
+  function onClick(toPage: number, trackAction: string) {
+    changePage(toPage);
+    postContainer!.current!.scrollTo(0, 0);
+    trackEvent({
+      category: category,
+      action: trackAction,
+    });
+  }
+  if (hasContent) {
     return (
       <div
         ref={postContainer}
@@ -16,38 +41,28 @@ const Posts = () => {
         style={{ overflow: 'overlay' }}
       >
         {page > 0 && (
-          <PageButton
-            type="prev"
-            text="Previous Page"
-            parentRef={postContainer.current}
-            track={{
-              category: 'Monitoring Page',
-              action: 'Navigate to Previous Page',
-            }}
-          />
+          <div className="h-[80vh] flex place-items-center w-[400px]">
+            <Button onClick={() => onClick(-1, 'Navigate to Previous Page')}>
+              Previous Page
+            </Button>
+          </div>
         )}
 
-        {posts.map((post) => (
-          <Post data={post} key={post.url} />
-        ))}
+        {children}
 
-        {!lastPage && (
-          <PageButton
-            type="next"
-            text="Next Page"
-            parentRef={postContainer.current}
-            track={{
-              category: 'Monitoring Page',
-              action: 'Navigate to Next Page',
-            }}
-          />
+        {!isLastPage && (
+          <div className="h-[80vh] flex place-items-center w-[400px]">
+            <Button onClick={() => onClick(1, 'Navigate to Next Page')}>
+              Next Page
+            </Button>
+          </div>
         )}
       </div>
     );
   } else {
     return (
-      <div className="grid place-items-center" id="NoResults">
-        <p className="bold text-lg">No results found.</p>
+      <div className="grid place-items-center bg-slate-100" id="NoResults">
+        <p className="font-medium text-xl">No results found.</p>
       </div>
     );
   }
