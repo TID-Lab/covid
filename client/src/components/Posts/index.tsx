@@ -1,8 +1,6 @@
-import { useAppSelector } from 'hooks/useTypedRedux';
 import Button from 'components/Button';
 
-import PageButton from './PageButton';
-import { ReactNode, useRef, useState } from 'react';
+import { ReactNode, useRef } from 'react';
 import useTracker, { MatomoCategories } from 'hooks/useTracker';
 
 interface PostsProps {
@@ -37,7 +35,7 @@ const Posts = ({
     return (
       <div
         ref={postContainer}
-        className="flex overflow-auto py-2 px-6 gap-x-8 bg-slate-100 pt-13 hoverscroll "
+        className="grid-flow-col grid overflow-auto grid-rows-1 py-2 px-6 gap-x-8 bg-slate-100 pt-13 hoverscroll "
         style={{ overflow: 'overlay' }}
       >
         {page > 0 && (

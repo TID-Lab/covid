@@ -55,8 +55,8 @@ async function createResource(resource) {
   const options = {
     ...defaultOptions,
     method: 'POST',
-    body: JSON.stringify(resource)
-  }
+    body: JSON.stringify(resource),
+  };
   const res = await authFetch(`/api/resource`, options);
   if (res.status === 200) {
     var body = await res.json();
@@ -71,7 +71,7 @@ async function deleteResource(resourceUrl) {
     ...defaultOptions,
     method: 'DELETE',
     body: JSON.stringify(resourceUrl),
-  }
+  };
   const res = await authFetch(`/api/resource`, options);
   return res.status === 200;
 }
@@ -81,11 +81,32 @@ async function editResource(resourceUrl, replacementResource) {
     ...defaultOptions,
     method: 'PUT',
     body: JSON.stringify(resourceUrl),
-    replacementBody: JSON.stringify(replacementResource)
-  }
+    replacementBody: JSON.stringify(replacementResource),
+  };
   const res = await authFetch(`/api/resource`, options);
   const body = await res.json();
   return body;
+}
+
+// below code attempts to turn functions pure
+
+/**
+ * Pure function that Fetches posts using the GET /api/post API endpoint.
+ */
+export async function fetchResourceFromPage(pageNumber: number, filters = {}) {
+  //const body = filtersToBody(filters);
+  // const options = {
+  //   ...defaultOptions,
+  //   body: JSON.stringify(body),
+  // };
+
+  const options = {
+    ...defaultOptions,
+    method: 'GET',
+  };
+  const res = await fetch('/api/resource', options);
+  const resources = await res.json();
+  return resources;
 }
 
 export {
@@ -95,5 +116,5 @@ export {
   createResource,
   fetchResources,
   deleteResource,
-  editResource
+  editResource,
 };
