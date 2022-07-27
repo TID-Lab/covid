@@ -2,6 +2,7 @@
 // Functions for the /api/resource API endpoints
 
 import { authFetch } from '../util/auth';
+import { filtersToBody } from './post';
 
 let body = {};
 const defaultOptions = {
@@ -94,14 +95,10 @@ async function editResource(resourceUrl, replacementResource) {
  * Pure function that Fetches posts using the GET /api/post API endpoint.
  */
 export async function fetchResourceFromPage(pageNumber: number, filters = {}) {
-  //const body = filtersToBody(filters);
-  // const options = {
-  //   ...defaultOptions,
-  //   body: JSON.stringify(body),
-  // };
-
   const options = {
     ...defaultOptions,
+    // uncomment line below when the filter magic is ready
+    //  body: JSON.stringify(filtersToBody(filters)),
     method: 'GET',
   };
   const res = await fetch('/api/resource', options);

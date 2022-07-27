@@ -12,7 +12,7 @@ const defaultOptions = {
   },
 };
 // Converts from the filters state object to an HTTP request body
-function filtersToBody(filters) {
+export function filtersToBody(filters) {
   const { dates, topic, accounts, platforms, page, sortBy, search } = filters;
   const { curatedOnly, categories, identities, institutions, location } =
     accounts;
