@@ -24,6 +24,8 @@ export default function datesReducer(
   action: PayloadAction<dateRange>
 ) {
   switch (action.type) {
+    case 'dates/reset':
+      return initState;
     case 'dates/set':
       return action.payload;
 

@@ -6,10 +6,10 @@ import PostingMenu from 'components/PostingMenu';
 import useTracker from 'hooks/useTracker';
 import { useAppDispatch, useAppSelector } from 'hooks/useTypedRedux';
 import c from './index.module.css';
-import Post from 'components/Posts/Post';
 import { fetchResourceFromPage } from 'api/resource';
 import notify from 'util/notify';
 import ResourcesPost from 'components/Posts/ResourcesPost';
+import { clearFilters } from 'util/clearFiltersDispatch';
 // Need to import resources
 // Need to import Filters for Resources
 
@@ -28,6 +28,11 @@ const ResourceDashboard = () => {
   // Track page view
   useEffect(() => {
     trackPageView();
+    //on page unmount
+    return () => {
+      const clearItems = clearFilters();
+      clearItems.forEach((item: any) => dispatch(item));
+    };
   }, []);
 
   //update posts whenver filters or page number is updated
@@ -50,8 +55,8 @@ const ResourceDashboard = () => {
     if (newPage > 0 && !lastPage) setPage(page + toPage);
   }
   return (
-    <div className={`overflow-hidden grid ${c.dashboard_grid}`}>
-      <Filters />
+    <div className={`overflow-hidden h-full grid ${c.dashboard_grid}`}>
+      <Filters showDate showList={['COVID-19 Topics']} />
 
       <Posts
         page={page}

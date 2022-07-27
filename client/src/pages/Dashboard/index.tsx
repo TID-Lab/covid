@@ -9,6 +9,7 @@ import c from './index.module.css';
 import Post from 'components/Posts/Post';
 import { fetchPostsFromPage } from 'api/post';
 import notify from 'util/notify';
+import { clearFilters } from 'util/clearFiltersDispatch';
 
 const Dashboard = () => {
   useAuth();
@@ -23,6 +24,11 @@ const Dashboard = () => {
   // Track page view
   useEffect(() => {
     trackPageView();
+    //on page unmount
+    return () => {
+      const clearItems = clearFilters();
+      clearItems.forEach((item: any) => dispatch(item));
+    };
   }, []);
 
   //update posts whenver filters or page number is updated
@@ -46,7 +52,17 @@ const Dashboard = () => {
   }
   return (
     <div className={`overflow-hidden grid ${c.dashboard_grid}`}>
-      <Filters />
+      <Filters
+        showDate
+        showPlatforms
+        showList={[
+          'COVID-19 Topics',
+          'Account Categories',
+          'Account Identity',
+          'Account Location',
+          'Account Type',
+        ]}
+      />
 
       <Posts
         page={page}
