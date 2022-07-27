@@ -7,7 +7,7 @@ import {
 } from 'util/filterData';
 
 //  tags , combine account type, and identities
-const TAGS = { ...INSTITUTION, ...IDENTITIES };
+const TAGS = { ...INSTITUTION, ...IDENTITIES } as any;
 
 interface AuthorInfoProps {
   name: string;
@@ -25,39 +25,44 @@ const AuthorInfo = ({
 
   return (
     <div className="grid grid-cols-2 gap-x-2 font-medium">
-      <div className="flex gap-x-2  gap-y-2">
+      <div className="flex gap-x-2  gap-y-2 items-center">
         <div className="rounded-full  flex-grow  min-w-[2rem] max-w-[2rem] w-[2rem] h-[2rem] flex justify-center  items-center bg-slate-600 text-slate-100">
           <p className="text-base  ">{name && name[0].toUpperCase()}</p>
         </div>
         <div className="">
-          <div className="text-xs">
-            {accCategories ? (
-              accCategories
-                .map((tag, index) => (
-                  <p
-                    key={index}
-                    className="px-4 py-[4px] rounded-full bg-slate-200 "
-                  >
-                    {ACC_CATEGORIES[tag]}
-                  </p>
-                ))
-                .filter(Boolean)
-            ) : (
-              <div className="pt-2" />
-            )}
+          <div className="text-xs flex gap-x-0.5 gap-y-1 flex-wrap">
+            <p className="text-slate-500 font-medium ">
+              {accCategories ? (
+                accCategories
+                  .map(
+                    (tag, index) =>
+                      TAGS[tag] && (
+                        <>
+                          <span key={index} className="inline-block">
+                            {TAGS[tag]}
+                          </span>
+                          <span className="last:hidden">{', '}</span>
+                        </>
+                      )
+                  )
+                  .filter(Boolean)
+              ) : (
+                <span className="pt-2" />
+              )}
+            </p>
           </div>
           <p className="text-sm font-bold leading-4">{name}</p>
           <div className="text-xs flex flex-wrap gap-x-0.5 gap-y-1">
             {accCategories &&
               accCategories
-                .map((tag, index) => (
-                  <p
-                    key={index}
-                    className="px-4 py-0.5 rounded-full bg-slate-200 "
-                  >
-                    {ACC_CATEGORIES[tag]}
-                  </p>
-                ))
+                .map(
+                  (tag, index) =>
+                    ACC_CATEGORIES[tag] && (
+                      <p key={index} className="px-4 py-0.5  ">
+                        {ACC_CATEGORIES[tag]}
+                      </p>
+                    )
+                )
                 .filter(Boolean)}
           </div>
         </div>

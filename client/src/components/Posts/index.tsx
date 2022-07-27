@@ -60,7 +60,7 @@ const Posts = ({
   } else {
     return (
       <div className="grid place-items-center bg-slate-100" id="NoResults">
-        <p className="font-medium text-xl">No results found.</p>
+        <p className="font-medium text-lg">No results found.</p>
       </div>
     );
   }

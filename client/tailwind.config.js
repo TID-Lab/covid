@@ -17,7 +17,7 @@ module.exports = {
       current: 'currentColor',
       primary: 'var(--c-primary)',
       white: 'var(--c-white)',
-      black: 'var(--c-black)',
+      black: colors.black,
       slate: colors.slate,
       tailwhite: colors.white,
       emerald: colors.emerald,

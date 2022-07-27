@@ -57,7 +57,7 @@ const ResourceDashboard = () => {
         page={page}
         hasContent={posts.length > 0}
         isLastPage={lastPage}
-        category={'Monitoring Page'}
+        category={'Resources Page'}
         changePage={(num: number) => updatePage(num)}
       >
         {posts.map((post, index) => (

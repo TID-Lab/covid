@@ -1,6 +1,6 @@
 import icons from 'util/icons/iconlist.json';
 import { HTMLAttributes } from 'react';
-type iconType = keyof typeof icons;
+export type iconType = keyof typeof icons;
 
 const iconSizes = {
   '2xs': 12,
@@ -15,7 +15,7 @@ interface IconProps extends HTMLAttributes<HTMLDivElement> {
   size?: keyof typeof iconSizes;
 }
 
-const Icon = ({ type, size = 'xs', ...props }: IconProps) => {
+const Icon = ({ type, size = 'sm', ...props }: IconProps) => {
   return (
     <div
       {...props}
