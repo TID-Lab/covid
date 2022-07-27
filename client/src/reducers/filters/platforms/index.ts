@@ -9,6 +9,8 @@ export default function platformsReducer(
   action: PayloadAction<platformState>
 ) {
   switch (action.type) {
+    case 'platforms/reset':
+      return initState;
     case 'platforms/added':
       return [...state, action.payload];
     case 'platforms/removed':

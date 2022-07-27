@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { useLocation } from 'react-router-dom';
 import c from './index.module.css';
 import Logo from '../Logo';
@@ -28,7 +27,7 @@ const Header = () => {
     });
   }
 
-  if (pathname === '/social-media-dashboard') {
+  if (pathname === '/social-media-dashboard' || pathname === '/resources') {
     return (
       <header
         className={`grid font-medium ${c.header_grid} text-slate-700 fixed top-0 left-0 z-50 w-full`}
@@ -118,7 +117,15 @@ const Header = () => {
           </div>
           <TextSearch />
           <div className="grow basis-0 flex justify-end">
-            <Button onClick={onMenuClick}>+ Create Post</Button>
+            {pathname === '/resources' ? (
+              <Button
+                onClick={() => window.open('/settings/resources', '_self')}
+              >
+                Settings
+              </Button>
+            ) : (
+              <Button onClick={onMenuClick}>+ Create Post</Button>
+            )}
           </div>
         </div>
       </header>

@@ -22,7 +22,7 @@ const axios = require('axios').default;
 const extractor = require('unfluff');
 const cheerio = require('cheerio');
 const debug = useDebug('api');
-import { handleResourceRequest } from "../../util/addResources";
+import { handleResourceRequest } from '../../util/addResources';
 
 // Returns a page of resource posts using the given search query
 routes.get('/', async (req, res) => {
@@ -47,19 +47,22 @@ routes.post('/', async (req, res) => {
     res.status(401).send();
     return;
   }
-  req.body.orgId = id
-  handleResourceRequest(req.body).then((obj) => res.status(obj.status).send(obj.resource)).catch((err) => debug(err))
+  req.body.orgId = id;
+  handleResourceRequest(req.body)
+    .then((obj) => res.status(obj.status).send(obj.resource))
+    .catch((err) => debug(err));
 });
 
 // Deletes a resource given URL
 routes.delete('/', async (req, res) => {
-  const { url }  = req.body;
+  const { url } = req.body;
   if (typeof url !== 'string') {
     res.status(400).send();
     return;
   }
   try {
-    const result = await Resources.deleteOne({ url : url });
+    const result = await Resources.deleteOne({ url: url });
+
     if (result.deletedCount === 0) {
       res.status(404).send();
       return;
@@ -74,13 +77,13 @@ routes.delete('/', async (req, res) => {
 // Update a resource via replacement
 routes.put('/', async (req, res) => {
   const { url } = req.body;
-  const {replacementResource} = req.replacementResource;
+  const { replacementResource } = req.replacementResource;
   if (typeof url !== 'string') {
     res.status(400).send();
     return;
   }
   try {
-    const result = await CustomTag.replaceOne({ url }, {replacementResource});
+    const result = await CustomTag.replaceOne({ url }, { replacementResource });
     if (result.modifiedCount === 0) {
       res.status(404).send();
       return;

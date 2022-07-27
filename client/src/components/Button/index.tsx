@@ -24,7 +24,6 @@ const btnSize = {
 
 const Button = ({
   children,
-  onClick,
   className,
   variant = 'primary',
   size = 'lg',
@@ -37,8 +36,6 @@ const Button = ({
       className={` flex items-center disabled:opacity-50 disabled:pointer-events-none focus-visible:ring focus-visible:outline-0 ring-offset-2 font-medium ${
         rounded ? 'rounded-full' : 'rounded-xs'
       }  ${btnStyle[variant]} ${btnSize[size]} ${className}`}
-      onClick={() => onClick()}
-      //onKeyDown={()=>onClick()}
       {...props}
     >
       {children}
@@ -52,7 +49,6 @@ interface ButtonProps
     >,
     AriaAttributes {
   children?: ReactNode;
-  onClick?: any;
   className?: undefined | string;
   rounded?: boolean;
   variant?: keyof typeof btnStyle;

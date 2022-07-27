@@ -4,7 +4,7 @@ import useTracker, { MatomoEvent } from 'hooks/useTracker';
 import ChipSelector, { ChipSelectorProps } from 'components/ChipSelector';
 import { RootState } from 'store';
 
-interface FilterOptionItemProps extends ChipSelectorProps {
+export interface FilterOptionItemProps extends ChipSelectorProps {
   selector: (state: RootState) => any;
 
   dispatchType: string;

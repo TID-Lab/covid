@@ -10,9 +10,13 @@ import {
 const isTrackerActive = process.env.REACT_APP_TRACKER_ACTIVE === 'true' && true;
 
 //matomo category typings
-
+export type MatomoCategories =
+  | 'Filter'
+  | 'Post'
+  | 'Monitoring Page'
+  | 'Resources Page';
 export interface MatomoEvent extends TrackEventParams {
-  category: 'Filter' | 'Post' | 'Monitoring Page' | 'Resources Page';
+  category: MatomoCategories;
   action: string;
   name?: string;
 }

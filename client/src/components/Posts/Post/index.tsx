@@ -13,6 +13,7 @@ import {
   INSTITUTION,
   IDENTITIES,
 } from 'util/filterData';
+import AuthorInfo from '../AuthorInfo';
 const embedHTMLCache = [];
 
 function waitForEmbed(parent, callback) {
@@ -154,41 +155,13 @@ const Post = (props) => {
           dangerouslySetInnerHTML={{ __html: embedHTML }}
         ></div>
       </div>
+
       <footer className={`px-2 py-3 `}>
-        <div className="grid grid-cols-2 gap-x-2 font-medium">
-          <div className="flex gap-x-2">
-            <div className="rounded-full  flex-grow  min-w-[2rem] max-w-[2rem] w-[2rem] h-[2rem] flex justify-center  items-center bg-slate-600 text-slate-100">
-              <p className="text-base ">{data.author[0].toUpperCase()}</p>
-            </div>
-            <div className="">
-              <p className="text-sm font-bold">{data.author}</p>
-              <div className="text-xs flex flex-wrap gap-x-1 gap-y-2">
-                {data.tags
-                  .map((tag, index) => (
-                    <p
-                      key={index}
-                      className="px-4 py-[4px] rounded-full bg-slate-200 "
-                    >
-                      {TAGS[tag]}
-                    </p>
-                  ))
-                  .filter(Boolean)}
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-wrap gap-x-1 gap-y-2 text-xs h-fit">
-            {data.topics
-              .map((topic, index) => (
-                <p
-                  key={index}
-                  className="px-4 py-[4px] rounded-full bg-blue-100 border border-blue-200"
-                >
-                  {COVID_TOPICS[topic]}
-                </p>
-              ))
-              .filter(Boolean)}
-          </div>
-        </div>
+        <AuthorInfo
+          name={data.author}
+          topics={data.topics}
+          accCategories={data.tags}
+        />
 
         <div className={`flex gap-x-1 text-xs mt-4`}>
           <Button variant="outline" size="md" onClick={copyLink}>
