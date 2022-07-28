@@ -3,7 +3,6 @@
 
 import { authFetch } from '../util/auth';
 
-let body = {};
 const defaultOptions = {
   headers: {
     Accept: 'application/json',
@@ -12,10 +11,8 @@ const defaultOptions = {
 };
 
 export function filtersToBody(filters) {
-  const { dates, topic, accounts, platforms, page, sortBy, search } = filters;
-  const { curatedOnly, categories, identities, institutions, location } =
-    accounts;
-  const body = { platforms, page, sortBy, search };
+  const { dates, topic, page, sortBy, search } = filters;
+  const body = { page, sortBy, search };
 
   const { from: fromString, to: toString } = dates;
 
@@ -31,20 +28,6 @@ export function filtersToBody(filters) {
   if (topic !== 'all') {
     body.topic = topic;
   }
-  if (curatedOnly) {
-    if (categories !== 'all') {
-      body.category = categories;
-    }
-    if (identities !== 'all') {
-      body.identity = identities;
-    }
-    if (institutions !== 'all') {
-      body.institutions = institutions === 'institutional';
-    }
-    if (location !== 'all') {
-      body.georgia = location === 'georgia';
-    }
-  }
   return body;
 }
 
@@ -54,25 +37,18 @@ export let lastPage = true;
 /**
  * Fetches resources using the GET /api/resource API endpoint.
  */
-async function fetchResources() {
+async function fetchResources(pageNumber: Number, body: Object) {
   const options = {
     ...defaultOptions,
-    method: 'GET',
+    method: 'POST',
+    body: JSON.stringify(body),
   };
-  const res = await fetch('/api/resource', options);
-  const resources = await res.json();
-  console.log(resources);
+  const res = await fetch(`/api/resource/${pageNumber}`, options);
+  const { resources, lastPage: isLastPage } = await res.json();
+  lastPage = isLastPage;
   return resources;
 }
 
-/**
- * Fetches resources using the given set of filters.
- */
-async function getResources(filters) {
-  page = 0;
-  body = filtersToBody(filters);
-  return await fetchResources();
-}
 /**
  * Fetches the next page of resources.
  */
@@ -132,19 +108,11 @@ async function editResource(resourceUrl, replacementResource) {
  * Pure function that Fetches posts using the GET /api/post API endpoint.
  */
 export async function fetchResourceFromPage(pageNumber: number, filters = {}) {
-  const options = {
-    ...defaultOptions,
-    // uncomment line below when the filter magic is ready
-    //  body: JSON.stringify(filtersToBody(filters)),
-    method: 'GET',
-  };
-  const res = await fetch('/api/resource', options);
-  const resources = await res.json();
-  return resources;
+  let bd = filtersToBody(filters);
+  return fetchResources(pageNumber, bd);
 }
 
 export {
-  getResources,
   getNextPage,
   getPrevPage,
   createResource,

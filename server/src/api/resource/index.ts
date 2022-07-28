@@ -24,16 +24,85 @@ const cheerio = require('cheerio');
 const debug = useDebug('api');
 import { handleResourceRequest } from '../../util/addResources';
 
+// Converts an HTTP request body to a Mongoose filter
+function bodyToFilter(body) {
+  const {
+    dates,
+    topic,
+    search,
+  } = body || {};
+
+  const filter = {};
+
+  // search
+  if (search) filter.$text = { $search: search };
+
+  // dates
+  const { from, to } = dates || {};
+  if (from) {
+    filter.authoredAt = { $gte: new Date(from) };
+  }
+  if (to) {
+    filter.authoredAt = {
+      ...filter.authoredAt,
+      $lte: new Date(to),
+    };
+  }
+
+  // topic
+  if (topic) {
+    filter.topics = topic;
+  }
+
+  return filter;
+}
+
 // Returns a page of resource posts using the given search query
-routes.get('/', async (req, res) => {
-  let resources;
+routes.post('/:page', async (req, res) => {
   try {
-    resources = await Resources.find({});
+    const { body, params } = req;
+    if (typeof body !== 'object') {
+      res.status(400).send();
+      return;
+    }
+
+    const { page } = params;
+    let pageNum = 0;
+    try {
+      pageNum = parseInt(page, 10);
+    } catch (_) {
+      res.status(400).send();
+      return;
+    }
+
+    const { sortBy } = body;
+    let sortParam;
+    switch (sortBy) {
+    case 'recent':
+      sortParam = { authoredAt: -1 };
+      break;
+    }
+    const filter = bodyToFilter(body);
+    console.log(filter);
+    const filteredResources = await Resources.find(filter);
+    const filteredResCount = filteredResources.length;
+    const skipCount = pageNum * pageSize;
+    const resources = await Resources
+      .find(filter)
+      .sort(sortParam)
+      .skip(pageNum * pageSize)
+      .limit(pageSize)
+    const lastPage =
+      resources.length === 0 || filteredResCount - (skipCount + resources.length) <= 0;
+    res.status(200).send({
+      resources,
+      lastPage,
+    });
   } catch (err) {
     debug(`${err}`);
     res.status(500).send();
   }
-  res.status(200).send(resources);
+  res.status(500).send();
 });
 
 // Creates a new Resource
