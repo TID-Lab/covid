@@ -2,7 +2,6 @@
 // Functions for the /api/resource API endpoints
 
 import { authFetch } from '../util/auth';
-import { filtersToBody } from './post';
 
 let body = {};
 const defaultOptions = {
@@ -11,6 +10,43 @@ const defaultOptions = {
     'Content-Type': 'application/json',
   },
 };
+
+export function filtersToBody(filters) {
+  const { dates, topic, accounts, platforms, page, sortBy, search } = filters;
+  const { curatedOnly, categories, identities, institutions, location } =
+    accounts;
+  const body = { platforms, page, sortBy, search };
+
+  const { from: fromString, to: toString } = dates;
+
+  const from = new Date(fromString);
+  from.setMinutes(from.getMinutes() + from.getTimezoneOffset());
+
+  const to = new Date(toString);
+  to.setMinutes(to.getMinutes() + to.getTimezoneOffset());
+  to.setDate(to.getDate() + 1);
+
+  body.dates = { from, to };
+
+  if (topic !== 'all') {
+    body.topic = topic;
+  }
+  if (curatedOnly) {
+    if (categories !== 'all') {
+      body.category = categories;
+    }
+    if (identities !== 'all') {
+      body.identity = identities;
+    }
+    if (institutions !== 'all') {
+      body.institutions = institutions === 'institutional';
+    }
+    if (location !== 'all') {
+      body.georgia = location === 'georgia';
+    }
+  }
+  return body;
+}
 
 export let page = 0;
 export let lastPage = true;
@@ -25,6 +61,7 @@ async function fetchResources() {
   };
   const res = await fetch('/api/resource', options);
   const resources = await res.json();
+  console.log(resources);
   return resources;
 }
 
@@ -33,7 +70,7 @@ async function fetchResources() {
  */
 async function getResources(filters) {
   page = 0;
-  //body = filtersToBody(filters);
+  body = filtersToBody(filters);
   return await fetchResources();
 }
 /**

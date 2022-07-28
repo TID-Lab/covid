@@ -10,6 +10,7 @@ const axios = require('axios').default;
 const extractor = require('unfluff');
 const cheerio = require('cheerio');
 const debug = useDebug('api');
+var tr = require('textrank');
 
 
 const AhoCorasick = require('aho-corasick-node');
@@ -42,6 +43,7 @@ export async function handleResourceRequest(body : {authoredAt: number, fetchedA
   var html = null;
   var language = 'en';
   var content;
+  var desc;
   try {
     if (type == 'website' && url) {
       // May need https://www.npmjs.com/package/after-load to load JS heavy apps, but let's see if we can get by with just axios :)
@@ -53,7 +55,7 @@ export async function handleResourceRequest(body : {authoredAt: number, fetchedA
         const data = extractor(html);
 
         // Fill in blank/other fields of resource data object with unfluff extractor
-        var desc = data.description
+        desc = data.description
         if (data.author) {
           var extracted_author = data.author.toString()
         }
@@ -87,7 +89,22 @@ export async function handleResourceRequest(body : {authoredAt: number, fetchedA
 
         /* Get images from page */
         const images = $('img').map(function(){ return $(this).attr('src'); })
-        imageurl = images[0]
+        imageurl = images[0];
+        var isValid = function(string) {
+          let urlCheck
+          try {
+            urlCheck = new URL(string);
+          } catch (_) {
+            return false;  
+          }
+          return urlCheck.protocol === "http:" || urlCheck.protocol === "https:";
+        }
+        if (!isValid(imageurl)) {
+          var absURL = new URL(url);
+          var newUrl = url.split(absURL.pathname);
+          imageurl = newUrl[0] + imageurl;
+          console.log(imageurl);
+        }
         /* Save Parsed Image from Website */
         // request({uri: imageurl, headers: { 'Content-type' : 'applcation/image' }, encoding: null} , function (error, response, body) {
         //   if (!error && response.statusCode == 200) {
@@ -106,7 +123,7 @@ export async function handleResourceRequest(body : {authoredAt: number, fetchedA
   }
   try {
     if (type === 'pdf' && url) {
-      request({uri: url, headers: { 'Content-type' : 'applcation/pdf' }, encoding: null} , function (error, response, body) {
+      request({uri: url, headers: { 'Content-type' : 'applcation/pdf' }, encoding: null} , async function (error, response, body) {
         if (!error && response.statusCode == 200) {
           const write = async() =>  {
             fs.writeFileSync(path.resolve('../assets') + '/resources/' + name +'.pdf', body);
@@ -114,12 +131,15 @@ export async function handleResourceRequest(body : {authoredAt: number, fetchedA
           const parse = async() => {
             let result = await write();
             let dataBuffer = fs.readFileSync(path.resolve('../assets') + '/resources/' + name + '.pdf');
-            pdf(dataBuffer).then(function(data) {
-              console.log(data.text);
+            let text = pdf(dataBuffer).then(function(data) {
               return data.text;
             });
+            return text;
           }
-          content = parse();
+          content = await parse();
+          var textRank = new tr.TextRank(content);
+          desc = textRank.summarizedArticle;
+          console.log(desc);
         }
       });
     }
