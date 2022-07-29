@@ -8,16 +8,18 @@ import TrackerProvider from 'util/trackerProvider';
 import MatomoTracker from 'util/matomoTracker';
 
 import './css/index.css';
-
-//  so i had a different solution in mind when i first wrote this matomo tracker thing but now its overcomplicated, refactor later
-ReactDOM.render(
-  <Provider store={store}>
-    <TrackerProvider
+/*<TrackerProvider
       useTracker={process.env.REACT_APP_TRACKER_ACTIVE === 'true' && true}
       vendor={(children) => <MatomoTracker>{children}</MatomoTracker>}
     >
+        </TrackerProvider>
+
+    */
+//  so i had a different solution in mind when i first wrote this matomo tracker thing but now its overcomplicated, refactor later
+ReactDOM.render(
+  <Provider store={store}>
+    
       <App />
-    </TrackerProvider>
   </Provider>,
   document.getElementById('root')
 );

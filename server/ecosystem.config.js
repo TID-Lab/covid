@@ -5,7 +5,7 @@ module.exports = {
   apps: [
     {
       name: 'server',
-      script: 'src/app.js',
+      script: 'dist/app.js',
       env: {
         NODE_ENV: 'production',
       },

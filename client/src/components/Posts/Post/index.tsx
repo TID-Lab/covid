@@ -86,7 +86,7 @@ const Post = (props) => {
   const retweet = platform === 'twitter' && data.content.startsWith('RT @');
 
   //  tags , combine account categories, account type, and identities
-  const TAGS = { ...ACC_CATEGORIES, ...INSTITUTION, ...IDENTITIES };
+  const LABELS = { ...ACC_CATEGORIES, ...INSTITUTION, ...IDENTITIES };
 
   // Function for copying link to post to user's clipboard
   function copyLink(e) {
@@ -167,8 +167,8 @@ const Post = (props) => {
           </p>
           <p>
             <b>Account:</b>{' '}
-            {data.tags
-              .map((tag) => TAGS[tag])
+            {data.labels
+              .map((label) => LABELS[label])
               .filter(Boolean)
               .join(', ')}
           </p>

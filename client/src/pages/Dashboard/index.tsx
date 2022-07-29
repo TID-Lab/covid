@@ -5,7 +5,7 @@ import Posts from 'components/Posts';
 import useAuth from 'hooks/auth';
 import PostingMenu from 'components/PostingMenu';
 import useTracker from 'hooks/useTracker';
-
+import Tags from 'components/Tags';
 import c from './index.module.css';
 import { Tab } from '@headlessui/react';
 
@@ -51,11 +51,12 @@ const Dashboard = () => {
             <Tab.Panel>
               <Filters />
             </Tab.Panel>
-            <Tab.Panel>Tags</Tab.Panel>
+            <Tab.Panel> <Tags /> </Tab.Panel>
+            
           </Tab.Panels>
         </Tab.Group>
       </div>
-
+        
       <Posts />
 
       <PostingMenu />
