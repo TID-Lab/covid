@@ -5,8 +5,8 @@
     "start": "node dist/app.js",
     "build": "tsc",
     "dev": "cross-env DEBUG=core,db,fetch stmux -- [ -t \"Running Code\" \"npm run dev:run\" .. -t \"Compiling Code\" \"npm run dev:compile\" ]",
-    "dev:compile": "tsc --watch",
-    "dev:run": "nodemon dist/app.js",
+    "dev:compile": "cross-env DEBUG=core,db,fetch tsc --watch",
+    "dev:run": "cross-env DEBUG=core,db,fetch nodemon dist/app.js",
     "serve:start": "pm2 startOrRestart ecosystem.config.js",
     "serve": "run-s build serve:start",
     "stop": "pm2 stop ecosystem.config.js"

@@ -1,6 +1,7 @@
 // @ts-nocheck
 const { Schema, model } = require('mongoose');
-import CustomTag from 'server/src/models/customtag';
+import { tagSchema } from './customTag';
+
 /**
  * The Mongoose Schema for a social media post.
  */
@@ -17,7 +18,7 @@ const postSchema = new Schema({
   labels: { type: [String], default: [] },
   engagementRaw: { type: Number, default: 0 },
   engagementNormed: { type: Number, default: 0 },
-  customTags: { type: [CustomTag], default: [] },
+  customTags: { type: [tagSchema], default: [] },
 });
 
 // Create a text index for searchable fields

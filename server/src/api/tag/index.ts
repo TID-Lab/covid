@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-
+//@ts-nocheck
 // API routes for partner organizations
 
 const useDebug = require('debug');
@@ -11,6 +11,11 @@ const debug = useDebug('api');
 
 // Returns all of the tags for a given organization
 routes.get('/', async (req, res) => {
+  const session = req.session;
+  if (!session) {
+    res.status(401).send();
+    return;
+  }
   const id = req.session.org;
   if (!id) {
     res.status(401).send();
@@ -61,7 +66,7 @@ routes.post('/', async (req, res) => {
 });
 
 // Update a tag via replacement
-routes.put('/', async (req, res) => {
+routes.put('/a', async (req, res) => {
   const { _id } = req.body;
   const replacement = req.replacementBody;
   if (typeof _id !== 'string') {
@@ -82,7 +87,7 @@ routes.put('/', async (req, res) => {
 });
 
 // Deletes a tag
-routes.delete('/', async (req, res) => {
+routes.delete('/delete', async (req, res) => {
   const { _id } = req.body;
   if (typeof _id !== 'string') {
     res.status(400).send();

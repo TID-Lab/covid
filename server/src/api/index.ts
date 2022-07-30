@@ -15,7 +15,7 @@ const resourcePost = require('../models/resource');
 
 // import sample data;
 // const data = require('../sampleData');
-const { addResourcesFromCSV } = require('../util/addResources')
+const { addResourcesFromCSV } = require('../util/addResources');
 
 // API routes
 const postRoutes = require('./post');
@@ -24,6 +24,7 @@ const proxyRoutes = require('./proxy');
 const orgRoutes = require('./org');
 const authRoutes = require('./auth');
 const resourceRoutes = require('./resource');
+const tagRoutes = require('./tag');
 
 const debug = useDebug('api');
 const app = express();
@@ -77,6 +78,7 @@ module.exports = () =>
     apiRoutes.use('/topic', is('org', 'admin'), topicRoutes); // routes for COVID-19 topics
     apiRoutes.use('/proxy', is('org', 'admin'), proxyRoutes); // routes for oEmbed API proxies
     apiRoutes.use('/resource', is('org', 'admin'), resourceRoutes); //routes for resource posts.
+    apiRoutes.use('/tag', is('org', 'admin'), tagRoutes); // routes for tags
     apiRoutes.use('/org', orgRoutes); // routes for partner organizations
     apiRoutes.use('/auth', authRoutes); // routes for user authentication
     app.use('/api', apiRoutes); // mounts all the routes above to the /api route
@@ -116,8 +118,6 @@ module.exports = () =>
       reject(err);
     });
 
-
-
     // If the HTTP server started, resolve.
     debug('Starting the API module...');
     server.listen(config.api.port, () => {
@@ -138,9 +138,6 @@ module.exports = () =>
     // add the following to .env to enable autopopulation
     // ADD_RES=../covid_res.csv
     if (process.env.ADD_RES) {
-      setTimeout(addResourcesFromCSV, 1500, "../covid_res.csv");
+      setTimeout(addResourcesFromCSV, 1500, '../covid_res.csv');
     }
-
-
   });
-

@@ -19,6 +19,7 @@ async function fetchTags() {
     method: 'GET',
   };
   const res = await fetch('/api/tag', options);
+  console.log(res);
   const tags = await res.json();
   return tags;
 }
