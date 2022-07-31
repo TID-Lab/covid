@@ -13,6 +13,7 @@ import {
   IDENTITIES,
 } from 'util/filterData';
 import EditTags from '../EditTags';
+import { useAppSelector } from 'hooks/useTypedRedux';
 const embedHTMLCache = [];
 
 function waitForEmbed(parent, callback) {
@@ -33,6 +34,7 @@ const Post = (props) => {
   const coverImagePath = `/images/${platform}.png`;
   const elementID = `post-${platform}-${platformID}`;
   const element = document.getElementById(elementID);
+  const tags = useAppSelector((state) => state.tags.alltags);
 
   const [isLoaded, setLoaded] = useState(false);
   const [isRendered, setRendered] = useState(false);
@@ -171,6 +173,13 @@ const Post = (props) => {
             {data.labels
               .map((label) => LABELS[label])
               .filter(Boolean)
+              .join(', ')}
+          </p>
+          <p>
+            <b>customTags:</b>{' '}
+            {tags
+              .filter((tag) => tag.posts.find((item) => item === _id))
+              .map((tag) => tag.name)
               .join(', ')}
           </p>
         </div>

@@ -98,7 +98,8 @@ const EditTags = ({ postId }: EditTagsProps) => {
       description: tagDesc,
       posts: [postId],
     });
-    //   post = setTagName('');
+    //reset
+    setTagName('');
     setTagDescription('');
     setColor('');
 
