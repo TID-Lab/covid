@@ -448,7 +448,7 @@ const PostingMenu = () => {
           </Button>
         </div>
 
-        {showModal && (
+        {/* {showModal && (
           <PopupModal
             content={
               <>
@@ -470,9 +470,9 @@ const PostingMenu = () => {
               setShowModal(!showModal);
             }}
           />
-        )}
+        )} */}
 
-        {showSuccess && (
+        {/* {showSuccess && (
           <PopupModal
             content={
               <>
@@ -483,7 +483,7 @@ const PostingMenu = () => {
               setShowSuccess(!showSuccess);
             }}
           />
-        )}
+        )} */}
         {/* <form method="post" enctype="multipart/form-data">
           <div>
               <div>

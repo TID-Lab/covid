@@ -14,16 +14,18 @@ export function filtersToBody(filters) {
   const { dates, topic, page, sortBy, search } = filters;
   const body = { page, sortBy, search };
 
-  const { from: fromString, to: toString } = dates;
+  if (dates) {
+    const { from: fromString, to: toString } = dates;
 
-  const from = new Date(fromString);
-  from.setMinutes(from.getMinutes() + from.getTimezoneOffset());
+    const from = new Date(fromString);
+    from.setMinutes(from.getMinutes() + from.getTimezoneOffset());
 
-  const to = new Date(toString);
-  to.setMinutes(to.getMinutes() + to.getTimezoneOffset());
-  to.setDate(to.getDate() + 1);
+    const to = new Date(toString);
+    to.setMinutes(to.getMinutes() + to.getTimezoneOffset());
+    to.setDate(to.getDate() + 1);
 
-  body.dates = { from, to };
+    body.dates = { from, to };
+  }
 
   if (topic !== 'all') {
     body.topic = topic;

@@ -6,26 +6,38 @@ import Button from 'components/Button';
 import { fetchResources, deleteResource } from 'api/resource';
 
 import c from './index.module.css';
+import PopupModal from 'components/PopupModal';
 
 const ResourceModal = () => {
   const showPopup = useShowPopup();
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
 
-  function showCreateModal() {
-    showPopup(
-      <NewResource/>
-    );
-  }
-  function showEditModal() {
-    showPopup(
-      <EditResource/>
-    );
-  }
+  // function showEditModal() {
+  //   showPopup(<EditResource />);
+  // }
 
   return (
     <div className={`Modal ${c.ResourceModal}`}>
       <h1>Resource Settings</h1>
-      <Button onClick={showCreateModal} style={{marginLeft: '0.5rem', marginRight: '1.5rem', marginTop: '0.5rem', marginBottom: '0.5rem', maxHeight: '3rem'}}>Add Resource</Button>
-      <Button onClick={showEditModal} style={{marginLeft: '0.5rem', marginRight: '1.5rem', marginTop: '0.5rem', marginBottom: '0.5rem', maxHeight: '3rem'}}>Edit Resources</Button>
+      <PopupModal
+        isOpen={showCreateModal}
+        onClose={() => setShowCreateModal(false)}
+        className="w-[400px]"
+      >
+        <NewResource onClose={() => setShowCreateModal(false)} />
+      </PopupModal>
+      <Button onClick={() => setShowCreateModal(true)} size="md">
+        Add A New Resource
+      </Button>
+
+      <Button onClick={() => setShowEditModal(true)}>Edit Resources</Button>
+      <PopupModal
+        isOpen={showEditModal}
+        onClose={() => setShowEditModal(false)}
+      >
+        <EditResource />
+      </PopupModal>
     </div>
   );
 };

@@ -3,12 +3,16 @@ import { createResource } from 'api/resource';
 import { useHidePopup } from 'hooks/popup';
 import notify from 'util/notify';
 import { useState } from 'react';
-
+import { COVID_TOPICS, COVID_TOPICS_TYPE } from 'util/filterData';
 import c from './index.module.css';
+import TopicSettings from 'components/TopicSettings';
 
 const TYPES = ['website', 'video', 'pdf', 'image'];
 
-const NewResource = () => {
+interface NewResourceProps {
+  onClose: any;
+}
+const NewResource = ({ onClose }: NewResourceProps) => {
   const authoredAt = Date.now();
   const fetchedAt = Date.now();
   const [name, setName] = useState('');
@@ -16,12 +20,9 @@ const NewResource = () => {
   const [url, setUrl] = useState('');
   const [type, setType] = useState(TYPES[0]);
   const [imageurl, setImageUrl] = useState('');
-  const [topics, setTopics] = useState('');
-  
-
+  const [topics, setTopics] = useState<string[]>([]);
 
   const hidePopup = useHidePopup();
-
 
   function onNameChange(event: any) {
     setName(event.target.value);
@@ -43,14 +44,10 @@ const NewResource = () => {
     setImageUrl(event.target.value);
   }
 
-  function onTopicsChange(event: any) {
-    setTopics(event.target.value);
-  }
-
   async function onClick() {
     try {
       var resource = null;
-      if (!imageurl){
+      if (!imageurl) {
         resource = await createResource({
           authoredAt,
           fetchedAt,
@@ -58,7 +55,7 @@ const NewResource = () => {
           name,
           url,
           type,
-          topics
+          topics,
         });
       } else {
         resource = await createResource({
@@ -69,94 +66,111 @@ const NewResource = () => {
           url,
           type,
           imageurl,
-          topics
+          topics,
         });
       }
-      if(resource) {
-        hidePopup();
+      if (resource) {
         notify('Resource saved to database.');
+        onClose();
         setName('');
         setAuthor('');
         setUrl('');
         setType(TYPES[0]);
       } else {
-        notify('An error occurred. Pleas make sure resource has a Name, Author, and URL.');
+        notify(
+          'An error occurred. Pleas make sure resource has a Name, Author, and URL.'
+        );
       }
     } catch (err) {
       notify('An error occurred.');
     }
   }
 
-  function onClose() {
-    hidePopup();
+  function onTopicsChange(key: COVID_TOPICS_TYPE) {
+    if (topics.find((i) => i === COVID_TOPICS[key])) {
+      const removedTopics = topics.filter((i) => i !== COVID_TOPICS[key]);
+      setTopics(removedTopics);
+    } else {
+      const addTopics = [...topics, COVID_TOPICS[key]];
+      setTopics(addTopics);
+    }
   }
 
-  return(
-    <div className={`Modal ${c.NewResource}`}>
-      <h1>New Resource</h1>
+  return (
+    <div className={`Modal ${c.NewResource} flex flex-col gap-y-2`}>
+      <h1 className="font-bold text-lg">New Resource</h1>
       <div>
-        <label>Type: </label>
-        <select onChange={onTypeChange} value={type}>
-          {TYPES.map(type => (
-            <option key={type} value={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</option>
+        <label className="block">Type: </label>
+        <select onChange={onTypeChange} value={type} className="py-1 px-2">
+          {TYPES.map((type) => (
+            <option key={type} value={type}>
+              {type.charAt(0).toUpperCase() + type.slice(1)}
+            </option>
           ))}
         </select>
       </div>
-      <div>
-        <label>Name: </label>
-        <input className='Name' type='text' value={name} onChange={onNameChange} placeholder='Name'></input>
+      <div className="grid grid-cols-2 gap-2">
+        <div>
+          <label className="block">Name: </label>
+          <input
+            className="py-1 px-2"
+            type="text"
+            value={name}
+            onChange={onNameChange}
+            placeholder="Name"
+          />
+        </div>
+        <div>
+          <label className="block">Author: </label>
+          <input
+            className="py-1 px-2"
+            type="text"
+            value={author}
+            onChange={onAuthorChange}
+            placeholder="Author"
+          />
+        </div>
+        <div>
+          <label className="block">URL: </label>
+          <input
+            className="py-1 px-2"
+            type="text"
+            value={url}
+            onChange={onUrlChange}
+            placeholder="URL"
+          />
+        </div>
+        <div>
+          {type !== 'image' && <p>Image URL: </p>}
+          {type !== 'image' && (
+            <input
+              className="py-1 px-2"
+              type="text"
+              value={imageurl}
+              onChange={onImageUrlChange}
+              placeholder="Image URL"
+            ></input>
+          )}
+        </div>
       </div>
-      <div>
-        <label>Author: </label>
-        <input className='Author' type='text' value={author} onChange={onAuthorChange} placeholder='Author'></input>
-      </div>
-      <div>
-        <label>URL: </label>
-        <input className='URL' type='text' value={url} onChange={onUrlChange} placeholder='URL'></input>
-      </div>
-      <div>
-        {type !== 'image' && <p>Image URL: </p>}
-        {type !== 'image' && <input className='ImageURL' type='text' value={imageurl} onChange={onImageUrlChange} placeholder='Image URL'></input>}
-      </div>
-      <ul>
-          Topics:
-        <li>
-          Vaccines
-          <input type='checkbox' value={topics}></input>
-        </li>
-        <li>
-          Boosters 
-          <input type='checkbox' value={topics}></input>
-        </li>
-        <li>
-          Treatments 
-          <input type='checkbox' value={topics}></input>
-        </li>
-        <li>
-          Variants 
-          <input type='checkbox' value={topics}></input>
-        </li>
-        <li>
-          Long COVID 
-          <input type='checkbox' value={topics}></input>
-        </li>
-        <li>
-          Testing 
-          <input type='checkbox' value={topics}></input>
-        </li>
-        <li>
-          COVID x Diabetes 
-          <input type='checkbox' value={topics}></input>
-        </li>
-        <li>
-          Georgia 
-          <input type='checkbox' value={topics}></input>
-        </li>
+
+      <label>Topics:</label>
+      <ul className="flex flex-wrap gap-x-2 gap-y-4 w-1/2">
+        {Object.keys(COVID_TOPICS).map((key, index) => (
+          <li className="flex items-center gap-x-2 px-4 py-2 rounded-full bg-slate-100 w-fit">
+            <input
+              type="checkbox"
+              onChange={() => onTopicsChange(key as COVID_TOPICS_TYPE)}
+            ></input>
+            <label className="inline-block w-fit">
+              {COVID_TOPICS[key as COVID_TOPICS_TYPE]}
+            </label>
+          </li>
+        ))}
       </ul>
-      <Button className='CreateResourceButton' onClick={onClick}>+ Create Resource</Button>
-      <div>
-        <button onClick={onClose}>Close</button>
-      </div>
+      <Button className="w-fit" onClick={onClick}>
+        + Create Resource
+      </Button>
     </div>
   );
 };
