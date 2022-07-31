@@ -1,5 +1,5 @@
 import Icon from 'components/Icon';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { RadioGroup } from '@headlessui/react';
 import { useAppDispatch } from 'hooks/useTypedRedux';
 
@@ -21,32 +21,42 @@ function MultiChip({
   ...props
 }: MultiChipProps) {
   const dispatch = useAppDispatch();
+
+  useEffect(() => console.log(active), [active]);
   function onClick(key: string) {
-    if(active.find(i => i===key)) {
-      const newActiveTags = active.filter(i => i !== key);
-      dispatch({ type: 'activetags/set', payload: newActiveTags })
+    if (active.find((i) => i === key)) {
+      const newActiveTags = active.filter((i) => i !== key);
+      console.log(active.filter((i) => i !== key));
+      dispatch({ type: 'activetags/set', payload: newActiveTags });
     } else {
-      dispatch({ type: 'activetags/set', payload: [...active, key] })
+      dispatch({ type: 'activetags/set', payload: [...active, key] });
     }
   }
   return (
     <div {...props}>
-      {options && Object.keys(options).map((key, index) => (
-        <div key={index} onClick={()=>onClick(key)} className={`px-4 py-2 rounded-xs ${(active.find(i => i===key))? 'bg-blue-100':'bg-slate-100'}`}>
-        {key}
-        </div>
-      ))}
+      {options &&
+        Object.keys(options).map((key, index) => (
+          <div
+            key={index}
+            onClick={() => onClick(key)}
+            className={`px-4 py-2 rounded-xs ${
+              active.find((i) => i === key) ? 'bg-blue-100' : 'bg-slate-100'
+            }`}
+          >
+            {options[key].name}
+          </div>
+        ))}
+      <div></div>
     </div>
-    
   );
 }
 
 interface MultiChipProps {
   options: {
-    [key: string]: string;
+    [key: string]: any;
   };
   dispatchType?: string;
-  active:  string[];
+  active: string[];
   header?: ReactNode;
   onSelect?: any;
   className?: string;

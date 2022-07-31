@@ -20,7 +20,7 @@ const Dashboard = () => {
 
   return (
     <div className={`overflow-hidden grid ${c.dashboard_grid}`}>
-      <div>
+      <div className="overflow-hidden">
         <Tab.Group>
           <Tab.List className={`border-b-2`}>
             <Tab key={'Filters'}>
@@ -48,15 +48,17 @@ const Dashboard = () => {
           </Tab.List>
 
           <Tab.Panels>
-            <Tab.Panel>
+            <Tab.Panel className="overflow-auto h-full">
               <Filters />
             </Tab.Panel>
-            <Tab.Panel> <Tags /> </Tab.Panel>
-            
+            <Tab.Panel className="overflow-auto h-full">
+              {' '}
+              <Tags />{' '}
+            </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
       </div>
-        
+
       <Posts />
 
       <PostingMenu />

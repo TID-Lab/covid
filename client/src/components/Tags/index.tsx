@@ -25,15 +25,17 @@ const Tags = () => {
   const activetags = useAppSelector((state) => state.tags.activetags);
 
   useEffect(() => {
-    fetchTags().then((fetchedTags) => {
-      dispatch({ type: 'tags/set', payload: fetchedTags })
-    })
+    fetchTags()
+      .then((fetchedTags) => {
+        dispatch({ type: 'alltags/set', payload: fetchedTags });
+        console.log(fetchedTags);
+      })
+      .catch((error) => console.log(error));
   }, []);
 
   return (
     <section>
-    <MultiChip option={alltags} active={activetags}/>
-    <TagSort />
+      <MultiChip options={alltags} active={activetags} />
     </section>
   );
 };

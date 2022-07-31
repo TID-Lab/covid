@@ -1,7 +1,7 @@
 // @ts-nocheck
 // Functons for the /api/tag API endpoints
 
-import { authFetch } from '../util/auth';
+import { authFetch } from 'util/auth';
 
 const defaultOptions = {
   headers: {

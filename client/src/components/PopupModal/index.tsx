@@ -2,23 +2,29 @@
 // Followed https://www.cluemediator.com/create-simple-popup-in-reactjs
 import { Dialog } from '@headlessui/react';
 import c from './index.module.css';
+import { ReactNode } from 'react';
 
-const Popup = (props) => {
+interface PopupProps {
+  children: ReactNode;
+  isOpen: boolean;
+  onClose: (param: boolean) => void;
+}
+const PopupModal = ({ children, isOpen, onClose }: PopupProps) => {
   return (
-    <Dialog.Panel className="max-w-lg mx-auto">
-      <div className={c.popup_box}>
-        <div className={c.box}>
-          <span className={c.close_icon} onClick={props.handleClose}>
-            x
-          </span>
+    <Dialog open={isOpen} onClose={onClose} className="relative z-50">
+      <Dialog.Panel className="max-w-lg mx-auto">
+        <div className={c.popup_box}>
+          <div className={c.box}>
+            <span className={c.close_icon} onClick={onClose}>
+              x
+            </span>
 
-          {props.content}
+            {children}
+          </div>
         </div>
-      </div>
-
-      {/* ... */}
-    </Dialog.Panel>
+      </Dialog.Panel>
+    </Dialog>
   );
 };
 
-export default Popup;
+export default PopupModal;

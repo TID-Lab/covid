@@ -5,7 +5,7 @@ const initState = [];
 
 export default function activetagsReducer(state = initState, action) {
   switch (action.type) {
-    case 'tags/set':
+    case 'activetags/set':
       return [...action.payload];
     default:
       return state;

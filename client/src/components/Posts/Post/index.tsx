@@ -12,6 +12,7 @@ import {
   INSTITUTION,
   IDENTITIES,
 } from 'util/filterData';
+import EditTags from '../EditTags';
 const embedHTMLCache = [];
 
 function waitForEmbed(parent, callback) {
@@ -28,7 +29,7 @@ function waitForEmbed(parent, callback) {
 const Post = (props) => {
   const { data } = props;
   console.log(data);
-  const { url, platform, platformID } = data;
+  const { _id, url, platform, platformID } = data;
   const coverImagePath = `/images/${platform}.png`;
   const elementID = `post-${platform}-${platformID}`;
   const element = document.getElementById(elementID);
@@ -184,6 +185,7 @@ const Post = (props) => {
             Make Post
           </Button>
         </div>
+        <EditTags postId={_id} />
       </div>
     </div>
   );
