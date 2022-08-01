@@ -29,6 +29,7 @@ const ResourceDashboard = () => {
   useEffect(() => {
     trackPageView();
     //on page unmount
+    dispatch({ type: 'dates/resetresource' });
     return () => {
       const clearItems = clearFilters();
       clearItems.forEach((item: any) => dispatch(item));

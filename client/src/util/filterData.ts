@@ -58,6 +58,7 @@ export const DATE_PRESETS = {
   month: 'This Month',
 
   year: 'This Year',
+  all: 'All Time',
   custom: 'Custom',
 } as const;
 
