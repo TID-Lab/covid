@@ -197,7 +197,7 @@ const Post = (props) => {
             Make Post
           </Button>
         </div>
-        <EditTags postId={_id} />
+        <EditTags postId={_id} activeTags={tags} />
       </div>
     </div>
   );

@@ -58,12 +58,18 @@ async function editTag(tag, replacementTag) {
   const options = {
     ...defaultOptions,
     method: 'PUT',
-    body: JSON.stringify(tag),
-    replacementBody: replacementTag,
+    body: JSON.stringify({ tag: tag, replacementTag: replacementTag }),
+    //replacementBody: JSON.stringify(replacementTag),
   };
-  const res = await authFetch(`/api/tag`, options);
-  const body = await res.json();
-  return body;
+  const res = await authFetch(`/api/tag/replace`, options);
+  try {
+    const body = await res.json();
+    return body;
+  } catch (error) {
+    console.log(res);
+  }
+
+  return;
 }
 
 export { fetchTags, deleteTag, createTag, editTag };

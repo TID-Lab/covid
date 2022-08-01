@@ -66,10 +66,11 @@ routes.post('/', async (req, res) => {
 });
 
 // Update a tag via replacement
-routes.put('/a', async (req, res) => {
-  const { _id } = req.body;
-  const replacement = req.replacementBody;
-  if (typeof _id !== 'string') {
+routes.put('/replace', async (req, res) => {
+  const { tag, replacementTag } = req.body;
+  const _id = tag._id;
+  const replacement = replacementTag;
+  if (typeof tag._id !== 'string') {
     res.status(400).send();
     return;
   }
