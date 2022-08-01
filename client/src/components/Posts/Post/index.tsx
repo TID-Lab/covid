@@ -163,24 +163,27 @@ const Post = (props) => {
         <div className={``}>
           <p>
             <b>Topics:</b>{' '}
-            {data.topics
-              .map((topic) => COVID_TOPICS[topic])
-              .filter(Boolean)
-              .join(', ')}
+            {data.topics &&
+              data.topics
+                .map((topic) => COVID_TOPICS[topic])
+                .filter(Boolean)
+                .join(', ')}
           </p>
           <p>
             <b>Account:</b>{' '}
-            {data.labels
-              .map((label) => LABELS[label])
-              .filter(Boolean)
-              .join(', ')}
+            {data.labels &&
+              data.labels
+                .map((label) => LABELS[label])
+                .filter(Boolean)
+                .join(', ')}
           </p>
           <p>
             <b>customTags:</b>{' '}
-            {tags
-              .filter((tag) => tag.posts.find((item) => item === _id))
-              .map((tag) => tag.name)
-              .join(', ')}
+            {tags &&
+              tags
+                .filter((tag) => tag.posts.find((item) => item === _id))
+                .map((tag) => tag.name)
+                .join(', ')}
           </p>
         </div>
         <div className={`flex space-x-1 pb-4 `}>

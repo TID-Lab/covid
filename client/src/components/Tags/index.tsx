@@ -2,21 +2,6 @@
 import { useAppDispatch, useAppSelector } from 'hooks/useTypedRedux';
 import { useEffect } from 'react';
 
-import DateFilter from './DateFilter';
-import PlatformFilter from './PlatformFilter';
-import ClearFilters from '../ClearFilters';
-import { getPosts } from 'api/post';
-import notify from 'util/notify';
-import SortSelect from 'components/SortSelect';
-import FilterOptionItem from './FilterOptionItem';
-import TagSort from 'components/TagSort';
-import {
-  COVID_TOPICS,
-  ACC_CATEGORIES,
-  IDENTITIES,
-  LOCATION,
-  INSTITUTION,
-} from 'util/filterData';
 import MultiChip from 'components/MultiChip';
 import { fetchTags } from 'api/tag';
 const Tags = () => {
@@ -34,7 +19,8 @@ const Tags = () => {
   }, []);
 
   return (
-    <section>
+    <section className="h-full px-2">
+      <label className="my-2">Tags:</label>
       <MultiChip options={alltags} active={activetags} />
     </section>
   );

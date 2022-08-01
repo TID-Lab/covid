@@ -3,12 +3,29 @@ import { ReactNode, useEffect } from 'react';
 import { RadioGroup } from '@headlessui/react';
 import { useAppDispatch } from 'hooks/useTypedRedux';
 
-//for whatever reason tailwind is not detecting classes if i dont have the space in front of the string
-const style = {
-  default:
-    ' border-slate-500 active:bg-slate-200 hover:bg-slate-100 py-2 px-4  ',
-  active: ' bg-slate-200 border-slate-300 font-bold py-2 pl-2 pr-4 ',
+//colors for customtags
+const COLORS = {
+  red: 'bg-rose-200 border-rose-300',
+  green: 'bg-emerald-200 border-emerald-300',
+  purple: 'bg-violet-200 border-violet-300',
+  blue: 'bg-blue-200 border-blue-300',
+  pink: 'bg-pink-200 border-pink-300',
 };
+//colors for customtags
+const ACTIVE_COLORS = {
+  red: 'bg-rose-400 text-white',
+  green: 'bg-emerald-400 text-white',
+  purple: 'bg-violet-400 text-white',
+  blue: 'bg-blue-400 text-white',
+  pink: ' bg-pink-400 text-white',
+};
+
+// //for whatever reason tailwind is not detecting classes if i dont have the space in front of the string
+// const style = {
+//   default:
+//     ' border-slate-500 active:bg-slate-200 hover:bg-slate-100 py-2 px-4  ',
+//   active: ' bg-slate-200 border-slate-300 font-bold py-2 pl-2 pr-4 ',
+// };
 
 function MultiChip({
   options,
@@ -25,6 +42,7 @@ function MultiChip({
   useEffect(() => console.log(active), [active]);
   function onClick(key: string) {
     if (active.find((i) => i === key)) {
+      //refactor to be generic later
       const newActiveTags = active.filter((i) => i !== key);
       console.log(active.filter((i) => i !== key));
       dispatch({ type: 'activetags/set', payload: newActiveTags });
@@ -33,14 +51,19 @@ function MultiChip({
     }
   }
   return (
-    <div {...props}>
+    <div
+      {...props}
+      className="flex flex-wrap text-sm gap-x-2 gap-y-3 font-medium"
+    >
       {options &&
         Object.keys(options).map((key, index) => (
           <div
             key={index}
             onClick={() => onClick(key)}
-            className={`px-4 py-2 rounded-xs ${
-              active.find((i) => i === key) ? 'bg-blue-100' : 'bg-slate-100'
+            className={`px-3 py-1 rounded border cursor-pointer ${
+              active.find((i) => i === key)
+                ? ACTIVE_COLORS[options[key].color as keyof typeof COLORS]
+                : COLORS[options[key].color as keyof typeof COLORS]
             }`}
           >
             {options[key].name}

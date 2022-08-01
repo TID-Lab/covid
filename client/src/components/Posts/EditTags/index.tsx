@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { fetchTags, deleteTag, createTag, editTag } from 'api/tag';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import PopupModal from 'components/PopupModal';
