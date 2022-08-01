@@ -20,7 +20,7 @@ const Dashboard = () => {
 
   return (
     <div className={`overflow-hidden grid ${c.dashboard_grid}`}>
-      <div className="overflow-hidden">
+      <div className="overflow-hidden h-full">
         <Tab.Group>
           <Tab.List className={`border-b-2`}>
             <Tab key={'Filters'}>

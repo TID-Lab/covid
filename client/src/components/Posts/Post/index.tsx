@@ -177,14 +177,6 @@ const Post = (props) => {
                 .filter(Boolean)
                 .join(', ')}
           </p>
-          <p>
-            <b>customTags:</b>{' '}
-            {tags &&
-              tags
-                .filter((tag) => tag.posts.find((item) => item === _id))
-                .map((tag) => tag.name)
-                .join(', ')}
-          </p>
         </div>
         <div className={`flex space-x-1 pb-4 `}>
           <Button variant="outline" size="md" onClick={copyLink}>
@@ -197,7 +189,15 @@ const Post = (props) => {
             Make Post
           </Button>
         </div>
-        <EditTags postId={_id} activeTags={tags} />
+        <p className="flex flex-wrap gap-x-1">
+          <b>customTags:</b>{' '}
+          {tags &&
+            tags
+              .filter((tag) => tag.posts.find((item) => item === _id))
+              .map((tag) => tag.name)
+              .join(', ')}
+          <EditTags postId={_id} activeTags={tags} />
+        </p>
       </div>
     </div>
   );

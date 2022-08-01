@@ -6,6 +6,7 @@ import { createOrganization } from 'api/org';
 import Button from 'components/Button';
 import { useAppDispatch, useAppSelector } from 'hooks/useTypedRedux';
 import { Combobox } from '@headlessui/react';
+import Icon from 'components/Icon';
 
 //colors for customtags
 const COLORS = {
@@ -52,10 +53,11 @@ const EditTags = ({ postId }: EditTagsProps) => {
       );
       setActiveTags(getActiveTags);
     }
+    console.log(tags);
   }, [tags]);
 
   // when activetags set, send to server
-  // very inefficeint, lets refactor ASAP. i think this should be handled server side. bet theres like a mongodb function we could use
+  // very inefficeint (i cant spell), lets refactor ASAP. i think this should be handled server side. bet theres like a mongodb function we could use
   function saveTagsToServer() {
     clearTimeout(timeout);
     timeout = setTimeout(async () => {
@@ -77,17 +79,17 @@ const EditTags = ({ postId }: EditTagsProps) => {
           }
         }
       });
+      await getTagsFromServer();
       setShowTagModal(false);
     }, 500);
   }
-  useEffect(() => {}, [activeTags]);
   // make sure this function doesn't get called unnessisairly (i cant spell)
   async function getTagsFromServer() {
     // make sure tags match server
-    let fetchedTags;
+    let fetchedTags = null;
     try {
       fetchedTags = await fetchTags();
-      dispatch({ type: 'tags/set', payload: fetchedTags });
+      dispatch({ type: 'alltags/set', payload: fetchedTags });
     } catch (error) {
       console.log(error);
     }
@@ -125,11 +127,13 @@ const EditTags = ({ postId }: EditTagsProps) => {
   }
 
   // Function for "confirm" button to create new tag with name and description
-  function createNewTagButton(e: any) {
+  async function createNewTagButton(e: any) {
     // e.preventDefault();
     const tagName = nameTextAreaRef.current!.value;
     const tagDesc = descTextAreaRef.current!.value;
     const tagColor = colorTextAreaRef.current!.value;
+
+    if (!tagName || !tagDesc || !tagColor) return;
     // setTagName(tagName);
     // setTagDescription(tagDesc);
     // setColor(tagColor);
@@ -161,6 +165,8 @@ const EditTags = ({ postId }: EditTagsProps) => {
     // setColor('');
 
     console.log(new_tag);
+    await getTagsFromServer();
+    backToTagPopup();
   }
 
   return (
@@ -172,46 +178,50 @@ const EditTags = ({ postId }: EditTagsProps) => {
       <PopupModal isOpen={showTagModal} onClose={() => setShowTagModal(false)}>
         <label className="mb-2">Add or remove custom tags:</label>
         <Combobox value={activeTags} onChange={setActiveTags} multiple>
-          <div className="px-3 py-1 rounded bg-slate-50 border border-slate-300 w-fit min-w-1/2 mb-2">
-            <div className="flex gap-x-2">
-              {activeTags.length > 0 && (
-                <ul className="text-sm flex gap-x-1">
-                  {activeTags.map((tag, index) => (
-                    <li
-                      className={`${
-                        COLOR_CSS[tag.color]
-                      } px-3 py-1 rounded cursor-pointer`}
-                      key={tag._id}
-                      onClick={() => removeTagFromActive(tag._id)}
+          <div className="relative w-fit min-w-1/2">
+            <div className="relative px-3 py-1 rounded bg-slate-50 border border-slate-300  mb-2">
+              <div className="flex gap-x-2">
+                {activeTags.length > 0 && (
+                  <ul className="text-sm flex gap-x-1">
+                    {activeTags.map((tag, index) => (
+                      <li
+                        className={`${
+                          COLOR_CSS[tag.color]
+                        } px-3 py-1 rounded cursor-pointer`}
+                        key={tag._id}
+                        onClick={() => removeTagFromActive(tag._id)}
+                      >
+                        {tag.name}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                <Combobox.Input className="w-full" />
+                <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
+                  <Icon type="chevron-down-sm" />
+                </Combobox.Button>
+              </div>
+            </div>
+
+            <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+              {tags &&
+                tags.map((tag) => (
+                  <Combobox.Option
+                    key={tag.name}
+                    value={tag}
+                    className={`hover:bg-slate-200 cursor-pointer py-2 pl-3 `}
+                  >
+                    <span
+                      className={`${COLOR_CSS[tag.color]} px-3 py-1 rounded `}
                     >
                       {tag.name}
-                    </li>
-                  ))}
-                </ul>
-              )}
-              <Combobox.Input className="w-full" />
-            </div>
+                    </span>
+                  </Combobox.Option>
+                ))}
+            </Combobox.Options>
           </div>
-
-          <Combobox.Options
-            static
-            className="flex flex-wrap gap-x-2 gap-y-3 mb-2 font-sm"
-          >
-            {tags &&
-              tags.map((tag) => (
-                <Combobox.Option
-                  key={tag.name}
-                  value={tag}
-                  className={`${
-                    COLOR_CSS[tag.color]
-                  } px-3 py-1 rounded cursor-pointer`}
-                >
-                  {tag.name}
-                </Combobox.Option>
-              ))}
-          </Combobox.Options>
         </Combobox>
-        <div className="flex gap-x-2">
+        <div className="flex gap-x-2 mt-[15rem]">
           <Button className="text-xs" onClick={saveTagsToServer}>
             Save {'&'} Close
           </Button>
@@ -243,7 +253,7 @@ const EditTags = ({ postId }: EditTagsProps) => {
         ></textarea>
         <p>Tag Color</p>
         <select
-          onChange={(e) => setColor(e.currentTarget.value)}
+          //onChange={(e) => setColor(e.currentTarget.value)}
           ref={colorTextAreaRef}
         >
           {Object.keys(COLORS).map((val, index) => (
