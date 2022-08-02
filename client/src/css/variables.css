@@ -1,16 +1,14 @@
 :root {
-  --body-font-size: 18px;
+  --body-font-size: 1rem;
   --body-background: #d1d7e0;
   --body-primary: #000;
   --body-secondary: #444;
   --body-font: 'Open Sauce Two', sans-serif;
-  /* 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-  Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+
   --header-large-size: 50px;
   --header-medium-size: 40px;
   --header-font: 'Open Sauce Two', sans-serif;
-  /* 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-  Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+
   --link-color: #0000ee;
   --body-primary-orange: #ef713b;
   /* orange color to match the dark orange circles on projectpeach.org */
@@ -25,6 +23,15 @@
   --c-primary: #cd4c2c;
   --c-white: #fff;
   --c-black: #000;
+  --c-blue-100: #e8f2ff;
+  --c-blue-200: #c1dcff;
+  --c-blue-300: #60a5fa;
+  --c-blue-400: #006ef6;
+  /* no values for 500,600 for now*/
+
+  --c-blue-700: #1657d6;
+  --c-blue-800: #1657d6;
+  --c-blue-900: #00479f;
 
   --sidebar-w: 300px;
 }

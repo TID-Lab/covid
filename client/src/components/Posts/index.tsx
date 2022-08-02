@@ -1,26 +1,43 @@
-// @ts-nocheck
 import { useAppSelector } from 'hooks/useTypedRedux';
 import { page, lastPage } from 'api/post';
 
 import Post from './Post';
-import PrevPageButton from '../PrevPageButton';
-import NextPageButton from '../NextPageButton';
+import PageButton from './PageButton';
+import { useRef } from 'react';
 
 const Posts = () => {
+  const postContainer = useRef<HTMLDivElement>(null);
   const posts = useAppSelector((state) => state.posts);
   if (posts.length > 0) {
     return (
-      <div
-        className="flex flex-row overflow-auto py-2 px-4 space-x-6"
-        id="Posts"
-      >
-        {page > 0 ? <PrevPageButton /> : ''}
+      <div ref={postContainer} className="flex overflow-auto py-2 px-4 gap-x-6">
+        {page > 0 && (
+          <PageButton
+            type="prev"
+            text="Previous Page"
+            parentRef={postContainer.current}
+            track={{
+              category: 'Monitoring Page',
+              action: 'Navigate to Previous Page',
+            }}
+          />
+        )}
 
         {posts.map((post) => (
           <Post data={post} key={post.url} />
         ))}
 
-        {!lastPage ? <NextPageButton /> : ''}
+        {!lastPage && (
+          <PageButton
+            type="next"
+            text="Next Page"
+            parentRef={postContainer.current}
+            track={{
+              category: 'Monitoring Page',
+              action: 'Navigate to Next Page',
+            }}
+          />
+        )}
       </div>
     );
   } else {

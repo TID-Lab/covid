@@ -2,13 +2,13 @@ import { useAppDispatch, useAppSelector } from 'hooks/useTypedRedux';
 import Button from 'components/Button';
 import c from './index.css';
 import useTracker from 'hooks/useTracker';
-import { ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 import formatDate from 'util/formatDate';
 
-interface ClearFiltersProps {
+interface ClearFiltersProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
 }
-const ClearFilters = ({ children }: ClearFiltersProps) => {
+const ClearFilters = ({ children, ...props }: ClearFiltersProps) => {
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.filters);
   const { platforms } = filters;
@@ -49,7 +49,7 @@ const ClearFilters = ({ children }: ClearFiltersProps) => {
   }
 
   return (
-    <div>
+    <div {...props}>
       <Button variant="outline" size="md" onClick={onClick}>
         {children}
       </Button>

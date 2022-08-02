@@ -14,53 +14,53 @@ const Header = () => {
   const postingMenu = useSelector(state => state.postingMenu);
 
   function onMenuClick() {
-    dispatch({type: 'postingMenu/set', payload: !postingMenu})
+    dispatch({ type: 'postingMenu/set', payload: !postingMenu })
   }
 
   if (pathname === '/social-media-dashboard') {
     return (
-        <div className="flex justify-between bg-white items-center px-2 py-1 border-b border-gray-400">
-            <div className='flex '>
+      <div className="flex justify-between bg-white items-center px-2 py-1 border-b border-gray-400">
+        <div className='flex '>
           <Logo />
-          <Button style={{marginLeft: '0.5rem', marginRight: '1.5rem', marginTop: '0.5rem', marginBottom: '0.5rem', maxHeight: '3rem'}} onClick={()=> window.open('/resources', '_self') }> Resources </Button>
+          <Button style={{ marginLeft: '0.5rem', marginRight: '1.5rem', marginTop: '0.5rem', marginBottom: '0.5rem', maxHeight: '3rem' }} onClick={() => window.open('/resources', '_self')}> Resources </Button>
           <SortSelect />
           <TextSearch />
         </div>
-     
-        <Button onClick={ onMenuClick }>
-        + Create Post
+
+        <Button onClick={onMenuClick}>
+          + Create Post
         </Button>
       </div>
     )
-  } else if (pathname === '/' ) {
+  } else if (pathname === '/') {
     return (
       <div className="flex bg-white items-center px-2 py-1 border-b border-gray-400">
         <Logo />
       </div>
-    ) 
+    )
   } else if (pathname === '/resources') {
     return (
       <div className="flex justify-between bg-white items-center px-2 py-1 border-b border-gray-400">
         <div className='flex '>
-        <Logo />
-      <Button style={{marginLeft: '0.5rem', marginRight: '1.5rem', marginTop: '0.5rem', marginBottom: '0.5rem', maxHeight: '3rem'}} onClick={()=> window.open('/social-media-dashboard', '_self') }> Monitoring </Button>
-      <SortSelect />
-      <TextSearch />
-      </div>
-      <Button onClick={ onMenuClick } className="flex justify-right">
-        + Create Post
-      </Button>
-      <Button onClick={()=> window.open('/settings/resources', '_self') }>
+          <Logo />
+          <Button style={{ marginLeft: '0.5rem', marginRight: '1.5rem', marginTop: '0.5rem', marginBottom: '0.5rem', maxHeight: '3rem' }} onClick={() => window.open('/social-media-dashboard', '_self')}> Monitoring </Button>
+          <SortSelect />
+          <TextSearch />
+        </div>
+        <Button onClick={onMenuClick} className="flex justify-right">
+          + Create Post
+        </Button>
+        <Button onClick={() => window.open('/settings/resources', '_self')}>
           Settings
-      </Button>
+        </Button>
       </div>
     )
   }
   else {
-      return ( // return nothing for now LOL
-        <div></div>
-      )
-    }
+    return ( // return nothing for now LOL
+      <div></div>
+    )
+  }
 }
 
 export default Header;
