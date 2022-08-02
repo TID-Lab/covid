@@ -315,8 +315,8 @@ const PostingMenu = () => {
       id="flyoutMenu"
       className={`${visibility} ${c.flyoutMenu} bg-white drop-shadow-xl border-l border-slate-300`}
     >
-      <div className="flex flex-col gap-y-4 px-7 py-7 h-full">
-        <div className="flex justify-between items-center">
+      <div className="flex flex-col h-full gap-y-4 px-7 py-7">
+        <div className="flex items-center justify-between">
           {/* <b style={{margin: "0", marginLeft: "1rem", marginRight: "1rem", paddingTop: "8px"}}> Search Trusted Resources </b> */}
           <h3 className="text-lg">
             <b> Create Post</b>
@@ -337,10 +337,10 @@ const PostingMenu = () => {
           </div>
         </div>
         <div className="flex-grow">
-          <div className="relative h-2/3 mb-4">
+          <div className="relative mb-4 h-2/3">
             <textarea
               id="postInput"
-              className="w-full h-full  py-7 px-6  resize-none rounded-xs bg-slate-100 border border-slate-300 "
+              className="w-full h-full px-6 border resize-none py-7 rounded-xs bg-slate-100 border-slate-300 "
               placeholder="Draft your message here "
               ref={textAreaRef}
               value={postText ? postText : ''}
@@ -386,14 +386,14 @@ const PostingMenu = () => {
             <Icon type="twitter" />
             {'Post to Twitter'}
           </Button>
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             {twitterLoginStatus ? (
-              <div className="px-4 py-1 text-sm rounded-full font-medium border bg-slate-100 border-slate-300">
+              <div className="px-4 py-1 text-sm font-medium border rounded-full bg-slate-100 border-slate-300">
                 <p>adasd</p>
               </div>
             ) : (
               <Button
-                className=" text-center text-sm"
+                className="text-sm text-center "
                 variant="secondary"
                 size="md"
                 rounded
@@ -408,7 +408,7 @@ const PostingMenu = () => {
               </Button>
             )}
             <Button
-              className=" text-center"
+              className="text-center "
               variant="transparent"
               size="md"
               disabled={!twitterLoginStatus}
@@ -420,8 +420,8 @@ const PostingMenu = () => {
             </Button>
           </div> */}
         </div>
-        <div className=" flex flex-col gap-y-4">
-          <p className="text-slate-600 text-sm font-medium">POST TO</p>
+        <div className="flex flex-col  gap-y-4">
+          <p className="text-sm font-medium text-slate-600">POST TO</p>
           <Button
             id="postButtonId"
             className="w-fit "
@@ -439,7 +439,7 @@ const PostingMenu = () => {
             {'Post to Twitter'}
           </Button>
           <Button
-            className=" w-fit "
+            className=" w-fit"
             variant="primary"
             onClick={instagramPostHandler}
           >
