@@ -12,22 +12,22 @@ const LabeledDate = ({ date, onDateChanged, label }: LabeledDateProps) => {
   }
 
   return (
-    <form className={`flex flex-col text-xs`}>
+    <div className={`flex flex-col text-sm`}>
       <label
-        className="font-bold mt-2 mb-1 text-slate-500 "
+        className="font-bold mt-2 text-slate-500 "
         htmlFor={label.replace(' ', '_')}
       >
-        {label}{' '}
+        {label}
       </label>
 
       <input
-        className="border py-2 px-1 font-bold rounded bg-slate-100 border-slate-300"
+        className="border py-2 px-1 rounded-xs font-regular bg-slate-50 border-slate-200 cursor-pointer focus:bg-blue-100 focus:border-blue-300"
         id={label.replace(' ', '_')}
         type="date"
         value={date}
         onChange={onChange}
       />
-    </form>
+    </div>
   );
 };
 

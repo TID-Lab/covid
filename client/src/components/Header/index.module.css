@@ -3,14 +3,19 @@
 }
 
 .navlink:hover > .navlink_inner {
-  @apply bg-slate-100;
+  @apply bg-slate-200;
 }
 
 .navlink {
-  @apply border-b-2;
+  @apply border-b-[2.5px];
   @apply border-transparent;
 }
 
 .active {
-  @apply border-primary;
+  @apply border-blue-300;
+  @apply font-bold;
+}
+
+.active > .navlink_inner {
+  @apply bg-slate-100;
 }

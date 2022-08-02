@@ -1,23 +1,26 @@
 import { useAppDispatch, useAppSelector } from 'hooks/useTypedRedux';
 
 import useTracker, { MatomoEvent } from 'hooks/useTracker';
-import ChipSelector, { ChipSelectorProps } from 'components/ChipSelector';
+import ChipSelector from 'components/ChipSelector';
 import { RootState } from 'store';
 
-interface FilterOptionItemProps extends ChipSelectorProps {
+interface TagOptionItemProps {
   selector: (state: RootState) => any;
-
+  header: string;
+  items: {
+    [key: string]: string;
+  };
   dispatchType: string;
   track: MatomoEvent;
 }
 
-const FilterOptionItem = ({
+const TagOptionItem = ({
   selector,
-
+  items,
+  header,
   dispatchType,
   track,
-  ...props
-}: FilterOptionItemProps) => {
+}: TagOptionItemProps) => {
   const dispatch = useAppDispatch();
   const selected = useAppSelector(selector);
 
@@ -31,13 +34,15 @@ const FilterOptionItem = ({
   return (
     <>
       <ChipSelector
-        className={' pl-4 pr-2'}
-        {...props}
-        onSelect={onRadioClick}
+        options={items}
+        header={header}
         active={selected}
+        onSelect={onRadioClick}
+        className={' pl-4 pr-2'}
+        id={header.replace('', '_')}
       />
     </>
   );
 };
 
-export default FilterOptionItem;
+export default TagOptionItem;

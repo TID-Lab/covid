@@ -1,0 +1,38 @@
+::-webkit-scrollbar {
+  width: 0.8rem;
+  background: transparent;
+  z-index: 1000;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  /* box-shadow: inset 0 0 5px grey;  */
+  background: transparent;
+}
+::-webkit-scrollbar-track:hover {
+  /* box-shadow: inset 0 0 5px grey;  */
+  @apply bg-slate-200/75;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300/75;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-300;
+}
+
+.hoverscroll {
+  scrollbar-width: thin;
+}
+.hoverscroll::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+.hoverscroll:hover::-webkit-scrollbar-thumb {
+  @apply bg-slate-300/75;
+}
+.hoverscroll:hover::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-300;
+}
