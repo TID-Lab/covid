@@ -6,6 +6,7 @@ const useDebug = require('debug');
 const routes = require('express').Router();
 const Organization = require('../../models/organization');
 const CustomTag = require('../../models/customtag.js');
+const mongoose = require('mongoose');
 
 const debug = useDebug('api');
 

@@ -24,8 +24,8 @@ const Tags = () => {
   }, []);
 
   return (
-    <>
-      <section className="pb-4 overflow-x-hidden bg-white border-r border-gray-400 ">
+    <div className="h-[85vh] flex flex-col justify-between">
+      <section className="pb-4 overflow-x-hidden bg-white border-r border-gray-400">
         <header className="pl-4 pr-2 py-4 sticky top-0 bg-white z-30 border-b-[1.5px] border-slate-300">
           <div className="flex justify-between">
             <h1 className="text-xl font-bold ">Tags</h1>
@@ -41,7 +41,7 @@ const Tags = () => {
         </header>
       </section>
 
-      <section className="h-full px-2">
+      <section className="px-2">
         <MultiChip options={alltags} active={activetags} />
 
         <TagOptionItem
@@ -62,7 +62,7 @@ const Tags = () => {
 
         <Button className="w-full">Delete Tags</Button>
       </section>
-    </>
+    </div>
   );
 };
 

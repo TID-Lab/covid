@@ -14,8 +14,16 @@ const {
 
 // Converts an HTTP request body to a Mongoose filter
 function bodyToFilter(body) {
-  const { dates, topic, category, institutions, georgia, platforms, search } =
-    body || {};
+  const {
+    dates,
+    topic,
+    category,
+    institutions,
+    georgia,
+    platforms,
+    search,
+    tags,
+  } = body || {};
 
   const filter = {};
 
@@ -74,6 +82,10 @@ function bodyToFilter(body) {
   // platform
   if (Array.isArray(platforms)) {
     filter.platform = { $in: platforms };
+  }
+
+  if (tags && tags.length) {
+    filter.tags = tags;
   }
 
   return filter;
