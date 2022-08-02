@@ -32,7 +32,7 @@ const Tags = () => {
             </ClearFilters>
           </div>
 
-          <SortSelect />
+          {/* <SortSelect /> */}
         </header>
       </section>
 

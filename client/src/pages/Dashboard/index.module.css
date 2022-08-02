@@ -7,7 +7,7 @@
 }
 
 .tab {
-  @apply cursor-pointer mx-1 mt-4 text-sm flex-1;
+  @apply cursor-pointer mx-1 mt-4 text-sm flex-1 outline-none;
 }
 
 .tab span {
