@@ -4,6 +4,9 @@ import { useEffect } from 'react';
 
 import MultiChip from 'components/MultiChip';
 import { fetchTags } from 'api/tag';
+import ClearFilters from 'components/ClearFilters';
+import SortSelect from 'components/SortSelect';
+import TagOptionItem from './TagOptionItem';
 const Tags = () => {
   const dispatch = useAppDispatch();
   const alltags = useAppSelector((state) => state.tags.alltags);
@@ -19,10 +22,40 @@ const Tags = () => {
   }, []);
 
   return (
-    <section className="h-full px-2">
-      <label className="my-2">Tags:</label>
-      <MultiChip options={alltags} active={activetags} />
-    </section>
+    <>
+      <section className="pb-4 overflow-x-hidden bg-white border-r border-gray-400 ">
+        <header className="pl-4 pr-2 py-4 sticky top-0 bg-white z-30 border-b-[1.5px] border-slate-300">
+          <div className="flex justify-between">
+            <h1 className="text-xl font-bold ">Tags</h1>
+            <ClearFilters>
+              <span className="text-xs">Clear All</span>
+            </ClearFilters>
+          </div>
+
+          <SortSelect />
+        </header>
+      </section>
+
+      <section className="h-full px-2">
+        <MultiChip options={alltags} active={activetags} />
+
+        <TagOptionItem
+          header="ACTIVE"
+          items={activetags}
+          selector={(state) => state.filters.topic}
+          dispatchType="topic/set"
+          track={{ category: 'Filter', action: 'Set Topic' }}
+        />
+
+        <TagOptionItem
+          header="INACTIVE"
+          items={activetags}
+          selector={(state) => state.filters.topic}
+          dispatchType="topic/set"
+          track={{ category: 'Filter', action: 'Set Topic' }}
+        />
+      </section>
+    </>
   );
 };
 

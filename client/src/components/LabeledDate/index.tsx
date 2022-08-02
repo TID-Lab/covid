@@ -14,14 +14,14 @@ const LabeledDate = ({ date, onDateChanged, label }: LabeledDateProps) => {
   return (
     <div className={`flex flex-col text-sm`}>
       <label
-        className="font-bold mt-2 text-slate-500 "
+        className="mt-2 font-bold text-slate-500 "
         htmlFor={label.replace(' ', '_')}
       >
         {label}
       </label>
 
       <input
-        className="border py-2 px-1 rounded-xs font-regular bg-slate-50 border-slate-200 cursor-pointer focus:bg-blue-100 focus:border-blue-300"
+        className="px-1 py-2 border cursor-pointer rounded-xs font-regular bg-slate-50 border-slate-200 focus:bg-blue-100 focus:border-blue-300"
         id={label.replace(' ', '_')}
         type="date"
         value={date}

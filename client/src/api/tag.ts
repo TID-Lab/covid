@@ -20,7 +20,10 @@ async function fetchTags() {
   };
   const res = await fetch('/api/tag', options);
   console.log(res);
-  const tags = await res.json();
+  const tags = await res.json().then((tags) => {
+    console.log('Tags', tags);
+    return tags;
+  });
   return tags;
 }
 

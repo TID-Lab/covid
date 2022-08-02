@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { useEffect, useState } from 'react';
 import Filters from 'components/Filters';
 import Posts from 'components/Posts';
@@ -10,6 +12,7 @@ import { fetchResourceFromPage } from 'api/resource';
 import notify from 'util/notify';
 import ResourcesPost from 'components/Posts/ResourcesPost';
 import { clearFilters } from 'util/clearFiltersDispatch';
+import { Tab } from '@headlessui/react';
 // Need to import resources
 // Need to import Filters for Resources
 
@@ -55,6 +58,47 @@ const ResourceDashboard = () => {
     const newPage = page + toPage;
     if (newPage > 0 && !lastPage) setPage(page + toPage);
   }
+
+  const Tabs = (
+    <div className={`overflow-hidden grid ${c.dashboard_grid}`}>
+      <div>
+        <Tab.Group>
+          <Tab.List className={`border-b-2`}>
+            <Tab key={'Filters'}>
+              {({ selected }) => (
+                <button
+                  className={`px-4 py-1 ml-2 border-2 border-b-0 rounded-md bg-white ${
+                    selected ? 'bg-slate-200 text-black' : 'bg-white text-black'
+                  }`}
+                >
+                  Filters
+                </button>
+              )}
+            </Tab>
+            <Tab key={'Tags'}>
+              {({ selected }) => (
+                <button
+                  className={`px-4 py-1 ml-2 border-2 border-b-0 rounded-md bg-white ${
+                    selected ? 'bg-slate-200 text-black' : 'bg-white text-black'
+                  }`}
+                >
+                  Tags
+                </button>
+              )}
+            </Tab>
+          </Tab.List>
+
+          <Tab.Panels>
+            <Tab.Panel>
+              <Filters />
+            </Tab.Panel>
+            <Tab.Panel>Tags</Tab.Panel>
+          </Tab.Panels>
+        </Tab.Group>
+      </div>
+    </div>
+  );
+
   return (
     <div className={`overflow-hidden h-full grid ${c.dashboard_grid}`}>
       <Filters showDate showList={['COVID-19 Topics']} />
@@ -70,6 +114,9 @@ const ResourceDashboard = () => {
           <ResourcesPost data={post} key={index} />
         ))}
       </Posts>
+
+      {/* <Filters /> */}
+      <Posts />
       <PostingMenu />
     </div>
   );
