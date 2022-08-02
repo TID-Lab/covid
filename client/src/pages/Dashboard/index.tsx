@@ -13,6 +13,7 @@ import notify from 'util/notify';
 import { clearFilters } from 'util/clearFiltersDispatch';
 import { Tab } from '@headlessui/react';
 import Tags from 'components/Tags';
+import SortSelect from 'components/SortSelect';
 
 const Dashboard = () => {
   useAuth();
@@ -60,17 +61,9 @@ const Dashboard = () => {
             </Tab>
 
             <Tab key={'Tags'} as="div" className={c.tab}>
-              {
-                ({ selected }) => (
-                  // <button
-                  //   className={`px-4 py-1 ml-2 border-2 border-b-0 rounded-md bg-white ${
-                  //     selected ? 'bg-slate-200 text-black' : 'bg-white text-black'
-                  //   }`}
-                  // >
-                  <p className={selected ? c.selectedTab : ''}>Tags</p>
-                )
-                // </button>
-              }
+              {({ selected }) => (
+                <p className={selected ? c.selectedTab : ''}>Tags</p>
+              )}
             </Tab>
           </Tab.List>
 
@@ -93,17 +86,43 @@ const Dashboard = () => {
   }
   return (
     <div className={`overflow-hidden grid ${c.dashboard_grid}`}>
-      <Filters
-        showDate
-        showPlatforms
-        showList={[
-          'COVID-19 Topics',
-          'Account Categories',
-          'Account Identity',
-          'Account Location',
-          'Account Type',
-        ]}
-      />
+      <section className="flex flex-col mt-0 overflow-hidden bg-white border-r pt-13 border-slate-400 ">
+        <SortSelect />
+
+        <Tab.Group>
+          <Tab.List className={c.tabList}>
+            <Tab key="filters" className={c.tab}>
+              {({ selected }) => (
+                <span className={selected ? c.selectedTab : ''}>Filters</span>
+              )}
+            </Tab>
+            <Tab key="tags" className={c.tab}>
+              {({ selected }) => (
+                <span className={selected ? c.selectedTab : ''}>Tags</span>
+              )}
+            </Tab>
+          </Tab.List>
+
+          <Tab.Panels>
+            <Tab.Panel>
+              <Filters
+                showDate
+                showPlatforms
+                showList={[
+                  'COVID-19 Topics',
+                  'Account Categories',
+                  'Account Identity',
+                  'Account Location',
+                  'Account Type',
+                ]}
+              />
+            </Tab.Panel>
+            <Tab.Panel>
+              <Tags />
+            </Tab.Panel>
+          </Tab.Panels>
+        </Tab.Group>
+      </section>
 
       <Posts
         page={page}
