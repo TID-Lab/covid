@@ -16,5 +16,5 @@
 }
 
 .selectedTab {
-  @apply !bg-green-400;
+  @apply !bg-emerald-400;
 }

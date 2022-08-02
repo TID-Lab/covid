@@ -12,6 +12,7 @@ import { fetchPostsFromPage } from 'api/post';
 import notify from 'util/notify';
 import { clearFilters } from 'util/clearFiltersDispatch';
 import { Tab } from '@headlessui/react';
+import Tags from 'components/Tags';
 
 const Dashboard = () => {
   useAuth();
