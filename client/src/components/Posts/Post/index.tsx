@@ -2,6 +2,7 @@
 import c from './index.module.css';
 
 import { useState, useEffect, useCallback } from 'react';
+import { useAppDispatch, useAppSelector } from 'hooks/useTypedRedux';
 import { authFetch } from 'util/auth';
 import store from 'store';
 import useTracker from 'hooks/useTracker';
