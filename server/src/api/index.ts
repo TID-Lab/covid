@@ -14,7 +14,6 @@ const { is } = require('../util/org');
 const resourcePost = require('../models/resource');
 
 // import sample data;
-// const data = require('../sampleData');
 const { addResourcesFromCSV } = require('../util/addResources')
 
 // API routes
