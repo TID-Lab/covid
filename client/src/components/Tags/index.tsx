@@ -8,6 +8,7 @@ import ClearFilters from 'components/ClearFilters';
 import SortSelect from 'components/SortSelect';
 import TagOptionItem from './TagOptionItem';
 import TextSearch from 'components/TextSearch';
+import Button from 'components/Button';
 const Tags = () => {
   const dispatch = useAppDispatch();
   const alltags = useAppSelector((state) => state.tags.alltags);
@@ -58,6 +59,8 @@ const Tags = () => {
           dispatchType="topic/set"
           track={{ category: 'Filter', action: 'Set Topic' }}
         />
+
+        <Button className="w-full">Delete Tags</Button>
       </section>
     </>
   );
