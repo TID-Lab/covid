@@ -4,44 +4,17 @@ import c from './index.css';
 import useTracker from 'hooks/useTracker';
 import { HTMLAttributes, ReactNode } from 'react';
 import formatDate from 'util/formatDate';
+import { clearFilters } from 'util/clearFiltersDispatch';
 
 interface ClearFiltersProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
 }
 const ClearFilters = ({ children, ...props }: ClearFiltersProps) => {
   const dispatch = useAppDispatch();
-  const filters = useAppSelector((state) => state.filters);
-  const { platforms } = filters;
   const { trackEvent } = useTracker();
   function onClick() {
-    const today = new Date();
-    let startDate = new Date();
-    startDate.setDate(today.getDate() - 7);
-
-    dispatch({
-      type: 'dates/set',
-      payload: {
-        preset: '7days',
-        from: formatDate(startDate),
-        to: formatDate(today),
-      },
-    });
-
-    dispatch({ type: 'topic/set', payload: 'all' });
-    dispatch({ type: 'accounts/institutions/set', payload: 'all' });
-    dispatch({ type: 'accounts/location/set', payload: 'all' });
-    dispatch({ type: 'accounts/identities/set', payload: 'all' });
-    dispatch({ type: 'accounts/categories/set', payload: 'all' });
-
-    if (!platforms.includes('facebook')) {
-      dispatch({ type: 'platforms/added', payload: 'facebook' });
-    }
-    if (!platforms.includes('instagram')) {
-      dispatch({ type: 'platforms/added', payload: 'instagram' });
-    }
-    if (!platforms.includes('twitter')) {
-      dispatch({ type: 'platforms/added', payload: 'twitter' });
-    }
+    const clearItems = clearFilters();
+    clearItems.forEach((item: any) => dispatch(item));
     trackEvent({
       category: 'Filter',
       action: 'Clear All Filters',

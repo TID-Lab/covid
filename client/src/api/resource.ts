@@ -3,7 +3,6 @@
 
 import { authFetch } from '../util/auth';
 
-let body = {};
 const defaultOptions = {
   headers: {
     Accept: 'application/json',
@@ -11,30 +10,47 @@ const defaultOptions = {
   },
 };
 
+export function filtersToBody(filters) {
+  const { dates, topic, page, sortBy, search } = filters;
+  const body = { page, sortBy, search };
+
+  if (dates) {
+    const { from: fromString, to: toString } = dates;
+
+    const from = new Date(fromString);
+    from.setMinutes(from.getMinutes() + from.getTimezoneOffset());
+
+    const to = new Date(toString);
+    to.setMinutes(to.getMinutes() + to.getTimezoneOffset());
+    to.setDate(to.getDate() + 1);
+
+    body.dates = { from, to };
+  }
+
+  if (topic !== 'all') {
+    body.topic = topic;
+  }
+  return body;
+}
+
 export let page = 0;
 export let lastPage = true;
 
 /**
  * Fetches resources using the GET /api/resource API endpoint.
  */
-async function fetchResources() {
+async function fetchResources(pageNumber: Number, body: Object) {
   const options = {
     ...defaultOptions,
-    method: 'GET',
+    method: 'POST',
+    body: JSON.stringify(body),
   };
-  const res = await fetch('/api/resource', options);
-  const resources = await res.json();
+  const res = await fetch(`/api/resource/${pageNumber}`, options);
+  const { resources, lastPage: isLastPage } = await res.json();
+  lastPage = isLastPage;
   return resources;
 }
 
-/**
- * Fetches resources using the given set of filters.
- */
-async function getResources(filters) {
-  page = 0;
-  //body = filtersToBody(filters);
-  return await fetchResources();
-}
 /**
  * Fetches the next page of resources.
  */
@@ -55,8 +71,8 @@ async function createResource(resource) {
   const options = {
     ...defaultOptions,
     method: 'POST',
-    body: JSON.stringify(resource)
-  }
+    body: JSON.stringify(resource),
+  };
   const res = await authFetch(`/api/resource`, options);
   if (res.status === 200) {
     var body = await res.json();
@@ -71,7 +87,7 @@ async function deleteResource(resourceUrl) {
     ...defaultOptions,
     method: 'DELETE',
     body: JSON.stringify(resourceUrl),
-  }
+  };
   const res = await authFetch(`/api/resource`, options);
   return res.status === 200;
 }
@@ -81,19 +97,28 @@ async function editResource(resourceUrl, replacementResource) {
     ...defaultOptions,
     method: 'PUT',
     body: JSON.stringify(resourceUrl),
-    replacementBody: JSON.stringify(replacementResource)
-  }
+    replacementBody: JSON.stringify(replacementResource),
+  };
   const res = await authFetch(`/api/resource`, options);
   const body = await res.json();
   return body;
 }
 
+// below code attempts to turn functions pure
+
+/**
+ * Pure function that Fetches posts using the GET /api/post API endpoint.
+ */
+export async function fetchResourceFromPage(pageNumber: number, filters = {}) {
+  let bd = filtersToBody(filters);
+  return fetchResources(pageNumber, bd);
+}
+
 export {
-  getResources,
   getNextPage,
   getPrevPage,
   createResource,
   fetchResources,
   deleteResource,
-  editResource
+  editResource,
 };

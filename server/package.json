@@ -30,6 +30,7 @@
     "path": "^0.12.7",
     "pdf-parse": "^1.1.1",
     "request": "^2.88.2",
+    "textrank": "^1.0.5",
     "unfluff": "^3.2.0"
   },
   "devDependencies": {

@@ -12,7 +12,7 @@ const defaultOptions = {
   },
 };
 // Converts from the filters state object to an HTTP request body
-function filtersToBody(filters) {
+export function filtersToBody(filters) {
   const { dates, topic, accounts, platforms, page, sortBy, search } = filters;
   const { curatedOnly, categories, identities, institutions, location } =
     accounts;
@@ -98,4 +98,21 @@ export async function getPrevPage() {
 export async function getPrevNextPage(toPage) {
   if (toPage === 'next') return await getNextPage();
   else return await getPrevPage();
+}
+
+// below code attempts to turn functions pure
+
+/**
+ * Pure function that Fetches posts using the GET /api/post API endpoint.
+ */
+export async function fetchPostsFromPage(pageNumber: number, filters = {}) {
+  const body = filtersToBody(filters);
+  const options = {
+    ...defaultOptions,
+    body: JSON.stringify(body),
+  };
+  const res = await authFetch(`/api/post/${pageNumber}`, options);
+
+  const { posts, lastPage: isLastPage } = await res.json();
+  return { posts: posts, isLastPage: isLastPage };
 }

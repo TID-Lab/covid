@@ -30,12 +30,12 @@ const Header = () => {
   if (pathname === '/social-media-dashboard' || pathname === '/resources') {
     return (
       <header
-        className={`bg-white grid font-medium ${c.header_grid} text-slate-700`}
+        className={`grid font-medium ${c.header_grid} text-slate-700 fixed top-0 left-0 z-50 w-full`}
       >
-        <div className="flex items-center justify-between px-2 py-2 border-r border-gray-400">
+        <div className="flex items-center justify-between px-2 py-2 bg-white border-r border-slate-400">
           <Logo />
           <Menu as="div" className="relative text-left">
-            <Menu.Button className="flex items-center py-1 pl-3 pr-1 text-sm font-medium  hover:bg-slate-200 gap-x-1 border-slate-300 rounded-xs">
+            <Menu.Button className="flex items-center py-1 pl-3 pr-1 text-sm font-medium hover:bg-slate-200 gap-x-1 border-slate-300 rounded-xs">
               Menu <Icon type="more-vertical" />
             </Menu.Button>
             <Menu.Items className="absolute right-0 z-50 p-1 mt-1 text-sm font-medium border divide-y divide-slate-300 drop-shadow-lg bg-slate-50 rounded-xs border-slate-300">
@@ -92,7 +92,9 @@ const Header = () => {
           </Menu>
         </div>
 
-        <div className="flex items-center justify-between px-4 py-2 text-base">
+        <div
+          className={`flex justify-between items-center px-4 py-2 text-base  ${c.firefoxfix}`}
+        >
           <div className="flex items-center pl-2 space-x-2 h-fit grow basis-0">
             <NavLink
               className={`${c.navlink} py-1 `}
@@ -130,7 +132,7 @@ const Header = () => {
     );
   } else if (pathname === '/') {
     return (
-      <header className="flex items-center px-2 py-1 bg-white border-b border-gray-400">
+      <header className="flex items-center px-2 py-1 bg-white border-b border-slate-300">
         <Logo />
       </header>
     );
