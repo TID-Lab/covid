@@ -28,12 +28,12 @@ const TextSearch = ({ className, ...props }: TextSearchProps) => {
 
   return (
     <div
-      className={` ml-6 flex items-center ${c.TextSearch} ${className}`}
+      className={`flex items-center w-full ${c.TextSearch} ${className}`}
       {...props}
     >
       <input
         type="text"
-        className="w-[400px] py-1 pr-8  placeholder:text-slate-500 rounded-xs pl-[15px]  "
+        className="w-full py-1 pr-8  placeholder:text-slate-500 rounded-xs pl-[15px]  "
         onChange={onChange}
         placeholder="Search"
       />

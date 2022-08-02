@@ -115,7 +115,9 @@ const Header = () => {
               </p>{' '}
             </NavLink>
           </div>
-          <TextSearch />
+          <div className="ml-6 w-[400px]">
+            <TextSearch />
+          </div>
           <div className="flex justify-end grow basis-0">
             {pathname === '/resources' ? (
               <Button

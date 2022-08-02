@@ -7,6 +7,7 @@ import { fetchTags } from 'api/tag';
 import ClearFilters from 'components/ClearFilters';
 import SortSelect from 'components/SortSelect';
 import TagOptionItem from './TagOptionItem';
+import TextSearch from 'components/TextSearch';
 const Tags = () => {
   const dispatch = useAppDispatch();
   const alltags = useAppSelector((state) => state.tags.alltags);
@@ -33,6 +34,9 @@ const Tags = () => {
           </div>
 
           {/* <SortSelect /> */}
+          <div className="my-4">
+            <TextSearch />
+          </div>
         </header>
       </section>
 
