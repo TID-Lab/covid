@@ -111,7 +111,7 @@ function bodyToTagFilter(body) {
 
   let uniquePostIds = [...new Set(postIds)];
 
-  if (uniquePostIds && puniquePostIds.length) {
+  if (uniquePostIds && uniquePostIds.length) {
     filter.PostId = uniquePostIds;
   }
   return filter;
