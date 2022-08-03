@@ -1,6 +1,7 @@
 // @ts-nocheck
 // Functons for the /api/tag API endpoints
 
+import { tagSchema } from 'reducers/tags/alltags';
 import { authFetch } from 'util/auth';
 
 const defaultOptions = {
@@ -19,10 +20,17 @@ async function fetchTags() {
     method: 'GET',
   };
   const res = await fetch('/api/tag', options);
-  console.log(res);
+  // console.log(res);
   const tags = await res.json().then((tags) => {
-    console.log('Tags', tags);
-    return tags;
+    return tags.concat([
+      {
+        name: 'Sample Tag 1',
+        description: 'Test Description',
+        color: 'red',
+        organization: 'Georgia Tech',
+        posts: [],
+      },
+    ] as tagSchema[]);
   });
   return tags;
 }

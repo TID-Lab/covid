@@ -5,8 +5,8 @@ import alltagsReducer from './alltags';
 import activetagsReducer from './activetags';
 
 const rootReducer = combineReducers({
-  alltags:alltagsReducer,
-  activetags:activetagsReducer
+  alltags: alltagsReducer,
+  activetags: activetagsReducer,
 });
 
 export default rootReducer;

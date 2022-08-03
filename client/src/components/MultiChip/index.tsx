@@ -5,7 +5,7 @@ import { useAppDispatch } from 'hooks/useTypedRedux';
 
 //colors for customtags
 const COLORS = {
-  red: 'bg-rose-200 border-rose-300',
+  red: 'bg-red-200 border-red-300',
   green: 'bg-emerald-200 border-emerald-300',
   purple: 'bg-violet-200 border-violet-300',
   blue: 'bg-blue-200 border-blue-300',
@@ -13,7 +13,7 @@ const COLORS = {
 };
 //colors for customtags
 const ACTIVE_COLORS = {
-  red: 'bg-rose-400 text-white',
+  red: 'bg-red-400 text-white',
   green: 'bg-emerald-400 text-white',
   purple: 'bg-violet-400 text-white',
   blue: 'bg-blue-400 text-white',
@@ -39,21 +39,22 @@ function MultiChip({
 }: MultiChipProps) {
   const dispatch = useAppDispatch();
 
-  useEffect(() => console.log(active), [active]);
+  // useEffect(() => console.log(active), [active]);
   function onClick(key: string) {
-    if (active.find((i) => i === key)) {
+    console.log('Active', active, key);
+    if (active.find((i) => i === +key) !== undefined) {
       //refactor to be generic later
-      const newActiveTags = active.filter((i) => i !== key);
-      console.log(active.filter((i) => i !== key));
+      const newActiveTags = active.filter((i) => i !== +key);
       dispatch({ type: 'activetags/set', payload: newActiveTags });
     } else {
-      dispatch({ type: 'activetags/set', payload: [...active, key] });
+      dispatch({ type: 'activetags/set', payload: [...active, +key] });
     }
   }
+
   return (
     <div
       {...props}
-      className="flex flex-wrap text-sm gap-x-2 gap-y-3 font-medium"
+      className="flex flex-wrap text-sm font-medium gap-x-2 gap-y-3"
     >
       {options &&
         Object.keys(options).map((key, index) => (
@@ -61,7 +62,7 @@ function MultiChip({
             key={index}
             onClick={() => onClick(key)}
             className={`px-3 py-1 rounded border cursor-pointer ${
-              active.find((i) => i === key)
+              active.find((i) => i === +key) !== undefined
                 ? ACTIVE_COLORS[options[key].color as keyof typeof COLORS]
                 : COLORS[options[key].color as keyof typeof COLORS]
             }`}
@@ -69,7 +70,6 @@ function MultiChip({
             {options[key].name}
           </div>
         ))}
-      <div></div>
     </div>
   );
 }
@@ -79,7 +79,7 @@ interface MultiChipProps {
     [key: string]: any;
   };
   dispatchType?: string;
-  active: string[];
+  active: number[];
   header?: ReactNode;
   onSelect?: any;
   className?: string;

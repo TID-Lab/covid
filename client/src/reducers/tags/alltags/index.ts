@@ -1,7 +1,7 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 
 // The reducer for all available tags
-interface tagSchema {
+export interface tagSchema {
   name: string;
   color: string;
   description: string;
