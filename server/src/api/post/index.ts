@@ -91,6 +91,32 @@ function bodyToFilter(body) {
   return filter;
 }
 
+function bodyToTagFilter(body) {
+  const {
+    tags
+  } = body || {};
+
+  const filter = {};
+  let postIds = [];
+
+  let i: Number;
+  let counter = 0;
+  for (i = 0; i < tags.length; i++) {
+    let j: Number;
+    for(j = 0; j < tags[i].posts.length; j++) {
+      postIds[counter] = tags[i].posts[j];
+      counter++;
+    }
+  }
+
+  let uniquePostIds = [...new Set(postIds)];
+
+  if (uniquePostIds && puniquePostIds.length) {
+    filter.PostId = uniquePostIds;
+  }
+  return filter;
+}
+
 // Returns a page of social media posts using the given search query
 routes.post('/:page', async (req, res) => {
   const MongoClient = mongoose.connection.client;
@@ -127,7 +153,6 @@ routes.post('/:page', async (req, res) => {
   }
 
   const filter = bodyToFilter(body);
-  console.log(filter);
   const postsCollection = database.collection('socialmediaposts');
   const postCount = await postsCollection.estimatedDocumentCount();
   const skipCount = pageNum * pageSize;
@@ -137,12 +162,46 @@ routes.post('/:page', async (req, res) => {
     .skip(pageNum * pageSize)
     .limit(pageSize)
     .toArray();
-  const lastPage =
-    posts.length === 0 || postCount - (skipCount + posts.length) <= 0;
+  const lastPage = posts.length === 0 || postCount - (skipCount + posts.length) <= 0;
   res.status(200).send({
     posts,
     lastPage,
   });
 });
+
+routes.post('/tagsort/:page'), async (req, res) => {
+  const MongoClient = mongoose.connection.client;
+  const database = MongoClient.db(dbName);
+
+  const { body, params } = req;
+  if (typeof body !== 'object') {
+    res.status(400).send();
+    return;
+  }
+
+  const { page } = params;
+  let pageNum = 0;
+  try {
+    pageNum = parseInt(page, 10);
+  } catch (_) {
+    res.status(400).send();
+    return;
+  }
+
+  const tagFilter = bodyToTagFilter(body);
+  const postsCollection = database.collection('socialmediaposts');
+  const postCount = await postsCollection.estimatedDocumentCount();
+  const skipCount = pageNum * pageSize;
+  const posts = await postsCollection
+    .find(tagFilter)
+    .skip(pageNum * pageSize)
+    .limit(pageSize)
+    .toArray();
+  const lastPage = posts.length === 0 || postCount - (skipCount + posts.length) <= 0;
+  res.status(200).send({
+    posts,
+    lastPage,
+  });
+}
 
 module.exports = routes;
