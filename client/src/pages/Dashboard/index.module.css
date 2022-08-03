@@ -1,5 +1,7 @@
 .dashboard_grid {
+  @apply mt-[61px];
   grid-template-columns: var(--sidebar-w) auto;
+  height: calc(100vh - 61px);
 }
 
 .tabList {
@@ -19,4 +21,12 @@
 
 .selectedTab {
   @apply !bg-white !border-blue-300 !border-b-white !z-0;
+}
+
+.tabPanels {
+  @apply flex flex-col flex-1;
+}
+
+.tabPanel {
+  @apply flex-1;
 }

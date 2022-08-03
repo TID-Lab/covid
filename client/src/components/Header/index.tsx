@@ -30,11 +30,11 @@ const Header = () => {
   if (pathname === '/social-media-dashboard' || pathname === '/resources') {
     return (
       <header
-        className={`grid font-medium ${c.header_grid} text-slate-700 fixed top-0 left-0 z-50 w-full`}
+        className={`grid font-medium ${c.header_grid} text-slate-700 fixed top-0 left-0 z-[60] w-full`}
       >
         <div className="flex items-center justify-between px-2 py-2 bg-white border-r border-slate-400">
           <Logo />
-          <Menu as="div" className="relative text-left">
+          <Menu as="div" className="relative z-50 text-left">
             <Menu.Button className="flex items-center py-1 pl-3 pr-1 text-sm font-medium hover:bg-slate-200 gap-x-1 border-slate-300 rounded-xs">
               Menu <Icon type="more-vertical" />
             </Menu.Button>
@@ -126,7 +126,9 @@ const Header = () => {
                 Settings
               </Button>
             ) : (
-              <Button onClick={onMenuClick}>+ Create Post</Button>
+              <Button onClick={onMenuClick} className="truncate">
+                + Create Post
+              </Button>
             )}
           </div>
         </div>

@@ -13,7 +13,8 @@ const defaultOptions = {
 };
 // Converts from the filters state object to an HTTP request body
 export function filtersToBody(filters) {
-  const { dates, topic, accounts, platforms, page, sortBy, search } = filters;
+  const { dates, topic, accounts, platforms, page, sortBy, search, tags } =
+    filters;
   const { curatedOnly, categories, identities, institutions, location } =
     accounts;
   const body = { platforms, page, sortBy, search };
@@ -44,6 +45,9 @@ export function filtersToBody(filters) {
     }
     if (location !== 'all') {
       body.georgia = location === 'georgia';
+    }
+    if (tags && tags.length) {
+      body.tags = tags;
     }
   }
   return body;
