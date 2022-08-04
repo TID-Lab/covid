@@ -1,7 +1,7 @@
 .dashboard_grid {
   /* @apply mt-[61px]; */
   grid-template-columns: var(--sidebar-w) auto;
-  /* height: calc(100vh - 61px); */
+  height: 100vh;
 }
 
 .tabList {
