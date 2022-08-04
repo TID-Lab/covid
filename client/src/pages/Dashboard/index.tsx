@@ -27,9 +27,6 @@ const Dashboard = () => {
   const [page, setPage] = useState(0);
   const [lastPage, setLastPage] = useState(false);
 
-  
-
-
   // Track page view
   useEffect(() => {
     trackPageView();
@@ -45,7 +42,11 @@ const Dashboard = () => {
     updatePosts(page, filters, activetags);
   }, [filters, page, activetags]);
 
-  function updatePosts(pageNumber: number, filterData: any, activetags: string[]) {
+  function updatePosts(
+    pageNumber: number,
+    filterData: any,
+    activetags: string[]
+  ) {
     const activeTagObjects = activetags.map((index) => alltags[index]);
     fetchPostsFromPage(pageNumber, filterData, activeTagObjects)
       .then((data) => {
@@ -60,6 +61,41 @@ const Dashboard = () => {
     const newPage = page + toPage;
     if (newPage > 0 && !lastPage) setPage(page + toPage);
   }
+
+  function getNumberOfFilters(filters) {
+    let n = 0;
+
+    if (filters.dates.preset !== '7days') {
+      n++;
+    }
+
+    if (filters.topic !== 'all') {
+      n++;
+    }
+
+    if (filters.accounts.institutions !== 'all') {
+      n++;
+    }
+
+    if (filters.accounts.location !== 'all') {
+      n++;
+    }
+
+    if (filters.accounts.categories !== 'all') {
+      n++;
+    }
+
+    if (filters.accounts.identities !== 'all') {
+      n++;
+    }
+
+    if (filters.platforms.length !== 3) {
+      n++;
+    }
+
+    return n;
+  }
+
   return (
     <div className={`overflow-hidden grid ${c.dashboard_grid}`}>
       <section className="flex flex-col overflow-hidden bg-white border-r border-slate-400">
@@ -71,12 +107,38 @@ const Dashboard = () => {
           <Tab.List className={c.tabList}>
             <Tab key="filters" className={c.tab}>
               {({ selected }) => (
-                <span className={selected ? c.selectedTab : ''}>Filters</span>
+                <div className={selected ? c.selectedTab : ''}>
+                  <div className="flex items-center justify-center">
+                    <span>Filters</span>
+                    <span
+                      className={`flex items-center justify-center w-8 h-8 ml-2 rounded-md ${
+                        selected
+                          ? 'text-white bg-blue-400'
+                          : 'text-gray-400 bg-gray-200'
+                      }`}
+                    >
+                      {getNumberOfFilters(filters)}
+                    </span>
+                  </div>
+                </div>
               )}
             </Tab>
             <Tab key="tags" className={c.tab}>
               {({ selected }) => (
-                <span className={selected ? c.selectedTab : ''}>Tags</span>
+                <div className={selected ? c.selectedTab : ''}>
+                  <div className="flex items-center justify-center">
+                    <span>Tags</span>
+                    <span
+                      className={`flex items-center justify-center w-8 h-8 ml-2 rounded-md ${
+                        selected
+                          ? 'text-white bg-blue-400'
+                          : 'text-gray-400 bg-gray-200'
+                      }`}
+                    >
+                      {activetags.length}
+                    </span>
+                  </div>
+                </div>
               )}
             </Tab>
           </Tab.List>

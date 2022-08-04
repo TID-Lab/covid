@@ -41,10 +41,13 @@ const ResourceDashboard = () => {
     };
   }, []);
 
+  console.log('Page', page);
+
   //update posts whenver filters or page number is updated
   useEffect(() => {
+    console.log('Resources Effect', page);
     updatePosts(page, filters);
-  }, [filters, page]);
+  }, [page]);
 
   function updatePosts(pageNumber: number, filterData: any) {
     fetchResourceFromPage(pageNumber, filterData)
