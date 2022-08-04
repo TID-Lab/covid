@@ -5,7 +5,7 @@ import PopupModal from 'components/PopupModal';
 import { createOrganization } from 'api/org';
 import Button from 'components/Button';
 import { useAppDispatch, useAppSelector } from 'hooks/useTypedRedux';
-import { Combobox } from '@headlessui/react';
+import { Combobox, Dialog } from '@headlessui/react';
 import Icon from 'components/Icon';
 
 //colors for customtags
@@ -171,18 +171,31 @@ const EditTags = ({ postId }: EditTagsProps) => {
 
   return (
     <>
-      <Button className="text-xs" onClick={tagPopup}>
+      <Button className="mx-2 text-xs" onClick={tagPopup}>
         +
       </Button>
 
+      <Dialog>
+        <Dialog.Panel>
+          <Dialog.Title>Dialog Title</Dialog.Title>
+          <Dialog.Description>Dialog description</Dialog.Description>
+        </Dialog.Panel>
+
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem rem
+          maiores labore eos repellat ducimus unde vitae exercitationem rerum
+          voluptate veritatis voluptates omnis odit at, quae quis nemo
+          repellendus totam?
+        </p>
+      </Dialog>
       <PopupModal isOpen={showTagModal} onClose={() => setShowTagModal(false)}>
         <label className="mb-2">Add or remove custom tags:</label>
         <Combobox value={activeTags} onChange={setActiveTags} multiple>
           <div className="relative w-fit min-w-1/2">
-            <div className="relative px-3 py-1 rounded bg-slate-50 border border-slate-300  mb-2">
+            <div className="relative px-3 py-1 mb-2 border rounded bg-slate-50 border-slate-300">
               <div className="flex gap-x-2">
                 {activeTags.length > 0 && (
-                  <ul className="text-sm flex gap-x-1">
+                  <ul className="flex text-sm gap-x-1">
                     {activeTags.map((tag, index) => (
                       <li
                         className={`${
@@ -203,7 +216,7 @@ const EditTags = ({ postId }: EditTagsProps) => {
               </div>
             </div>
 
-            <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+            <Combobox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
               {tags &&
                 tags.map((tag) => (
                   <Combobox.Option

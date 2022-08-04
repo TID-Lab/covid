@@ -176,16 +176,16 @@ const Post = (props) => {
           <Button variant="primary" size="md" onClick={createPost}>
             Make Post
           </Button>
-        </div>        
-          <p className="flex flex-wrap gap-x-1">
-            <b>customTags:</b>{' '}
-            {tags &&
-              tags
-                .filter((tag) => tag.posts.find((item) => item === _id))
-                .map((tag) => tag.name)
-                .join(', ')}
-            <EditTags postId={_id} activeTags={tags} />
-          </p>
+        </div>
+        <p className="flex flex-wrap gap-x-1">
+          <b>Tags:</b>{' '}
+          {tags &&
+            tags
+              .filter((tag) => tag.posts.find((item) => item === _id))
+              .map((tag) => tag.name)
+              .join(', ')}
+          <EditTags postId={_id} activeTags={tags} />
+        </p>
         <Button className="text-xs" variant="transparent" size="md">
           View Relevent Resources <Icon type="arrow-right" size="xs" />
         </Button>

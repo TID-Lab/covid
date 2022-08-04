@@ -11,10 +11,22 @@ import Button from 'components/Button';
 
 const Tags = () => {
   const dispatch = useAppDispatch();
-  const alltags = useAppSelector((state) => state.tags.alltags);
-  const activetags = useAppSelector((state) => state.tags.activetags);
+  const tagSearch = useAppSelector((state) => state.tags.search);
+  const alltags = useAppSelector((state) => {
+    console.log('Search', tagSearch);
+    return state.tags.alltags.filter((tag) => {
+      console.log('Curr', tag);
+      if (tag && tagSearch) {
+        return tag.name.toLowerCase().indexOf(tagSearch.toLowerCase()) !== -1;
+      } else {
+        return true;
+      }
+    });
+  });
+  const activetags = useAppSelector((state) => {
+    return state.tags.activetags;
+  });
   const inactiveTags = useAppSelector((state) => {
-    // console.log('Tags', state.tags);
     return state.tags.alltags
       .map((_, index) => {
         return state.tags.activetags.map(Number).indexOf(index) === -1
@@ -34,8 +46,12 @@ const Tags = () => {
       .catch((error) => console.log(error));
   }, []);
 
-  const activeTagNames = activetags.map((index) => alltags[index].name);
-  const inactiveTagNames = inactiveTags.map((index) => alltags[index].name);
+  const activeTagNames = activetags
+    .filter((index) => !!alltags[index])
+    .map((index) => alltags[index].name);
+  const inactiveTagNames = inactiveTags
+    .filter((index) => !!alltags[index])
+    .map((index) => alltags[index].name);
 
   console.log('Active Tags', activeTagNames, 'Inactive Tags', inactiveTagNames);
 
@@ -53,7 +69,7 @@ const Tags = () => {
 
           {/* <SortSelect /> */}
           <div className="my-4">
-            <TextSearch />
+            <TextSearch storetarget="tags/search/set" />
           </div>
         </header>
 

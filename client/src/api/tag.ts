@@ -22,7 +22,33 @@ async function fetchTags() {
   const res = await fetch('/api/tag', options);
   // console.log(res);
   const tags = await res.json().then((tags) => {
-    return tags;
+    return tags.concat([
+      {
+        name: 'First',
+        description: 'Test',
+        color: 'red',
+      },
+      {
+        name: 'Second',
+        description: 'Test',
+        color: 'green',
+      },
+      {
+        name: 'Third',
+        description: 'Test',
+        color: 'red',
+      },
+      {
+        name: 'Fourth',
+        description: 'Test',
+        color: 'blue',
+      },
+      {
+        name: 'Fifth',
+        description: 'Test',
+        color: 'green',
+      },
+    ]);
   });
   return tags;
 }
