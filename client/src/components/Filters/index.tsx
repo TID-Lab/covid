@@ -75,7 +75,7 @@ const Filters = ({ showDate, showList, showPlatforms }: FiltersProps) => {
     },
   ];
   return (
-    <section className="flex flex-col mt-0 overflow-hidden bg-white border-slate-400 ">
+    <section className="flex flex-col mt-0  h-full overflow-hidden bg-white border-slate-400 ">
       <header className="pl-4 pr-2  pb-2 sticky top-0 bg-white z-30 border-b-[1.5px] border-slate-300">
         {/* <SortSelect /> */}
         <div className="flex items-center justify-between mt-2">

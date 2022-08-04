@@ -27,9 +27,6 @@ const Dashboard = () => {
   const [page, setPage] = useState(0);
   const [lastPage, setLastPage] = useState(false);
 
-  
-
-
   // Track page view
   useEffect(() => {
     trackPageView();
@@ -45,7 +42,11 @@ const Dashboard = () => {
     updatePosts(page, filters, activetags);
   }, [filters, page, activetags]);
 
-  function updatePosts(pageNumber: number, filterData: any, activetags: string[]) {
+  function updatePosts(
+    pageNumber: number,
+    filterData: any,
+    activetags: string[]
+  ) {
     const activeTagObjects = activetags.map((index) => alltags[index]);
     fetchPostsFromPage(pageNumber, filterData, activeTagObjects)
       .then((data) => {
@@ -62,12 +63,12 @@ const Dashboard = () => {
   }
   return (
     <div className={`overflow-hidden grid ${c.dashboard_grid}`}>
-      <section className="flex flex-col overflow-hidden bg-white border-r border-slate-400">
+      <section className="flex flex-col  bg-white border-r border-slate-400 pt-13">
         <div className="mx-6">
           <SortSelect />
         </div>
 
-        <Tab.Group as="div" className="flex flex-col flex-1">
+        <Tab.Group as="div" className="flex flex-col flex-1 ">
           <Tab.List className={c.tabList}>
             <Tab key="filters" className={c.tab}>
               {({ selected }) => (

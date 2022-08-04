@@ -1,7 +1,7 @@
 .dashboard_grid {
-  @apply mt-[61px];
+  /* @apply mt-[61px]; */
   grid-template-columns: var(--sidebar-w) auto;
-  height: calc(100vh - 61px);
+  /* height: calc(100vh - 61px); */
 }
 
 .tabList {
@@ -24,9 +24,9 @@
 }
 
 .tabPanels {
-  @apply flex flex-col flex-1;
+  @apply flex flex-col flex-1 h-full;
 }
 
 .tabPanel {
-  @apply flex-1;
+  @apply flex-1 h-full;
 }
