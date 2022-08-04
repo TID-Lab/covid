@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { useAppDispatch, useAppSelector } from 'hooks/useTypedRedux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import MultiChip from 'components/MultiChip';
 import { fetchTags } from 'api/tag';
@@ -8,8 +8,10 @@ import ClearFilters from 'components/ClearFilters';
 import TagOptionItem from './TagOptionItem';
 import TextSearch from 'components/TextSearch';
 import Button from 'components/Button';
+import Icon from 'components/Icon';
 
 const Tags = () => {
+  const [deleteMode, setDeleteMode] = useState(false);
   const dispatch = useAppDispatch();
   const tagSearch = useAppSelector((state) => state.tags.search);
   const alltags = useAppSelector((state) => {
@@ -56,12 +58,12 @@ const Tags = () => {
   console.log('Active Tags', activeTagNames, 'Inactive Tags', inactiveTagNames);
 
   return (
-    <div className="flex flex-col justify-between h-full p-2">
+    <div className="flex flex-col justify-between h-full pb-4">
       {/* <h1>Inactive Tags {inactiveTags && t}</h1> */}
       <section className="pb-4 overflow-x-hidden bg-white border-gray-400">
         <header className="pl-4 pr-2 py-4 mb-4 sticky top-0 bg-white z-30 border-b-[1.5px] border-slate-300">
           <div className="flex items-center justify-between">
-            <h1 className="text-xl font-bold ">Tags</h1>
+            <h1 className="text-lg font-bold ">Tags</h1>
             <ClearFilters>
               <span className="text-xs">Clear All</span>
             </ClearFilters>
@@ -72,8 +74,9 @@ const Tags = () => {
             <TextSearch storetarget="tags/search/set" />
           </div>
         </header>
-
-        <MultiChip options={alltags} active={activetags} />
+        <div className="pl-4 pr-2">
+          <MultiChip options={alltags} active={activetags} />
+        </div>
 
         {/* <TagOptionItem
           header="ACTIVE"
@@ -92,8 +95,34 @@ const Tags = () => {
         /> */}
       </section>
 
-      <section className="px-2">
-        <Button className="w-full">Delete Tags</Button>
+      <section className="px-2 space-y-6">
+        <div className="px-2">
+          <Button className=" w-full">
+            <Icon type="plus" size="sm" /> Create New Tag
+          </Button>
+        </div>
+
+        <div
+          className={`px-2 py-2 space-y-2 rounded-sm ${
+            deleteMode && 'bg-slate-100'
+          }`}
+        >
+          {deleteMode && (
+            <Button className="w-full">
+              <Icon type="trash-2" size="sm" /> Delete Selected Tags
+            </Button>
+          )}
+
+          <Button
+            variant="outline"
+            className="w-full text-center bg-white"
+            onClick={() => setDeleteMode(!deleteMode)}
+          >
+            <p className="text-center ">
+              {deleteMode ? 'Cancel' : 'Manage Tags'}
+            </p>
+          </Button>
+        </div>
       </section>
     </div>
   );

@@ -97,7 +97,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className={`overflow-hidden grid ${c.dashboard_grid}`}>
+    <div className={`overflow-hidden h-full grid ${c.dashboard_grid}`}>
       <section className="flex flex-col  bg-white border-r border-slate-400 pt-13">
         <div className="mx-6">
           <SortSelect />

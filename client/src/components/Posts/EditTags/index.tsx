@@ -81,7 +81,7 @@ const EditTags = ({ postId }: EditTagsProps) => {
       });
       await getTagsFromServer();
       setShowTagModal(false);
-    }, 500);
+    }, 200);
   }
   // make sure this function doesn't get called unnessisairly (i cant spell)
   async function getTagsFromServer() {

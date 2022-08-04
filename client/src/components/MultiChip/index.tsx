@@ -31,7 +31,8 @@ function MultiChip({
   options,
   active,
   header,
-  onSelect,
+  deleteSelection,
+  isDelete,
   dispatchType,
   hideLabel = false,
   id,
@@ -81,9 +82,10 @@ interface MultiChipProps {
   dispatchType?: string;
   active: number[];
   header?: ReactNode;
-  onSelect?: any;
+  deleteSelection?: string[];
   className?: string;
   hideLabel?: boolean;
+  isDelete?: boolean;
   id?: string;
 }
 
