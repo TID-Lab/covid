@@ -22,15 +22,7 @@ async function fetchTags() {
   const res = await fetch('/api/tag', options);
   // console.log(res);
   const tags = await res.json().then((tags) => {
-    return tags.concat([
-      {
-        name: 'Sample Tag 1',
-        description: 'Test Description',
-        color: 'red',
-        organization: 'Georgia Tech',
-        posts: [],
-      },
-    ] as tagSchema[]);
+    return tags;
   });
   return tags;
 }
