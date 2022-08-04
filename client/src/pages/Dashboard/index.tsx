@@ -22,8 +22,13 @@ const Dashboard = () => {
 
   const posts = useAppSelector((state) => state.posts);
   const filters = useAppSelector((state) => state.filters);
+  const activetags = useAppSelector((state) => state.tags.activetags);
+  const alltags = useAppSelector((state) => state.tags.alltags);
   const [page, setPage] = useState(0);
   const [lastPage, setLastPage] = useState(false);
+
+  
+
 
   // Track page view
   useEffect(() => {
@@ -37,11 +42,12 @@ const Dashboard = () => {
 
   //update posts whenver filters or page number is updated
   useEffect(() => {
-    updatePosts(page, filters);
-  }, [filters, page]);
+    updatePosts(page, filters, activetags);
+  }, [filters, page, activetags]);
 
-  function updatePosts(pageNumber: number, filterData: any) {
-    fetchPostsFromPage(pageNumber, filterData)
+  function updatePosts(pageNumber: number, filterData: any, activetags: string[]) {
+    const activeTagObjects = activetags.map((index) => alltags[index]);
+    fetchPostsFromPage(pageNumber, filterData, activeTagObjects)
       .then((data) => {
         const { posts, isLastPage } = data;
         setLastPage(isLastPage);

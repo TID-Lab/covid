@@ -59,7 +59,7 @@ const Tags = () => {
 
         <MultiChip options={alltags} active={activetags} />
 
-        <TagOptionItem
+        {/* <TagOptionItem
           header="ACTIVE"
           items={activeTagNames}
           selector={(state) => state.filters.topic}
@@ -73,7 +73,7 @@ const Tags = () => {
           selector={(state) => state.filters.topic}
           dispatchType="topic/set"
           track={{ category: 'Filter', action: 'Set Topic' }}
-        />
+        /> */}
       </section>
 
       <section className="px-2">

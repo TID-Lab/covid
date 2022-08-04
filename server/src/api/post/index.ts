@@ -84,37 +84,32 @@ function bodyToFilter(body) {
     filter.platform = { $in: platforms };
   }
 
+  
   if (tags && tags.length) {
-    filter.tags = tags;
+    filter._id = {"$in": getPostIdFromTags(tags)};
   }
 
   return filter;
 }
 
-function bodyToTagFilter(body) {
-  const {
-    tags
-  } = body || {};
-
-  const filter = {};
-  let postIds = [];
-
-  let i: Number;
-  let counter = 0;
-  for (i = 0; i < tags.length; i++) {
-    let j: Number;
-    for(j = 0; j < tags[i].posts.length; j++) {
-      postIds[counter] = tags[i].posts[j];
-      counter++;
+function getPostIdFromTags(tags) {
+  tags = tags ? tags : {}
+  const postIds = new Set();
+  
+  const postObjectIds = [];
+  try {
+  for (let i = 0; i < tags.length; i++) {
+    for(let j = 0; j < tags[i].posts.length; j++) {
+      postIds.add(tags[i].posts[j]);
     }
   }
+  postIds.forEach((id_string) => postObjectIds.push(mongoose.Types.ObjectId(id_string)));
+} catch(err) {
+  console.log(err);
+}
 
-  let uniquePostIds = [...new Set(postIds)];
+return postObjectIds;
 
-  if (uniquePostIds && uniquePostIds.length) {
-    filter.PostId = uniquePostIds;
-  }
-  return filter;
 }
 
 // Returns a page of social media posts using the given search query
@@ -169,39 +164,5 @@ routes.post('/:page', async (req, res) => {
   });
 });
 
-routes.post('/tagsort/:page'), async (req, res) => {
-  const MongoClient = mongoose.connection.client;
-  const database = MongoClient.db(dbName);
-
-  const { body, params } = req;
-  if (typeof body !== 'object') {
-    res.status(400).send();
-    return;
-  }
-
-  const { page } = params;
-  let pageNum = 0;
-  try {
-    pageNum = parseInt(page, 10);
-  } catch (_) {
-    res.status(400).send();
-    return;
-  }
-
-  const tagFilter = bodyToTagFilter(body);
-  const postsCollection = database.collection('socialmediaposts');
-  const postCount = await postsCollection.estimatedDocumentCount();
-  const skipCount = pageNum * pageSize;
-  const posts = await postsCollection
-    .find(tagFilter)
-    .skip(pageNum * pageSize)
-    .limit(pageSize)
-    .toArray();
-  const lastPage = posts.length === 0 || postCount - (skipCount + posts.length) <= 0;
-  res.status(200).send({
-    posts,
-    lastPage,
-  });
-}
 
 module.exports = routes;

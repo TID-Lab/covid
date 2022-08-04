@@ -53,13 +53,6 @@ export function filtersToBody(filters) {
   return body;
 }
 
-export function tagsToBody(givenTags) {
-  const { tags } = givenTags;
-  if (tags && tags.length) {
-    body = tags;
-  }
-  return body;
-}
 
 // this shouldnt work LOL  i think it needs to be in a redux store, but it does so im not gonna touch it
 export let page = 0;
@@ -118,28 +111,15 @@ export async function getPrevNextPage(toPage) {
 /**
  * Pure function that Fetches posts using the GET /api/post API endpoint.
  */
-export async function fetchPostsFromPage(pageNumber: number, filters = {}) {
-  const body = filtersToBody(filters);
+export async function fetchPostsFromPage(pageNumber: number, filters = {}, activetagObjects: object[] = []) {
+  const filter_clone = {...filters};
+  filter_clone.tags = activetagObjects;
+  const body = filtersToBody(filter_clone);
   const options = {
     ...defaultOptions,
     body: JSON.stringify(body),
   };
   const res = await authFetch(`/api/post/${pageNumber}`, options);
-
-  const { posts, lastPage: isLastPage } = await res.json();
-  return { posts: posts, isLastPage: isLastPage };
-}
-
-/**
- * Fetches posts using the given tags.
- */
-export async function getTaggedPosts(pageNumber: Number, tags) {
-  const body = tagsToBody(tags);
-  const options = {
-    ...defaultOptions,
-    body: JSON.stringify(body),
-  };
-  const res = await authFetch(`/api/post/tagsort/${pageNumber}`, options);
 
   const { posts, lastPage: isLastPage } = await res.json();
   return { posts: posts, isLastPage: isLastPage };
