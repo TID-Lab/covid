@@ -1,4 +1,4 @@
-// @ts-nocheck
+//@ts-nocheck
 import { useEffect, useState } from 'react';
 import Filters from 'components/Filters';
 import Posts from 'components/Posts';
@@ -14,7 +14,7 @@ import { clearFilters } from 'util/clearFiltersDispatch';
 import { Tab } from '@headlessui/react';
 import Tags from 'components/Tags';
 import SortSelect from 'components/SortSelect';
-
+import { fetchTags } from 'api/tag';
 const Dashboard = () => {
   useAuth();
   const { trackPageView } = useTracker();
@@ -30,6 +30,14 @@ const Dashboard = () => {
   // Track page view
   useEffect(() => {
     trackPageView();
+    //fetch tags initially
+    fetchTags()
+      .then((fetchedTags) => {
+        dispatch({ type: 'alltags/set', payload: fetchedTags });
+        // console.log(fetchedTags);
+      })
+      .catch((error) => console.log(error));
+
     //on page unmount
     return () => {
       const clearItems = clearFilters();

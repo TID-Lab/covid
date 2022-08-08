@@ -179,12 +179,14 @@ const Post = (props) => {
         </div>
         <p className="flex flex-wrap gap-x-1">
           <b>Tags:</b>{' '}
-          {/* {tags &&
+          {tags &&
             tags
-              .filter((tag) => tag.posts.find((item) => item === _id))
+              .filter(
+                (tag) => tag.posts && tag.posts.find((item) => item === _id)
+              )
               .map((tag) => tag.name)
               .join(', ')}
-          <EditTags postId={_id} activeTags={tags} /> */}
+          <EditTags postId={_id} activeTags={tags} />
         </p>
         <Button className="text-xs" variant="transparent" size="md">
           View Relevent Resources <Icon type="arrow-right" size="xs" />

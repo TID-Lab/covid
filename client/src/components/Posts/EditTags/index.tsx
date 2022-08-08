@@ -175,7 +175,7 @@ const EditTags = ({ postId }: EditTagsProps) => {
         +
       </Button>
 
-      <Dialog>
+      {/* <Dialog>
         <Dialog.Panel>
           <Dialog.Title>Dialog Title</Dialog.Title>
           <Dialog.Description>Dialog description</Dialog.Description>
@@ -187,7 +187,7 @@ const EditTags = ({ postId }: EditTagsProps) => {
           voluptate veritatis voluptates omnis odit at, quae quis nemo
           repellendus totam?
         </p>
-      </Dialog>
+      </Dialog> */}
       <PopupModal isOpen={showTagModal} onClose={() => setShowTagModal(false)}>
         <label className="mb-2">Add or remove custom tags:</label>
         <Combobox value={activeTags} onChange={setActiveTags} multiple>
