@@ -110,4 +110,28 @@ routes.delete('/delete', async (req, res) => {
   }
 });
 
+// Deletes a tag
+routes.delete('/deleteAll', async (req, res) => {
+  const ids = req.body.map((tags) => tags._id) as string[];
+  if (typeof _id !== 'string') {
+    res.status(400).send();
+    return;
+  }
+  try {
+    const result = await CustomTag.deleteAll({
+      _id: {
+        $in: ids,
+      },
+    });
+    if (result.deletedCount === 0) {
+      res.status(404).send();
+      return;
+    }
+    res.status(200).send();
+  } catch (err) {
+    debug(`${err}`);
+    res.status(500).send();
+  }
+});
+
 module.exports = routes;
