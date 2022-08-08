@@ -105,18 +105,18 @@ const Dashboard = () => {
   }
 
   return (
-    <div className={`overflow-hidden h-full grid ${c.dashboard_grid}`}>
-      <section className="flex flex-col  bg-white border-r border-slate-400 pt-13">
+    <div className={`overflow-hidden  grid ${c.dashboard_grid}`}>
+      <section className="flex flex-col  min-h-0 bg-white border-r border-slate-400 pt-13 ">
         <div className="mx-6">
           <SortSelect />
         </div>
 
-        <Tab.Group as="div" className="flex flex-col flex-1 ">
+        <Tab.Group as="div" className="block flex-1 h-full ">
           <Tab.List className={c.tabList}>
             <Tab key="filters" className={c.tab}>
               {({ selected }) => (
                 <div className={selected ? c.selectedTab : ''}>
-                  <div className="flex items-center justify-center">
+                  <div className="flex items-center justify-center ">
                     <span>Filters</span>
                     <span
                       className={`flex items-center justify-center w-8 h-8 ml-2 rounded-md ${

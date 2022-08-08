@@ -5,7 +5,7 @@
 }
 
 .tabList {
-  @apply flex mt-0 border-b border-blue-300 justify-center px-4;
+  @apply flex mt-0 border-b border-blue-300 justify-center px-4 flex-grow;
 }
 
 .tab {
@@ -24,7 +24,7 @@
 }
 
 .tabPanels {
-  @apply flex flex-col flex-1 h-full;
+  @apply flex flex-col flex-1 h-full pb-13;
 }
 
 .tabPanel {

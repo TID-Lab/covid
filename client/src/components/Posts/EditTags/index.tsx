@@ -171,7 +171,7 @@ const EditTags = ({ postId }: EditTagsProps) => {
 
   return (
     <>
-      <Button className="mx-2 text-xs" onClick={tagPopup}>
+      <Button className="mx-2 text-xs" size="sm" onClick={tagPopup}>
         +
       </Button>
 
