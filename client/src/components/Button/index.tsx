@@ -13,6 +13,7 @@ const btnStyle = {
     'bg-slate-100 border-[1.5px] border-slate-300 hover:bg-slate-300 text-black ',
   transparent: 'hover:bg-slate-200 rounded-xs underline	',
   outline: 'border border-currentColor hover:bg-gray-300 text-black ',
+  none: '',
 };
 
 const btnSize = {
@@ -20,6 +21,7 @@ const btnSize = {
   md: 'py-1 px-4 gap-3',
   lg: 'py-2 px-6 gap-4',
   xl: 'py-4 px-9 gap-4',
+  none: '',
 };
 
 const Button = ({

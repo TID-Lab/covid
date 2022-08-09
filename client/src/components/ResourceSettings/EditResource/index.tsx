@@ -7,7 +7,7 @@ import {
 import { useHidePopup, useShowPopup } from 'hooks/popup';
 import notify from 'util/notify';
 import { useEffect, useState, useMemo } from 'react';
-import EditModal from '../EditModal';
+import NewResource from '../NewResource';
 
 import c from './index.module.css';
 import PopupModal from 'components/PopupModal';
@@ -56,9 +56,7 @@ const EditResource = () => {
     const index = resources.findIndex((resource) => resource.url === url);
     showCreateModal(newResources[index]);
   }
-  function showCreateModal(resource: Object) {
-    showPopup(<EditModal resource={resource} />);
-  }
+  function showCreateModal(resource: Object) {}
   return (
     <div className={`Modal ${c.ResourceModal}`}>
       <h4>Resources</h4>
@@ -93,8 +91,8 @@ const EditResource = () => {
         </thead>
         <tbody className="text-sm">
           {resources &&
-            resources.map((resource) => (
-              <tr>
+            resources.map((resource, index) => (
+              <tr key={index}>
                 <td className="">{resource.name}</td>
                 <td className="">{resource.author}</td>
                 <td className="">{resource.type}</td>
@@ -112,12 +110,12 @@ const EditResource = () => {
       <PopupModal
         isOpen={showEditModal}
         onClose={() => setShowEditModal(false)}
-        className="w-[400px]"
+        className=""
       >
-        <EditModal
+        {/* <EditModal
           resource={selectedResource}
           onClose={() => setShowEditModal(false)}
-        />
+        /> */}
       </PopupModal>
     </div>
   );

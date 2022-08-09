@@ -1,13 +1,14 @@
-// Functons for the /api/tag API endpoints
+//@eslint-disable quotes
 
-import { authFetch } from "../util/auth";
+// Functons for the /api/tag API endpoints
+import { authFetch } from '../util/auth';
 
 const defaultOptions = {
   headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  }
-}
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
+};
 
 /**
  * Fetches all tags via GET /api/tag
@@ -16,7 +17,7 @@ async function fetchTags() {
   const options = {
     ...defaultOptions,
     method: 'GET',
-  }
+  };
   const res = await fetch('/api/tag', options);
   const tags = await res.json();
   return tags;
@@ -30,8 +31,8 @@ async function deleteTag(tag) {
     ...defaultOptions,
     method: 'DELETE',
     body: JSON.stringify(tag),
-  }
-  const res = await authFetch(`/api/tag`, options);
+  };
+  const res = await authFetch('/api/tag', options);
   return res.status === 200;
 }
 
@@ -43,8 +44,8 @@ async function createTag(tag) {
     ...defaultOptions,
     method: 'POST',
     body: JSON.stringify(tag),
-  }
-  const res = await authFetch(`/api/tag`, options);
+  };
+  const res = await authFetch('/api/tag', options);
   const body = await res.json();
   return body;
 }
@@ -57,16 +58,11 @@ async function editTag(tag, replacementTag) {
     ...defaultOptions,
     method: 'PUT',
     body: JSON.stringify(tag),
-    replacementBody: replacementTag
-  }
-  const res = await authFetch(`/api/tag`, options);
+    replacementBody: replacementTag,
+  };
+  const res = await authFetch('/api/tag', options);
   const body = await res.json();
   return body;
 }
 
-export {
-  fetchTags,
-  deleteTag,
-  createTag,
-  editTag,
-};
+export { fetchTags, deleteTag, createTag, editTag };

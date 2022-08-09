@@ -1,28 +1,67 @@
 import Button from 'components/Button';
 import { createResource } from 'api/resource';
-import { useHidePopup } from 'hooks/popup';
 import notify from 'util/notify';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { COVID_TOPICS, COVID_TOPICS_TYPE } from 'util/filterData';
 import c from './index.module.css';
-import TopicSettings from 'components/TopicSettings';
+import ChipSelector from 'components/ChipSelector';
+import Icon from 'components/Icon';
 
-const TYPES = ['website', 'video', 'pdf', 'image'];
+const TYPES = {
+  website: 'Website',
+  video: 'Video',
+  pdf: 'PDF',
+  image: 'Image',
+};
+
+interface ResourceSchema {
+  authoredAt: number;
+  fetchedAt: number;
+  author: string;
+  organization?: any;
+  name: string;
+  desc?: string;
+  url: string;
+  type: keyof typeof TYPES;
+  topics: any[];
+  platformID?: string;
+  content?: string;
+  raw?: string;
+  language: 'en' | 'es';
+  imageurl?: string;
+}
 
 interface NewResourceProps {
+  resource?: ResourceSchema;
   onClose: any;
 }
-const NewResource = ({ onClose }: NewResourceProps) => {
+
+let imageTimeout: any;
+
+const NewResource = ({ resource, onClose }: NewResourceProps) => {
   const authoredAt = Date.now();
   const fetchedAt = Date.now();
   const [name, setName] = useState('');
   const [author, setAuthor] = useState('');
   const [url, setUrl] = useState('');
-  const [type, setType] = useState(TYPES[0]);
+  const [type, setType] = useState<keyof typeof TYPES>('website');
   const [imageurl, setImageUrl] = useState('');
-  const [topics, setTopics] = useState<string[]>([]);
+  const [imageurlPreview, setImageUrlPreview] = useState('');
 
-  const hidePopup = useHidePopup();
+  const [topics, setTopics] = useState<string[]>([]);
+  const [imageLoaded, setImageLoaded] = useState<
+    'unloaded' | 'success' | 'fail'
+  >('unloaded');
+
+  useEffect(() => {
+    if (resource) {
+      setName(resource.name);
+      setAuthor(resource.author);
+      setUrl(resource.url);
+      setType(resource.type);
+      if (resource.imageurl) setImageUrl(resource.imageurl);
+    }
+  }, []);
 
   function onNameChange(event: any) {
     setName(event.target.value);
@@ -36,46 +75,39 @@ const NewResource = ({ onClose }: NewResourceProps) => {
     setUrl(event.target.value);
   }
 
-  function onTypeChange(event: any) {
-    setType(event.target.value);
-  }
-
   function onImageUrlChange(event: any) {
     setImageUrl(event.target.value);
+    setImageLoaded('unloaded');
+    clearTimeout(imageTimeout);
+    //defer to slow down image calls
+    imageTimeout = setTimeout(() => {
+      setImageUrlPreview(event.target.value);
+    }, 1000);
   }
 
   async function onClick() {
     try {
       var resource = null;
-      if (!imageurl) {
-        resource = await createResource({
-          authoredAt,
-          fetchedAt,
-          author,
-          name,
-          url,
-          type,
-          topics,
-        });
-      } else {
-        resource = await createResource({
-          authoredAt,
-          fetchedAt,
-          author,
-          name,
-          url,
-          type,
-          imageurl,
-          topics,
-        });
-      }
+      var buildResource: ResourceSchema = {
+        authoredAt,
+        fetchedAt,
+        author,
+        name,
+        url,
+        type,
+        topics,
+        language: 'en',
+      };
+      if (imageurl) buildResource = { ...buildResource, imageurl };
+      resource = await createResource(buildResource);
+
       if (resource) {
         notify('Resource saved to database.');
         onClose();
         setName('');
         setAuthor('');
         setUrl('');
-        setType(TYPES[0]);
+        setType('website');
       } else {
         notify(
           'An error occurred. Pleas make sure resource has a Name, Author, and URL.'
@@ -97,65 +129,90 @@ const NewResource = ({ onClose }: NewResourceProps) => {
   }
 
   return (
-    <div className={`Modal ${c.NewResource} flex flex-col gap-y-2`}>
-      <h1 className="font-bold text-lg">New Resource</h1>
-      <div>
-        <label className="block">Type: </label>
-        <select onChange={onTypeChange} value={type} className="py-1 px-2">
-          {TYPES.map((type) => (
-            <option key={type} value={type}>
-              {type.charAt(0).toUpperCase() + type.slice(1)}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="grid grid-cols-2 gap-2">
+    <div className={` ${c.NewResource} flex flex-col gap-y-2 px-6`}>
+      <div className="flex flex-col gap-4">
+        <ChipSelector
+          adjust="mr-7"
+          header="Type of Resource"
+          onSelect={(id: keyof typeof TYPES) => setType(id)}
+          options={TYPES}
+          active={type}
+        />
         <div>
-          <label className="block">Name: </label>
+          <label className={c.label}>{`${TYPES[type]} `} URL</label>
           <input
-            className="py-1 px-2"
-            type="text"
-            value={name}
-            onChange={onNameChange}
-            placeholder="Name"
-          />
-        </div>
-        <div>
-          <label className="block">Author: </label>
-          <input
-            className="py-1 px-2"
-            type="text"
-            value={author}
-            onChange={onAuthorChange}
-            placeholder="Author"
-          />
-        </div>
-        <div>
-          <label className="block">URL: </label>
-          <input
-            className="py-1 px-2"
+            className="py-1 px-2 w-full"
             type="text"
             value={url}
             onChange={onUrlChange}
-            placeholder="URL"
+            placeholder="Type in a URL"
           />
         </div>
-        <div>
-          {type !== 'image' && <p>Image URL: </p>}
-          {type !== 'image' && (
-            <input
-              className="py-1 px-2"
-              type="text"
-              value={imageurl}
-              onChange={onImageUrlChange}
-              placeholder="Image URL"
-            ></input>
-          )}
+        <hr className="border-b border-slate-300 my-2" />
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <div>
+              <label className={c.label}>Title: </label>
+              <input
+                className="py-1 px-2 w-full"
+                type="text"
+                value={name}
+                onChange={onNameChange}
+                placeholder="title of resource"
+              />
+            </div>
+            <div className="flex gap-x-2 w-full">
+              <div className="flex-1">
+                <label className={c.label}>Author: </label>
+                <input
+                  className="py-1 px-2 w-full"
+                  type="text"
+                  value={author}
+                  onChange={onAuthorChange}
+                  placeholder="Author"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col ">
+            <div className="bg-slate-100 border border-slate-300 rounded-xs w-full h-[10rem]">
+              <div className="flex justify-center items-center h-full">
+                <img
+                  src={imageurlPreview}
+                  onLoad={() => setImageLoaded('success')}
+                  className={
+                    imageLoaded === 'success'
+                      ? 'w-full h-full object-scale-down '
+                      : 'invisible w-0 h-0 basis-0 '
+                  }
+                  onError={() => imageurlPreview && setImageLoaded('fail')}
+                />
+                {imageLoaded === 'unloaded' && (
+                  <p className="text-sm">Image Preview</p>
+                )}
+                {imageLoaded === 'fail' && (
+                  <p className="text-sm">Image failed to load</p>
+                )}
+              </div>
+            </div>
+            {type !== 'image' && (
+              <div>
+                <label className={c.label}>Image URL: </label>
+                <input
+                  className="py-1 px-2 w-full"
+                  type="text"
+                  value={imageurl}
+                  onChange={onImageUrlChange}
+                  placeholder="Image URL"
+                ></input>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
-      <label>Topics:</label>
-      <ul className="flex flex-wrap gap-x-2 gap-y-4 w-1/2">
+      <label className={c.label}>Topics:</label>
+      <ul className="flex flex-wrap gap-x-2 gap-y-4">
         {Object.keys(COVID_TOPICS).map((key, index) => (
           <li className="flex items-center gap-x-2 px-4 py-2 rounded-full bg-slate-100 w-fit">
             <input
@@ -168,9 +225,14 @@ const NewResource = ({ onClose }: NewResourceProps) => {
           </li>
         ))}
       </ul>
-      <Button className="w-fit" onClick={onClick}>
-        + Create Resource
-      </Button>
+      <div className="flex justify-end gap-x-3">
+        <Button variant="outline" className="w-fit" onClick={onClose}>
+          Cancel
+        </Button>
+        <Button className="w-fit" onClick={onClick}>
+          <Icon type="plus" /> Create Resource
+        </Button>
+      </div>
     </div>
   );
 };

@@ -23,7 +23,7 @@ const ResourceModal = () => {
       <PopupModal
         isOpen={showCreateModal}
         onClose={() => setShowCreateModal(false)}
-        className="w-[400px]"
+        className=""
       >
         <NewResource onClose={() => setShowCreateModal(false)} />
       </PopupModal>

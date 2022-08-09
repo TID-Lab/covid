@@ -1,5 +1,7 @@
 import icons from 'util/icons/iconlist.json';
 import { HTMLAttributes } from 'react';
+import c from './index.module.css';
+
 export type iconType = keyof typeof icons;
 
 const iconSizes = {

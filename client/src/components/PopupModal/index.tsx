@@ -2,25 +2,44 @@
 import { Dialog } from '@headlessui/react';
 import c from './index.module.css';
 import { ReactNode } from 'react';
+import Icon from 'components/Icon';
+import Button from 'components/Button';
 
 interface PopupProps {
   children: ReactNode;
   isOpen: boolean;
   onClose: (param: any) => void;
   className?: string;
+  title?: string;
 }
-const PopupModal = ({ children, isOpen, onClose, className }: PopupProps) => {
+const PopupModal = ({
+  children,
+  isOpen,
+  onClose,
+  className,
+  title,
+}: PopupProps) => {
   return (
     <Dialog open={isOpen} onClose={onClose} className="relative z-50">
-      <Dialog.Panel className={`max-w-lg ${className}`}>
-        <div className={c.popup_box}>
-          <div className={c.box}>
-            <span className={c.close_icon} onClick={onClose}>
-              x
-            </span>
+      <Dialog.Panel className={` `}>
+        <div
+          className="fixed inset-0 bg-black bg-opacity-25"
+          aria-hidden="true"
+          onClick={onClose}
+        />
+        <div className={`fixed inset-0   grid place-items-center`}>
+          <article
+            className={`relative px-4 py-5 bg-white rounded-sm  max-w-[70vh] max-h-[95vh] drop-shadow-lg ${className}`}
+          >
+            <header className="flex justify-between items-center">
+              <h1>{title}</h1>
+              <Button variant="transparent" onClick={onClose}>
+                <Icon type="x" />
+              </Button>
+            </header>
 
             {children}
-          </div>
+          </article>
         </div>
       </Dialog.Panel>
     </Dialog>
