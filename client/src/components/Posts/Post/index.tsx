@@ -2,6 +2,7 @@
 import c from './index.module.css';
 
 import { useState, useEffect, useCallback } from 'react';
+import { useAppDispatch, useAppSelector } from 'hooks/useTypedRedux';
 import { authFetch } from 'util/auth';
 import store from 'store';
 import useTracker from 'hooks/useTracker';
@@ -14,6 +15,7 @@ import {
   IDENTITIES,
 } from 'util/filterData';
 import AuthorInfo from '../AuthorInfo';
+import EditTags from '../EditTags';
 const embedHTMLCache = [];
 
 function waitForEmbed(parent, callback) {
@@ -30,10 +32,11 @@ function waitForEmbed(parent, callback) {
 const Post = (props) => {
   const { data } = props;
   console.log(data);
-  const { url, platform, platformID } = data;
+  const { _id, url, platform, platformID } = data;
   const coverImagePath = `/images/${platform}.png`;
   const elementID = `post-${platform}-${platformID}`;
   const element = document.getElementById(elementID);
+  const tags = useAppSelector((state) => state.tags.alltags);
 
   const [isLoaded, setLoaded] = useState(false);
   const [isRendered, setRendered] = useState(false);
@@ -174,6 +177,17 @@ const Post = (props) => {
             Make Post
           </Button>
         </div>
+        <p className="flex flex-wrap gap-x-1">
+          <b>Tags:</b>{' '}
+          {tags &&
+            tags
+              .filter(
+                (tag) => tag.posts && tag.posts.find((item) => item === _id)
+              )
+              .map((tag) => tag.name)
+              .join(', ')}
+          <EditTags postId={_id} activeTags={tags} />
+        </p>
         <Button className="text-xs" variant="transparent" size="md">
           View Relevent Resources <Icon type="arrow-right" size="xs" />
         </Button>

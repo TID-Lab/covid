@@ -1,3 +1,32 @@
 .dashboard_grid {
+  /* @apply mt-[61px]; */
   grid-template-columns: var(--sidebar-w) auto;
+  height: 100vh;
+}
+
+.tabList {
+  @apply flex mt-0 border-b border-blue-300 justify-center px-4 flex-grow;
+}
+
+.tab {
+  @apply cursor-pointer mx-1 mt-4 text-sm flex-1 outline-none;
+}
+
+.tab > div {
+  @apply inline-block py-1 rounded-tr-md rounded-tl-md;
+  @apply bg-slate-50 w-full;
+  @apply border border-blue-200 border-b-blue-300;
+  @apply relative top-[1px] z-40;
+}
+
+.selectedTab {
+  @apply !bg-white !border-blue-300 !border-b-white !z-0;
+}
+
+.tabPanels {
+  @apply flex flex-col flex-1 h-full pb-13;
+}
+
+.tabPanel {
+  @apply flex-1 h-full;
 }

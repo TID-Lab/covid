@@ -13,7 +13,8 @@ const defaultOptions = {
 };
 // Converts from the filters state object to an HTTP request body
 export function filtersToBody(filters) {
-  const { dates, topic, accounts, platforms, page, sortBy, search } = filters;
+  const { dates, topic, accounts, platforms, page, sortBy, search, tags } =
+    filters;
   const { curatedOnly, categories, identities, institutions, location } =
     accounts;
   const body = { platforms, page, sortBy, search };
@@ -45,9 +46,13 @@ export function filtersToBody(filters) {
     if (location !== 'all') {
       body.georgia = location === 'georgia';
     }
+    if (tags && tags.length) {
+      body.tags = tags;
+    }
   }
   return body;
 }
+
 
 // this shouldnt work LOL  i think it needs to be in a redux store, but it does so im not gonna touch it
 export let page = 0;
@@ -76,6 +81,7 @@ export async function getPosts(filters) {
   body = filtersToBody(filters);
   return await fetchPosts();
 }
+
 /**
  * Fetches the next page of posts.
  */
@@ -105,8 +111,10 @@ export async function getPrevNextPage(toPage) {
 /**
  * Pure function that Fetches posts using the GET /api/post API endpoint.
  */
-export async function fetchPostsFromPage(pageNumber: number, filters = {}) {
-  const body = filtersToBody(filters);
+export async function fetchPostsFromPage(pageNumber: number, filters = {}, activetagObjects: object[] = []) {
+  const filter_clone = {...filters};
+  filter_clone.tags = activetagObjects;
+  const body = filtersToBody(filter_clone);
   const options = {
     ...defaultOptions,
     body: JSON.stringify(body),

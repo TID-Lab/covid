@@ -1,16 +1,22 @@
 /* eslint-disable no-param-reassign */
-
+//@ts-nocheck
 // API routes for partner organizations
 
 const useDebug = require('debug');
 const routes = require('express').Router();
 const Organization = require('../../models/organization');
 const CustomTag = require('../../models/customtag.js');
+const mongoose = require('mongoose');
 
 const debug = useDebug('api');
 
 // Returns all of the tags for a given organization
 routes.get('/', async (req, res) => {
+  const session = req.session;
+  if (!session) {
+    res.status(401).send();
+    return;
+  }
   const id = req.session.org;
   if (!id) {
     res.status(401).send();
@@ -24,7 +30,9 @@ routes.get('/', async (req, res) => {
 
   let tags;
   try {
+    console.log('Org', org);
     tags = await CustomTag.find({ organization: org });
+    console.log('Tags', tags);
   } catch (err) {
     debug(`${err}`);
     res.status(500).send();
@@ -61,10 +69,11 @@ routes.post('/', async (req, res) => {
 });
 
 // Update a tag via replacement
-routes.put('/', async (req, res) => {
-  const { _id } = req.body;
-  const replacement = req.replacementBody;
-  if (typeof _id !== 'string') {
+routes.put('/replace', async (req, res) => {
+  const { tag, replacementTag } = req.body;
+  const _id = tag._id;
+  const replacement = replacementTag;
+  if (typeof tag._id !== 'string') {
     res.status(400).send();
     return;
   }
@@ -82,7 +91,7 @@ routes.put('/', async (req, res) => {
 });
 
 // Deletes a tag
-routes.delete('/', async (req, res) => {
+routes.delete('/delete', async (req, res) => {
   const { _id } = req.body;
   if (typeof _id !== 'string') {
     res.status(400).send();
@@ -90,6 +99,30 @@ routes.delete('/', async (req, res) => {
   }
   try {
     const result = await CustomTag.deleteOne({ _id });
+    if (result.deletedCount === 0) {
+      res.status(404).send();
+      return;
+    }
+    res.status(200).send();
+  } catch (err) {
+    debug(`${err}`);
+    res.status(500).send();
+  }
+});
+
+// Deletes a tag
+routes.delete('/deleteAll', async (req, res) => {
+  const ids = req.body.map((tags) => tags._id) as string[];
+  if (typeof _id !== 'string') {
+    res.status(400).send();
+    return;
+  }
+  try {
+    const result = await CustomTag.deleteAll({
+      _id: {
+        $in: ids,
+      },
+    });
     if (result.deletedCount === 0) {
       res.status(404).send();
       return;

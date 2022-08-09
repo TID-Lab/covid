@@ -18,16 +18,16 @@ const SortSelect = () => {
 
   return (
     <Listbox value={selected} onChange={setSelected}>
-      <div className="relative ">
-        <Listbox.Button className="relative font-medium text-sm w-full rounded-xs cursor-pointer bg-slate-50 border border-slate-300 py-2 pl-3 pr-7 text-left focus:outline-none focus-visible:border-blue-300 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 ">
+      <div className="relative z-50">
+        <Listbox.Button className="relative w-full py-2 pl-3 text-sm font-medium text-left border cursor-pointer rounded-xs bg-slate-50 border-slate-300 pr-7 focus:outline-none focus-visible:border-blue-300 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 ">
           <span className="text-slate-600">Sort By:</span>
-          <span className=" truncate"> {SORT_BY[selected]}</span>
-          <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+          <span className="truncate"> {SORT_BY[selected]}</span>
+          <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
             <Icon type="chevron-down" size="sm" />
           </span>
         </Listbox.Button>
 
-        <Listbox.Options className="absolute text-sm mt-1 max-h-60 w-full overflow-auto rounded-xs bg-slate-50 py-1  shadow-lg border border-slate-400 ring-opacity-5 focus:outline-none">
+        <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-sm border shadow-lg max-h-60 rounded-xs bg-slate-50 border-slate-400 ring-opacity-5 focus:outline-none">
           {Object.keys(SORT_BY).map((item, index) => (
             <Listbox.Option
               key={index}

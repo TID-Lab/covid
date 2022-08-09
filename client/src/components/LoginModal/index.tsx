@@ -67,24 +67,24 @@ const LoginModal = () => {
     <section
       className={`p-6 bg-white drop-shadow-lg rounded-sm flex items-center justify-between flex-col border border-slate-300 w-[400px] `}
     >
-      <div className="flex items-center flex-col">
+      <div className="flex flex-col items-center">
         <img
           className="w-[50px] my-6"
           src="/images/projectpeach.png"
           alt="Project Peach Logo"
         ></img>
-        <h1 className="text-center text-2xl mb-9">Organization Login</h1>
+        <h1 className="text-2xl text-center mb-9">Organization Login</h1>
       </div>
-      <div className="w-full flex flex-col">
+      <div className="flex flex-col w-full">
         <Combobox
           value={selectedOrg}
           onChange={setSelectedOrg}
           disabled={orgs.length === 0}
         >
-          <Combobox.Label className="text-sm font-medium pl-3">
+          <Combobox.Label className="pl-3 text-sm font-medium">
             Organization
           </Combobox.Label>
-          <div className="relative w-full flex  items-center bg-slate-50 border border-slate-300 rounded-xs ">
+          <div className="relative flex items-center w-full border bg-slate-50 border-slate-300 rounded-xs ">
             <Combobox.Input
               onChange={(event) => searchOrg(event.target.value)}
               placeholder="select your organization"
@@ -93,11 +93,11 @@ const LoginModal = () => {
             <Combobox.Button
               type="button"
               aria-label="dropdown"
-              className="py-3 pr-3 pl-9 hover:bg-blue-100 border border-transparent rounded-xs"
+              className="py-3 pr-3 border border-transparent pl-9 hover:bg-blue-100 rounded-xs"
             >
               <Icon type="chevron-down" size="sm" />
             </Combobox.Button>
-            <Combobox.Options className="absolute mt-1 font-medium rounded-xs z-50 top-full bg-slate-50 border border-slate-300 w-full p-3">
+            <Combobox.Options className="absolute z-50 w-full p-3 mt-1 font-medium border rounded-xs top-full bg-slate-50 border-slate-300">
               {filteredOrgs
                 .sort((a, b) => a.name.localeCompare(b.name))
                 .map((org, index) => (
@@ -130,7 +130,7 @@ const LoginModal = () => {
             </option>
           ))}
       </select> */}
-        <label htmlFor="pass" className="text-sm font-medium pl-3 mt-4">
+        <label htmlFor="pass" className="pl-3 mt-4 text-sm font-medium">
           Password
         </label>
         <input
@@ -139,13 +139,13 @@ const LoginModal = () => {
           type="password"
           value={pwd}
           onChange={(event) => setPwd(event.target.value)}
-          className="px-4 py-2 w-full"
+          className="w-full px-4 py-2"
           placeholder="Organization password"
         ></input>
         <button
           type="button"
           onClick={onLogin}
-          className="bg-blue-100 mt-9 border border-blue-300 hover:bg-blue-200 rounded-xs px-2 py-3 w-full text-center"
+          className="w-full px-2 py-3 text-center bg-blue-100 border border-blue-300 mt-9 hover:bg-blue-200 rounded-xs"
         >
           Login
         </button>

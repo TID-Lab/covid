@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { useEffect, useState } from 'react';
 import Filters from 'components/Filters';
 import Posts from 'components/Posts';
@@ -21,7 +23,10 @@ const ResourceDashboard = () => {
   const dispatch = useAppDispatch();
 
   const posts = useAppSelector((state) => state.resources);
-  const filters = useAppSelector((state) => state.filters);
+  const filters = useAppSelector((state) => ({
+    ...state.filters,
+    tags: [],
+  }));
   const [page, setPage] = useState(0);
   const [lastPage, setLastPage] = useState(false);
 
@@ -36,10 +41,13 @@ const ResourceDashboard = () => {
     };
   }, []);
 
+  console.log('Page', page);
+
   //update posts whenver filters or page number is updated
   useEffect(() => {
+    console.log('Resources Effect', page);
     updatePosts(page, filters);
-  }, [filters, page]);
+  }, [page]);
 
   function updatePosts(pageNumber: number, filterData: any) {
     fetchResourceFromPage(pageNumber, filterData)
@@ -55,9 +63,14 @@ const ResourceDashboard = () => {
     const newPage = page + toPage;
     if (newPage > 0 && !lastPage) setPage(page + toPage);
   }
+
   return (
-    <div className={`overflow-hidden h-full grid ${c.dashboard_grid}`}>
-      <Filters showDate showList={['COVID-19 Topics']} />
+    <div
+      className={`overflow-hidden h-full grid mt-[61px] ${c.dashboard_grid}`}
+    >
+      <section className="border-r border-slate-400">
+        <Filters showDate showList={['COVID-19 Topics']} />
+      </section>
 
       <Posts
         page={page}
@@ -70,6 +83,7 @@ const ResourceDashboard = () => {
           <ResourcesPost data={post} key={index} />
         ))}
       </Posts>
+
       <PostingMenu />
     </div>
   );

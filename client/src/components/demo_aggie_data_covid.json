@@ -2,9 +2,9 @@
   {
     "_id": "6076f4dae6ee8e709902afdf",
     "veracity": "Unconfirmed",
-    "tags": ["NO_RT"],
-    "smtcTags": [],
-    "hasSMTCTags": false,
+    "labels": ["NO_RT"],
+    "smtcLabels": [],
+    "hasSMTCLabels": false,
     "read": false,
     "_sources": ["607611d07b7f52709391e89d"],
     "_media": ["twitter"],
@@ -130,7 +130,7 @@
   {
     "_id": "6076f4dae6ee8e709902afde",
     "veracity": "Unconfirmed",
-    "tags": ["NO_RT"],
+    "labels": ["NO_RT"],
     "smtcTags": [],
     "hasSMTCTags": false,
     "read": false,
@@ -1850,9 +1850,9 @@
   {
     "_id": "6076f4bce6ee8e709902afd3",
     "veracity": "Unconfirmed",
-    "tags": [],
-    "smtcTags": [],
-    "hasSMTCTags": false,
+    "labels": [],
+    "smtcLabels": [],
+    "hasSMTCLabels": false,
     "read": false,
     "_sources": ["6076f4bb7b7f52709391e89f"],
     "_media": ["crowdtangle"],
@@ -1943,9 +1943,9 @@
   {
     "_id": "6076f4bce6ee8e709902afd2",
     "veracity": "Unconfirmed",
-    "tags": [],
-    "smtcTags": [],
-    "hasSMTCTags": false,
+    "labels": [],
+    "smtcLabels": [],
+    "hasSMTCLabels": false,
     "read": false,
     "_sources": ["6076f4bb7b7f52709391e89f"],
     "_media": ["crowdtangle"],
@@ -2043,8 +2043,8 @@
     "__v": 0
   },
   {
-    "tags": ["Electoral/Political Registered News Agencies Page"],
-    "smtcTags": [],
+    "labels": ["Electoral/Political Registered News Agencies Page"],
+    "smtcLabels": [],
     "read": true,
     "flagged": false,
     "_sources": ["5f2a4b28b72da5ee8b36ba54"],

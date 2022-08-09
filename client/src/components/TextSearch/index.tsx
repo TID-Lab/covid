@@ -8,6 +8,7 @@ let timeout: any;
 
 interface TextSearchProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
+  storetarget?: string;
 }
 
 const TextSearch = ({ className, ...props }: TextSearchProps) => {
@@ -17,7 +18,10 @@ const TextSearch = ({ className, ...props }: TextSearchProps) => {
   function onChange(e: ChangeEvent<HTMLInputElement>) {
     clearTimeout(timeout);
     timeout = setTimeout(() => {
-      dispatch({ type: 'search/set', payload: e.target.value });
+      dispatch({
+        type: props.storetarget || 'search/set',
+        payload: e.target.value,
+      });
       trackEvent({
         category: 'Filter',
         action: 'Search',
@@ -26,15 +30,23 @@ const TextSearch = ({ className, ...props }: TextSearchProps) => {
     }, 2000);
   }
 
+  function onKeyUp(e: any) {
+    dispatch({
+      type: props.storetarget || 'search/set',
+      payload: e.target.value,
+    });
+  }
+
   return (
     <div
-      className={` ml-6 flex items-center ${c.TextSearch} ${className}`}
+      className={`flex items-center w-full ${c.TextSearch} ${className}`}
       {...props}
     >
       <input
         type="text"
-        className="w-[400px] py-1 pr-8  placeholder:text-slate-500 rounded-xs pl-[15px]  "
+        className="w-full py-1 pr-8  placeholder:text-slate-500 rounded-xs pl-[15px]  "
         onChange={onChange}
+        onKeyUp={onKeyUp}
         placeholder="Search"
       />
 

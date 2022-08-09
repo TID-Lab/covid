@@ -30,15 +30,15 @@ const Header = () => {
   if (pathname === '/social-media-dashboard' || pathname === '/resources') {
     return (
       <header
-        className={`grid font-medium ${c.header_grid} text-slate-700 fixed top-0 left-0 z-50 w-full`}
+        className={`grid font-medium ${c.header_grid} text-slate-700 fixed top-0 left-0 z-[60] w-full`}
       >
-        <div className="border-r bg-white  border-slate-400 px-2 py-2  flex justify-between items-center">
+        <div className="flex items-center justify-between px-2 py-2 bg-white border-r border-slate-400">
           <Logo />
-          <Menu as="div" className="relative text-left">
-            <Menu.Button className=" hover:bg-slate-200 pl-3 flex gap-x-1  border-slate-300 items-center font-medium pr-1 py-1 text-sm rounded-xs">
+          <Menu as="div" className="relative z-50 text-left">
+            <Menu.Button className="flex items-center py-1 pl-3 pr-1 text-sm font-medium hover:bg-slate-200 gap-x-1 border-slate-300 rounded-xs">
               Menu <Icon type="more-vertical" />
             </Menu.Button>
-            <Menu.Items className="absolute  text-sm mt-1 divide-y divide-slate-300 right-0 p-1 z-50 font-medium drop-shadow-lg bg-slate-50 rounded-xs border border-slate-300">
+            <Menu.Items className="absolute right-0 z-50 p-1 mt-1 text-sm font-medium border divide-y divide-slate-300 drop-shadow-lg bg-slate-50 rounded-xs border-slate-300">
               <Menu.Item>
                 {({ active }) => (
                   <button
@@ -95,7 +95,7 @@ const Header = () => {
         <div
           className={`flex justify-between items-center px-4 py-2 text-base  ${c.firefoxfix}`}
         >
-          <div className="flex items-center h-fit grow space-x-2 pl-2 basis-0">
+          <div className="flex items-center pl-2 space-x-2 h-fit grow basis-0">
             <NavLink
               className={`${c.navlink} py-1 `}
               activeClassName={c.active}
@@ -115,8 +115,10 @@ const Header = () => {
               </p>{' '}
             </NavLink>
           </div>
-          <TextSearch />
-          <div className="grow basis-0 flex justify-end">
+          <div className="ml-6 w-[400px]">
+            <TextSearch />
+          </div>
+          <div className="flex justify-end grow basis-0">
             {pathname === '/resources' ? (
               <Button
                 onClick={() => window.open('/settings/resources', '_self')}
@@ -124,7 +126,9 @@ const Header = () => {
                 Settings
               </Button>
             ) : (
-              <Button onClick={onMenuClick}>+ Create Post</Button>
+              <Button onClick={onMenuClick} className="truncate">
+                + Create Post
+              </Button>
             )}
           </div>
         </div>
@@ -132,7 +136,7 @@ const Header = () => {
     );
   } else if (pathname === '/') {
     return (
-      <header className="flex bg-white items-center px-2 py-1 border-b border-slate-300">
+      <header className="flex items-center px-2 py-1 bg-white border-b border-slate-300">
         <Logo />
       </header>
     );
