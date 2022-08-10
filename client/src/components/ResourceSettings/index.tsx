@@ -1,20 +1,47 @@
-
 import c from './index.module.css';
-import ResourceModal from './ResourceModal';
 import Button from 'components/Button';
+import { useState } from 'react';
+import PopupModal from 'components/PopupModal';
+import Icon from 'components/Icon';
+import NewResource from './NewResource';
+import EditResource from './EditResource';
 
 const ResourceSettings = () => {
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [activeResource, setActiveResource] = useState<any>(null);
 
+  function onNewResourceOpen() {
+    setActiveResource(null);
+    setShowCreateModal(true);
+  }
+  function onNewResourceClose() {
+    setActiveResource(null);
+    setShowCreateModal(false);
+  }
   return (
-    <div className={c.OrganizationSettings}>
-        <ResourceModal/>
-        <Button onClick={()=> window.open('/resources', '_self') } className="align justify-center">
-        ← Back 
-        </Button>
-    </div>
+    <>
+      <h2 className="text-lg font-medium text-slate-700 mb-2">
+        Manage Resources
+      </h2>
+
+      <Button onClick={onNewResourceOpen} size="md" className="w-fit mb-6">
+        <Icon type="plus" />
+        Add A New Resource
+      </Button>
+      <EditResource
+        onEditOpen={setShowCreateModal}
+        setActiveResource={setActiveResource}
+      />
+
+      <PopupModal
+        isOpen={showCreateModal}
+        onClose={onNewResourceClose}
+        className=""
+      >
+        <NewResource onClose={onNewResourceClose} resource={activeResource} />
+      </PopupModal>
+    </>
   );
-
-
-}
+};
 
 export default ResourceSettings;

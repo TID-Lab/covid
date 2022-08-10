@@ -1,13 +1,13 @@
-import { useLocation } from 'react-router-dom';
 import c from './index.module.css';
 import Logo from '../Logo';
 import TextSearch from '../TextSearch';
 import { useAppDispatch, useAppSelector } from 'hooks/useTypedRedux';
 import Button from 'components/Button';
 import useTracker from 'hooks/useTracker';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Menu } from '@headlessui/react';
 import Icon from 'components/Icon';
+import path from 'path';
 const Header = () => {
   const { trackEvent } = useTracker();
   const { pathname } = useLocation(); // TODO show search only if in dashboard mode
@@ -136,12 +136,20 @@ const Header = () => {
         <Logo />
       </header>
     );
-  } else {
+  } else if (pathname.includes('/settings')) {
     return (
-      // return nothing for now LOL
-      <></>
+      <header
+        className={`container mx-auto grid font-medium ${c.header_grid} text-slate-700   z-50 w-full py-2 mb-2`}
+      >
+        <Logo />
+        <div></div>
+      </header>
     );
   }
+  return (
+    // return nothing for now LOL
+    <></>
+  );
 };
 
 export default Header;

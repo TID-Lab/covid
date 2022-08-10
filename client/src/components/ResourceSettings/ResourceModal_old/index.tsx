@@ -9,7 +9,6 @@ import c from './index.module.css';
 import PopupModal from 'components/PopupModal';
 
 const ResourceModal = () => {
-  const showPopup = useShowPopup();
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
 
@@ -36,7 +35,7 @@ const ResourceModal = () => {
         isOpen={showEditModal}
         onClose={() => setShowEditModal(false)}
       >
-        <EditResource />
+        {/* <EditResource /> */}
       </PopupModal>
     </div>
   );

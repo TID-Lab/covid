@@ -1,15 +1,15 @@
 .Root {
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 
-.Root > * {
+/* .Root > * {
   width: 100%;
   height: 100%;
   display: flex;
   flex-flow: column;
-  position: absolute;
-}
+  //position: absolute;
+} */
 
 .Popup {
   align-items: center;
