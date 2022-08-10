@@ -27,7 +27,7 @@ interface ResourceSchema {
   platformID?: string;
   content?: string;
   raw?: string;
-  language: 'en' | 'es';
+  language?: 'en' | 'es';
   imageurl?: string;
 }
 
@@ -102,7 +102,6 @@ const NewResource = ({ resource, onClose }: NewResourceProps) => {
         url,
         type,
         topics,
-        language: 'en',
       };
       if (imageurl) buildResource = { ...buildResource, imageurl };
       createdResource = await createResource(buildResource);
