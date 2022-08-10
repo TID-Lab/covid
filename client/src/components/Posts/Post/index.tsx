@@ -126,79 +126,88 @@ const Post = (props) => {
   }
 
   return (
-    <article
-      className={`${c.overlayborder} min-w-[400px]  bg-white h-fit min-h-[30vh] relative w-full flex flex-col shadow-lg overflow-hidden rounded-xs ${c.Post} `}
-    >
-      {!isRendered ? (
-        <div
-          className={`flex justify-center  h-[75vh] items-center  bg-white border-b border-slate-300`}
-        >
-          <img
-            className={`h-[80px] ${c.animation} `}
-            src={coverImagePath}
-            alt={platform}
-          />
-        </div>
-      ) : (
-        ''
-      )}
-      {retweet ? (
-        <div className={c.retweet}>
-          Retweeted by{' '}
-          <a
-            href={'https://twitter.com/' + data.author}
-            target="_blank"
-            rel="noreferrer"
+    <div className="relative z-[1] ">
+      <article
+        className={`${c.overlayborder} min-w-[400px]  bg-white h-fit min-h-[30vh] relative w-full flex flex-col shadow-lg overflow-hidden rounded-xs ${c.Post} `}
+      >
+        {!isRendered ? (
+          <div
+            className={`flex justify-center  h-[75vh] items-center  bg-white border-b border-slate-300`}
           >
-            @{data.author}
-          </a>
-          :
+            <img
+              className={`h-[80px] ${c.animation} `}
+              src={coverImagePath}
+              alt={platform}
+            />
+          </div>
+        ) : (
+          ''
+        )}
+        {retweet ? (
+          <div className={c.retweet}>
+            Retweeted by{' '}
+            <a
+              href={'https://twitter.com/' + data.author}
+              target="_blank"
+              rel="noreferrer"
+            >
+              @{data.author}
+            </a>
+            :
+          </div>
+        ) : (
+          ''
+        )}
+        <div className={`${c.container} bg-white`}>
+          <div
+            className={`${c.content} mr-[-2px] ${!isRendered ? ' hidden' : ''}`}
+            id={elementID}
+            dangerouslySetInnerHTML={{ __html: embedHTML }}
+          ></div>
         </div>
-      ) : (
-        ''
-      )}
-      <div className={`${c.container} bg-white`}>
+
+        <footer className={`px-2 py-3 `}>
+          <AuthorInfo
+            name={data.author}
+            topics={data.topics}
+            accCategories={data.tags}
+          />
+
+          <div className={`flex gap-x-1 text-xs mt-4`}>
+            <Button variant="outline" size="md" onClick={copyLink}>
+              Copy link
+            </Button>
+            <Button variant="outline" size="md" onClick={copyText}>
+              Copy text
+            </Button>
+            <Button variant="primary" size="md" onClick={createPost}>
+              Make Post
+            </Button>
+          </div>
+          <p className="flex flex-wrap gap-x-1">
+            <b>Tags:</b>{' '}
+            {tags &&
+              tags
+                .filter(
+                  (tag) => tag.posts && tag.posts.find((item) => item === _id)
+                )
+                .map((tag) => tag.name)
+                .join(', ')}
+            <EditTags postId={_id} activeTags={tags} />
+          </p>
+          <Button className="text-xs" variant="transparent" size="md">
+            View Relevent Resources <Icon type="arrow-right" size="xs" />
+          </Button>
+        </footer>
+      </article>
+      {data.tags && data.tags.some((i) => i === 'misinfo') && (
         <div
-          className={`${c.content} mr-[-2px] ${!isRendered ? ' hidden' : ''}`}
-          id={elementID}
-          dangerouslySetInnerHTML={{ __html: embedHTML }}
-        ></div>
-      </div>
-
-      <footer className={`px-2 py-3 `}>
-        <AuthorInfo
-          name={data.author}
-          topics={data.topics}
-          accCategories={data.tags}
-        />
-
-        <div className={`flex gap-x-1 text-xs mt-4`}>
-          <Button variant="outline" size="md" onClick={copyLink}>
-            Copy link
-          </Button>
-          <Button variant="outline" size="md" onClick={copyText}>
-            Copy text
-          </Button>
-          <Button variant="primary" size="md" onClick={createPost}>
-            Make Post
-          </Button>
+          className={`z-[100] absolute right-4 top-[-0.25rem] h-[4rem] w-fit text-slate-100 bg-red-500 px-4 pt-8 hover:opacity-30  drop-shadow-xs ${c.ribbon} rounded-t-[2px]`}
+        >
+          <Icon type="alert-octagon" />
         </div>
-        <p className="flex flex-wrap gap-x-1">
-          <b>Tags:</b>{' '}
-          {tags &&
-            tags
-              .filter(
-                (tag) => tag.posts && tag.posts.find((item) => item === _id)
-              )
-              .map((tag) => tag.name)
-              .join(', ')}
-          <EditTags postId={_id} activeTags={tags} />
-        </p>
-        <Button className="text-xs" variant="transparent" size="md">
-          View Relevent Resources <Icon type="arrow-right" size="xs" />
-        </Button>
-      </footer>
-    </article>
+      )}
+    </div>
   );
 };
 

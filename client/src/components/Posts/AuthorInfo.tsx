@@ -1,4 +1,5 @@
 import Icon from 'components/Icon';
+import { Fragment } from 'react';
 import {
   COVID_TOPICS,
   ACC_CATEGORIES,
@@ -21,7 +22,16 @@ const AuthorInfo = ({
   accCategories,
   topics,
 }: AuthorInfoProps) => {
-  function format(tag: keyof typeof ACC_CATEGORIES) {}
+  function format(tag: keyof typeof ACC_CATEGORIES) {
+    if (tag === 'misinfo')
+      return (
+        <span className="text-red-800 flex gap-x-2 bg-red-100 rounded-full py-1 pr-3 truncate pl-1 ">
+          <Icon type="alert-octagon" size="xs" />
+          {ACC_CATEGORIES[tag]}
+        </span>
+      );
+    return <span>tag</span>;
+  }
 
   return (
     <div className="grid grid-cols-2 font-medium gap-x-2">
@@ -55,9 +65,7 @@ const AuthorInfo = ({
               accCategories
                 .filter((tag) => ACC_CATEGORIES[tag])
                 .map((tag, index) => (
-                  <p key={index} className="px-4 py-0.5  ">
-                    {ACC_CATEGORIES[tag]}
-                  </p>
+                  <Fragment key={index}>{format(tag)}</Fragment>
                 ))
                 .filter(Boolean)}
           </div>
