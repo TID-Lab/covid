@@ -4,31 +4,23 @@ import {
   deleteResource,
   fetchResourceFromPage,
 } from 'api/resource';
-import { useHidePopup, useShowPopup } from 'hooks/popup';
 import notify from 'util/notify';
 import { useEffect, useState, useMemo } from 'react';
-import NewResource from '../NewResource';
 
 import c from './index.module.css';
 import PopupModal from 'components/PopupModal';
-
-const EditResource = () => {
+import Icon from 'components/Icon';
+interface EditResourceProps {
+  onEditOpen: any;
+  setActiveResource: any;
+}
+const EditResource = ({ onEditOpen, setActiveResource }: EditResourceProps) => {
   const [resources, setResources] = useState<any[]>([]);
-  const [showEditModal, setShowEditModal] = useState(false);
-  const [selectedResource, setSelectedResource] = useState<Object>();
-  const hidePopup = useHidePopup();
-  const showPopup = useShowPopup();
+  const [loadingState, setLoadingState] = useState<
+    'loading' | 'success' | 'fail'
+  >('loading');
   const [page, setPage] = useState(0);
 
-  async function apiCall(pageNum: number) {
-    let apiResponse: any;
-    try {
-      apiResponse = await fetchResourceFromPage(pageNum);
-      setResources(apiResponse);
-    } catch (error) {
-      console.log(error);
-    }
-  }
   useEffect(() => {
     apiCall(page);
   }, []);
@@ -37,9 +29,26 @@ const EditResource = () => {
     apiCall(page);
   }, [page]);
 
+  async function apiCall(pageNum: number) {
+    let apiResponse: any;
+    setLoadingState('loading');
+    try {
+      apiResponse = await fetchResourceFromPage(pageNum);
+      if (apiResponse && apiResponse.length > 0) {
+        setResources(apiResponse);
+        setLoadingState('success');
+      } else {
+        setLoadingState('fail');
+      }
+    } catch (error) {
+      console.log(error);
+      setLoadingState('fail');
+    }
+  }
+
   function editResource(resource: Object) {
-    setSelectedResource(resource);
-    setShowEditModal(true);
+    setActiveResource(resource);
+    onEditOpen(true);
   }
   function onDelete(url: string) {
     const newResources = [...resources];
@@ -51,72 +60,86 @@ const EditResource = () => {
     deleteResource(resourceUrl);
     setResources(newResources);
   }
-  function onEdit(url: string) {
-    const newResources = [...resources];
-    const index = resources.findIndex((resource) => resource.url === url);
-    showCreateModal(newResources[index]);
+  // function onEdit(url: string) {
+  //   const newResources = [...resources];
+  //   const index = resources.findIndex((resource) => resource.url === url);
+  //   onEditOpen(true);
+  // }
+  function onChangePage(toPage: number) {
+    if (toPage < 0) toPage = 0;
+    setPage(toPage);
   }
-  function showCreateModal(resource: Object) {}
+  function prettyUrl(url: string) {
+    try {
+      let domain = new URL(url);
+      return domain.hostname;
+    } catch (e) {
+      console.log(e);
+    }
+    return url;
+  }
   return (
-    <div className={`Modal ${c.ResourceModal}`}>
-      <h4>Resources</h4>
-      <div className="flex w-full justify-end items-center text-sm gap-x-2 ">
-        <Button onClick={() => setPage(page - 1)} size="md">
-          Prev Page
-        </Button>
-        <p className="px-3 py-1 rounded-xs bg-slate-100">{page}</p>
-        <Button onClick={() => setPage(page + 1)} size="md">
-          Next Page
-        </Button>
+    <div className={`flex-1 overflow-hidden flex flex-col`}>
+      <div className="flex items-center justify-between">
+        <div></div>
       </div>
-      <table className="border-collapse collapse width 100% overflow-x scroll overflow-y scroll">
-        <thead>
-          <tr>
-            <th className="border 1px solid #ffffff text-align left padding 8px font-size 10px">
-              Name
-            </th>
-            <th className="border 1px solid #ffffff text-align left padding 8px font-size 10px">
-              Author
-            </th>
-            <th className="border 1px solid #ffffff text-align left padding 8px font-size 10px">
-              Type
-            </th>
-            <th className="border 1px solid #ffffff text-align left padding 8px font-size 10px">
-              URL
-            </th>
-            <th className="border 1px solid #ffffff text-align left padding 8px font-size 10px">
-              Actions
-            </th>
-          </tr>
-        </thead>
-        <tbody className="text-sm">
+      <div className="bg-slate-200 rounded-xs w-full flex justify-between items-center px-3 py-3">
+        <p></p>
+        <div className="text-sm gap-x-2 flex ">
+          <Button onClick={() => onChangePage(page - 1)} size="md">
+            Prev Page
+          </Button>
+          <p className="px-3 py-1 rounded-xs bg-slate-100">{page + 1}</p>
+          <Button onClick={() => onChangePage(page + 1)} size="md">
+            Next Page
+          </Button>
+        </div>
+      </div>
+      {loadingState === 'success' ? (
+        <ul className="flex-1 overflow-overlay hoverscroll divide-y divide-slate-300 font-medium">
           {resources &&
             resources.map((resource, index) => (
-              <tr key={index}>
-                <td className="">{resource.name}</td>
-                <td className="">{resource.author}</td>
-                <td className="">{resource.type}</td>
-                <td className="">{resource.url}</td>
-                <td className="">
-                  <Button onClick={() => editResource(resource)} size="md">
-                    Edit
-                  </Button>
-                  <Button onClick={() => onDelete(resource.url)}>Delete</Button>
-                </td>
-              </tr>
+              <li key={index} className="py-4 px-4  ">
+                <div className="flex justify-between items-center">
+                  <a
+                    href={resource.url}
+                    className="underline hover:text-blue-800"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <p className="">{resource.name}</p>
+                  </a>
+                  <p className="px-2 bg-slate-100 rounded-xs text-sm w-fit mb-3 text-slate-800">
+                    {resource.type}
+                  </p>
+                </div>
+
+                <div className="flex justify-between items-center">
+                  <div className="flex gap-x-2 text-sm items-center">
+                    <p className="px-4 py-1 bg-slate-100 rounded-xs text-slate-800">
+                      {resource.author}
+                    </p>
+                    <p className="text-slate-600">{prettyUrl(resource.url)}</p>
+                  </div>
+                  <div className="flex gap-x-2 text-sm">
+                    <Button onClick={() => editResource(resource)} size="md">
+                      Edit
+                    </Button>
+                    <Button onClick={() => onDelete(resource.url)} size="md">
+                      Delete
+                    </Button>
+                  </div>
+                </div>
+              </li>
             ))}
-        </tbody>
-      </table>
-      <PopupModal
-        isOpen={showEditModal}
-        onClose={() => setShowEditModal(false)}
-        className=""
-      >
-        {/* <EditModal
-          resource={selectedResource}
-          onClose={() => setShowEditModal(false)}
-        /> */}
-      </PopupModal>
+        </ul>
+      ) : (
+        <div className="flex-1 flex justify-center items-center">
+          {loadingState === 'loading'
+            ? 'Loading...'
+            : 'failed to load resources'}
+        </div>
+      )}
     </div>
   );
 };

@@ -13,6 +13,8 @@ const btnStyle = {
     'bg-slate-100 border-[1.5px] border-slate-300 hover:bg-slate-300 text-black ',
   transparent: 'hover:bg-slate-200 rounded-xs underline	',
   outline: 'border border-currentColor hover:bg-gray-300 text-black ',
+  theme: 'bg-blue-800 text-slate-100 hover:bg-blue-700',
+
   none: '',
 };
 

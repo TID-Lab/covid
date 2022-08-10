@@ -59,7 +59,10 @@ const NewResource = ({ resource, onClose }: NewResourceProps) => {
       setAuthor(resource.author);
       setUrl(resource.url);
       setType(resource.type);
-      if (resource.imageurl) setImageUrl(resource.imageurl);
+      if (resource.imageurl) {
+        setImageUrl(resource.imageurl);
+        setImageUrlPreview(resource.imageurl);
+      }
     }
     return () => {
       clearTimeout(imageTimeout);
@@ -217,7 +220,10 @@ const NewResource = ({ resource, onClose }: NewResourceProps) => {
       <label className={c.label}>Topics:</label>
       <ul className="flex flex-wrap gap-x-2 gap-y-4">
         {Object.keys(COVID_TOPICS).map((key, index) => (
-          <li className="flex items-center gap-x-2 px-4 py-2 rounded-full bg-slate-100 w-fit">
+          <li
+            key={index}
+            className="flex items-center gap-x-2 px-4 py-2 rounded-full bg-slate-100 w-fit"
+          >
             <input
               type="checkbox"
               onChange={() => onTopicsChange(key as COVID_TOPICS_TYPE)}
@@ -233,7 +239,13 @@ const NewResource = ({ resource, onClose }: NewResourceProps) => {
           Cancel
         </Button>
         <Button className="w-fit" onClick={onClick}>
-          <Icon type="plus" /> Create Resource
+          {resource ? (
+            <>Save Changes</>
+          ) : (
+            <>
+              <Icon type="plus" /> Create Resource
+            </>
+          )}
         </Button>
       </div>
     </div>

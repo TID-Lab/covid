@@ -2,3 +2,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .overflow-overlay {
+    overflow: overlay;
+  }
+  .overflow-y-overlay {
+    overflow-y: overlay;
+  }
+  .overflow-x-overlay {
+    overflow-x: overlay;
+  }
+}

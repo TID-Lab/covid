@@ -84,11 +84,11 @@ select:focus {
   outline: none;
 } */
 
-a,
+/* a,
 a:visited {
   color: var(--body-primary);
   text-decoration: none;
-}
+} */
 /*
 .Modal {
   box-sizing: border-box;

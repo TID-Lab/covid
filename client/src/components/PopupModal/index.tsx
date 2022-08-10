@@ -32,7 +32,7 @@ const PopupModal = ({
             className={`relative px-4 py-5 bg-white rounded-sm  max-w-[70vh] max-h-[95vh] drop-shadow-lg ${className}`}
           >
             <header className="flex justify-between items-center">
-              <h1>{title}</h1>
+              <h1 className="font-bold pl-6 text-md">{title}</h1>
               <Button variant="transparent" onClick={onClose}>
                 <Icon type="x" />
               </Button>

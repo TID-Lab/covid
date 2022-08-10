@@ -25,7 +25,7 @@ const App = () => {
   enableLinkTracking();
   return (
     <div className={c.Root}>
-      <div className="App">
+      <div className="flex flex-col h-full">
         <Router>
           <Header />
           <Switch>
