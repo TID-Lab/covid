@@ -17,6 +17,7 @@ import {
 import AuthorInfo from '../AuthorInfo';
 import EditTags from '../EditTags';
 const embedHTMLCache = [];
+let timeout: any;
 
 function waitForEmbed(parent, callback) {
   const iframe = parent.querySelector('iframe');
@@ -24,7 +25,7 @@ function waitForEmbed(parent, callback) {
     iframe.onload = callback;
     return;
   }
-  setTimeout(() => {
+  timeout = setTimeout(() => {
     waitForEmbed(parent, callback);
   }, 10);
 }
@@ -57,6 +58,11 @@ const Post = (props) => {
       setRendered(true);
     });
   }, [element]);
+  useEffect(() => {
+    return () => {
+      window.clearTimeout(timeout);
+    };
+  }, []);
 
   useEffect(() => {
     async function fetchHTML() {
