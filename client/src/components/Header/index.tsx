@@ -53,7 +53,7 @@ const Header = () => {
               </p>{' '}
             </NavLink>
           </div>
-          <TextSearch />
+          <TextSearch className="max-w-[400px]" />
           <div className="grow basis-0 flex justify-end gap-x-2">
             {pathname === '/social-media-dashboard' && (
               <Button onClick={onMenuClick}>+ Create Post</Button>

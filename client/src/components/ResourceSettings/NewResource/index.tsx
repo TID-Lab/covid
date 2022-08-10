@@ -93,7 +93,7 @@ const NewResource = ({ resource, onClose }: NewResourceProps) => {
 
   async function onClick() {
     try {
-      var resource = null;
+      var createdResource = null;
       var buildResource: ResourceSchema = {
         authoredAt,
         fetchedAt,
@@ -105,9 +105,9 @@ const NewResource = ({ resource, onClose }: NewResourceProps) => {
         language: 'en',
       };
       if (imageurl) buildResource = { ...buildResource, imageurl };
-      resource = await createResource(buildResource);
+      createdResource = await createResource(buildResource);
 
-      if (resource) {
+      if (createdResource) {
         notify('Resource saved to database.');
         onClose();
         setName('');
