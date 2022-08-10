@@ -120,11 +120,9 @@ const Header = () => {
           </div>
           <div className="flex justify-end grow basis-0">
             {pathname === '/resources' ? (
-              <Button
-                onClick={() => window.open('/settings/resources', '_self')}
-              >
-                Settings
-              </Button>
+              <Link to="/settings/resources">
+                <Button>Settings</Button>
+              </Link>
             ) : (
               <Button onClick={onMenuClick} className="truncate">
                 + Create Post

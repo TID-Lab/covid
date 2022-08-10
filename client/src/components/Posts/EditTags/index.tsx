@@ -55,7 +55,11 @@ const EditTags = ({ postId }: EditTagsProps) => {
     }
     console.log(tags);
   }, [tags]);
-
+  useEffect(() => {
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, []);
   // when activetags set, send to server
   // very inefficeint (i cant spell), lets refactor ASAP. i think this should be handled server side. bet theres like a mongodb function we could use
   function saveTagsToServer() {

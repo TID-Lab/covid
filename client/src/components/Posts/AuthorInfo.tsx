@@ -71,7 +71,7 @@ const AuthorInfo = ({
                 key={index}
                 className="px-4 py-0.5 rounded-full bg-slate-100 flex gap-x-0.5 items-center text-slate-700"
               >
-                <Icon type="tag" size="2xs" />
+                {/* <Icon type="tag" size="2xs" /> */}
                 {COVID_TOPICS[topic]}
               </p>
             ))

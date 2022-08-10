@@ -61,6 +61,9 @@ const NewResource = ({ resource, onClose }: NewResourceProps) => {
       setType(resource.type);
       if (resource.imageurl) setImageUrl(resource.imageurl);
     }
+    return () => {
+      clearTimeout(imageTimeout);
+    };
   }, []);
 
   function onNameChange(event: any) {

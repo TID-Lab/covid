@@ -100,12 +100,10 @@ const ResourcesPost = ({ data }: ResourcesPostProps) => {
             aria-hidden
             className="opacity-0 group-hover:opacity-100 absolute left-0 top-0 bg-black/50 w-full h-full flex justify-center items-center"
           >
-            <p className="text-slate-100 font-medium flex gap-x-2 items-center bg-slate-700 rounded-xs pl-4 pr-2 py-0.5">
-              Open Link in new Tab
-              <span>
-                <Icon type="external-link" size="sm" />
-              </span>
-            </p>
+            <div className="text-slate-100 font-medium flex gap-x-2 items-center bg-slate-700 rounded-xs pl-4 pr-2 py-0.5">
+              <p>Open Link in new Tab</p>
+              <Icon type="external-link" size="sm" />
+            </div>
           </div>
         </a>
         <AuthorInfo name={data.author} topics={data.topics} />

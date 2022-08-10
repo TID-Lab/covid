@@ -10,6 +10,8 @@ import Button from 'components/Button';
 import useTracker from 'hooks/useTracker';
 import Icon from 'components/Icon';
 
+let postStateTimeout: any;
+
 const states = {
   successPost: 'Post has been sent successfully',
   failPost: 'Unknown error has occured while posting',
@@ -197,24 +199,31 @@ const PostingMenu = () => {
   // This checks the status once after the component is rendered
 
   useEffect(() => {
+    let abortController = new AbortController();
+    let timeout: any;
     const AsyncTwitterLoginStatus = async () => {
       const oAuthState = await checkOAuth(history);
       setTwitterLoginStatus(oAuthState);
       if (oAuthState) setPostState('successLogin');
     };
     const AsyncTimeoutButton = async () => {
-      window.setTimeout(function () {
+      timeout = window.setTimeout(function () {
         setButtonDisabled(false);
       }, 5000);
     };
 
     AsyncTimeoutButton().catch(console.error);
     AsyncTwitterLoginStatus().catch(console.error);
+    return () => {
+      window.clearTimeout(timeout);
+      window.clearTimeout(postStateTimeout);
+      abortController.abort();
+    };
   }, []);
 
   useEffect(() => {
     const postStateTimer = async () => {
-      window.setTimeout(function () {
+      postStateTimeout = window.setTimeout(function () {
         setPostState('none');
       }, 15000);
     };

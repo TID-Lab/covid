@@ -29,6 +29,7 @@ const ResourceDashboard = () => {
   }));
   const [page, setPage] = useState(0);
   const [lastPage, setLastPage] = useState(false);
+  const [didUnmount, setDidUnmount] = useState(false);
 
   // Track page view
   useEffect(() => {
@@ -36,18 +37,16 @@ const ResourceDashboard = () => {
     //on page unmount
     dispatch({ type: 'dates/resetresource' });
     return () => {
+      setDidUnmount(true);
       const clearItems = clearFilters();
       clearItems.forEach((item: any) => dispatch(item));
     };
   }, []);
 
-  console.log('Page', page);
-
   //update posts whenver filters or page number is updated
   useEffect(() => {
-    console.log('Resources Effect', page);
-    updatePosts(page, filters);
-  }, [page]);
+    if (!didUnmount) updatePosts(page, filters);
+  }, [page, filters]);
 
   function updatePosts(pageNumber: number, filterData: any) {
     fetchResourceFromPage(pageNumber, filterData)
@@ -65,10 +64,8 @@ const ResourceDashboard = () => {
   }
 
   return (
-    <div
-      className={`overflow-hidden h-full grid mt-[61px] ${c.dashboard_grid}`}
-    >
-      <section className="border-r border-slate-400">
+    <div className={`overflow-hidden h-full grid ${c.dashboard_grid}`}>
+      <section className="border-r border-slate-400  pt-13">
         <Filters showDate showList={['COVID-19 Topics']} />
       </section>
 
