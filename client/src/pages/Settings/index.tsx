@@ -25,10 +25,13 @@ const Settings = () => {
   return (
     <>
       <div className="container mx-auto w-full">
-        <Button variant="transparent" size="md" className="text-sm ml-2">
-          <Icon type="arrow-left" size="xs" />
-          Return to Dashboard
-        </Button>
+        <NavLink to="/social-media-dashboard">
+          <Button variant="transparent" size="md" className="text-sm ml-2">
+            <Icon type="arrow-left" size="xs" />
+            Return to Dashboard
+          </Button>
+        </NavLink>
+
         <div className="flex gap-x-3 items-center px-6 text-slate-700 mb-7 mt-1">
           <Icon type="settings" size="md" />
           <h1 className="text-xl font-medium ">Admin Settings</h1>

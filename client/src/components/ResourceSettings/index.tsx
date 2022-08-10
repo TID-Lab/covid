@@ -40,6 +40,7 @@ const ResourceSettings = () => {
         isOpen={showCreateModal}
         onClose={onNewResourceClose}
         className=""
+        title={activeResource ? 'Edit Resource' : 'Create New Resource'}
       >
         <NewResource onClose={onNewResourceClose} resource={activeResource} />
       </PopupModal>

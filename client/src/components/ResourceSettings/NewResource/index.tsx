@@ -236,7 +236,13 @@ const NewResource = ({ resource, onClose }: NewResourceProps) => {
           Cancel
         </Button>
         <Button className="w-fit" onClick={onClick}>
-          <Icon type="plus" /> Create Resource
+          {resource ? (
+            <>Save Changes</>
+          ) : (
+            <>
+              <Icon type="plus" /> Create Resource
+            </>
+          )}
         </Button>
       </div>
     </div>

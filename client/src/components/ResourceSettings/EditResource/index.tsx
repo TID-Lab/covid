@@ -104,6 +104,8 @@ const EditResource = ({ onEditOpen, setActiveResource }: EditResourceProps) => {
                   <a
                     href={resource.url}
                     className="underline hover:text-blue-800"
+                    target="_blank"
+                    rel="noreferrer"
                   >
                     <p className="">{resource.name}</p>
                   </a>
