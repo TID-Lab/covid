@@ -81,11 +81,10 @@ const EditResource = ({ onEditOpen, setActiveResource }: EditResourceProps) => {
   return (
     <div className={`flex-1 overflow-hidden flex flex-col`}>
       <div className="flex items-center justify-between">
-        <h3 className="font-medium mb-2">Modify Existing Resource</h3>
         <div></div>
       </div>
       <div className="bg-slate-200 rounded-xs w-full flex justify-between items-center px-3 py-3">
-        <p>select all</p>
+        <p></p>
         <div className="text-sm gap-x-2 flex ">
           <Button onClick={() => onChangePage(page - 1)} size="md">
             Prev Page
@@ -104,7 +103,7 @@ const EditResource = ({ onEditOpen, setActiveResource }: EditResourceProps) => {
                 <div className="flex justify-between items-center">
                   <a
                     href={resource.url}
-                    className="decoration-underline hover:text-blue-800"
+                    className="underline hover:text-blue-800"
                   >
                     <p className="">{resource.name}</p>
                   </a>

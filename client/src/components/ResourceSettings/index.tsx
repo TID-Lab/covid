@@ -20,14 +20,17 @@ const ResourceSettings = () => {
   }
   return (
     <>
-      <h2 className="text-lg font-medium text-slate-700 mb-2">
-        Manage Resources
-      </h2>
+      <div className="flex justify-between items-center">
+        <h2 className="text-lg font-medium text-slate-700 mb-2">
+          Manage Resources
+        </h2>
 
-      <Button onClick={onNewResourceOpen} size="md" className="w-fit mb-6">
-        <Icon type="plus" />
-        Add A New Resource
-      </Button>
+        <Button onClick={onNewResourceOpen} size="md" className="w-fit mb-6">
+          <Icon type="plus" />
+          Add A New Resource
+        </Button>
+      </div>
+
       <EditResource
         onEditOpen={setShowCreateModal}
         setActiveResource={setActiveResource}
