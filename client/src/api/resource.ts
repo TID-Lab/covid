@@ -114,6 +114,20 @@ export async function fetchResourceFromPage(pageNumber: number, filters = {}) {
   return fetchResources(pageNumber, bd);
 }
 
+export type Base64ImageData = string;
+
+async function getScreenshot(website: string): Promise<Base64ImageData> {
+  const res = await authFetch(`/api/resource/screenshot`, {
+    ...defaultOptions,
+    method: 'POST',
+    body: JSON.stringify({
+      website,
+    }),
+  });
+
+  return res?.text();
+}
+
 export {
   getNextPage,
   getPrevPage,
@@ -121,4 +135,5 @@ export {
   fetchResources,
   deleteResource,
   editResource,
+  getScreenshot,
 };

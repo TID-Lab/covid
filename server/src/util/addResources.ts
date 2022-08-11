@@ -1,5 +1,5 @@
-import fs from 'fs'
-import { parse } from 'csv-parse'
+import fs from 'fs';
+const { parse } = require('csv-parse');
 const useDebug = require('debug');
 const Resources = require('../models/resource');
 const Organization = require('../models/organization');
@@ -12,14 +12,21 @@ const cheerio = require('cheerio');
 const debug = useDebug('api');
 var tr = require('textrank');
 
-
 const AhoCorasick = require('aho-corasick-node');
-
 
 const { COVID_TOPICS } = require('../../../constants');
 
-
-export async function handleResourceRequest(body : {authoredAt: number, fetchedAt: number, author: String, name: String, url: String, type: String, orgId: String, topics?: String[], imageurl?: String}) {
+export async function handleResourceRequest(body: {
+  authoredAt: number;
+  fetchedAt: number;
+  author: String;
+  name: String;
+  url: String;
+  type: String;
+  orgId: String;
+  topics?: String[];
+  imageurl?: String;
+}) {
   var {
     authoredAt,
     fetchedAt,
@@ -29,15 +36,15 @@ export async function handleResourceRequest(body : {authoredAt: number, fetchedA
     type,
     topics,
     imageurl,
-    orgId
+    orgId,
   } = body;
   if (typeof url != 'string') {
-    return {status: 400};
+    return { status: 400 };
   }
-  
+
   const organization = await Organization.findById(orgId);
   if (!organization) {
-    return {status: 401};
+    return { status: 401 };
   }
 
   var html = null;
@@ -48,31 +55,33 @@ export async function handleResourceRequest(body : {authoredAt: number, fetchedA
     if (type == 'website' && url) {
       // May need https://www.npmjs.com/package/after-load to load JS heavy apps, but let's see if we can get by with just axios :)
       const response = await axios.get(url);
-      if(response.status === 200) {
+      if (response.status === 200) {
         html = response.data;
 
         // Can add language versatility, extractor(html, language) where language is language's two letter code
         const data = extractor(html);
 
         // Fill in blank/other fields of resource data object with unfluff extractor
-        desc = data.description
+        desc = data.description;
         if (data.author) {
-          var extracted_author = data.author.toString()
+          var extracted_author = data.author.toString();
         }
-        author = author || extracted_author
-        name = name || data.title
-        authoredAt = data.date || authoredAt
-        language = data.language || 'en'
-
+        author = author || extracted_author;
+        name = name || data.title;
+        authoredAt = data.date || authoredAt;
+        language = data.language || 'en';
 
         // Using cheerio to extract the main text (through p, h1...)
         const $ = cheerio.load(html);
         // This just adds some spaces between html elements
-        $("*").each(function (index) {
+        $('*').each(function (index) {
           $(this).prepend(' ');
           $(this).append(' ');
-        }); 
-        var scraped_text = $('p, h1, h2, h3, h4, h5').text().replace(/\s{2,}/g, ' ').trim();
+        });
+        var scraped_text = $('p, h1, h2, h3, h4, h5')
+          .text()
+          .replace(/\s{2,}/g, ' ')
+          .trim();
         // Inside main tags
         // var scraped_text = $('p, h1, h2, h3, h4, h5').text().replace(/\s{2,}/g, ' ').trim();
         content = scraped_text;
@@ -88,17 +97,21 @@ export async function handleResourceRequest(body : {authoredAt: number, fetchedA
         // });
 
         /* Get images from page */
-        const images = $('img').map(function(){ return $(this).attr('src'); })
+        const images = $('img').map(function () {
+          return $(this).attr('src');
+        });
         imageurl = images[0];
-        var isValid = function(string) {
-          let urlCheck
+        var isValid = function (string) {
+          let urlCheck;
           try {
             urlCheck = new URL(string);
           } catch (_) {
-            return false;  
+            return false;
           }
-          return urlCheck.protocol === "http:" || urlCheck.protocol === "https:";
-        }
+          return (
+            urlCheck.protocol === 'http:' || urlCheck.protocol === 'https:'
+          );
+        };
         if (!isValid(imageurl)) {
           var absURL = new URL(url);
           var newUrl = url.split(absURL.pathname);
@@ -112,62 +125,83 @@ export async function handleResourceRequest(body : {authoredAt: number, fetchedA
         //     fs.writeFileSync(path.resolve('../assets') + '/resources/' + name + fileExtension, body);
         //   }
         // });
-    
       } else {
-        return {status: 400, res: "Invalid URL"}
+        return { status: 400, res: 'Invalid URL' };
       }
     }
   } catch (err) {
     console.log(err);
-    return {status: 400, res: "Invalid URL likely"}
+    return { status: 400, res: 'Invalid URL likely' };
   }
   try {
     if (type === 'pdf' && url) {
-      request({uri: url, headers: { 'Content-type' : 'applcation/pdf' }, encoding: null} , async function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-          const write = async() =>  {
-            fs.writeFileSync(path.resolve('../assets') + '/resources/' + name +'.pdf', body);
+      request(
+        {
+          uri: url,
+          headers: { 'Content-type': 'applcation/pdf' },
+          encoding: null,
+        },
+        async function (error, response, body) {
+          if (!error && response.statusCode == 200) {
+            const write = async () => {
+              fs.writeFileSync(
+                path.resolve('../assets') + '/resources/' + name + '.pdf',
+                body
+              );
+            };
+            const parse = async () => {
+              let result = await write();
+              let dataBuffer = fs.readFileSync(
+                path.resolve('../assets') + '/resources/' + name + '.pdf'
+              );
+              let text = pdf(dataBuffer).then(function (data) {
+                return data.text;
+              });
+              return text;
+            };
+            content = await parse();
+            var textRank = new tr.TextRank(content);
+            desc = textRank.summarizedArticle;
+            console.log(desc);
           }
-          const parse = async() => {
-            let result = await write();
-            let dataBuffer = fs.readFileSync(path.resolve('../assets') + '/resources/' + name + '.pdf');
-            let text = pdf(dataBuffer).then(function(data) {
-              return data.text;
-            });
-            return text;
-          }
-          content = await parse();
-          var textRank = new tr.TextRank(content);
-          desc = textRank.summarizedArticle;
-          console.log(desc);
         }
-      });
+      );
     }
   } catch (err) {
     console.log(err);
-    return {status: 400, res: err}
+    return { status: 400, res: err };
   }
   try {
     if (type === 'image' && url) {
-      request({uri: url, headers: { 'Content-type' : 'applcation/image' }, encoding: null} , function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-          let fileExtension = url.substring(url.length - 4);
-          fs.writeFileSync(path.resolve('../assets') + '/resources/' + name + fileExtension, body);
+      request(
+        {
+          uri: url,
+          headers: { 'Content-type': 'applcation/image' },
+          encoding: null,
+        },
+        function (error, response, body) {
+          if (!error && response.statusCode == 200) {
+            let fileExtension = url.substring(url.length - 4);
+            fs.writeFileSync(
+              path.resolve('../assets') + '/resources/' + name + fileExtension,
+              body
+            );
+          }
         }
-      });
+      );
     }
   } catch (err) {
     console.log(err);
-    return {status: 400, res: err}
+    return { status: 400, res: err };
   }
-  
+
   if (!topics && content) {
-    topics = await getTopics({content: content});
+    topics = await getTopics({ content: content });
   }
-  
+
   try {
     if (!url || !name || !type || !author) {
-      return {status: 500}
+      return { status: 500 };
     }
     const resour = await Resources.create({
       authoredAt,
@@ -182,100 +216,103 @@ export async function handleResourceRequest(body : {authoredAt: number, fetchedA
       content,
       raw: html,
       language,
-      imageurl
+      imageurl,
     });
-    return {status: 200, resource: resour};
+    return { status: 200, resource: resour };
   } catch (err) {
     debug(`${err}`);
-    return {status: 500};
+    return { status: 500 };
   }
 }
 
 export async function addResourcesFromCSV(filePath: any) {
   const data = [];
-  
-  const org = await Organization.find({name: "Georgia Tech"})
-  const orgId = org[0]._id
+
+  const org = await Organization.find({ name: 'Georgia Tech' });
+  const orgId = org[0]._id;
 
   fs.createReadStream(filePath)
-  .pipe(
-    parse({
-      delimiter: ",",
-      columns: true,
-      ltrim: true,
-    })
-  )
-  .on("data", function (row) {
-    // 👇 push the object row into the array
-    data.push(row);
-  })
-  .on("error", function (error) {
-    console.log(error.message);
-  })
-  .on("end", function () {
-    data.forEach((csvEntry: {'Source/creator': String, 'Title of resource': String, Link: String}) => {
-      handleResourceRequest({
-        author: csvEntry['Source/creator'],
-        name: csvEntry['Title of resource'],
-        type: csvEntry['Link'].endsWith('pdf') ? 'pdf' : 'website',
-        fetchedAt: Date.now(),
-        authoredAt: Date.now(),
-        url: csvEntry['Link'],
-        // This can be pulled from Mongo, might be a better way to do this...
-        orgId: orgId
+    .pipe(
+      parse({
+        delimiter: ',',
+        columns: true,
+        ltrim: true,
       })
-      .then(res => {
-        console.log(`statusCode: ${res.status}`);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    )
+    .on('data', function (row) {
+      // 👇 push the object row into the array
+      data.push(row);
     })
-  });
+    .on('error', function (error) {
+      console.log(error.message);
+    })
+    .on('end', function () {
+      data.forEach(
+        (csvEntry: {
+          'Source/creator': String;
+          'Title of resource': String;
+          Link: String;
+        }) => {
+          handleResourceRequest({
+            author: csvEntry['Source/creator'],
+            name: csvEntry['Title of resource'],
+            type: csvEntry['Link'].endsWith('pdf') ? 'pdf' : 'website',
+            fetchedAt: Date.now(),
+            authoredAt: Date.now(),
+            url: csvEntry['Link'],
+            // This can be pulled from Mongo, might be a better way to do this...
+            orgId: orgId,
+          })
+            .then((res) => {
+              console.log(`statusCode: ${res.status}`);
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        }
+      );
+    });
 }
 
+// Assembles Aho Corasick automatons for optimized substring search. (for searching topic keywords in resources)
+function assembleAutomatons() {
+  const automatons = {};
+  const topics = Object.keys(COVID_TOPICS);
+  for (let i = 0; i < topics.length; i += 1) {
+    const topic = topics[i];
+    const keywords = COVID_TOPICS[topic];
+    const builder = AhoCorasick.builder();
+    keywords.forEach((k) => builder.add(k.toLowerCase()));
+    const automaton = builder.build();
+    automatons[topic] = automaton;
+  }
+  return automatons;
+}
 
-  // Assembles Aho Corasick automatons for optimized substring search. (for searching topic keywords in resources)
-  function assembleAutomatons() {
-    const automatons = {};
-    const topics = Object.keys(COVID_TOPICS);
-    for (let i = 0; i < topics.length; i += 1) {
-      const topic = topics[i];
-      const keywords = COVID_TOPICS[topic];
-      const builder = AhoCorasick.builder();
-      keywords.forEach((k) => builder.add(k.toLowerCase()));
-      const automaton = builder.build();
-      automatons[topic] = automaton;
+const automatons = assembleAutomatons();
+const topics = Object.keys(automatons);
+
+async function getTopics(post: { content: String }) {
+  const matchedTopics = [];
+
+  // The string fields to search through
+  const searchables = [
+    post.content,
+    // TODO add other fields!
+    // FB: raw > imageText, raw >
+    // IG: raw > imageText
+    // Tw: if possible, the post being replied to or retweeted
+  ];
+
+  for (let i = 0; i < topics.length; i += 1) {
+    const topic = topics[i];
+    const automaton = automatons[topic];
+    for (let j = 0; j < searchables.length; j += 1) {
+      const string = searchables[j].toLowerCase(); // error here: "TypeError: Cannot read property 'toLowerCase' of undefined"
+      const hits = automaton.match(string);
+      if (hits.length > 0 && hits[0] !== '') matchedTopics.push(topic);
     }
-    return automatons;
   }
 
-  const automatons = assembleAutomatons();
-  const topics = Object.keys(automatons);
-
-  async function getTopics(post: {content: String}) {
-    const matchedTopics = [];
-  
-    // The string fields to search through
-    const searchables = [
-      post.content,
-      // TODO add other fields!
-      // FB: raw > imageText, raw >
-      // IG: raw > imageText
-      // Tw: if possible, the post being replied to or retweeted
-    ];
-  
-    for (let i = 0; i < topics.length; i += 1) {
-      const topic = topics[i];
-      const automaton = automatons[topic];
-      for (let j = 0; j < searchables.length; j += 1) {
-        const string = searchables[j].toLowerCase(); // error here: "TypeError: Cannot read property 'toLowerCase' of undefined"
-        const hits = automaton.match(string);
-        if (hits.length > 0 && hits[0] !== '') matchedTopics.push(topic);
-      }
-    }
-  
-    return matchedTopics;
-  };
-
-
+  return matchedTopics;
+}
