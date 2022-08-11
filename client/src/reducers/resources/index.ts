@@ -12,6 +12,8 @@ export interface ResourceSchema {
   desc?: string;
   url: string;
   type: 'image' | 'website' | 'video' | 'pdf';
+  isScreenshotLoaded?: boolean;
+  screenshotImageBase64?: string;
 
   topics: any[];
   platformID: string;

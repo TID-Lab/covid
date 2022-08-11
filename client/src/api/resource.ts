@@ -116,7 +116,7 @@ export async function fetchResourceFromPage(pageNumber: number, filters = {}) {
 
 export type Base64ImageData = string;
 
-async function getScreenshot(website: string): Base64ImageData {
+async function getScreenshot(website: string): Promise<Base64ImageData> {
   const res = await authFetch(`/api/resource/screenshot`, {
     ...defaultOptions,
     method: 'POST',
@@ -125,9 +125,7 @@ async function getScreenshot(website: string): Base64ImageData {
     }),
   });
 
-  const base64Data = await res?.text();
-
-  return base64Data;
+  return res?.text();
 }
 
 export {

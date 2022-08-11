@@ -5,6 +5,7 @@ import useTracker from 'hooks/useTracker';
 import { SyntheticEvent, useState } from 'react';
 import Icon, { iconType } from 'components/Icon';
 interface ResourcesPostProps {
+  index: number;
   data: ResourceSchema;
 }
 interface typeToIconType {
@@ -80,9 +81,18 @@ const ResourcesPost = ({ data }: ResourcesPostProps) => {
                   backgroundImage: `url('${didImageLoad && data.imageurl})`,
                 }}
               />
+              {!data.isScreenshotLoaded && (
+                <div className="absolute z-10 px-4 py-1 text-xs font-bold text-white bg-black rounded-md left-1 top-1">
+                  <h4>Trying to load recent screenshot</h4>
+                </div>
+              )}
               <img
-                className="relative w-full  text-xs  "
-                src={data.imageurl}
+                className="relative w-full text-xs "
+                src={
+                  data.isScreenshotLoaded
+                    ? `data:image/jpeg;base64, ${data.screenshotImageBase64}`
+                    : data.imageurl
+                }
                 loading="lazy"
                 alt={data.name}
                 onError={onError}
@@ -90,15 +100,15 @@ const ResourcesPost = ({ data }: ResourcesPostProps) => {
               />
             </>
           ) : (
-            <div className="flex flex-col justify-center gap-y-3 items-center w-full  font-medium text-slate-600">
+            <div className="flex flex-col items-center justify-center w-full font-medium gap-y-3 text-slate-600">
               <Icon type={typeToIcon[data.type]} size="md" />
 
-              <p className="w-2/3 text-center text-sm">{data.name}</p>
+              <p className="w-2/3 text-sm text-center">{data.name}</p>
             </div>
           )}
           <div
             aria-hidden
-            className="opacity-0 group-hover:opacity-100 absolute left-0 top-0 bg-black/50 w-full h-full flex justify-center items-center"
+            className="absolute top-0 left-0 flex items-center justify-center w-full h-full opacity-0 group-hover:opacity-100 bg-black/50"
           >
             <p className="text-slate-100 font-medium flex gap-x-2 items-center bg-slate-700 rounded-xs pl-4 pr-2 py-0.5">
               Open Link in new Tab
@@ -110,16 +120,16 @@ const ResourcesPost = ({ data }: ResourcesPostProps) => {
         </a>
         <AuthorInfo name={data.author} topics={data.topics} />
         <div className="">
-          <p className="font-bold text-xl leading-8">
+          <p className="text-xl font-bold leading-8">
             {data.name ? data.name : '[no title]'}
           </p>
-          <p className="text-sm text-slate-600 line-clamp-4 mt-2">
+          <p className="mt-2 text-sm text-slate-600 line-clamp-4">
             {data.desc ? data.desc : truncate(data.content, 800)}
           </p>
         </div>
       </div>
 
-      <div className="flex text-xs pt-6 pb-4 justify-between">
+      <div className="flex justify-between pt-6 pb-4 text-xs">
         <div className="flex gap-x-1">
           <Button variant="primary" size="md" onClick={copyLink}>
             Copy Link
