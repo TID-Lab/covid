@@ -82,7 +82,7 @@ const ResourcesPost = ({ data }: ResourcesPostProps) => {
                 }}
               />
               {!data.isScreenshotLoaded && (
-                <div className="absolute z-10 px-4 py-1 text-xs font-bold text-white bg-black rounded-md left-1 top-1">
+                <div className="absolute z-10 px-4 py-1 text-xs font-bold text-white bg-slate-500/25 rounded-[0.25rem] left-1 top-1">
                   <h4>Trying to load recent screenshot</h4>
                 </div>
               )}
