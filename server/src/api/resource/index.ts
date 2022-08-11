@@ -26,11 +26,7 @@ import { handleResourceRequest } from '../../util/addResources';
 
 // Converts an HTTP request body to a Mongoose filter
 function bodyToFilter(body) {
-  const {
-    dates,
-    topic,
-    search,
-  } = body || {};
+  const { dates, topic, search } = body || {};
 
   const filter = {};
 
@@ -57,6 +53,22 @@ function bodyToFilter(body) {
   return filter;
 }
 
+routes.post('/screenshot', async (req, res) => {
+  const website = req.body['website'];
+
+  if (!website || !website.length) {
+    return res.status(404).send('Please provide website URL.');
+  }
+
+  const captureWebsite = await import('capture-website').then(
+    (pkg) => pkg.default
+  );
+
+  const base64 = await captureWebsite.base64(req.body['website']);
+
+  res.status(200).send(base64);
+});
+
 // Returns a page of resource posts using the given search query
 routes.post('/:page', async (req, res) => {
   try {
@@ -78,22 +90,22 @@ routes.post('/:page', async (req, res) => {
     const { sortBy } = body;
     let sortParam;
     switch (sortBy) {
-    case 'recent':
-      sortParam = { authoredAt: -1 };
-      break;
+      case 'recent':
+        sortParam = { authoredAt: -1 };
+        break;
     }
     const filter = bodyToFilter(body);
     console.log(filter);
     const filteredResources = await Resources.find(filter);
     const filteredResCount = filteredResources.length;
     const skipCount = pageNum * pageSize;
-    const resources = await Resources
-      .find(filter)
+    const resources = await Resources.find(filter)
       .sort(sortParam)
       .skip(pageNum * pageSize)
-      .limit(pageSize)
+      .limit(pageSize);
     const lastPage =
-      resources.length === 0 || filteredResCount - (skipCount + resources.length) <= 0;
+      resources.length === 0 ||
+      filteredResCount - (skipCount + resources.length) <= 0;
     res.status(200).send({
       resources,
       lastPage,
