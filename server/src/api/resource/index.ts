@@ -64,7 +64,9 @@ routes.post('/screenshot', async (req, res) => {
     (pkg) => pkg.default
   );
 
-  const base64 = await captureWebsite.base64(req.body['website']);
+  const base64 = await captureWebsite.base64(req.body['website'], {
+    scaleFactor: 0.25,
+  });
 
   res.status(200).send(base64);
 });
