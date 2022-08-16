@@ -7,6 +7,7 @@ export interface tagSchema {
   description: string;
   organization: any;
   posts: any;
+  _id: string;
 }
 
 const initState: tagSchema[] = [];

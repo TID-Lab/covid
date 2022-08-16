@@ -49,9 +49,9 @@ export interface ChipSelectorProps extends HTMLAttributes<HTMLDivElement> {
   options: {
     [key: string]: string;
   };
-  active: string;
+  active?: string;
   header: ReactNode;
-  onSelect: any;
+  onSelect?: any;
   adjust?: string;
   hideLabel?: boolean;
 }

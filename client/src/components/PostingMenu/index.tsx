@@ -340,7 +340,7 @@ const PostingMenu = () => {
           <div className="relative mb-4 h-2/3">
             <textarea
               id="postInput"
-              className="w-full h-full px-6 border resize-none py-7 rounded-xs bg-slate-100 border-slate-300 "
+              className="input w-full h-full px-6 border resize-none py-7 rounded-xs bg-slate-100 border-slate-300 "
               placeholder="Draft your message here "
               ref={textAreaRef}
               value={postText ? postText : ''}

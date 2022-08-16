@@ -1,6 +1,6 @@
-// @ts-nocheck
+//@ts-nocheck
 import { useAppDispatch, useAppSelector } from 'hooks/useTypedRedux';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import DateFilter from './DateFilter';
 import PlatformFilter from './PlatformFilter';
@@ -16,6 +16,7 @@ import {
   LOCATION,
   INSTITUTION,
 } from 'util/filterData';
+import TagsComboBox from 'components/TagsComboBox';
 
 interface FiltersProps {
   showList: string[];
@@ -26,6 +27,7 @@ const Filters = ({ showDate, showList, showPlatforms }: FiltersProps) => {
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.filters);
   const { platforms } = filters;
+  const [activeTags, setActiveTags] = useState([]);
 
   // useEffect(() => {
   //   getPosts(filters)
@@ -91,6 +93,12 @@ const Filters = ({ showDate, showList, showPlatforms }: FiltersProps) => {
         className="space-y-4 divide-y-[1.5px] overflow-x-hidden flex-grow divide-slate-300 hoverscroll"
         style={{ overflowY: 'overlay' }}
       >
+        <div className="pl-4 pr-6">
+          <label className="inline-block text-sm font-bold mb-3 mt-3 text-slate-700">
+            Custom Tags
+          </label>
+          <TagsComboBox activeTags={activeTags} setActiveTags={setActiveTags} />
+        </div>
         {showDate && <DateFilter selector={(state) => state.filters.dates} />}
         {filterList
           .filter((item) => showList.includes(item.header))

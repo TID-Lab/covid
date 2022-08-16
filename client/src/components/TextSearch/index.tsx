@@ -44,7 +44,7 @@ const TextSearch = ({ className, ...props }: TextSearchProps) => {
     >
       <input
         type="text"
-        className="w-full py-1 pr-8  placeholder:text-slate-500 rounded-xs pl-[15px]  "
+        className="input w-full py-1 pr-8  placeholder:text-slate-500 rounded-xs pl-[15px]  "
         onChange={onChange}
         onKeyUp={onKeyUp}
         placeholder="Search"
