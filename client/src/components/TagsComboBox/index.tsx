@@ -20,11 +20,15 @@ interface TagsComboBoxProps {
   activeTags: tagSchema[];
   setActiveTags: any;
   className: string;
+  dropdownClass: string;
+  dropdownStatic: boolean;
 }
 const TagsComboBox = ({
   activeTags,
   setActiveTags,
   className,
+  dropdownClass = 'absolute w-full mt-1 py-1 shadow-lg overflow-auto text-base border border-slate-400  bg-slate-50 rounded-xs  max-h-[20rem] ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-50',
+  dropdownStatic = false,
 }: TagsComboBoxProps) => {
   const tags = useAppSelector((state) => state.tags.alltags);
   const [query, setQuery] = useState('');
@@ -90,7 +94,7 @@ const TagsComboBox = ({
             </Combobox.Button>
           </div>
           <div>
-            <Combobox.Options className="absolute w-full mt-1 py-1 shadow-lg overflow-auto text-base border border-slate-400  bg-slate-50 rounded-xs  max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-50">
+            <Combobox.Options className={dropdownClass} static={dropdownStatic}>
               {tags &&
                 tags
                   .filter((i) => {

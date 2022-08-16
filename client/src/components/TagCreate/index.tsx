@@ -79,20 +79,20 @@ const TagCreate = ({ postId, onClose }: TagCreateProps) => {
         type="text"
         id="tagName"
         name="tagName"
-        className="input"
+        className="input px-3 py-1 w-full"
         onChange={(e) => setTagName(e.target.value)}
       />
 
       <p>Tag Description</p>
       <textarea
-        className="input"
+        className="input px-3 py-1 w-full"
         id="tagDesc"
         name="tagDesc"
         ref={descTextAreaRef}
       />
       <p>Tag Color</p>
       <select
-        className="input"
+        className="input px-3 py-1 mb-4"
         //onChange={(e) => setColor(e.currentTarget.value)}
         ref={colorTextAreaRef}
       >

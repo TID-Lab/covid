@@ -9,82 +9,73 @@ import {
 
 //  tags , combine account type, and identities
 const TAGS = { ...INSTITUTION, ...IDENTITIES } as any;
-
+//colors for customtags
+const COLOR_CSS: { [key: string]: string } = {
+  red: 'bg-rose-200 border-rose-300',
+  green: 'bg-emerald-200 border-emerald-300',
+  purple: 'bg-violet-200 border-violet-300',
+  blue: 'bg-blue-200 border-blue-300',
+  pink: 'bg-pink-200 border-pink-300',
+};
 interface AuthorInfoProps {
   name: string;
-  accType?: Array<keyof typeof INSTITUTION | keyof typeof IDENTITIES>;
+  customTags?: any[];
   accCategories?: Array<keyof typeof ACC_CATEGORIES>;
   topics?: Array<keyof typeof COVID_TOPICS>;
 }
 const AuthorInfo = ({
   name,
-  accType,
+  customTags,
   accCategories,
   topics,
 }: AuthorInfoProps) => {
-  function format(tag: keyof typeof ACC_CATEGORIES) {
-    if (tag === 'misinfo')
-      return (
-        <span className="text-red-800 flex gap-x-2 bg-red-100 rounded-full py-1 pr-3 truncate pl-1 ">
-          <Icon type="alert-octagon" size="xs" />
-          {ACC_CATEGORIES[tag]}
-        </span>
-      );
-    return <span>tag</span>;
-  }
-
   return (
-    <div className="grid grid-cols-2 font-medium gap-x-2">
+    <div className=" font-medium space-y-2 ">
       <div className="flex items-center gap-x-2 gap-y-2">
         <div className="rounded-full  flex-grow  min-w-[2rem] max-w-[2rem] w-[2rem] h-[2rem] flex justify-center  items-center bg-slate-600 text-slate-100">
           <p className="text-base ">{name && name[0].toUpperCase()}</p>
         </div>
         <div className="">
-          <div className="text-xs flex gap-x-0.5 gap-y-1 flex-wrap">
-            <p className="font-medium text-slate-500 ">
-              {accCategories ? (
-                accCategories
-                  .filter((tag) => TAGS[tag])
-                  .map((tag, index) => (
-                    <>
-                      <span key={index} className="inline-block">
-                        {TAGS[tag]}
-                      </span>
-                      <span className="last:hidden">{', '}</span>
-                    </>
-                  ))
-                  .filter(Boolean)
-              ) : (
-                <span className="pt-2" />
-              )}
-            </p>
-          </div>
           <p className="text-sm font-bold leading-4">{name}</p>
           <div className="text-xs flex flex-wrap gap-x-0.5 gap-y-1">
             {accCategories &&
               accCategories
-                .filter((tag) => ACC_CATEGORIES[tag])
+                .filter((tag) => tag === 'misinfo')
                 .map((tag, index) => (
-                  <Fragment key={index}>{format(tag)}</Fragment>
-                ))
-                .filter(Boolean)}
+                  <span className="text-white flex gap-x-1 bg-red-600 rounded-full py-0.5 pr-3 truncate pl-1 ">
+                    <Icon type="alert-octagon" size="xs" />
+                    Known Misinformation Spreader
+                  </span>
+                ))}
           </div>
         </div>
       </div>
-      <div className="flex flex-wrap gap-x-0.5 gap-y-1 text-xs h-fit">
+      <ul className="flex flex-wrap gap-x-0.5 gap-y-1 text-xs h-fit">
         {topics &&
-          topics
-            .map((topic, index) => (
-              <p
+          topics.map((topic, index) => (
+            <li
+              key={index}
+              className="px-4 py-0.5 rounded-full bg-slate-100 flex gap-x-0.5 items-center text-slate-700"
+            >
+              {/* <Icon type="tag" size="2xs" /> */}
+              {COVID_TOPICS[topic]}
+            </li>
+          ))}
+        {customTags &&
+          customTags
+            .map((tag, index) => (
+              <li
                 key={index}
-                className="px-4 py-0.5 rounded-full bg-slate-100 flex gap-x-0.5 items-center text-slate-700"
+                className={`px-4 py-0.5 rounded-full flex gap-x-0.5 items-center text-slate-700 ${
+                  COLOR_CSS[tag.color]
+                }`}
               >
                 {/* <Icon type="tag" size="2xs" /> */}
-                {COVID_TOPICS[topic]}
-              </p>
+                {tag.name}
+              </li>
             ))
             .filter(Boolean)}
-      </div>
+      </ul>
     </div>
   );
 };

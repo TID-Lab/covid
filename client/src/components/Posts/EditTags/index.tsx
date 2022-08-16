@@ -7,6 +7,8 @@ import Button from 'components/Button';
 import { useAppDispatch, useAppSelector } from 'hooks/useTypedRedux';
 import { Combobox, Dialog } from '@headlessui/react';
 import Icon from 'components/Icon';
+import TagCreate from 'components/TagCreate';
+import TagsComboBox from 'components/TagsComboBox';
 
 //colors for customtags
 const COLORS = {
@@ -175,8 +177,8 @@ const EditTags = ({ postId }: EditTagsProps) => {
 
   return (
     <>
-      <Button className="mx-2 text-xs" size="sm" onClick={tagPopup}>
-        +
+      <Button className=" text-xs" size="md" onClick={tagPopup}>
+        Add/Remove Tags
       </Button>
 
       {/* <Dialog>
@@ -192,53 +194,20 @@ const EditTags = ({ postId }: EditTagsProps) => {
           repellendus totam?
         </p>
       </Dialog> */}
-      <PopupModal isOpen={showTagModal} onClose={() => setShowTagModal(false)}>
+      <PopupModal
+        isOpen={showTagModal}
+        onClose={() => setShowTagModal(false)}
+        className="w-[20rem]"
+      >
         <label className="mb-2">Add or remove custom tags:</label>
-        <Combobox value={activeTags} onChange={setActiveTags} multiple>
-          <div className="relative w-fit min-w-1/2">
-            <div className="relative px-3 py-1 mb-2 border rounded bg-slate-50 border-slate-300">
-              <div className="flex gap-x-2">
-                {activeTags.length > 0 && (
-                  <ul className="flex text-sm gap-x-1">
-                    {activeTags.map((tag, index) => (
-                      <li
-                        className={`${
-                          COLOR_CSS[tag.color]
-                        } px-3 py-1 rounded cursor-pointer`}
-                        key={tag._id}
-                        onClick={() => removeTagFromActive(tag._id)}
-                      >
-                        {tag.name}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                <Combobox.Input className="w-full" />
-                <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
-                  <Icon type="chevron-down-sm" />
-                </Combobox.Button>
-              </div>
-            </div>
+        <TagsComboBox
+          activeTags={activeTags}
+          setActiveTags={setActiveTags}
+          dropdownStatic
+          dropdownClass="relative w-full mt-1 py-1 overflow-auto text-base  h-[20rem] focus:outline-none sm:text-sm"
+        />
 
-            <Combobox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-              {tags &&
-                tags.map((tag) => (
-                  <Combobox.Option
-                    key={tag.name}
-                    value={tag}
-                    className={`hover:bg-slate-200 cursor-pointer py-2 pl-3 `}
-                  >
-                    <span
-                      className={`${COLOR_CSS[tag.color]} px-3 py-1 rounded `}
-                    >
-                      {tag.name}
-                    </span>
-                  </Combobox.Option>
-                ))}
-            </Combobox.Options>
-          </div>
-        </Combobox>
-        <div className="flex gap-x-2 mt-[15rem]">
+        <div className="flex gap-x-2 mt-8">
           <Button className="text-xs" onClick={saveTagsToServer}>
             Save {'&'} Close
           </Button>
@@ -255,32 +224,10 @@ const EditTags = ({ postId }: EditTagsProps) => {
         isOpen={showCreateTagModal}
         onClose={() => setCreateTagShowModal(false)}
       >
-        <b>Create a New Tag</b>
-        <p>Tag Name</p>
-        <textarea
-          id="tagName"
-          name="tagName"
-          rows={1}
-          ref={nameTextAreaRef}
-        ></textarea>
-        <p>Tag Color</p>
-        <select
-          //onChange={(e) => setColor(e.currentTarget.value)}
-          ref={colorTextAreaRef}
-        >
-          {Object.keys(COLORS).map((val, index) => (
-            <option key={index} value={val}>
-              {COLORS[val as keyof typeof COLORS]}
-            </option>
-          ))}
-        </select>
-        <p>Tag Description</p>
-        <textarea id="tagDesc" name="tagDesc" ref={descTextAreaRef}></textarea>
-        <p>
-          <Button className="submitButton" onClick={createNewTagButton}>
-            Confirm
-          </Button>
-        </p>
+        <TagCreate
+          postId={postId}
+          onClose={() => setCreateTagShowModal(false)}
+        />
       </PopupModal>
 
       <PopupModal

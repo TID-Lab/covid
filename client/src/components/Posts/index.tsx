@@ -35,11 +35,11 @@ const Posts = ({
     return (
       <div
         ref={postContainer}
-        className="grid-flow-col grid overflow-auto grid-rows-1 py-2 px-6 gap-x-8 bg-slate-100 pt-13 hoverscroll "
+        className="grid-flow-col grid overflow-auto grid-rows-1 py-2 px-6 pb-13 gap-x-8 bg-slate-100 pt-13 hoverscroll "
         style={{ overflow: 'overlay' }}
       >
         {page > 0 && (
-          <div className="h-[80vh] flex justify-center items-center w-[400px]">
+          <div className="h-[80vh] flex justify-center items-center w-[400px] ">
             <Button onClick={() => onClick(-1, 'Navigate to Previous Page')}>
               Previous Page
             </Button>

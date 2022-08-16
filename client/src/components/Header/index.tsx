@@ -24,7 +24,7 @@ const Header = () => {
   if (pathname === '/social-media-dashboard' || pathname === '/resources') {
     return (
       <header
-        className={`grid font-medium ${c.header_grid} text-slate-700 fixed top-0 left-0 z-[60] w-full`}
+        className={`grid font-medium ${c.header_grid} text-slate-700 fixed top-0 left-0 z-50 w-full`}
       >
         <div className="border-r bg-white  border-slate-400 px-2 py-2  ">
           <Logo />
