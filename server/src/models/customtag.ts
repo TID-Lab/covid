@@ -2,6 +2,7 @@
 // Represents a categorization of a report by an SMTC monitor
 
 const mongoose = require('mongoose');
+import { resourceSchema } from './resource'
 
 const tagSchema = new mongoose.Schema({
   // Unique, do we still need to pre-check name?
@@ -14,6 +15,7 @@ const tagSchema = new mongoose.Schema({
     required: true,
   },
   posts: { type: [mongoose.Schema.Types.ObjectId], ref: 'PostId' },
+  resources: { type: [resourceSchema], default: [] },
 });
 
 // tagSchema.pre('save', function(next) {

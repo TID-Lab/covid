@@ -1,6 +1,7 @@
 // @ts-nocheck
 
 const mongoose = require('mongoose');
+import { tagSchema } from './customtag'
 /**
  * The moongose schema for a resource.
  */
@@ -27,6 +28,7 @@ const resourceSchema = new mongoose.Schema({
     enum: ['en', 'es']
   },
   imageurl: { type: String },
+  customTags: { type: [tagSchema], default: [] },
 });
 
 resourceSchema.index({ content: 'text', author: 'text' });
