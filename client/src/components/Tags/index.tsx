@@ -60,14 +60,23 @@ const Tags = () => {
     };
   }, [notifyState]);
   useEffect(() => {
+    fetchTagsFromServer();
+  }, []);
+
+  useEffect(() => {
+    if (!createMode) {
+      fetchTagsFromServer();
+    }
+  }, [createMode]);
+  function fetchTagsFromServer() {
     fetchTags()
       .then((fetchedTags) => {
         dispatch({ type: 'alltags/set', payload: fetchedTags });
         // console.log(fetchedTags);
       })
       .catch((error) => console.log(error));
-  }, []);
-
+  }
+  function onTagCreated() {}
   // const activeTagNames = activetags
   //   .filter((index) => !!alltags[index])
   //   .map((index) => alltags[index].name);
