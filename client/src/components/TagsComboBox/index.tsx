@@ -1,5 +1,11 @@
 import { Combobox } from '@headlessui/react';
-import { useState, useEffect, useCallback, useRef } from 'react';
+import {
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+  MouseEvent as ReactMouseEvent,
+} from 'react';
 import { useAppDispatch, useAppSelector } from 'hooks/useTypedRedux';
 import { fetchTags } from 'api/tag';
 import { tagSchema } from 'reducers/tags/alltags';
@@ -33,20 +39,11 @@ const TagsComboBox = ({
   const tags = useAppSelector((state) => state.tags.alltags);
   const [query, setQuery] = useState('');
 
-  const dispatch = useAppDispatch();
-  //const [activeTags, setActiveTags] = useState([]);
-
-  async function getTagsFromServer() {
-    // make sure tags match server
-    let fetchedTags = null;
-    try {
-      fetchedTags = await fetchTags();
-      dispatch({ type: 'alltags/set', payload: fetchedTags });
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  function removeTagFromActive(tagId: string) {
+  function removeTagFromActive(
+    e: ReactMouseEvent<HTMLLIElement, MouseEvent>,
+    tagId: string
+  ) {
+    e.stopPropagation();
     const removedTag = activeTags.filter((tag) => tag._id !== tagId);
     setActiveTags(removedTag);
   }
@@ -71,7 +68,7 @@ const TagsComboBox = ({
                         COLOR_CSS[tag.color]
                       } px-3  rounded-2xs cursor-pointer text-sm flex gap-x-1 items-center border  hover:bg-slate-100 hover:border-slate-300`}
                       key={tag._id}
-                      onClick={() => removeTagFromActive(tag._id)}
+                      onClick={(event) => removeTagFromActive(event, tag._id)}
                     >
                       {tag.name}
                       <Icon type="x" size="2xs" />
