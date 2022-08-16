@@ -138,8 +138,10 @@ const Filters = ({ showDate, showList, showPlatforms }: FiltersProps) => {
         {showPlatforms && <PlatformFilter platforms={platforms} />}
       </div>
       <PopupModal
+        title="Manage Tags"
         isOpen={isManageTagsOpen}
         onClose={() => setIsManageTagsOpen(false)}
+        className="w-[90rem]"
       >
         <Tags />
       </PopupModal>

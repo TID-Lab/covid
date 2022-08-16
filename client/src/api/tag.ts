@@ -29,30 +29,35 @@ async function fetchTags() {
         description: 'Test',
         color: 'red',
         posts: [],
+        _id: 1416342184317,
       },
       {
         name: 'Second',
         description: 'Test',
         color: 'green',
         posts: [],
+        _id: 492756498735,
       },
       {
         name: 'Third',
         description: 'Test',
         color: 'red',
         posts: [],
+        _id: 4134572945,
       },
       {
         name: 'Fourth',
         description: 'Test',
         color: 'blue',
         posts: [],
+        _id: 8729465295,
       },
       {
         name: 'Fifth',
         description: 'Test',
         color: 'green',
         posts: [],
+        _id: 5764348,
       },
     ];
   });

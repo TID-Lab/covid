@@ -9,23 +9,34 @@ import TagOptionItem from './TagOptionItem';
 import TextSearch from 'components/TextSearch';
 import Button from 'components/Button';
 import Icon from 'components/Icon';
-
+import TagCreate from 'components/TagCreate';
+const states = {
+  successCreate: 'Tag has been created successfully',
+  failCreate: 'Unknown error has occured while posting',
+  successDelete: 'Tag(s) has been deleted successfully',
+  failDelete: 'Failed to delete Tag(s)',
+  none: '',
+};
+var timeout;
 const Tags = () => {
-  const [deleteMode, setDeleteMode] = useState(false);
+  const [createMode, setCreateMode] = useState(false);
+  const [notifyState, setNotifyState] = useState('none');
+
   const dispatch = useAppDispatch();
-  const tagSearch = useAppSelector((state) => state.tags.search);
+  //const tagSearch = useAppSelector((state) => state.tags.search);
+  const [activeTags, setActiveTags] = useState<string>([]);
   const alltags = useAppSelector((state) => {
-    console.log('Search', tagSearch);
-    return state.tags.alltags.filter((tag) => {
-      console.log('Curr', tag);
-      if (tag && tagSearch) {
-        return tag.name.toLowerCase().indexOf(tagSearch.toLowerCase()) !== -1;
-      } else {
-        return true;
-      }
-    });
+    // console.log('Search', tagSearch);
+    // return state.tags.alltags.filter((tag) => {
+    //   console.log('Curr', tag);
+    //   if (tag && tagSearch) {
+    //     return tag.name.toLowerCase().indexOf(tagSearch.toLowerCase()) !== -1;
+    //   } else {
+    //     return true;
+    //   }
+    // });
+    return state.tags.alltags;
   });
-  const [activeTags, setActiveTags] = useState([]);
   // const activetags = useAppSelector((state) => {
   //   return state.tags.activetags;
   // });
@@ -39,7 +50,15 @@ const Tags = () => {
   //     .filter((index) => index !== -1);
   //   // .map((index) => state.tags.alltags[index].name);
   // });
-
+  useEffect(() => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      setNotifyState('none');
+    }, 5000);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [notifyState]);
   useEffect(() => {
     fetchTags()
       .then((fetchedTags) => {
@@ -49,37 +68,47 @@ const Tags = () => {
       .catch((error) => console.log(error));
   }, []);
 
-  const activeTagNames = activetags
-    .filter((index) => !!alltags[index])
-    .map((index) => alltags[index].name);
-  const inactiveTagNames = inactiveTags
-    .filter((index) => !!alltags[index])
-    .map((index) => alltags[index].name);
+  // const activeTagNames = activetags
+  //   .filter((index) => !!alltags[index])
+  //   .map((index) => alltags[index].name);
+  // const inactiveTagNames = inactiveTags
+  //   .filter((index) => !!alltags[index])
+  //   .map((index) => alltags[index].name);
 
-  console.log('Active Tags', activeTagNames, 'Inactive Tags', inactiveTagNames);
-
+  // console.log('Active Tags', activeTagNames, 'Inactive Tags', inactiveTagNames);
+  function returnStyle() {
+    if (notifyState.includes('fail')) return ' bg-red-100 border-red-300 ';
+    if (notifyState.includes('success'))
+      return ' bg-emerald-100 border-emerald-300  ';
+    else return ' invisible ';
+  }
   return (
-    <div className="flex flex-col justify-between h-full pb-4">
+    <div className="flex flex-col justify-between h-full pb-4 px-4 ">
       {/* <h1>Inactive Tags {inactiveTags && t}</h1> */}
-      <section className="pb-4 overflow-x-hidden bg-white border-gray-400">
-        <header className="pl-4 pr-2 py-4 mb-4 sticky top-0 bg-white z-30 border-b-[1.5px] border-slate-300">
-          <div className="flex items-center justify-between">
-            <h1 className="text-lg font-bold ">Manage Tags</h1>
-            {/* <ClearFilters>
-              <span className="text-xs">Clear All</span>
-            </ClearFilters> */}
-          </div>
-
-          {/* <SortSelect /> */}
-          <div className="my-4">
-            <TextSearch storetarget="tags/search/set" />
-          </div>
-        </header>
-        <div className="pl-4 pr-2">
-          <MultiChip options={alltags} active={activetags} />
+      <div className="h-[4rem]">
+        <div className={`border px-4 py-4 rounded-xs text-sm ${returnStyle()}`}>
+          {states[notifyState]}
         </div>
+      </div>
+      {createMode ? (
+        <>
+          <TagCreate onClose={() => setCreateMode(false)} />
+        </>
+      ) : (
+        <>
+          <section className="pb-4 overflow-x-hidden bg-white border-gray-400 w-full">
+            <label className="inline-block  font-bold mb-3 text-sm mt-3 text-slate-700">
+              All Custom Tags
+            </label>
+            <div className="pl-4 pr-2 w-3/4">
+              <MultiChip
+                options={alltags}
+                active={activeTags}
+                setActive={setActiveTags}
+              />
+            </div>
 
-        {/* <TagOptionItem
+            {/* <TagOptionItem
           header="ACTIVE"
           items={activeTagNames}
           selector={(state) => state.filters.topic}
@@ -94,36 +123,33 @@ const Tags = () => {
           dispatchType="topic/set"
           track={{ category: 'Filter', action: 'Set Topic' }}
         /> */}
-      </section>
+          </section>
 
-      <section className="px-2 space-y-6 flex gap-x-2 justify-end mt-13">
-        {deleteMode ? (
-          <Button className="">
-            <Icon type="trash-2" size="sm" /> Delete Selected Tags
-          </Button>
-        ) : (
-          <Button className=" ">
-            <Icon type="plus" size="sm" /> Create New Tag
-          </Button>
-        )}
-
-        <Button
-          variant="outline"
-          className=" text-center bg-white"
-          onClick={() => setDeleteMode(!deleteMode)}
-        >
-          <p className="text-center flex">
-            {deleteMode ? (
-              'Cancel'
+          <section className="px-2 flex gap-x-2 justify-end mt-13 ">
+            {activeTags.length > 0 ? (
+              <Button
+                variant="secondary"
+                className="h-fit"
+                onClick={() => setActiveTags([])}
+              >
+                <Icon type="x" size="sm" />
+                Cancel
+              </Button>
             ) : (
-              <>
-                <Icon type="trash-2" size="sm" />
-                Delete Tags
-              </>
+              <Button className=" h-fit" onClick={() => setCreateMode(true)}>
+                <Icon type="plus" size="sm" /> Create New Tag
+              </Button>
             )}
-          </p>
-        </Button>
-      </section>
+
+            <Button className="" disabled={!activeTags.length > 0}>
+              <Icon type="trash-2" size="sm" />
+              {activeTags.length > 0
+                ? `Delete ${activeTags.length} Selected Tag(s)`
+                : 'Delete Tags'}
+            </Button>
+          </section>
+        </>
+      )}
     </div>
   );
 };

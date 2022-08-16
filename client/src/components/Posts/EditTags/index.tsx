@@ -255,11 +255,6 @@ const EditTags = ({ postId }: EditTagsProps) => {
         isOpen={showCreateTagModal}
         onClose={() => setCreateTagShowModal(false)}
       >
-        <p>
-          <button className="tagPopupBack" onClick={backToTagPopup}>
-            &larr; Back to Tags
-          </button>
-        </p>
         <b>Create a New Tag</b>
         <p>Tag Name</p>
         <textarea
