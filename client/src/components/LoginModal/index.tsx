@@ -139,7 +139,7 @@ const LoginModal = () => {
           type="password"
           value={pwd}
           onChange={(event) => setPwd(event.target.value)}
-          className="w-full px-4 py-2"
+          className="input w-full px-4 py-2"
           placeholder="Organization password"
         ></input>
         <button

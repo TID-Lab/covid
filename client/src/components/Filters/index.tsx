@@ -1,6 +1,6 @@
-// @ts-nocheck
+//@ts-nocheck
 import { useAppDispatch, useAppSelector } from 'hooks/useTypedRedux';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import DateFilter from './DateFilter';
 import PlatformFilter from './PlatformFilter';
@@ -8,7 +8,9 @@ import ClearFilters from '../ClearFilters';
 import { getPosts } from 'api/post';
 import notify from 'util/notify';
 import SortSelect from 'components/SortSelect';
+import Tags from 'components/Tags';
 import FilterOptionItem, { FilterOptionItemProps } from './FilterOptionItem';
+import { fetchTags } from 'api/tag';
 import {
   COVID_TOPICS,
   ACC_CATEGORIES,
@@ -16,6 +18,9 @@ import {
   LOCATION,
   INSTITUTION,
 } from 'util/filterData';
+import TagsComboBox from 'components/TagsComboBox';
+import Button from 'components/Button';
+import PopupModal from 'components/PopupModal';
 
 interface FiltersProps {
   showList: string[];
@@ -26,7 +31,25 @@ const Filters = ({ showDate, showList, showPlatforms }: FiltersProps) => {
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.filters);
   const { platforms } = filters;
+  // const [activeTags, setActiveTags] = useState([]);
+  const [isManageTagsOpen, setIsManageTagsOpen] = useState(false);
 
+  const activeTags = useAppSelector((state) => {
+    return state.tags.activetags;
+  });
+  useEffect(() => {
+    fetchTags()
+      .then((fetchedTags) => {
+        dispatch({ type: 'alltags/set', payload: fetchedTags });
+        // console.log(fetchedTags);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  function setActiveTags(newActiveTags: []) {
+    console.log(newActiveTags);
+    dispatch({ type: 'activetags/set', payload: newActiveTags });
+  }
   // useEffect(() => {
   //   getPosts(filters)
   //     .then((posts) => {
@@ -76,21 +99,35 @@ const Filters = ({ showDate, showList, showPlatforms }: FiltersProps) => {
   ];
   return (
     <section className="flex flex-col mt-0  h-full overflow-hidden bg-white border-slate-400 ">
-      <header className="pl-4 pr-2  pb-2 sticky top-0 bg-white z-30 border-b-[1.5px] border-slate-300">
-        {/* <SortSelect /> */}
+      <header className="pl-4 pr-4  pb-2 sticky top-0 bg-white z-30 border-b-[1.5px] border-slate-300">
         <div className="flex items-center justify-between mt-2">
           <h1 className="text-lg font-bold text-slate-700 ">Filters</h1>
           <ClearFilters>
             <span className="text-xs">Clear Filters</span>
           </ClearFilters>
         </div>
-
-        {/* <SortSelect /> */}
       </header>
       <div
         className="space-y-4 divide-y-[1.5px] overflow-x-hidden flex-grow divide-slate-300 hoverscroll"
         style={{ overflowY: 'overlay' }}
       >
+        <div className="pl-4 pr-6">
+          <div className="flex items-center justify-between ">
+            <label className="inline-block  font-bold mb-3 text-sm mt-3 text-slate-700">
+              Custom Tags
+            </label>
+            <Button
+              variant="outline"
+              size="md"
+              className="text-xs"
+              onClick={() => setIsManageTagsOpen(true)}
+            >
+              Manage Tags
+            </Button>
+          </div>
+
+          <TagsComboBox activeTags={activeTags} setActiveTags={setActiveTags} />
+        </div>
         {showDate && <DateFilter selector={(state) => state.filters.dates} />}
         {filterList
           .filter((item) => showList.includes(item.header))
@@ -100,6 +137,12 @@ const Filters = ({ showDate, showList, showPlatforms }: FiltersProps) => {
 
         {showPlatforms && <PlatformFilter platforms={platforms} />}
       </div>
+      <PopupModal
+        isOpen={isManageTagsOpen}
+        onClose={() => setIsManageTagsOpen(false)}
+      >
+        <Tags />
+      </PopupModal>
     </section>
   );
 };

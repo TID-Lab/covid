@@ -21,7 +21,7 @@ const LabeledDate = ({ date, onDateChanged, label }: LabeledDateProps) => {
       </label>
 
       <input
-        className="px-1 py-2 border cursor-pointer rounded-xs font-regular bg-slate-50 border-slate-200 focus:bg-blue-100 focus:border-blue-300"
+        className="input px-1 py-2 border cursor-pointer rounded-xs font-regular bg-slate-50 border-slate-200 focus:bg-blue-100 focus:border-blue-300"
         id={label.replace(' ', '_')}
         type="date"
         value={date}

@@ -12,31 +12,7 @@ module.exports = {
     './src/components/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
-    colors: {
-      transparent: 'transparent',
-      current: 'currentColor',
-      primary: 'var(--c-primary)',
-      white: 'var(--c-white)',
-      black: colors.black,
-      slate: colors.slate,
-      tailwhite: colors.white,
-      emerald: colors.emerald,
-      red: colors.red,
-      yellow: colors.yellow,
 
-      gray: colors.gray, // temporary, replace later with proper colors
-      blue: {
-        100: 'var(--c-blue-100)',
-        200: 'var(--c-blue-200)',
-        300: 'var(--c-blue-300)',
-        400: 'var(--c-blue-400)',
-        500: 'var(--c-blue-500)',
-        600: 'var(--c-blue-600)',
-        700: 'var(--c-blue-700)',
-        800: 'var(--c-blue-800)',
-        900: 'var(--c-blue-900)',
-      },
-    },
     fontFamily: {
       sans: ['Open Sauce Two', 'sans-serif'],
     },
@@ -71,6 +47,31 @@ module.exports = {
       13: '3.812rem',
     },
     extend: {
+      colors: {
+        transparent: 'transparent',
+        current: 'currentColor',
+        primary: 'var(--c-primary)',
+        white: 'var(--c-white)',
+        black: colors.black,
+        slate: colors.slate,
+        tailwhite: colors.white,
+        emerald: colors.emerald,
+        red: colors.red,
+        yellow: colors.yellow,
+
+        gray: colors.gray, // temporary, replace later with proper colors
+        blue: {
+          100: 'var(--c-blue-100)',
+          200: 'var(--c-blue-200)',
+          300: 'var(--c-blue-300)',
+          400: 'var(--c-blue-400)',
+          500: 'var(--c-blue-500)',
+          600: 'var(--c-blue-600)',
+          700: 'var(--c-blue-700)',
+          800: 'var(--c-blue-800)',
+          900: 'var(--c-blue-900)',
+        },
+      },
       borderRadius: {
         none: '0',
         '3xs': '.438rem',

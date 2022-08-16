@@ -1,5 +1,4 @@
-input,
-textarea {
+.input {
   @apply focus-visible:ring;
   @apply focus-visible:outline-0;
   @apply ring-offset-2;
@@ -12,7 +11,7 @@ textarea {
   @apply border-slate-300;
 }
 
-select {
+.select {
   @apply focus-visible:ring;
   @apply focus-visible:outline-0;
   @apply ring-offset-2;
