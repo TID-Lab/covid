@@ -25,19 +25,20 @@ const Tags = () => {
       }
     });
   });
-  const activetags = useAppSelector((state) => {
-    return state.tags.activetags;
-  });
-  const inactiveTags = useAppSelector((state) => {
-    return state.tags.alltags
-      .map((_, index) => {
-        return state.tags.activetags.map(Number).indexOf(index) === -1
-          ? index
-          : -1;
-      })
-      .filter((index) => index !== -1);
-    // .map((index) => state.tags.alltags[index].name);
-  });
+  const [activeTags, setActiveTags] = useState([]);
+  // const activetags = useAppSelector((state) => {
+  //   return state.tags.activetags;
+  // });
+  // const inactiveTags = useAppSelector((state) => {
+  //   return state.tags.alltags
+  //     .map((_, index) => {
+  //       return state.tags.activetags.map(Number).indexOf(index) === -1
+  //         ? index
+  //         : -1;
+  //     })
+  //     .filter((index) => index !== -1);
+  //   // .map((index) => state.tags.alltags[index].name);
+  // });
 
   useEffect(() => {
     fetchTags()
@@ -63,10 +64,10 @@ const Tags = () => {
       <section className="pb-4 overflow-x-hidden bg-white border-gray-400">
         <header className="pl-4 pr-2 py-4 mb-4 sticky top-0 bg-white z-30 border-b-[1.5px] border-slate-300">
           <div className="flex items-center justify-between">
-            <h1 className="text-lg font-bold ">Tags</h1>
-            <ClearFilters>
+            <h1 className="text-lg font-bold ">Manage Tags</h1>
+            {/* <ClearFilters>
               <span className="text-xs">Clear All</span>
-            </ClearFilters>
+            </ClearFilters> */}
           </div>
 
           {/* <SortSelect /> */}
@@ -95,34 +96,33 @@ const Tags = () => {
         /> */}
       </section>
 
-      <section className="px-2 space-y-6">
-        <div className="px-2">
-          <Button className=" w-full">
+      <section className="px-2 space-y-6 flex gap-x-2 justify-end mt-13">
+        {deleteMode ? (
+          <Button className="">
+            <Icon type="trash-2" size="sm" /> Delete Selected Tags
+          </Button>
+        ) : (
+          <Button className=" ">
             <Icon type="plus" size="sm" /> Create New Tag
           </Button>
-        </div>
+        )}
 
-        <div
-          className={`px-2 py-2 space-y-2 rounded-sm ${
-            deleteMode && 'bg-slate-100'
-          }`}
+        <Button
+          variant="outline"
+          className=" text-center bg-white"
+          onClick={() => setDeleteMode(!deleteMode)}
         >
-          {deleteMode && (
-            <Button className="w-full">
-              <Icon type="trash-2" size="sm" /> Delete Selected Tags
-            </Button>
-          )}
-
-          <Button
-            variant="outline"
-            className="w-full text-center bg-white"
-            onClick={() => setDeleteMode(!deleteMode)}
-          >
-            <p className="text-center ">
-              {deleteMode ? 'Cancel' : 'Manage Tags'}
-            </p>
-          </Button>
-        </div>
+          <p className="text-center flex">
+            {deleteMode ? (
+              'Cancel'
+            ) : (
+              <>
+                <Icon type="trash-2" size="sm" />
+                Delete Tags
+              </>
+            )}
+          </p>
+        </Button>
       </section>
     </div>
   );

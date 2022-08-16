@@ -55,8 +55,8 @@ const Dashboard = () => {
     filterData: any,
     activetags: string[]
   ) {
-    const activeTagObjects = activetags.map((index) => alltags[index]);
-    fetchPostsFromPage(pageNumber, filterData, activeTagObjects)
+    //const activeTagObjects = activetags.map((index) => alltags[index]);
+    fetchPostsFromPage(pageNumber, filterData, activetags)
       .then((data) => {
         const { posts, isLastPage } = data;
         setLastPage(isLastPage);
@@ -111,7 +111,7 @@ const Dashboard = () => {
           <SortSelect />
         </div>
 
-        <Tab.Group as="div" className="block flex-1 h-full ">
+        {/* <Tab.Group as="div" className="block flex-1 h-full ">
           <Tab.List className={c.tabList}>
             <Tab key="filters" className={c.tab}>
               {({ selected }) => (
@@ -169,7 +169,18 @@ const Dashboard = () => {
               <Tags />
             </Tab.Panel>
           </Tab.Panels>
-        </Tab.Group>
+        </Tab.Group> */}
+        <Filters
+          showDate
+          showPlatforms
+          showList={[
+            'COVID-19 Topics',
+            'Account Categories',
+            'Account Identity',
+            'Account Location',
+            'Account Type',
+          ]}
+        />
       </section>
 
       <Posts

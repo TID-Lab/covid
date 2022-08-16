@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from 'hooks/useTypedRedux';
 import { fetchTags } from 'api/tag';
 import { tagSchema } from 'reducers/tags/alltags';
 import Icon from 'components/Icon';
-
 //colors for customtags
 interface colorprops {
   [key: string]: string;
@@ -53,7 +52,7 @@ const TagsComboBox = ({
       {({ open }) => (
         <div className={`relative min-w-1/2 ${className}`}>
           <div
-            className={`relative px-3 py-1 border ${
+            className={`relative px-3 py-1 border  ${
               open
                 ? 'rounded-xs bg-blue-100 border-blue-300'
                 : 'rounded-xs bg-slate-50 border-slate-300'
@@ -66,7 +65,7 @@ const TagsComboBox = ({
                     <li
                       className={`${
                         COLOR_CSS[tag.color]
-                      } px-3  rounded cursor-pointer text-sm flex gap-x-1 items-center border  hover:bg-slate-100 hover:border-slate-300`}
+                      } px-3  rounded-2xs cursor-pointer text-sm flex gap-x-1 items-center border  hover:bg-slate-100 hover:border-slate-300`}
                       key={tag._id}
                       onClick={() => removeTagFromActive(tag._id)}
                     >
@@ -78,6 +77,13 @@ const TagsComboBox = ({
                   <Combobox.Input
                     onChange={(event) => setQuery(event.target.value)}
                     className="w-full focus:outline-none bg-transparent"
+                  />
+                  <Icon
+                    type="search"
+                    size="sm"
+                    className={`absolute top-2 right-3  ${
+                      open ? 'text-blue-700' : 'text-slate-500'
+                    }`}
                   />
                 </li>
               </ul>
@@ -104,7 +110,7 @@ const TagsComboBox = ({
                       <span
                         className={`${
                           COLOR_CSS[tag.color]
-                        } px-3 py-0.5 rounded border`}
+                        } px-3 py-0.5 rounded-2xs border`}
                       >
                         {tag.name}
                       </span>

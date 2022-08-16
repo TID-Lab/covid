@@ -12,7 +12,7 @@ const btnStyle = {
   secondary:
     'bg-slate-100 border-[1.5px] border-slate-300 hover:bg-slate-300 text-black ',
   transparent: 'hover:bg-slate-200 rounded-xs underline	',
-  outline: 'border border-currentColor hover:bg-gray-300 text-black ',
+  outline: 'border border-slate-400 hover:bg-slate-200 text-black ',
 };
 
 const btnSize = {
