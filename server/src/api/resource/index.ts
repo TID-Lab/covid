@@ -105,6 +105,7 @@ routes.post('/:page', async (req, res) => {
   res.status(500).send();
 });
 
+
 // Creates a new Resource
 routes.post('/', async (req, res) => {
   if (typeof req.body !== 'object') {
@@ -162,6 +163,34 @@ routes.put('/', async (req, res) => {
     debug(`${err}`);
     res.status(500).send();
   }
+});
+
+// Get relevant resources for a given post ID
+routes.post('/relevant-resources', async (req, res) => {
+  const { body } = req;
+
+  // This should be the ID 
+  if (typeof body !== 'object') {
+    res.status(400).send();
+    return;
+  }
+  try {
+    await Posts.find({_id = {"$in": body.id}});
+  } catch(err) {
+    res.status(404).send();
+    return;
+  }
+  const allResources = await Resources.find({});
+  const allResourcesCount = allResources.length;
+  const randIndex = Math.floor(Math.random() * (allResourcesCount - 5));
+  const resources = await Resources.find({}).skip(randIndex).limit(5);
+  const confidence = [Math.random(), Math.random(), Math.random(), Math.random(), Math.random];
+  // Sort in ascending order, just temp confidences for the resources
+  confidence.sort((a, b) => a - b);
+  res.status(200).send({
+    resources,
+    confidence
+  });
 });
 
 module.exports = routes;
