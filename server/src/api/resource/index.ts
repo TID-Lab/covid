@@ -175,7 +175,7 @@ routes.post('/relevant-resources', async (req, res) => {
     return;
   }
   try {
-    await Posts.find({_id = {"$in": body.id}});
+    await Posts.find({_id: {"$in": body.id}});
   } catch(err) {
     res.status(404).send();
     return;
@@ -183,6 +183,7 @@ routes.post('/relevant-resources', async (req, res) => {
   const allResources = await Resources.find({});
   const allResourcesCount = allResources.length;
   const randIndex = Math.floor(Math.random() * (allResourcesCount - 5));
+  // REPLACE THIS WITH call
   const resources = await Resources.find({}).skip(randIndex).limit(5);
   const confidence = [Math.random(), Math.random(), Math.random(), Math.random(), Math.random];
   // Sort in ascending order, just temp confidences for the resources
