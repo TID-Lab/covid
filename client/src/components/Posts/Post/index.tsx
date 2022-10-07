@@ -196,12 +196,12 @@ const Post = (props) => {
           </Button>
         </div>
 
-        <Button className="text-sm" variant="theme" size="md">
-          View Relevent Resources <Icon type="arrow-right" size="sm" />
-        </Button>
       </footer>
     </article>
   );
 };
 
 export default Post;
+/*<Button className="text-sm" variant="theme" size="md">
+          View Relevent Resources <Icon type="arrow-right" size="sm" />
+        </Button>*/
