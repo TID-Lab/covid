@@ -14,7 +14,7 @@
     "cross-env": "^7.0.3",
     "debug": "^4.3.1",
     "dotenv": "^8.6.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-session": "^1.17.2",
     "mongoose": "^5.12.2",
     "oauth": "^0.9.15"
