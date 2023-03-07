@@ -15,7 +15,6 @@ const resourcePost = require('../models/resource');
 
 // import sample data;
 // const data = require('../sampleData');
-const { addResourcesFromCSV } = require('../util/addResources');
 
 // API routes
 const postRoutes = require('./post');
@@ -135,9 +134,4 @@ module.exports = () =>
     //   debug(err);
     // }
 
-    // add the following to .env to enable autopopulation
-    // ADD_RES=../covid_res.csv
-    if (process.env.ADD_RES) {
-      setTimeout(addResourcesFromCSV, 1500, '../covid_res.csv');
-    }
   });
