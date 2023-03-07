@@ -73,6 +73,11 @@ section {
   top: -6rem;
 }
 
+#SecondPicture {
+  margin-left: 15em;
+  margin-bottom: 0rem;
+}
+
 #FourthPicture {
   position: relative;
   top: -5rem;
@@ -82,7 +87,7 @@ section {
     display: none;
   }
 }
-@media screen and (max-width: 1220px) {
+@media screen and (max-width: 1228px) {
   /* .CirclePictures {
     display: none;
   } */
@@ -110,9 +115,31 @@ section {
   }
 }
 
-@media screen and (min-width: 1970px) {
-  .CirclePictures {
+
+@media screen and (min-width: 1670px) {
+  #SecondPicture, #FirstPicture, #FourthPicture {
     display: none;
+  }
+
+  #ThirdPicture {
+    margin-top: 10em;
+    margin-left:20%;
+    width: 40em
+  }
+}
+
+@media screen and (min-width: 1830px) {
+  #SecondPicture, #FirstPicture {
+    display: none;
+  }
+
+  #FourthPicture {
+    display: inline;
+  }
+  #ThirdPicture {
+    margin-top: 10em;
+    margin-left:20%;
+    width: 40em
   }
 }
 .LandingPage {

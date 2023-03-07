@@ -21,7 +21,7 @@ module.exports = {
     ecmaVersion: 2020,
     sourceType: 'module',
   },
-  // plugins: ['react-hooks', 'react'],
+  plugins: ['react-hooks', 'react'],
   rules: {
     'react/prop-types': [0],
     'react/react-in-jsx-scope': 'off',

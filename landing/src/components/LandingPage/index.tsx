@@ -36,7 +36,6 @@ const LandingPage = (props) => {
           ></img>
           <img
             id="SecondPicture"
-            style={{ marginLeft: '15em', marinBottom: '0rem' }}
             src="/images/promo2.png"
             alt="Covid Home Test"
           ></img>
