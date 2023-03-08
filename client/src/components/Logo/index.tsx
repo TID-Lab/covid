@@ -5,11 +5,11 @@ const Logo = () => {
     >
       <img
         className="h-9"
-        src="/images/projectpeach.png"
-        alt="Project Peach"
+        src="/images/georgiaceal-sq.png"
+        alt="GEORGIA CEAL"
       ></img>
       <h3>
-        Project <span className="">PEACH</span>
+        GEORGIA <span className="">CEAL</span>
       </h3>
     </span>
   );

@@ -372,7 +372,7 @@ const PostingMenu = () => {
             <p
               className={`before:content-[''] before:h-[1em] before:w-[1em] before:mr-2 before:block flex items-center before:rounded-full`}
             >
-              Charcter Count
+              Character Count
             </p>
             <p>{characterCount}</p>
           </div>

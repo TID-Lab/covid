@@ -40,7 +40,6 @@ const LoginModal = () => {
   }
 
   function onLogin() {
-    console.log(pwd);
     if (selectedOrg) {
       fetch('/api/auth/login', {
         method: 'POST',
