@@ -79,26 +79,29 @@ const LoginModal = () => {
             >
               <Icon type="chevron-down" size="sm" />
             </Combobox.Button>
-            <Combobox.Options className="absolute z-50 w-full p-3 mt-1 font-medium border rounded-xs top-full bg-slate-50 border-slate-300">
-              {filteredOrgs
-                .sort((a, b) => a.name.localeCompare(b.name))
-                .map((org, index) => (
-                  <Combobox.Option key={index} value={org.name} as={Fragment}>
-                    {({ active, selected }) => (
-                      <li
-                        className={`flex cursor-pointer items-center border justify-between rounded-2xs px-3 py-1 gap-x-1 ${
-                          active
-                            ? 'bg-blue-100 border-blue-200'
-                            : 'border-transparent'
-                        } ${selected ? 'text-blue-900  font-bold' : ''}`}
-                      >
-                        {org.name}
-                        {selected && <Icon type="check" size="sm" />}
-                      </li>
-                    )}
-                  </Combobox.Option>
-                ))}
-            </Combobox.Options>
+
+            {filteredOrgs.length !== 0 && (
+              <Combobox.Options className="absolute z-50 w-full p-3 mt-1 font-medium border rounded-xs top-full bg-slate-50 border-slate-300">
+                {filteredOrgs
+                  .sort((a, b) => a.name.localeCompare(b.name))
+                  .map((org, index) => (
+                    <Combobox.Option key={index} value={org.name} as={Fragment}>
+                      {({ active, selected }) => (
+                        <li
+                          className={`flex cursor-pointer items-center border justify-between rounded-2xs px-3 py-1 gap-x-1 ${
+                            active
+                              ? 'bg-blue-100 border-blue-200'
+                              : 'border-transparent'
+                          } ${selected ? 'text-blue-900  font-bold' : ''}`}
+                        >
+                          {org.name}
+                          {selected && <Icon type="check" size="sm" />}
+                        </li>
+                      )}
+                    </Combobox.Option>
+                  ))}
+              </Combobox.Options>
+            )}
           </div>
         </Combobox>
 
