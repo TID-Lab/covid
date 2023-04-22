@@ -21,26 +21,7 @@ const LoginModal = () => {
     })();
   }, []);
 
-  useEffect(() => {
-    console.log(selectedOrg);
-  }, [selectedOrg]);
-
-  function searchOrg(value: string) {
-    if (orgs.length > 0) {
-      const find = orgs.find((i: any) =>
-        query.localeCompare(i.name, undefined, { sensitivity: 'accent' })
-      );
-      if (find) {
-        setSelectedOrg(find.name);
-        setQuery(find.name);
-      } else {
-        setQuery(value);
-      }
-    }
-  }
-
   function onLogin() {
-    console.log(pwd);
     if (selectedOrg) {
       fetch('/api/auth/login', {
         method: 'POST',
@@ -56,6 +37,7 @@ const LoginModal = () => {
       });
     }
   }
+
   const filteredOrgs =
     query === ''
       ? orgs
@@ -72,7 +54,7 @@ const LoginModal = () => {
           className="w-[50px] my-6"
           src="/images/projectpeach.png"
           alt="Project Peach Logo"
-        ></img>
+        />
         <h1 className="text-2xl text-center mb-9">Organization Login</h1>
       </div>
       <div className="flex flex-col w-full">
@@ -86,7 +68,7 @@ const LoginModal = () => {
           </Combobox.Label>
           <div className="relative flex items-center w-full border bg-slate-50 border-slate-300 rounded-xs ">
             <Combobox.Input
-              onChange={(event) => searchOrg(event.target.value)}
+              onChange={(event) => setQuery(event.target.value)}
               placeholder="select your organization"
               className="border-0  pl-3 py-1 rounded-xs bg-transparent flex-grow focus:bg-slate-50 focus:ring-inset focus:ring-[1px] ring-offset-0 "
             />
@@ -141,7 +123,7 @@ const LoginModal = () => {
           onChange={(event) => setPwd(event.target.value)}
           className="input w-full px-4 py-2"
           placeholder="Organization password"
-        ></input>
+        />
         <button
           type="button"
           onClick={onLogin}
