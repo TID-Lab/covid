@@ -86,14 +86,14 @@ const Filters = ({ showDate, showList, showPlatforms }: FiltersProps) => {
       header: 'Account Location',
       options: LOCATION,
       selector: (state) => state.filters.accounts.location,
-      dispatchType: 'account/location/set',
+      dispatchType: 'accounts/location/set',
       track: { category: 'Filter', action: 'Set Account Location' },
     },
     {
       header: 'Account Type',
       options: INSTITUTION,
       selector: (state) => state.filters.accounts.institutions,
-      dispatchType: 'account/institutions/set',
+      dispatchType: 'accounts/institutions/set',
       track: { category: 'Filter', action: 'Set Account Institution' },
     },
   ];

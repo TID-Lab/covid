@@ -1,16 +1,15 @@
 // The reducer for the account location toggle (Georgia vs. non-Georgia)
 import { PayloadAction } from '@reduxjs/toolkit';
+import { LOCATION_TYPE } from 'util/filterData';
+const initState: LOCATION_TYPE = 'all';
 
-const initState = 'all';
-
-export default function location(
+export default function locationReducer(
   state = initState,
-  action: PayloadAction<string>
+  action: PayloadAction<LOCATION_TYPE>
 ) {
-  const { payload } = action;
   switch (action.type) {
     case 'accounts/location/set':
-      return payload;
+      return action.payload;
     default:
       return state;
   }
