@@ -4,8 +4,7 @@
 const { Schema } = require('mongoose');
 
 export const tagSchema = new Schema({
-  // Unique, do we still need to pre-check name?
-  name: { type: String, required: true, unique: true },
+  name: { type: String, required: true },
   color: String,
   description: String,
   organization: {
