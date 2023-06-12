@@ -18,6 +18,7 @@ function bodyToFilter(body) {
     dates,
     topic,
     category,
+    identity,
     institutions,
     georgia,
     platforms,
@@ -52,6 +53,12 @@ function bodyToFilter(body) {
   const excludesLabels = [];
 
   if (category) includesLabels.push(category);
+
+  if (identity === 'blackafam') {
+    includesLabels.push('blackafam');
+  } else if (identity === 'latinx') {
+    includesLabels.push('latinx');
+  }
 
   if (typeof institutions === 'boolean') {
     if (institutions) {
