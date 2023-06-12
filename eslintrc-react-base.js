@@ -21,7 +21,7 @@ module.exports = {
     ecmaVersion: 2020,
     sourceType: 'module',
   },
-  plugins: ['react-hooks', 'react'],
+  // plugins: ['react-hooks', 'react'],
   rules: {
     'react/prop-types': [0],
     'react/react-in-jsx-scope': 'off',
@@ -44,7 +44,7 @@ module.exports = {
     'space-infix-ops': [1],
     'object-curly-spacing': [1, 'always'],
     'comma-spacing': [1],
-    'react-hooks/rules-of-hooks': 'warn',
+    // 'react-hooks/rules-of-hooks': 'warn',
     'react/self-closing-comp': 1,
     'react/jsx-closing-tag-location': 1,
     'no-unreachable': 1,

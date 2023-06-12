@@ -73,6 +73,9 @@ const DateFilter = ({ selector }: DateFilterProps) => {
       case 'year':
         startDate = new Date(today.getFullYear(), 0, 1);
         break;
+      // Really stupid method to just set this 20 years in the past, I don't have time to figure out a better way rn, but this should work
+      case 'all':
+        startDate.setDate(today.getDate() - 7200);
     }
     dispatch({
       type: 'dates/set',

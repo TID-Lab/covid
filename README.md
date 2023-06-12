@@ -47,7 +47,7 @@ Both applications...
 
 4. Open a terminal and `cd` to your clone of this repository. From there, run `nvm install` to install the right version of Node.js onto your machine.
 
-5. Run `npm install` in the `fetch/`, `server/`, and `client/` folders to install their respective dependencies.
+5. Run `npm install` in the base folder (for project-wide packages like eslint and cypress unit testing), `fetch/`, `server/`, and `client/` folders to install their respective dependencies.
 
 6. You're done! I'm proud of you. 😁👍
 
