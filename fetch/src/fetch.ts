@@ -12,7 +12,6 @@ const addTopics = require('./hooks/topics');
 const addLabels = require('./hooks/labels');
 const addEngagement = require('./hooks/engagement');
 const saveToDatabase = require('./hooks/database');
-const addTags = require('./hooks/tags');
 
 const debug = useDebug('fetch');
 
