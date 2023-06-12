@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { useEffect, useState } from 'react';
 import { fetchOrganizations } from 'api/org';
-import { useShowPopup } from 'hooks/popup';
+import PopupModal from 'components/PopupModal';
 import NewOrganization from '../NewOrganization';
 import Organization from '../Organization';
 
@@ -9,8 +9,7 @@ import c from './index.module.css';
 
 const OrganizationModal = () => {
   const [orgs, setOrgs] = useState([]);
-
-  const showPopup = useShowPopup();
+  const [isNewOrganizationPopupOpen, setNewOrganizationPopupOpen] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -26,10 +25,7 @@ const OrganizationModal = () => {
 
   function onCreate(org) {
     setOrgs([...orgs, org]);
-  }
-
-  function showCreateModal() {
-    showPopup(<NewOrganization onCreate={onCreate} />);
+    setNewOrganizationPopupOpen(false);
   }
 
   return (
@@ -39,7 +35,7 @@ const OrganizationModal = () => {
         <p>
           <b>{orgs.length} Organizations</b>
         </p>
-        <button onClick={showCreateModal}>New Organization</button>
+        <button onClick={() => setNewOrganizationPopupOpen(true)}>New Organization</button>
       </div>
       {orgs.map(({ _id, name, role }) => (
         <Organization
@@ -50,6 +46,14 @@ const OrganizationModal = () => {
           onDelete={onDelete}
         />
       ))}
+      <PopupModal
+        title="New Organization"
+        isOpen={isNewOrganizationPopupOpen}
+        onClose={() => setNewOrganizationPopupOpen(false)}
+        className="w-[30rem]"
+      >
+        <NewOrganization onCreate={onCreate} />
+      </PopupModal>
     </div>
   );
 };

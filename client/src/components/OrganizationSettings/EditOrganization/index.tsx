@@ -3,8 +3,6 @@ import { useState } from 'react';
 import { editOrganization } from 'api/org';
 import notify from 'util/notify';
 
-import { useHidePopup } from 'hooks/popup';
-
 import c from './index.module.css';
 
 const EditOrganization = (props) => {
@@ -12,8 +10,6 @@ const EditOrganization = (props) => {
 
   const [name, setName] = useState(initName);
   const [password, setPassword] = useState('');
-
-  const hidePopup = useHidePopup();
 
   function onNameChange(event) {
     setName(event.target.value);
@@ -32,18 +28,9 @@ const EditOrganization = (props) => {
       });
 
       onEdit(org);
-
-      hidePopup();
-
-      setName('');
-      setPassword('');
     } catch (err) {
       notify('An error occurred.');
     }
-  }
-
-  function onClose() {
-    hidePopup();
   }
 
   return (
@@ -65,7 +52,6 @@ const EditOrganization = (props) => {
       <p>Leave blank to keep the current password.</p>
       <div>
         <button onClick={onSubmit}>Submit</button>
-        <button onClick={onClose}>Close</button>
       </div>
     </div>
   );

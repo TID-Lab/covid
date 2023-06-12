@@ -3,7 +3,7 @@ import c from './index.module.css';
 
 import notify from 'util/notify';
 import { deleteOrganization } from 'api/org';
-import { useShowPopup } from 'hooks/popup';
+import PopupModal from 'components/PopupModal';
 import EditOrganization from '../EditOrganization';
 import { useState } from 'react';
 
@@ -11,8 +11,7 @@ const Organization = (props) => {
   const { _id, name: initName, role, onDelete } = props;
 
   const [name, setName] = useState(initName);
-
-  const showPopup = useShowPopup();
+  const [isEditOrganizationPopupOpen, setEditOrganizationPopupOpen] = useState(false);
 
   async function deleteOrg() {
     const success = await deleteOrganization(_id);
@@ -25,10 +24,7 @@ const Organization = (props) => {
 
   function onEdit(org) {
     setName(org.name);
-  }
-
-  function showEditModal() {
-    showPopup(<EditOrganization _id={_id} name={name} onEdit={onEdit} />);
+    setEditOrganizationPopupOpen(false);
   }
 
   return (
@@ -38,11 +34,19 @@ const Organization = (props) => {
         {name}
       </div>
       <div>
-        <button className="Edit" onClick={showEditModal}>
+        <button className="Edit" onClick={() => setEditOrganizationPopupOpen(true)}>
           Edit
         </button>
         <button onClick={deleteOrg}>Delete</button>
       </div>
+      <PopupModal
+        title="Edit Organization"
+        isOpen={isEditOrganizationPopupOpen}
+        onClose={() => setEditOrganizationPopupOpen(false)}
+        className="w-[30rem]"
+      >
+        <EditOrganization _id={_id} name={name} onEdit={onEdit} />
+      </PopupModal>
     </div>
   );
 };
