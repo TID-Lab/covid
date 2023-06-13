@@ -174,7 +174,7 @@ const Post = (props) => {
         <AuthorInfo
           name={data.author}
           topics={data.topics}
-          accCategories={data.labels}
+          labels={data.labels}
           customTags={
             tags &&
             tags.filter(

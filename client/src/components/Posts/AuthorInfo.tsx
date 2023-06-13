@@ -2,7 +2,7 @@ import Icon from 'components/Icon';
 import { Fragment } from 'react';
 import {
   COVID_TOPICS,
-  ACC_CATEGORIES,
+  LABELS,
   INSTITUTION,
   IDENTITIES,
 } from 'util/filterData';
@@ -20,15 +20,16 @@ const COLOR_CSS: { [key: string]: string } = {
 interface AuthorInfoProps {
   name: string;
   customTags?: any[];
-  accCategories?: Array<keyof typeof ACC_CATEGORIES>;
+  labels?: Array<keyof typeof LABELS>;
   topics?: Array<keyof typeof COVID_TOPICS>;
 }
 const AuthorInfo = ({
   name,
   customTags,
-  accCategories,
+  labels,
   topics,
 }: AuthorInfoProps) => {
+  
   return (
     <div className=" font-medium space-y-2 ">
       <div className="flex items-center gap-x-2 gap-y-2">
@@ -38,10 +39,10 @@ const AuthorInfo = ({
         <div className="">
           <p className="text-sm font-bold leading-4">{name}</p>
           <div className="text-xs flex flex-wrap gap-x-0.5 gap-y-1">
-            {accCategories &&
-              accCategories
-                .filter((tag) => tag === 'misinfo')
-                .map((tag, index) => (
+            {labels &&
+              labels
+                .filter((label) => label === 'misinfo')
+                .map((label, index) => (
                   <span className="text-white flex gap-x-1 bg-red-600 rounded-full py-0.5 pr-3 truncate pl-1 ">
                     <Icon type="alert-octagon" size="xs" />
                     Known Misinformation Spreader
@@ -50,6 +51,22 @@ const AuthorInfo = ({
           </div>
         </div>
       </div>
+      <ul className="flex flex-wrap gap-x-0.5 gap-y-1 text-xs h-fit">
+        {labels &&
+          (
+            labels
+            .filter((label) => label !== 'misinfo')
+            .map((label, index) => (
+              <li
+                key={index}
+                className="px-4 py-0.5 rounded-full  bg-slate-200 flex gap-x-0.5 items-center text-slate-700"
+              >
+                {/* <Icon type="tag" size="2xs" /> */}
+                {LABELS[label]}
+              </li>
+          )
+          ))}
+      </ul>
       <ul className="flex flex-wrap gap-x-0.5 gap-y-1 text-xs h-fit">
         {topics &&
           topics.map((topic, index) => (
