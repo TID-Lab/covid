@@ -77,11 +77,11 @@ function bodyToFilter(body) {
   }
 
   if (includesLabels.length > 0) {
-    filter.Labels = { $all: includesLabels };
+    filter.labels = { $all: includesLabels };
   }
   if (excludesLabels.length > 0) {
-    filter.Labels = {
-      ...filter.Labels,
+    filter.labels = {
+      ...filter.labels,
       $nin: excludesLabels,
     };
   }
