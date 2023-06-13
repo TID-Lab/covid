@@ -30,9 +30,7 @@ routes.get('/', async (req, res) => {
 
   let tags;
   try {
-    console.log('Org', org);
     tags = await CustomTag.find({ organization: org });
-    console.log('Tags', tags);
   } catch (err) {
     debug(`${err}`);
     res.status(500).send();

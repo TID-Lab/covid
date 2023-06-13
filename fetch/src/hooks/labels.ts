@@ -19,7 +19,6 @@ module.exports = async function addLabels(post, next) {
     }
     case 'facebook':
     case 'instagram': {
-      console.log('instagram');
       const crowdtangleLists = getCrowdTangleLists();
       if (
         typeof crowdtangleLists !== 'object' ||
