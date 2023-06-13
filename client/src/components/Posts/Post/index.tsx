@@ -32,7 +32,6 @@ function waitForEmbed(parent, callback) {
 
 const Post = (props) => {
   const { data } = props;
-  console.log(data);
   const { _id, url, platform, platformID } = data;
   const coverImagePath = `/images/${platform}.png`;
   const elementID = `post-${platform}-${platformID}`;
@@ -175,7 +174,7 @@ const Post = (props) => {
         <AuthorInfo
           name={data.author}
           topics={data.topics}
-          accCategories={data.tags}
+          accCategories={data.labels}
           customTags={
             tags &&
             tags.filter(
