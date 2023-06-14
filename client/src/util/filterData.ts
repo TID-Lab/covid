@@ -10,6 +10,14 @@ export const ACC_CATEGORIES = {
   trusted: 'Trusted Resources',
 } as const;
 
+export const LABELS = {
+  ...ACC_CATEGORIES,
+  latinx: 'Hispanic/Latinx',
+  blackafam: 'Black/African American',
+  georgia: 'Georgia',
+  institutional: 'Institution'
+} as const;
+
 export type ACC_CATEGORIES_TYPE = keyof typeof ACC_CATEGORIES;
 
 export const INSTITUTION = {

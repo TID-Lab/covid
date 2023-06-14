@@ -12,7 +12,6 @@ const addTopics = require('./hooks/topics');
 const addLabels = require('./hooks/labels');
 const addEngagement = require('./hooks/engagement');
 const saveToDatabase = require('./hooks/database');
-const addTags = require('./hooks/tags');
 
 const debug = useDebug('fetch');
 
@@ -31,22 +30,22 @@ module.exports = async () => {
 
   const settings = await get();
 
-  // Streams posts from Twitter accounts in the Twitter Lists
-  const twitterStreamChannel = new TwitterStreamChannel({
-    credentials: credentials.twitter,
-  });
+  // // Streams posts from Twitter accounts in the Twitter Lists
+  // const twitterStreamChannel = new TwitterStreamChannel({
+  //   credentials: credentials.twitter,
+  // });
 
-  // Fetches posts from all Twitter accounts posting about COVID-19
-  const twitterPageChannel = new TwitterPageChannel({
-    credentials: credentials.twitter,
-    queryParams: {
-      query: COVID_KEYWORDS.join(' OR '),
-    },
-    lastTimestamp: settings.twitter_page_lastTimestamp,
-    onFetch: async (lastTimestamp) => {
-      await set('twitter_page_lastTimestamp', lastTimestamp);
-    },
-  });
+  // // Fetches posts from all Twitter accounts posting about COVID-19
+  // const twitterPageChannel = new TwitterPageChannel({
+  //   credentials: credentials.twitter,
+  //   queryParams: {
+  //     query: COVID_KEYWORDS.join(' OR '),
+  //   },
+  //   lastTimestamp: settings.twitter_page_lastTimestamp,
+  //   onFetch: async (lastTimestamp) => {
+  //     await set('twitter_page_lastTimestamp', lastTimestamp);
+  //   },
+  // });
 
   // Fetches posts from Facebook accounts in the CrowdTangle Lists
   const facebookListChannel = new CrowdTangleFacebookChannel({
@@ -102,7 +101,7 @@ module.exports = async () => {
 
   // Registers all of the above Channels with Downstream
 
-  downstream.register(twitterStreamChannel);
+  // downstream.register(twitterStreamChannel);
   // downstream.register(twitterPageChannel);
   downstream.register(facebookListChannel);
   // downstream.register(facebookPlatformChannel);

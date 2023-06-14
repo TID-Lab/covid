@@ -1,8 +1,9 @@
 # COVID-19 Social Media Dashboard
 
 This repo contains the source code for the [Project PEACH](https://www.projectpeach.org/) COVID-19 Social Media Dashboard: a dashboard intended to support the real-time monitoring of publicly available online COVID-19 posts across Facebook, Twitter, and Instagram by health-focused social sector organizations in the state of Georgia.
-
+### **Monitoring Page**
 ![Screenshot](./assets/screenshot_monitoring.png)
+### **Resources Page**
 ![Screenshot](./assets/screenshot_resources.png)
 The dashboard is actively developed by the [Technology & International Development Lab](http://tid.gatech.edu) at Georgia Tech in collaboration with Emory University & the Morehouse School of Medicine.
 

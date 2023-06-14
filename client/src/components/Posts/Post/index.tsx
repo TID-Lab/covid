@@ -32,7 +32,6 @@ function waitForEmbed(parent, callback) {
 
 const Post = (props) => {
   const { data } = props;
-  console.log(data);
   const { _id, url, platform, platformID } = data;
   const coverImagePath = `/images/${platform}.png`;
   const elementID = `post-${platform}-${platformID}`;
@@ -130,7 +129,7 @@ const Post = (props) => {
       className={`${c.overlayborder} min-w-[400px]  bg-white h-fit min-h-[30vh] relative w-full flex flex-col shadow-lg overflow-hidden rounded-xs ${c.Post} `}
     >
       {' '}
-      {data.tags && data.tags.some((item) => item === 'misinfo') && (
+      {data.labels && data.labels.some((item) => item === 'misinfo') && (
         <div className="bg-red-600 text-white text-xs font-medium gap-2 flex justify-center py-0.5 px-4 items-center">
           <Icon type="alert-octagon" size="xs" />
           <p>Known Misinformation Spreader</p>
@@ -175,7 +174,7 @@ const Post = (props) => {
         <AuthorInfo
           name={data.author}
           topics={data.topics}
-          accCategories={data.tags}
+          labels={data.labels}
           customTags={
             tags &&
             tags.filter(

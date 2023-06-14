@@ -22,7 +22,7 @@ async function scheduleWorker(path, callback) {
 
 // Schedules each worker listed to run on a regular interval
 async function initialize() {
-  scheduleWorker('./dist/workers/update_twitter_rules.js', () => {});
+  // scheduleWorker('./dist/workers/update_twitter_rules.js', () => {});
   scheduleWorker('./dist/workers/sync_crowdtangle_lists.js', (lists) => {
     crowdtangleLists = lists;
   });

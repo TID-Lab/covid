@@ -83,7 +83,6 @@ routes.post('/:page', async (req, res) => {
       break;
     }
     const filter = bodyToFilter(body);
-    console.log(filter);
     const filteredResources = await Resources.find(filter);
     const filteredResCount = filteredResources.length;
     const skipCount = pageNum * pageSize;

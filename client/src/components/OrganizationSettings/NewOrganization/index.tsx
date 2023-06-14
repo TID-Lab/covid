@@ -3,8 +3,6 @@ import { useState } from 'react';
 import { createOrganization } from 'api/org';
 import notify from 'util/notify';
 
-import { useHidePopup } from 'hooks/popup';
-
 import c from './index.module.css';
 
 const ROLES = ['org', 'admin'];
@@ -15,8 +13,6 @@ const NewOrganization = (props) => {
   const [role, setRole] = useState(ROLES[0]);
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
-
-  const hidePopup = useHidePopup();
 
   function onRoleChange(event) {
     setRole(event.target.value);
@@ -39,19 +35,9 @@ const NewOrganization = (props) => {
       });
 
       onCreate(org);
-
-      hidePopup();
-
-      setRole(ROLES[0]);
-      setName('');
-      setPassword('');
     } catch (err) {
       notify('An error occurred.');
     }
-  }
-
-  function onClose() {
-    hidePopup();
   }
 
   return (
@@ -79,7 +65,6 @@ const NewOrganization = (props) => {
       ></input>
       <div>
         <button onClick={onSubmit}>Submit</button>
-        <button onClick={onClose}>Close</button>
       </div>
     </div>
   );

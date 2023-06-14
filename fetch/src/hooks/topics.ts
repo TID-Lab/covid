@@ -40,9 +40,12 @@ module.exports = async function addTopics(post, next) {
     const topic = topics[i];
     const automaton = automatons[topic];
     for (let j = 0; j < searchables.length; j += 1) {
-      const string = searchables[j].toLowerCase(); // error here: "TypeError: Cannot read property 'toLowerCase' of undefined"
-      const hits = automaton.match(string);
-      if (hits.length > 0 && hits[0] !== '') matchedTopics.push(topic);
+      const searchable = searchables[j];
+      if (typeof searchable === 'string') {
+        const string = searchable.toLowerCase();
+        const hits = automaton.match(string);
+        if (hits.length > 0 && hits[0] !== '') matchedTopics.push(topic);
+      }
     }
   }
 

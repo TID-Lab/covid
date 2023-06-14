@@ -18,6 +18,7 @@ function bodyToFilter(body) {
     dates,
     topic,
     category,
+    identity,
     institutions,
     georgia,
     platforms,
@@ -53,6 +54,12 @@ function bodyToFilter(body) {
 
   if (category) includesLabels.push(category);
 
+  if (identity === 'blackafam') {
+    includesLabels.push('blackafam');
+  } else if (identity === 'latinx') {
+    includesLabels.push('latinx');
+  }
+
   if (typeof institutions === 'boolean') {
     if (institutions) {
       includesLabels.push('institutional');
@@ -70,11 +77,11 @@ function bodyToFilter(body) {
   }
 
   if (includesLabels.length > 0) {
-    filter.Labels = { $all: includesLabels };
+    filter.labels = { $all: includesLabels };
   }
   if (excludesLabels.length > 0) {
-    filter.Labels = {
-      ...filter.Labels,
+    filter.labels = {
+      ...filter.labels,
       $nin: excludesLabels,
     };
   }
