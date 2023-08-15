@@ -8,6 +8,7 @@ const { get, set } = require('./util/settings');
 const { COVID_KEYWORDS } = require('../../constants');
 
 // hooks
+const log = require('./hooks/log')
 const addTopics = require('./hooks/topics');
 const addLabels = require('./hooks/labels');
 const addEngagement = require('./hooks/engagement');
@@ -56,6 +57,8 @@ module.exports = async () => {
     },
     lastTimestamp: settings.facebook_list_lastTimestamp,
     onFetch: async (lastTimestamp) => {
+      console.log("FACEBOOK TIMESTAMP UPDATE");
+      console.log(lastTimestamp);
       await set('facebook_list_lastTimestamp', lastTimestamp);
     },
   });
@@ -82,6 +85,8 @@ module.exports = async () => {
     },
     lastTimestamp: settings.insta_list_lastTimestamp,
     onFetch: async (lastTimestamp) => {
+      console.log("INSTA TIMESTAMP UPDATE");
+      console.log(lastTimestamp);
       await set('insta_list_lastTimestamp', lastTimestamp);
     },
   });
@@ -109,6 +114,7 @@ module.exports = async () => {
   // downstream.register(instaPlatformChannel);
 
   // Uses all of our hooks
+  downstream.use(log);
   downstream.use(addTopics);
   downstream.use(addLabels);
   downstream.use(addEngagement);

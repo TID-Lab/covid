@@ -25,30 +25,35 @@ const topics = Object.keys(automatons);
  * with topics based on a substring search of its textual content.
  */
 module.exports = async function addTopics(post, next) {
-  const matchedTopics = [];
+  try {
+    const matchedTopics = [];
 
-  // The string fields to search through
-  const searchables = [
-    post.content,
-    // TODO add other fields!
-    // FB: raw > imageText, raw >
-    // IG: raw > imageText
-    // Tw: if possible, the post being replied to or retweeted
-  ];
-
-  for (let i = 0; i < topics.length; i += 1) {
-    const topic = topics[i];
-    const automaton = automatons[topic];
-    for (let j = 0; j < searchables.length; j += 1) {
-      const searchable = searchables[j];
-      if (typeof searchable === 'string') {
-        const string = searchable.toLowerCase();
-        const hits = automaton.match(string);
-        if (hits.length > 0 && hits[0] !== '') matchedTopics.push(topic);
+    // The string fields to search through
+    const searchables = [
+      post.content,
+      // TODO add other fields!
+      // FB: raw > imageText, raw >
+      // IG: raw > imageText
+      // Tw: if possible, the post being replied to or retweeted
+    ];
+  
+    for (let i = 0; i < topics.length; i += 1) {
+      const topic = topics[i];
+      const automaton = automatons[topic];
+      for (let j = 0; j < searchables.length; j += 1) {
+        const searchable = searchables[j];
+        if (typeof searchable === 'string') {
+          const string = searchable.toLowerCase();
+          const hits = automaton.match(string);
+          if (hits.length > 0 && hits[0] !== '') matchedTopics.push(topic);
+        }
       }
     }
+  
+    post.topics = matchedTopics;
+  } catch (e) {
+    console.log("TOPICS HOOK ERROR")
+    console.log(e)
   }
-
-  post.topics = matchedTopics;
   await next();
 };
