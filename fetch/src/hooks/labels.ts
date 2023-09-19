@@ -31,12 +31,14 @@ module.exports = async function addLabels(post, next) {
         account: { id },
       } = raw;
       const platformLists = crowdtangleLists[platform];
-      const listKeys = Object.keys(platformLists);
-      for (let i = 0; i < listKeys.length; i += 1) {
-        const listKey = listKeys[i];
-        const list = platformLists[listKey];
-        if (list.includes(id)) {
-          labels.push(listKey);
+      if (typeof platformLists === 'object') {
+        const listKeys = Object.keys(platformLists);
+        for (let i = 0; i < listKeys.length; i += 1) {
+          const listKey = listKeys[i];
+          const list = platformLists[listKey];
+          if (list.includes(id)) {
+            labels.push(listKey);
+          }
         }
       }
       break;

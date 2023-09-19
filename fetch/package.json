@@ -18,7 +18,7 @@
     "cross-env": "^7.0.3",
     "debug": "^4.3.1",
     "dotenv": "^8.6.0",
-    "downstream": "0.0.76",
+    "downstream": "^0.1.4",
     "mongoose": "^5.12.2"
   },
   "devDependencies": {

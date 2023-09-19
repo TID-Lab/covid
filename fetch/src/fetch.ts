@@ -20,6 +20,7 @@ const {
   TwitterStreamChannel,
   CrowdTangleFacebookChannel,
   CrowdTangleInstagramChannel,
+  JunkipediaChannel,
 } = builtin;
 
 const downstream = new Downstream();
@@ -99,6 +100,18 @@ module.exports = async () => {
     },
   });
 
+  // Fetches Twitter posts from all accounts in the given Junkipedia lists
+  const junkipediaChannel = new JunkipediaChannel({
+    apiKey: credentials.junkipedia,
+    queryParams: {
+      lists: '1234',
+    },
+    lastTimestamp: settings.junkipedia_lastTimestamp,
+    onFetch: async (lastTimestamp) => {
+      await set('junkipedia_lastTimestamp', lastTimestamp);
+    },
+  });
+
   // Registers all of the above Channels with Downstream
 
   // downstream.register(twitterStreamChannel);
@@ -107,6 +120,7 @@ module.exports = async () => {
   // downstream.register(facebookPlatformChannel);
   downstream.register(instaListChannel);
   // downstream.register(instaPlatformChannel);
+  // downstream.register(junkipediaChannel);
 
   // Uses all of our hooks
   downstream.use(addTopics);
