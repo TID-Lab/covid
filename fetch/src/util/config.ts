@@ -26,5 +26,6 @@ module.exports = {
       instagram: process.env.CROWDTANGLE_INSTAGRAM_TOKEN,
       junkipedia: process.env.JUNKIPEDIA_API_KEY,
     },
+    junkipediaLists: process.env.JUNKIPEDIA_LISTS
   },
 };

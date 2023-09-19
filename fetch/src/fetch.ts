@@ -2,7 +2,7 @@
 const { Downstream, builtin } = require('downstream');
 const useDebug = require('debug');
 const {
-  fetch: { credentials },
+  fetch: { credentials, junkipediaLists },
 } = require('./util/config');
 const { get, set } = require('./util/settings');
 const { COVID_KEYWORDS } = require('../../constants');
@@ -101,10 +101,10 @@ module.exports = async () => {
   });
 
   // Fetches Twitter posts from all accounts in the given Junkipedia lists
-  const junkipediaChannel = new JunkipediaChannel({
+  const twitterListChannel = new JunkipediaChannel({
     apiKey: credentials.junkipedia,
     queryParams: {
-      lists: '1234',
+      lists: junkipediaLists
     },
     lastTimestamp: settings.junkipedia_lastTimestamp,
     onFetch: async (lastTimestamp) => {
@@ -120,7 +120,7 @@ module.exports = async () => {
   // downstream.register(facebookPlatformChannel);
   downstream.register(instaListChannel);
   // downstream.register(instaPlatformChannel);
-  // downstream.register(junkipediaChannel);
+  downstream.register(twitterListChannel);
 
   // Uses all of our hooks
   downstream.use(addTopics);
